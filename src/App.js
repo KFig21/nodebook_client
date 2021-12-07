@@ -62,18 +62,16 @@ function App() {
   return (
     <Router basename="/">
       <div className="app">
-        {!user && (
-          <Routes>
-            {/* LOGIN ROUTE, if there's a user redirect to home */}
-            <Route exact path="/login" element={<Login />}></Route>
-            {/* SIGNUP ROUTE*/}
-            <Route
-              exact
-              path="/signup"
-              element={<Signup userAuth={userAuth} setUserAuth={setUserAuth} />}
-            ></Route>
-          </Routes>
-        )}
+        <Routes>
+          {/* LOGIN ROUTE, if there's a user redirect to home */}
+          <Route exact path="/login" element={<Login />}></Route>
+          {/* SIGNUP ROUTE*/}
+          <Route
+            exact
+            path="/signup"
+            element={<Signup userAuth={userAuth} setUserAuth={setUserAuth} />}
+          ></Route>
+        </Routes>
         {user && (
           <div className="home-container">
             <Sidebar
