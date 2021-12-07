@@ -16,6 +16,7 @@ import Update from "./pages/update/Update";
 import Explore from "./pages/explore/Explore";
 import Notifications from "./pages/notifications/Notifications";
 import Sidebar from "./components/sidebar/Sidebar";
+import MobileNavFooter from "./components/mobileNavFooter/MobileNavFooter";
 
 function App() {
   const [userAuth, setUserAuth] = useState(false);
@@ -60,13 +61,12 @@ function App() {
   }, [user]);
 
   return (
-    <Router basename="/nodebook_client">
+    <Router basename="/">
       <div className="app">
         {user ? (
           <div className="home-container">
             <Sidebar
               currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
               notificationsCount={notificationsCount}
               sidebarOpen={sidebarOpen}
               setSidebarOpen={setSidebarOpen}
@@ -206,6 +206,12 @@ function App() {
                 ></Route>
               </Routes>
             </div>
+            <MobileNavFooter
+              currentPage={currentPage}
+              notificationsCount={notificationsCount}
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+            />
           </div>
         ) : (
           <Routes>

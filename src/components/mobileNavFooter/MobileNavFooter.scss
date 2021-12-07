@@ -1,0 +1,56 @@
+@import "../../global.scss";
+
+.mobile-nav-footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: $footerHeight;
+  background-color: $backgroundColor;
+  border-top: solid 2px $sidebarColor;
+  z-index: 5;
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+
+  .nav-footer-button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    .footer-link {
+      width: 100%;
+      height: $footerHeight;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      .footer-icon {
+        height: 30px;
+        width: 30px;
+      }
+
+      .notifications-icon-container {
+        height: 30px;
+        width: 30px;
+        position: relative;
+
+        .notification-badge {
+          background-color: $primaryColor;
+          color: $navbarColor;
+          font-size: 11px;
+          font-weight: 700;
+          width: 19px;
+          height: 19px;
+          border-radius: 25px;
+          position: absolute;
+          top: -3px;
+          left: -4px;
+          border: solid 2px $sidebarColor;
+        }
+      }
+    }
+  }
+}
