@@ -19,13 +19,22 @@
     justify-content: center;
     z-index: 2;
 
+    @include mobile {
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        0deg,
+        $navbarColor 60%,
+        $backgroundColor 100%
+      );
+    }
+
     .profile-header-wrapper {
       max-width: 700px;
       width: 700px;
       padding: 0px 30px;
 
       @include mobile {
-        padding: 20px 0px 0px 20px;
+        padding: 25px 0px 0px 20px;
         max-width: 100%;
         width: 100%;
       }
