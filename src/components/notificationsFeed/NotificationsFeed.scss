@@ -11,6 +11,11 @@
   overflow-y: scroll;
   overflow: overlay;
 
+  @include mobile {
+    min-height: calc(100vh - $navbarHeight - $footerHeight);
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+
   .notifications-container {
     width: 100%;
 

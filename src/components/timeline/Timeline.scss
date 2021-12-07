@@ -5,6 +5,11 @@
   overflow-y: scroll;
   overflow: overlay;
   height: calc(100vh - $navbarHeight);
+
+  @include mobile {
+    min-height: calc(100vh - $navbarHeight - $footerHeight);
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
 }
 
 .timeline-wrapper {
@@ -14,10 +19,6 @@
   align-items: center;
   max-width: 700px;
   margin: 0px auto;
-
-  @include mobile {
-    padding-bottom: $footerHeight;
-  }
 }
 
 .timeline-sticky-info-container {

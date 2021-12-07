@@ -7,6 +7,11 @@
   height: calc(100vh - $navbarHeight);
   overflow-y: scroll;
   overflow: overlay;
+
+  @include mobile {
+    min-height: calc(100vh - $navbarHeight - $footerHeight);
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
 }
 
 .followfeed-wrapper {
