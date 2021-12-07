@@ -1,6 +1,6 @@
 // imports
 import { useEffect, useState, useContext } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import "./global.scss";
 import axios from "axios";
