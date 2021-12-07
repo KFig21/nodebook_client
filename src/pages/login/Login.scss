@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: $navbarColor;
+  background-color: $sidebarColor;
 
   @include mobile {
     flex-direction: column;
@@ -48,7 +48,7 @@
       position: absolute;
       width: 99%;
       height: 102px;
-      border-radius: 0px 18px 18px 18px;
+      border-radius: 0px 19px 19px 19px;
       background-color: $primaryColor;
       box-shadow: 0px 0px 10px 5px $primaryColor;
       animation: animated-glow 6s ease infinite;

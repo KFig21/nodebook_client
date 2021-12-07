@@ -379,11 +379,14 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 comment={comments[0]}
                 fetchNotifications={fetchNotifications}
               />
-              <Link to={"/post/" + post._id}>
-                <button className="view-more-comments-button">
+              <button
+                className="view-more-comments-button"
+                style={sidebarOpen ? { pointerEvents: "none" } : {}}
+              >
+                <Link to={"/post/" + post._id}>
                   View more comments {"(" + post.comments.length + ")"}
-                </button>
-              </Link>
+                </Link>
+              </button>
             </div>
           )}
         </div>

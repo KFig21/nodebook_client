@@ -19,7 +19,10 @@ export default function MobileNavFooter({
 }) {
   const { user } = useContext(AuthContext);
   return (
-    <div className="mobile-nav-footer">
+    <div
+      className="mobile-nav-footer"
+      style={sidebarOpen ? { pointerEvents: "none" } : {}}
+    >
       <div className="nav-footer-button-container">
         {/* PROFILE */}
         <Link to={"/profile/" + user.username}>

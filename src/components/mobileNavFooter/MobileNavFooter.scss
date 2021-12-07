@@ -7,7 +7,7 @@
   height: $footerHeight;
   background-color: $backgroundColor;
   border-top: solid 2px $sidebarColor;
-  z-index: 5;
+  z-index: 4;
   display: none;
 
   @include mobile {

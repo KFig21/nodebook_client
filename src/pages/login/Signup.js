@@ -74,7 +74,7 @@ export default function Signup({ setUserAuth }) {
       <div className="login-left">
         {/* <span className="login-left-title">nodebook</span> */}
         <div className="glow"></div>
-        <img className="wordmark" src={PF + "assets/wordmark3.png"} alt="" />
+        <img className="wordmark" src={PF + "assets/wordmark4.png"} alt="" />
       </div>
       <div className="login-right">
         <div className="login-form">

@@ -83,7 +83,7 @@ export default function Login() {
             <div className="glow"></div>
             <img
               className="wordmark"
-              src={PF + "assets/wordmark3.png"}
+              src={PF + "assets/wordmark4.png"}
               alt=""
             />
           </div>
