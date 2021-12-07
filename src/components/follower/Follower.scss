@@ -39,7 +39,7 @@
         .follow-name {
           font-size: 15px;
           line-height: 17px;
-          font-weight: 100;
+          font-weight: unset;
           color: $subTextColor;
 
           @include mobile {

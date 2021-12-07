@@ -70,6 +70,11 @@
         top: 0px;
         right: 25px;
 
+        @include mobile {
+          display: flex;
+          flex-direction: column;
+        }
+
         button {
           background-color: $backgroundColor;
           border: none;
@@ -83,6 +88,10 @@
           border-top-right-radius: 10px;
           border-bottom-right-radius: 10px;
 
+          @include mobile {
+            border-radius: 0px 0px 10px 10px;
+          }
+
           &:hover {
             background-color: $editButtonBackgroundColor;
           }
@@ -92,6 +101,10 @@
           color: $deleteButtonTextColor;
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
+
+          @include mobile {
+            border-radius: 10px 10px 0px 0px;
+          }
 
           &:hover {
             background-color: $deleteButtonHoverColor;
@@ -130,82 +143,85 @@
       object-fit: cover;
     }
 
-    .edit-input {
-      border: none;
-      width: 97%;
-      min-width: 97%;
-      max-width: 97%;
-      min-height: 50px;
-      max-height: 150px;
-      margin: 10px 5px;
-      padding: 7px 12px;
-      font-size: 18px;
-      background-color: $backgroundColor;
-      // background-image: $glassGradient;
-      border-radius: 3px;
-      color: white;
-      outline: none;
-      resize: vertical;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
-      ::-webkit-resizer {
-        display: none;
+    .post-edit-form-container {
+      margin-bottom: 10px;
+      .edit-input {
+        border: none;
+        width: 97%;
+        min-width: 97%;
+        max-width: 97%;
+        min-height: 50px;
+        max-height: 150px;
+        margin: 10px 5px;
+        padding: 7px 12px;
+        font-size: 18px;
+        background-color: $backgroundColor;
+        // background-image: $glassGradient;
+        border-radius: 3px;
+        color: white;
+        outline: none;
+        resize: vertical;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+        ::-webkit-resizer {
+          display: none;
 
-        @include mobile {
-          max-height: 300px;
+          @include mobile {
+            max-height: 300px;
+          }
+        }
+
+        &:focus,
+        &:hover {
+          background-color: $navbarColor;
         }
       }
 
-      &:focus,
-      &:hover {
-        background-color: $navbarColor;
+      button {
+        font-weight: 600;
+        padding: 7px;
+        border-radius: 5px;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 18px;
+        height: 38px;
+        max-height: 38px;
+        margin: 0px 30px;
+        outline: none;
       }
-    }
 
-    button {
-      font-weight: 600;
-      padding: 7px;
-      border-radius: 5px;
-      background-color: transparent;
-      cursor: pointer;
-      font-size: 18px;
-      height: 38px;
-      max-height: 38px;
-      margin: 0px 30px;
-      outline: none;
-    }
+      .edit-options-submit {
+        width: 60px;
+        border: 2px solid $editButtonTextColor;
+        color: $editButtonTextColor;
 
-    .edit-options-submit {
-      width: 60px;
-      border: 2px solid $editButtonTextColor;
-      color: $editButtonTextColor;
-
-      &:hover,
-      &:focus {
-        background-color: $editButtonTextColor;
-        color: black;
+        &:hover,
+        &:focus {
+          background-color: $editButtonTextColor;
+          color: black;
+        }
       }
-    }
 
-    .edit-options-cancel {
-      width: 80px;
-      border: 2px solid $primaryColor;
-      color: $primaryColor;
+      .edit-options-cancel {
+        width: 80px;
+        border: 2px solid $primaryColor;
+        color: $primaryColor;
 
-      &:hover,
-      &:focus {
-        background-color: $primaryColor;
-        color: black;
+        &:hover,
+        &:focus {
+          background-color: $primaryColor;
+          color: black;
+        }
       }
-    }
 
-    .invalid {
-      opacity: 0.5;
-      min-width: 60px;
-      border: 2px solid white;
-      color: white;
-      cursor: unset;
+      .invalid {
+        opacity: 0.5;
+        min-width: 60px;
+        border: 2px solid white;
+        color: white;
+        cursor: unset;
+      }
     }
   }
 

@@ -259,7 +259,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
           <span className="post-body">{post?.body}</span>
           {/* edit input container */}
           {showEdit && (
-            <div>
+            <div className="post-edit-form-container">
               <form onSubmit={handleEditPost}>
                 <textarea
                   className="edit-input"
