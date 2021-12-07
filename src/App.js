@@ -62,6 +62,7 @@ function App() {
   return (
     <Router basename="/">
       <div className="app">
+        <span>test</span>
         {user ? (
           <div className="home-container">
             <Sidebar
