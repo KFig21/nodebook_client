@@ -32,6 +32,7 @@
         height: 32px;
         display: flex;
         align-items: center;
+        color: white;
 
         .post-avatar {
           width: 32px;
@@ -46,6 +47,7 @@
         font-weight: 500;
         margin: 0 10px;
         cursor: pointer;
+        color: white;
       }
 
       .post-date {
@@ -323,6 +325,10 @@
         margin: 10px auto 5px auto;
         cursor: pointer;
         transition: all 0.2s ease;
+
+        a {
+          color: white;
+        }
 
         &:hover {
           border-color: $primaryColor;

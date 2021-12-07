@@ -19,19 +19,17 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "sass": "^1.43.4",
-    "socket.io": "^4.4.0",
-    "socket.io-client": "^4.4.0",
     "timeago": "^1.6.7",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
