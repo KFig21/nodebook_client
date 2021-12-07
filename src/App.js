@@ -60,7 +60,7 @@ function App() {
   }, [user]);
 
   return (
-    <Router basename="/">
+    <Router>
       <div className="app">
         <Routes>
           {/* LOGIN ROUTE, if there's a user redirect to home */}

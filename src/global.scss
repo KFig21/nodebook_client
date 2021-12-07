@@ -55,7 +55,8 @@ $glassGradient: linear-gradient(
 $width: 768px;
 
 @mixin mobile {
-  @media (min-height: 421px) {
+  // @media (min-height: 421px) {
+  @media (min-height: 1px) {
     @media (max-width: #{$width}) {
       @content;
     }
