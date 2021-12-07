@@ -8,7 +8,6 @@ export default function PostPage({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  console.log(post);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

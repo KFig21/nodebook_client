@@ -11,11 +11,15 @@ export default function ExploreFeed({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  setCurrentPage("Explore");
   const [loading, setLoading] = useState(true);
   const [friends, setFriends] = useState([]);
   const [skip, setSkip] = useState(0);
   const { user: currentUser, dispatch } = useContext(AuthContext);
+
+  // set current page to "Explore" on load
+  useEffect(() => {
+    setCurrentPage("Explore");
+  });
 
   const handleFollowingStatus = async (followed, userInQuestion) => {
     const updateFollow = async () => {

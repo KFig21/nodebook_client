@@ -10,7 +10,6 @@ export default function Home({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  setCurrentPage("Timeline");
   return (
     <div className="container" id="container">
       <Nav
@@ -19,6 +18,7 @@ export default function Home({
         setSidebarOpen={setSidebarOpen}
       />
       <Timeline
+        setCurrentPage={setCurrentPage}
         fetchNotifications={fetchNotifications}
         setSidebarOpen={setSidebarOpen}
       />

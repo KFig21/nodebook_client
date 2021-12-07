@@ -194,6 +194,7 @@ export default function CenterFeed({
                     {friends.map((friend) => (
                       <Follower
                         friend={friend}
+                        key={friend._id}
                         handleChangeFeed={handleChangeFeed}
                         handleFollowingStatus={handleFollowingStatus}
                       />

@@ -142,7 +142,7 @@ export default function Profile({
         console.log(err);
       }
     };
-    if (feed !== "posts") {
+    if (feed === "followers" || feed === "following") {
       getFollows();
     }
   }, [skip]);
@@ -163,8 +163,10 @@ export default function Profile({
         setLoading(false);
       }, 300);
     };
-    if (feed !== "posts") {
+    if (feed === "followers" || feed === "following") {
       getFollows();
+    } else {
+      setLoading(false);
     }
   }, [feed, profileUser.username]);
 

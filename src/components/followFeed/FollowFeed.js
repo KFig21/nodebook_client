@@ -12,11 +12,15 @@ export default function FollowFeed({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  setCurrentPage(follow);
   const [loading, setLoading] = useState(true);
   const [friends, setFriends] = useState([]);
   const [skip, setSkip] = useState(0);
   const { user: currentUser, dispatch } = useContext(AuthContext);
+
+  // set current page on load
+  useEffect(() => {
+    setCurrentPage(follow);
+  });
 
   const handleFollowingStatus = async (followed, userInQuestion) => {
     try {

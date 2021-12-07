@@ -7,11 +7,20 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function Timeline({ fetchNotifications, setSidebarOpen }) {
+export default function Timeline({
+  fetchNotifications,
+  setSidebarOpen,
+  setCurrentPage,
+}) {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [skip, setSkip] = useState(0);
   const { user } = useContext(AuthContext);
+
+  // set current page to "Timeline" on load
+  useEffect(() => {
+    setCurrentPage("Timeline");
+  });
 
   let username = user.username;
 

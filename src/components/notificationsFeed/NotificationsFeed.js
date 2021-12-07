@@ -17,7 +17,10 @@ export default function NotificationsFeed({
   const [newNotifications, setNewNotifications] = useState([]);
   const { user } = useContext(AuthContext);
 
-  setCurrentPage("Notifications");
+  // set current page to "Notifications" on load
+  useEffect(() => {
+    setCurrentPage("Notifications");
+  });
 
   const getNotifications = async () => {
     setTimeout(async function () {
@@ -90,14 +93,12 @@ export default function NotificationsFeed({
       }
 
       const deleteNotifcations = async () => {
-        await Promise.all(
-          deleteNotis.map(async (notificationToDelete) => {
-            await axios.delete(
-              `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notificationToDelete._id}`
-              // `http://localhost:3000/api/notifications/${notificationToDelete._id}`
-            );
-          })
-        );
+        for (let notificationToDelete of deleteNotis) {
+          await axios.delete(
+            `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notificationToDelete._id}`
+            // `http://localhost:3000/api/notifications/${notificationToDelete._id}`
+          );
+        }
       };
 
       const refreshNotifications = async () => {
@@ -196,13 +197,13 @@ export default function NotificationsFeed({
                   className="notification-read-button desktop-button"
                   onClick={() => handleSeenStatus("seen")}
                 >
-                  All new
+                  Mark all as new
                 </button>
                 <button
                   className="notification-delete-button desktop-button"
                   onClick={() => handleDeleteBatch("seen")}
                 >
-                  Delete all
+                  Delete all seen
                 </button>
                 <button
                   className="notification-read-button mobile-button"

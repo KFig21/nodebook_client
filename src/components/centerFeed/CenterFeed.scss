@@ -168,6 +168,63 @@
         border: 3px solid $borderColor;
         border-radius: 25px;
       }
+
+      // profile info
+      .profileInfo-container {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        background-color: $navbarColor;
+        border-radius: 5px;
+        margin: auto;
+        padding: 15px 25px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        text-align: left;
+        font-size: 18px;
+
+        .profile-info-div {
+          padding: 5px;
+          display: flex;
+          position: relative;
+
+          .profile-info-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+          }
+
+          .profile-info-strong {
+            font-weight: bold;
+            min-width: 90px;
+          }
+
+          .profile-website-a {
+            color: white;
+            cursor: pointer;
+            transition: all ease 0.12s;
+            word-break: break-all;
+
+            &:hover {
+              color: $primaryColor;
+            }
+          }
+        }
+        .edit-icon {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          cursor: pointer;
+          color: white;
+
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
     }
   }
 }

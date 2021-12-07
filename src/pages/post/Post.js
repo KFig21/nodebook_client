@@ -13,9 +13,13 @@ export default function Post({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  setCurrentPage("Post");
   const postId = useParams().postId;
   const [post, setPost] = useState("");
+
+  // set current page to"Post on load
+  useEffect(() => {
+    setCurrentPage("Post");
+  });
 
   useEffect(() => {
     const fetchPost = async () => {
