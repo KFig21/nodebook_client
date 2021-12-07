@@ -55,7 +55,7 @@ export default function Profile({
     }
   }, [username, currentPage]);
 
-  // gets posts
+  // gets posts on scroll
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(
@@ -68,7 +68,22 @@ export default function Profile({
     if (feed === "posts" && profileUser.username) {
       fetchPosts();
     }
-  }, [profileUser.username, currentUser._id, skip, feed]);
+  }, [currentUser._id, skip]);
+
+  // gets posts on profile or feed switch
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/0`
+        // `http://localhost:3000/api/posts/profile/${profileUser.username}/${skip}`
+      );
+      setPosts(res.data);
+      setLoading(false);
+    };
+    if (feed === "posts" && profileUser.username) {
+      fetchPosts();
+    }
+  }, [profileUser.username, feed]);
 
   // FOLLOW FEED FUNCTIONALITY
   // FOLLOW FEED FUNCTIONALITY
