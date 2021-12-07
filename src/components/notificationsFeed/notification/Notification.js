@@ -13,6 +13,7 @@ import {
   PersonAddOutlined,
 } from "@material-ui/icons";
 import "./Notification.scss";
+import noAvi from "../../../assets/noAvatar.png";
 
 export default function Notification({
   notification,
@@ -23,7 +24,6 @@ export default function Notification({
   const [user, setUser] = useState({});
   const [content, setContent] = useState({});
   const [loading, setLoading] = useState(true);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   // get user
   useEffect(() => {
@@ -159,11 +159,7 @@ export default function Notification({
                 <Link to={`/profile/${user.username}`}>
                   <img
                     className="notification-avatar"
-                    src={
-                      user.profilePicture
-                        ? PF + user.profilePicture
-                        : PF + "assets/noAvatar.png"
-                    }
+                    src={user.profilePicture ? user.profilePicture : noAvi}
                     alt=""
                   />
                 </Link>

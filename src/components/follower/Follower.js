@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Follower.scss";
 import { AuthContext } from "../../context/AuthContext";
 import Loader from "../../components/loader/Loader";
+import noAvi from "../../assets/noAvatar.png";
 
 export default function Follower({
   friend,
@@ -11,7 +12,6 @@ export default function Follower({
   handleChangeFeed,
   sidebarOpen,
 }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
   const [followStatus, setFollowStatus] = useState("");
   const [loading, setLoading] = useState(true);
@@ -63,11 +63,7 @@ export default function Follower({
           >
             <div className="follow-container-left">
               <img
-                src={
-                  friend.profilePicture
-                    ? PF + friend.profilePicture
-                    : PF + "assets/noAvatar.png"
-                }
+                src={friend.profilePicture ? friend.profilePicture : noAvi}
                 alt=""
                 className="follow-img"
               />

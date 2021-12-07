@@ -1,12 +1,12 @@
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import "./Share.scss";
 import { PermMedia, Cancel } from "@material-ui/icons";
+import noAvi from "../../assets/noAvatar.png";
+import "./Share.scss";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const body = useRef();
   const [file, setFile] = useState(null);
   const [disableButton, setDisableButton] = useState("");
@@ -48,11 +48,7 @@ export default function Share() {
         <div className="share-top">
           <img
             className="share-avatar"
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "assets/noAvatar.png"
-            }
+            src={user.profilePicture ? user.profilePicture : noAvi}
             alt=""
           />
           <input

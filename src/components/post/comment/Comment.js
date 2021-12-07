@@ -4,10 +4,10 @@ import { AuthContext } from "../../../context/AuthContext";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Favorite, FavoriteBorder, MoreVert } from "@material-ui/icons";
+import noAvi from "../../../assets/noAvatar.png";
 import "./Comment.scss";
 
 export default function Comment({ comment, fetchNotifications }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [like, setLike] = useState(comment.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const { user: currentUser } = useContext(AuthContext);
@@ -143,11 +143,7 @@ export default function Comment({ comment, fetchNotifications }) {
   return (
     <div className="comment-container">
       <Link to={`/profile/${user.username}`}>
-        <img
-          className="comment-avatar"
-          src={PF + "assets/noAvatar.png"}
-          alt=""
-        />
+        <img className="comment-avatar" src={noAvi} alt="" />
       </Link>
       <div className="comment-right">
         <div className="comment-body-container">

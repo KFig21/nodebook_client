@@ -4,8 +4,9 @@ import { format } from "timeago.js";
 import { Link, useNavigate } from "react-router-dom";
 import { MoreVert, Favorite, FavoriteBorder } from "@material-ui/icons";
 import { AuthContext } from "../../context/AuthContext";
-import "./Post.scss";
 import Comment from "./comment/Comment";
+import noAvi from "../../assets/noAvatar.png";
+import "./Post.scss";
 
 export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   const [like, setLike] = useState(post.likes.length);
@@ -23,7 +24,6 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   const isInvalid = disableButton === "" || disableButton === post.body;
   const [disableComment, setDisableComment] = useState("");
   const commentButtonIsInvalid = disableComment === "";
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   // get likes
   useEffect(() => {
@@ -221,11 +221,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
             <Link to={`/profile/${user.username}`}>
               <img
                 className="post-avatar"
-                src={
-                  user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "assets/noAvatar.png"
-                }
+                src={user.profilePicture ? user.profilePicture : noAvi}
                 alt=""
               />
               <span className="post-username">{user.username}</span>
@@ -294,7 +290,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               edit: {format(post.editedtimestamp)}
             </span>
           )}
-          <img className="post-img" src={PF + post.img} alt="" />
+          <img className="post-img" src={post.img} alt="" />
         </div>
         <div className="post-bottom">
           <div className="post-bottom-left">

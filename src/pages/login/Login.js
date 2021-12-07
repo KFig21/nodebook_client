@@ -7,6 +7,7 @@ import "./Login.scss";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
+import wordmark from "../../assets/wordmark4.png";
 
 export default function Login() {
   // const { register, handleSubmit } = useForm();
@@ -47,7 +48,6 @@ export default function Login() {
   const usermail = useRef();
   const password = useRef();
   const { isFetching, dispatch } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -81,11 +81,7 @@ export default function Login() {
           <div className="login-left">
             {/* <span className="login-left-title">nodebook</span> */}
             <div className="glow"></div>
-            <img
-              className="wordmark"
-              src={PF + "assets/wordmark4.png"}
-              alt=""
-            />
+            <img className="wordmark" src={wordmark} alt="" />
           </div>
           <div className="login-right">
             <div className="login-form">

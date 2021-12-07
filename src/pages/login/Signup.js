@@ -2,6 +2,7 @@ import { React, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 // import { useForm } from "react-hook-form";
 import axios from "axios";
+import wordmark from "../../assets/wordmark4.png";
 import "./Login.scss";
 
 export default function Signup({ setUserAuth }) {
@@ -15,7 +16,6 @@ export default function Signup({ setUserAuth }) {
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -74,7 +74,7 @@ export default function Signup({ setUserAuth }) {
       <div className="login-left">
         {/* <span className="login-left-title">nodebook</span> */}
         <div className="glow"></div>
-        <img className="wordmark" src={PF + "assets/wordmark4.png"} alt="" />
+        <img className="wordmark" src={wordmark} alt="" />
       </div>
       <div className="login-right">
         <div className="login-form">

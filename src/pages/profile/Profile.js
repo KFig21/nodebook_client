@@ -2,10 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import CenterFeed from "../../components/centerFeed/CenterFeed";
-import "./Profile.scss";
 import Nav from "../../components/nav/Nav";
-import ProfileInfo from "../../components/profileInfo/ProfileInfo";
+// import ProfileInfo from "../../components/profileInfo/ProfileInfo";
 import { AuthContext } from "../../context/AuthContext";
+import cover from "../../assets/cover.png";
+import noAvi from "../../assets/noAvatar.png";
+import "./Profile.scss";
 
 export default function Profile({
   currentPage,
@@ -14,7 +16,6 @@ export default function Profile({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [profileUser, setProfileUser] = useState({});
   const username = useParams().username;
   const [followed, setFollowed] = useState(false);
@@ -209,9 +210,7 @@ export default function Profile({
                 <img
                   className="profile-cover-img"
                   src={
-                    profileUser.coverPicture
-                      ? PF + profileUser.coverPicture
-                      : PF + "assets/cover.png"
+                    profileUser.coverPicture ? profileUser.coverPicture : cover
                   }
                   alt=""
                 />
@@ -219,8 +218,8 @@ export default function Profile({
                   className="profile-avatar"
                   src={
                     profileUser.profilePicture
-                      ? PF + profileUser.profilePicture
-                      : PF + "assets/noAvatar.png"
+                      ? profileUser.profilePicture
+                      : noAvi
                   }
                   alt=""
                 />
