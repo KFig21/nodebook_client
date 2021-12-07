@@ -1,0 +1,69 @@
+@import "../../global.scss";
+
+.profile {
+  display: flex;
+  height: 100vh;
+}
+
+.profile-right {
+  height: calc(100vh - $navbarHeight);
+
+  .profile-right-content {
+    overflow-y: scroll;
+    overflow: overlay;
+    height: 100%;
+
+    @include mobile {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+    }
+
+    .profile-right-top {
+      .profile-cover {
+        position: relative;
+
+        .profile-cover-img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+
+          @include mobile {
+            height: 100px;
+          }
+        }
+
+        .profile-avatar {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          object-fit: cover;
+          position: absolute;
+          left: 45px;
+          margin: auto;
+          top: 100px;
+          border: 4px solid $backgroundColor;
+          z-index: 3;
+
+          @include mobile {
+            top: 50px;
+            left: 15px;
+            width: 75px;
+            height: 75px;
+          }
+        }
+      }
+    }
+    .profile-right-bottom {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+
+      @include mobile {
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

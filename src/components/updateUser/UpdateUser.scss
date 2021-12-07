@@ -1,0 +1,110 @@
+@import "../../global.scss";
+
+.update-user-page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: scroll;
+  overflow: overlay;
+  min-height: calc(100vh - $navbarHeight);
+  height: calc(100vh - $navbarHeight);
+
+  .update-form {
+    display: flex;
+    flex-direction: column;
+    border: solid 2px $primaryColor;
+    border-radius: 9px;
+    padding: 25px;
+    margin: 25px 10px;
+    min-width: 350px;
+    max-width: 350px;
+    background-image: $glassGradient;
+
+    button {
+      background-color: $primaryColorFaded;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 7px 15px;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 100px;
+      margin: 10px auto 0px auto;
+      color: white;
+
+      &:hover,
+      &:focus {
+        background-color: $primaryColor;
+      }
+    }
+
+    .error-msg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $deleteButtonTextColor;
+      font-size: 18px;
+      font-weight: 600;
+      background-color: $deleteButtonHoverColor;
+      margin: auto;
+      width: 100%;
+      padding: 6px 12px;
+    }
+
+    .message-before-update-button {
+      border-top: solid 2px $primaryColor;
+      border-bottom: solid 2px $primaryColor;
+      padding: 10px;
+      margin: 14px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .info-icon {
+        font-size: 18px;
+        color: $primaryColor;
+      }
+    }
+
+    .update-item-div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .update-label {
+        text-align: left;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .update-form-input,
+      .update-form-textarea {
+        background-color: transparent;
+        color: white;
+        border: none;
+        border-bottom: solid 2px $formInputColor;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        outline: none;
+        padding: 7px 12px;
+        margin: 2px 0px 7px 0px;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        transition: all 0.15s ease;
+
+        &:focus {
+          background-color: $formInputFocusColor;
+          border-bottom: solid 2px $primaryColor;
+        }
+      }
+
+      .update-form-textarea {
+        height: 80px;
+        min-height: 60px;
+        max-height: 200px;
+      }
+    }
+  }
+}

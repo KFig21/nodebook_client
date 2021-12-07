@@ -1,0 +1,113 @@
+@import "../../global.scss";
+
+.follow-container {
+  background-color: $formInputColor;
+  // background-image: $glassGradient;
+  border-radius: 100px;
+  font-size: 22px;
+  padding: 10px;
+  margin: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 100%;
+
+  &:hover {
+    background-color: $formInputFocusColor;
+  }
+  a {
+    color: white;
+
+    .follow-container-left {
+      display: flex;
+
+      .follow-user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+
+        .follow-username {
+          font-size: 20px;
+          font-weight: 500;
+
+          @include mobile {
+            font-size: 16px;
+          }
+        }
+
+        .follow-name {
+          font-size: 15px;
+          line-height: 17px;
+          font-weight: 100;
+          color: $subTextColor;
+
+          @include mobile {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+    .follow-img {
+      border-radius: 100px;
+      height: 45px;
+      width: 45px;
+      margin-right: 15px;
+
+      @include mobile {
+        height: 35px;
+        width: 35px;
+      }
+    }
+  }
+
+  .follow-container-right {
+    display: flex;
+    align-items: center;
+    .follow-status-span {
+      font-size: 16px;
+      color: $subTextColor;
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    .follow-button {
+      border: none;
+      background-color: $primaryColorFaded;
+      color: white;
+      border-radius: 5px;
+      margin: 0px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 5px 4px 5px 10px;
+      min-width: 105px;
+      transition: all 0.15s ease;
+
+      @include mobile {
+        font-size: 13px;
+        min-width: unset;
+      }
+
+      &:hover {
+        outline: none;
+        background-color: $primaryColor;
+      }
+    }
+  }
+}
+
+.current-user-container {
+  box-shadow: 0px 0px 4px 4px $primaryColorGlow;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 0px 5px 5px $primaryColorFaded;
+  }
+}

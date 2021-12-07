@@ -1,0 +1,190 @@
+@import "../../../global.scss";
+
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $backgroundColor;
+  border-bottom: solid 3px $darkBorder;
+  width: 100%;
+  min-height: 150px;
+
+  &:hover {
+    background-color: $notificationHoverColor;
+  }
+
+  .notification-link {
+    width: 100%;
+
+    &:hover {
+      .notification-wrapper {
+        .content-follow {
+          border: 2px solid $primaryColor;
+        }
+      }
+    }
+
+    .notification-wrapper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      width: 700px;
+      padding: 12px 25px 10px 25px;
+      margin: auto;
+
+      @include mobile {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .notification-top {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+
+        a {
+          height: 36px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+
+          .notification-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+          }
+        }
+
+        .notification-desc {
+          font-size: 17px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          color: $fadedTextColor;
+          text-align: left;
+          flex-wrap: wrap;
+          margin-bottom: 5px;
+
+          @include mobile {
+            height: unset;
+          }
+
+          .notification-username-link {
+            height: unset;
+            margin-bottom: unset;
+            .notification-username {
+              font-size: 18px;
+              font-weight: 500;
+              margin: 0px 6px 0px 0px;
+              cursor: pointer;
+              color: white;
+            }
+          }
+
+          .notification-message {
+            margin-right: 6px;
+          }
+
+          .notification-icon {
+            margin-top: 5px;
+            color: $primaryColorFaded;
+
+            @include mobile {
+              margin-top: unset;
+              padding-top: 5px;
+            }
+          }
+
+          .message-icon {
+            color: rgb(24, 163, 228);
+          }
+          .like-icon {
+            color: rgb(231, 42, 80);
+          }
+          .follow-icon {
+            color: rgb(255, 191, 52);
+          }
+        }
+      }
+
+      .content-body {
+        margin-left: 51px;
+        background-color: $postBackgroundColor;
+        padding: 7px 15px 10px 15px;
+        font-size: 17px;
+        border-radius: 0px 15px 15px 15px;
+        text-align: left;
+      }
+      .content-follow {
+        margin-left: 51px;
+        background-color: transparent;
+        border: 2px solid $fadedButtonColor;
+        color: $fadedTextColor;
+        padding: 5px 15px 8px 15px;
+        font-size: 17px;
+        border-radius: 15px;
+        text-align: left;
+
+        @include mobile {
+          margin: auto;
+        }
+      }
+    }
+  }
+  .notification-buttons-container {
+    display: flex;
+    width: 100%;
+    max-width: 700px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3px;
+    margin-bottom: 12px;
+    padding-left: 58px;
+
+    @include mobile {
+      padding-left: 0px;
+      justify-content: center;
+    }
+
+    button {
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 4px 8px;
+      margin: 0px 20px;
+      border-radius: 5px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button-icon {
+      font-size: 20px;
+    }
+
+    .notification-read-button {
+      color: $fadedButtonColor;
+      border: solid 2px $fadedButtonColor;
+      &:hover {
+        border: solid 2px $primaryColor;
+        background-color: $primaryColor;
+        color: black;
+      }
+    }
+    .notification-delete-button {
+      color: $deleteButtonHoverColor;
+      border: solid 2px $deleteButtonHoverColor;
+      &:hover {
+        border: solid 2px $deleteButtonTextColor;
+        background-color: $deleteButtonTextColor;
+        color: black;
+      }
+    }
+  }
+}

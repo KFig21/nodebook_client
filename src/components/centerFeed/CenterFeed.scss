@@ -1,0 +1,173 @@
+@import "../../global.scss";
+
+.profile-feed {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @include mobile {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .profile-header {
+    width: 100%;
+    background-color: $navbarColor;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+    .profile-header-wrapper {
+      max-width: 700px;
+      width: 700px;
+      padding: 0px 30px;
+
+      @include mobile {
+        padding: 20px 0px 0px 20px;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .profile-info {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+
+        .profile-info-username {
+          font-size: 40px;
+          margin-right: 10px;
+
+          @include mobile {
+            font-size: 24px;
+          }
+        }
+
+        .profile-info-name {
+          font-weight: 300;
+          font-size: 30px;
+          @include mobile {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+  .profile-header-buttons-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    background-color: $navbarColor;
+    top: -10px;
+    z-index: 1;
+    padding-top: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+
+    .profile-header-buttons-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 700px;
+      max-width: 700px;
+      background-color: $navbarColor;
+
+      @include mobile {
+        max-width: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+
+      .profile-info-clickable {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25%;
+        border: none;
+        border-bottom: solid 3px $borderColor;
+        background-color: transparent;
+        color: $fadedTextColor;
+        font-size: 17px;
+        padding: 8px 0px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $formInputColor;
+          border-bottom: solid 3px $primaryColorFaded;
+        }
+
+        @include mobile {
+          width: 100%;
+
+          &:hover {
+            background-color: rgb(10, 10, 10);
+            border-bottom: solid 3px $primaryColor;
+          }
+        }
+
+        .count {
+          font-weight: 700;
+          margin-right: 6px;
+          font-size: 18px;
+          color: $textWhite;
+        }
+
+        .profile-info-icon {
+          margin: 0px 0px 0px 10px;
+        }
+      }
+
+      .pic-active {
+        background-color: rgb(10, 10, 10);
+        border-bottom: solid 3px $primaryColor;
+
+        &:hover {
+          border-bottom: solid 3px $primaryColorFaded;
+        }
+
+        @include mobile {
+          &:hover {
+            border-bottom: solid 3px $primaryColor;
+          }
+        }
+      }
+    }
+  }
+
+  .feed {
+    @include mobile {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+    }
+    .feed-wrapper {
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 700px;
+      max-width: 700px;
+
+      @include mobile {
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+      }
+
+      .no-content-message {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 30px;
+        font-size: 24px;
+        border: 3px solid $borderColor;
+        border-radius: 25px;
+      }
+    }
+  }
+}

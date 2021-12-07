@@ -1,0 +1,157 @@
+@import "../../global.scss";
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $navbarColor;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  .login-left {
+    padding: 30px;
+    margin-right: 20px;
+    position: relative;
+    width: 500px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mobile {
+      width: 80%;
+      margin: unset;
+      height: unset;
+      padding: 10px 30px;
+      margin-bottom: 40px;
+    }
+
+    .login-left-title {
+      font-size: 80px;
+      color: $primaryColor;
+    }
+
+    .wordmark {
+      width: 500px;
+      position: absolute;
+
+      @include mobile {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    .glow {
+      position: absolute;
+      width: 99%;
+      height: 102px;
+      border-radius: 0px 18px 18px 18px;
+      background-color: $primaryColor;
+      box-shadow: 0px 0px 10px 5px $primaryColor;
+      animation: animated-glow 6s ease infinite;
+
+      @include mobile {
+        border-radius: 0px 13px 13px 13px;
+        max-width: 298px;
+        height: 60px;
+      }
+    }
+
+    @keyframes animated-glow {
+      0% {
+        box-shadow: 0px 0px 0px 0px $primaryColor;
+      }
+      25% {
+        box-shadow: 0px 0px 0px 0px $primaryColor;
+      }
+
+      48% {
+        box-shadow: 0px 0px 15px 10px $primaryColor;
+      }
+      52% {
+        box-shadow: 0px 0px 15px 10px $primaryColor;
+      }
+
+      75% {
+        box-shadow: 0px 0px 0px 0px $primaryColor;
+      }
+      100% {
+        box-shadow: 0px 0px 0px 0px $primaryColor;
+      }
+    }
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    border: solid 2px $primaryColor;
+    border-radius: 9px;
+    padding: 25px;
+    margin: 15px;
+    min-width: 300px;
+    background-image: $glassGradient;
+
+    button {
+      background-color: $primaryColorFaded;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 7px 15px;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 100px;
+      margin: 10px auto 0px auto;
+      color: white;
+
+      &:hover,
+      &:focus {
+        background-color: $primaryColor;
+      }
+    }
+  }
+}
+
+.form-input {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-bottom: solid 2px $formInputColor;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  outline: none;
+  padding: 7px 12px;
+  margin: 5px 0px;
+  width: 90%;
+  font-size: 16px;
+  transition: all 0.15s ease;
+
+  &:focus {
+    background-color: $formInputFocusColor;
+    border-bottom: solid 2px $primaryColor;
+  }
+}
+
+.login-sub-container {
+  position: relative;
+
+  .dont-have-an-account {
+    color: white;
+
+    a {
+      color: $primaryColor;
+    }
+  }
+
+  .error-span {
+    color: rgb(252, 86, 86);
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 300px;
+  }
+}

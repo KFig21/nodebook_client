@@ -1,0 +1,19 @@
+@import "../../global.scss";
+
+.followfeed {
+  flex: 9;
+  background-color: $backgroundColor;
+  min-height: calc(100vh - $navbarHeight);
+  height: calc(100vh - $navbarHeight);
+  overflow-y: scroll;
+  overflow: overlay;
+}
+
+.followfeed-wrapper {
+  padding: 10px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 700px;
+  margin: auto;
+}

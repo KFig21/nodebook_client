@@ -1,0 +1,392 @@
+@import "../../global.scss";
+
+.post {
+  width: 100%;
+
+  // background-image: $glassGradient;
+
+  background-color: $postBackgroundColor;
+  margin: 10px 0;
+  border-radius: 3px 25px 25px 25px;
+  position: relative;
+
+  // border-top: solid 2px $borderColor;
+  // border-left: solid 2px $borderColor;
+  // border-right: solid 2px $borderColor;
+}
+
+.post-wrapper {
+  padding: 14px;
+
+  .post-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    .post-top-left {
+      display: flex;
+      align-items: center;
+
+      a {
+        height: 32px;
+        display: flex;
+        align-items: center;
+
+        .post-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .post-username {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+
+      .post-date {
+        font-size: 12px;
+        color: $fadedTextColor;
+      }
+    }
+
+    .post-top-right {
+      .post-options-icon {
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+      .post-options-div {
+        position: absolute;
+        top: 0px;
+        right: 25px;
+
+        button {
+          background-color: $backgroundColor;
+          border: none;
+          padding: 5px 12px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .post-options-edit {
+          color: $editButtonTextColor;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+
+          &:hover {
+            background-color: $editButtonBackgroundColor;
+          }
+        }
+
+        .post-options-delete {
+          color: $deleteButtonTextColor;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+
+          &:hover {
+            background-color: $deleteButtonHoverColor;
+          }
+        }
+      }
+    }
+  }
+
+  .post-center {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    .post-body {
+      padding: 0px 10px;
+      text-align: left;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .post-edit {
+      margin-left: 10px;
+      margin-right: auto;
+      padding: 3px 10px 4px 10px;
+      text-align: left;
+      font-size: 12px;
+      background-color: $backgroundColor;
+      color: rgb(199, 150, 85);
+      border-radius: 20px;
+    }
+    .post-img {
+      // margin-top: 20px;
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .edit-input {
+      border: none;
+      width: 97%;
+      min-width: 97%;
+      max-width: 97%;
+      min-height: 50px;
+      max-height: 150px;
+      margin: 10px 5px;
+      padding: 7px 12px;
+      font-size: 18px;
+      background-color: $backgroundColor;
+      // background-image: $glassGradient;
+      border-radius: 3px;
+      color: white;
+      outline: none;
+      resize: vertical;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+      ::-webkit-resizer {
+        display: none;
+
+        @include mobile {
+          max-height: 300px;
+        }
+      }
+
+      &:focus,
+      &:hover {
+        background-color: $navbarColor;
+      }
+    }
+
+    button {
+      font-weight: 600;
+      padding: 7px;
+      border-radius: 5px;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      height: 38px;
+      max-height: 38px;
+      margin: 0px 30px;
+      outline: none;
+    }
+
+    .edit-options-submit {
+      width: 60px;
+      border: 2px solid $editButtonTextColor;
+      color: $editButtonTextColor;
+
+      &:hover,
+      &:focus {
+        background-color: $editButtonTextColor;
+        color: black;
+      }
+    }
+
+    .edit-options-cancel {
+      width: 80px;
+      border: 2px solid $primaryColor;
+      color: $primaryColor;
+
+      &:hover,
+      &:focus {
+        background-color: $primaryColor;
+        color: black;
+      }
+    }
+
+    .invalid {
+      opacity: 0.5;
+      min-width: 60px;
+      border: 2px solid white;
+      color: white;
+      cursor: unset;
+    }
+  }
+
+  .post-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .post-bottom-left {
+      display: flex;
+      align-items: center;
+
+      .like-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        cursor: pointer;
+        color: $primaryColor;
+      }
+
+      .post-like-counter {
+        font-size: 15px;
+      }
+    }
+
+    .post-comment-body {
+      cursor: pointer;
+      border-bottom: 1px dashed gray;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+
+  .post-comments-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    .post-comment-input-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include mobile {
+        flex-direction: column;
+      }
+
+      .comment-input {
+        border: none;
+        width: 100%;
+        resize: vertical;
+        min-height: 45px;
+        height: 45px;
+        max-height: 150px;
+        margin: 5px 15px 5px 10px;
+        padding: 10px 12px;
+        font-size: 18px;
+        background-color: $backgroundColor;
+        border-radius: 3px;
+        color: white;
+        outline: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
+        ::-webkit-resizer {
+          display: none;
+        }
+
+        @include mobile {
+          width: 96%;
+          margin: 5px 15px 10px 15px;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        border: none;
+        padding: 7px;
+        border-radius: 5px;
+        background-color: transparent;
+        background-image: $glassGradient;
+        border: solid 2px $primaryColorFaded;
+        font-weight: 500;
+        font-size: 16px;
+        margin-right: 10px;
+        cursor: pointer;
+        color: white;
+        height: 43px;
+        max-height: 43px;
+        outline: none;
+
+        &:hover,
+        &:focus {
+          background-image: none;
+          background-color: $primaryColor;
+          border: solid 2px $primaryColor;
+        }
+      }
+    }
+
+    .post-comments {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+
+      .view-more-comments-button {
+        background-color: transparent;
+        background-image: $glassGradient;
+        color: white;
+        border: solid 2px $borderColor;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 16px;
+        margin: 10px auto 5px auto;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: $primaryColor;
+        }
+
+        @include mobile {
+          border-radius: 5px;
+          border: solid 2px $primaryColorFaded;
+        }
+      }
+    }
+  }
+}
+
+.delete-post-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  border-radius: 3px 25px 25px 25px;
+  font-size: 16px;
+  z-index: 3;
+
+  .delete-post-message {
+    font-size: 18px;
+    margin: 10px 0px;
+    background-color: $sidebarColor;
+    background-image: $glassGradient;
+    border: 2px solid $primaryColor;
+    padding: 10px 20px;
+    border-radius: 10px;
+    max-width: 90%;
+  }
+
+  button {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 7px 12px;
+    margin: 5px 30px;
+    border-radius: 5px;
+    background-color: $sidebarColor;
+    background-image: $glassGradient;
+  }
+
+  .delete-button {
+    color: $deleteButtonTextColor;
+    border: solid 2px $deleteButtonTextColor;
+    &:hover {
+      background-color: $deleteButtonTextColor;
+      color: black;
+    }
+  }
+
+  .cancel-button {
+    color: $primaryColor;
+    border: solid 2px $primaryColor;
+    &:hover {
+      background-color: $primaryColor;
+      color: black;
+    }
+  }
+}
