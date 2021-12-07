@@ -134,7 +134,6 @@ export default function FollowFeed({
                 <Follower
                   friend={friend}
                   handleFollowingStatus={handleFollowingStatus}
-                  key={friend._id}
                   sidebarOpen={sidebarOpen}
                 />
               ))}
