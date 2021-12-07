@@ -60,7 +60,7 @@ function App() {
   }, [user]);
 
   return (
-    <Router basename="/nodebook_client">
+    <Router basename="/">
       <div className="app">
         {user ? (
           <div className="home-container">
