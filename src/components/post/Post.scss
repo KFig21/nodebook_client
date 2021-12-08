@@ -267,6 +267,8 @@
         flex-direction: column;
         background-color: $backgroundColor;
         border-radius: 3px;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
       }
 
       .comment-input {
@@ -328,7 +330,6 @@
             margin-right: unset;
             border: unset;
             border-radius: unset;
-            border-bottom-right-radius: 3px;
             padding-bottom: 9px;
             height: 33px;
             max-height: 33px;
@@ -336,6 +337,8 @@
             min-width: 100%;
             text-align: center;
             background-image: $glassGradient;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
 
             &:focus,
             &:hover {
@@ -352,8 +355,10 @@
           color: $fadedTextColor;
 
           @include mobile {
-            background-color: $backgroundColor;
+            background-color: $commentButtonBackgroundColor;
             background-image: none;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
           }
         }
       }
