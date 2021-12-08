@@ -260,14 +260,13 @@
   .post-comments-container {
     display: flex;
     flex-direction: column;
-
     padding: 10px;
 
     .post-comment-input-container {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      margin: 5px 10px 5px 10px;
+      margin: 5px 10px;
 
       @include mobile {
         flex-direction: column;
@@ -275,6 +274,7 @@
         border-radius: 3px;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
+        margin: 5px 10px 5px 10px;
       }
 
       .comment-input {
@@ -373,7 +373,7 @@
     .post-comments {
       display: flex;
       flex-direction: column;
-      margin-top: 10px;
+      margin-top: 5px;
 
       .view-more-comments-button {
         background-color: transparent;
@@ -383,7 +383,7 @@
         padding: 10px 15px;
         border-radius: 10px;
         font-size: 16px;
-        margin: 10px auto 5px auto;
+        margin: 5px auto;
         cursor: pointer;
         transition: all 0.2s ease;
 
