@@ -213,6 +213,7 @@ $topHeight: calc(100vh - $bottomHeight);
   }
 
   .sidebar-personal-info-container {
+    position: absolute;
     bottom: 0px;
     width: 100%;
     height: $bottomHeight;
@@ -223,6 +224,10 @@ $topHeight: calc(100vh - $bottomHeight);
     color: $fadedButtonColor;
     font-size: 18px;
     font-weight: 500;
+
+    @include mobile {
+      position: absolute;
+    }
 
     &:hover,
     &:focus {
