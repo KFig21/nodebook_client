@@ -83,7 +83,13 @@ export default function Share() {
               />
             </label>
           </div>
-          <button type="submit" className="share-button" disabled={isInvalid}>
+          <button
+            type="submit"
+            className={
+              isInvalid ? "share-button invalid-share-button" : "share-button"
+            }
+            disabled={isInvalid}
+          >
             Share
           </button>
         </form>

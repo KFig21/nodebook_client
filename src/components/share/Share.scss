@@ -115,6 +115,19 @@
           background-color: $primaryColor;
         }
       }
+
+      .invalid-share-button {
+        background-image: none;
+        color: $fadedTextColor;
+
+        &:hover,
+        &:focus {
+          background-image: none;
+          border: solid 2px $primaryColor;
+          background-color: transparent;
+          color: white;
+        }
+      }
     }
 
     .share-img-container {
