@@ -8,12 +8,17 @@
     padding: 5px 0px;
   }
 
-  .comment-avatar {
+  .comment-avatar-container {
     max-height: 30px;
     max-width: 30px;
-    border-radius: 50px;
     margin-right: 12px;
     margin-top: 5px;
+
+    .comment-avatar {
+      max-height: 30px;
+      max-width: 30px;
+      border-radius: 50px;
+    }
   }
 
   .comment-right {

@@ -142,9 +142,11 @@ export default function Comment({ comment, fetchNotifications }) {
 
   return (
     <div className="comment-container">
-      <Link to={`/profile/${user.username}`}>
-        <img className="comment-avatar" src={noAvi} alt="" />
-      </Link>
+      <div className="comment-avatar-container">
+        <Link to={`/profile/${user.username}`}>
+          <img className="comment-avatar" src={noAvi} alt="" />
+        </Link>
+      </div>
       <div className="comment-right">
         <div className="comment-body-container">
           <div className="commenter-info-container">

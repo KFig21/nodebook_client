@@ -262,11 +262,14 @@
 
     .post-comment-input-container {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
+      margin: 5px 10px 5px 10px;
 
       @include mobile {
         flex-direction: column;
+        background-color: $backgroundColor;
+        border-radius: 3px;
       }
 
       .comment-input {
@@ -276,7 +279,7 @@
         min-height: 45px;
         height: 45px;
         max-height: 150px;
-        margin: 5px 15px 5px 10px;
+        margin-right: 15px;
         padding: 10px 12px;
         font-size: 18px;
         background-color: $backgroundColor;
@@ -291,8 +294,8 @@
         }
 
         @include mobile {
-          width: 96%;
-          margin: 5px 15px 10px 15px;
+          width: 100%;
+          margin-right: unset;
         }
 
         &:focus {
@@ -300,27 +303,64 @@
         }
       }
 
-      button {
-        border: none;
-        padding: 7px;
-        border-radius: 5px;
-        background-color: transparent;
-        background-image: $glassGradient;
-        border: solid 2px $primaryColorFaded;
-        font-weight: 500;
-        font-size: 16px;
-        margin-right: 10px;
-        cursor: pointer;
-        color: white;
-        height: 43px;
-        max-height: 43px;
-        outline: none;
+      .post-comment-button-container {
+        @include mobile {
+          width: 100%;
+        }
 
-        &:hover,
-        &:focus {
+        .comment-button {
+          border: none;
+          padding: 7px;
+          border-radius: 5px;
+          background-color: transparent;
+          background-image: $glassGradient;
+          border: solid 2px $primaryColorFaded;
+          font-weight: 500;
+          font-size: 16px;
+          margin-right: 10px;
+          cursor: pointer;
+          color: white;
+          height: 45px;
+          max-height: 45px;
+          outline: none;
+
+          &:hover,
+          &:focus {
+            background-image: none;
+            background-color: $primaryColor;
+            border: solid 2px $primaryColor;
+          }
+
+          @include mobile {
+            margin-right: unset;
+            border: unset;
+            border-radius: unset;
+            border-bottom-right-radius: 3px;
+            padding-bottom: 9px;
+            height: 33px;
+            max-height: 33px;
+            width: 100%;
+            min-width: 100%;
+            text-align: center;
+            background-image: $glassGradient;
+
+            &:focus {
+              border: none;
+              background-color: transparent;
+              color: $primaryColor;
+              background-image: $glassGradient;
+            }
+          }
+        }
+
+        .invalid-comment-button {
           background-image: none;
-          background-color: $primaryColor;
-          border: solid 2px $primaryColor;
+          color: $fadedTextColor;
+
+          @include mobile {
+            background-color: $backgroundColor;
+            background-image: none;
+          }
         }
       }
     }

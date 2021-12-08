@@ -272,7 +272,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 <button
                   disabled={isInvalid}
                   type="submit"
-                  className={isInvalid ? "invalid" : "edit-options-submit "}
+                  className={isInvalid ? "invalid" : "edit-options-submit"}
                 >
                   edit
                 </button>
@@ -337,8 +337,19 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               onChange={(e) => setDisableComment(e.target.value)}
               placeholder="add a comment!"
             />
-            <form onSubmit={submitComment}>
-              <button type="submit" disabled={commentButtonIsInvalid}>
+            <form
+              onSubmit={submitComment}
+              className="post-comment-button-container"
+            >
+              <button
+                type="submit"
+                disabled={commentButtonIsInvalid}
+                className={
+                  commentButtonIsInvalid
+                    ? "invalid-comment-button comment-button"
+                    : "comment-button"
+                }
+              >
                 comment
               </button>
             </form>
