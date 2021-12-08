@@ -221,6 +221,10 @@
     font-size: 18px;
     font-weight: 500;
 
+    @include mobile {
+      position: fixed;
+    }
+
     &:hover,
     &:focus {
       .made-by {
