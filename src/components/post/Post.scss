@@ -16,252 +16,258 @@
 }
 
 .post-wrapper {
-  padding: 14px;
+  .post-upper {
+    padding: 14px;
+    background-color: $postBackgroundColor;
+    border-radius: 3px 25px 25px 25px;
 
-  .post-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-
-    .post-top-left {
+    .post-top {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      position: relative;
 
-      a {
-        height: 32px;
+      .post-top-left {
         display: flex;
         align-items: center;
-        color: white;
 
-        .post-avatar {
-          width: 32px;
+        a {
           height: 32px;
-          border-radius: 50%;
-          object-fit: cover;
+          display: flex;
+          align-items: center;
+          color: white;
+
+          .post-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+
+        .post-username {
+          font-size: 18px;
+          font-weight: 500;
+          margin: 0 10px;
+          cursor: pointer;
+          color: white;
+        }
+
+        .post-date {
+          font-size: 12px;
+          color: $fadedTextColor;
         }
       }
 
-      .post-username {
-        font-size: 18px;
-        font-weight: 500;
-        margin: 0 10px;
-        cursor: pointer;
-        color: white;
-      }
+      .post-top-right {
+        .post-options-icon {
+          color: white;
+          cursor: pointer;
 
-      .post-date {
-        font-size: 12px;
-        color: $fadedTextColor;
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+        .post-options-div {
+          position: absolute;
+          top: 0px;
+          right: 25px;
+
+          @include mobile {
+            display: flex;
+            flex-direction: column;
+          }
+
+          button {
+            background-color: $backgroundColor;
+            border: none;
+            padding: 5px 12px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+
+          .post-options-edit {
+            color: $editButtonTextColor;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+            @include mobile {
+              border-radius: 0px 0px 10px 10px;
+            }
+
+            &:hover {
+              background-color: $editButtonBackgroundColor;
+            }
+          }
+
+          .post-options-delete {
+            color: $deleteButtonTextColor;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            @include mobile {
+              border-radius: 10px 10px 0px 0px;
+            }
+
+            &:hover {
+              background-color: $deleteButtonHoverColor;
+            }
+          }
+        }
       }
     }
 
-    .post-top-right {
-      .post-options-icon {
-        color: white;
-        cursor: pointer;
+    .post-center {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
 
-        &:hover {
-          color: $primaryColor;
-        }
+      .post-body {
+        padding: 0px 10px;
+        text-align: left;
+        font-size: 22px;
+        margin-bottom: 8px;
       }
-      .post-options-div {
-        position: absolute;
-        top: 0px;
-        right: 25px;
+      .post-edit {
+        margin-left: 10px;
+        margin-right: auto;
+        padding: 3px 10px 4px 10px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 500;
+        background-color: $editedBackgroundColor;
+        color: $primaryColorFaded;
+        border-radius: 20px;
+      }
+      .post-img {
+        // margin-top: 20px;
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+      }
 
-        @include mobile {
-          display: flex;
-          flex-direction: column;
+      .post-edit-form-container {
+        margin-bottom: 10px;
+
+        .edit-input {
+          border: none;
+          width: 97%;
+          min-width: 97%;
+          max-width: 97%;
+          min-height: 50px;
+          max-height: 150px;
+          margin: 10px 5px;
+          padding: 7px 12px;
+          font-size: 18px;
+          background-color: $backgroundColor;
+          // background-image: $glassGradient;
+          border-radius: 3px;
+          color: white;
+          outline: none;
+          resize: vertical;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+            "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+            "Helvetica Neue", sans-serif;
+          @include mobile {
+            max-height: 200px;
+          }
+
+          &:focus,
+          &:hover {
+            background-color: $navbarColor;
+          }
         }
 
         button {
-          background-color: $backgroundColor;
-          border: none;
-          padding: 5px 12px;
-          font-weight: 700;
+          font-weight: 600;
+          padding: 7px;
+          border-radius: 5px;
+          background-color: transparent;
           cursor: pointer;
+          font-size: 18px;
+          height: 38px;
+          max-height: 38px;
+          margin: 0px 30px;
+          outline: none;
         }
 
-        .post-options-edit {
+        .edit-options-submit {
+          width: 60px;
+          border: 2px solid $editButtonTextColor;
           color: $editButtonTextColor;
-          border-top-right-radius: 10px;
-          border-bottom-right-radius: 10px;
 
-          @include mobile {
-            border-radius: 0px 0px 10px 10px;
-          }
-
-          &:hover {
-            background-color: $editButtonBackgroundColor;
+          &:hover,
+          &:focus {
+            background-color: $editButtonTextColor;
+            color: black;
           }
         }
 
-        .post-options-delete {
-          color: $deleteButtonTextColor;
-          border-top-left-radius: 10px;
-          border-bottom-left-radius: 10px;
+        .edit-options-cancel {
+          width: 80px;
+          border: 2px solid $primaryColor;
+          color: $primaryColor;
 
-          @include mobile {
-            border-radius: 10px 10px 0px 0px;
-          }
-
-          &:hover {
-            background-color: $deleteButtonHoverColor;
+          &:hover,
+          &:focus {
+            background-color: $primaryColor;
+            color: black;
           }
         }
-      }
-    }
-  }
 
-  .post-center {
-    margin: 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-
-    .post-body {
-      padding: 0px 10px;
-      text-align: left;
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-    .post-edit {
-      margin-left: 10px;
-      margin-right: auto;
-      padding: 3px 10px 4px 10px;
-      text-align: left;
-      font-size: 12px;
-      background-color: $backgroundColor;
-      color: rgb(199, 150, 85);
-      border-radius: 20px;
-    }
-    .post-img {
-      // margin-top: 20px;
-      width: 100%;
-      max-height: 500px;
-      object-fit: cover;
-    }
-
-    .post-edit-form-container {
-      margin-bottom: 10px;
-
-      .edit-input {
-        border: none;
-        width: 97%;
-        min-width: 97%;
-        max-width: 97%;
-        min-height: 50px;
-        max-height: 150px;
-        margin: 10px 5px;
-        padding: 7px 12px;
-        font-size: 18px;
-        background-color: $backgroundColor;
-        // background-image: $glassGradient;
-        border-radius: 3px;
-        color: white;
-        outline: none;
-        resize: vertical;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-          "Helvetica Neue", sans-serif;
-        @include mobile {
-          max-height: 200px;
-        }
-
-        &:focus,
-        &:hover {
-          background-color: $navbarColor;
+        .invalid {
+          opacity: 0.5;
+          min-width: 60px;
+          border: 2px solid white;
+          color: white;
+          cursor: unset;
         }
       }
-
-      button {
-        font-weight: 600;
-        padding: 7px;
-        border-radius: 5px;
-        background-color: transparent;
-        cursor: pointer;
-        font-size: 18px;
-        height: 38px;
-        max-height: 38px;
-        margin: 0px 30px;
-        outline: none;
-      }
-
-      .edit-options-submit {
-        width: 60px;
-        border: 2px solid $editButtonTextColor;
-        color: $editButtonTextColor;
-
-        &:hover,
-        &:focus {
-          background-color: $editButtonTextColor;
-          color: black;
-        }
-      }
-
-      .edit-options-cancel {
-        width: 80px;
-        border: 2px solid $primaryColor;
-        color: $primaryColor;
-
-        &:hover,
-        &:focus {
-          background-color: $primaryColor;
-          color: black;
-        }
-      }
-
-      .invalid {
-        opacity: 0.5;
-        min-width: 60px;
-        border: 2px solid white;
-        color: white;
-        cursor: unset;
-      }
     }
-  }
 
-  .post-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .post-bottom-left {
+    .post-bottom {
       display: flex;
       align-items: center;
+      justify-content: space-between;
 
-      .like-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 8px;
+      .post-bottom-left {
+        display: flex;
+        align-items: center;
+
+        .like-icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 8px;
+          cursor: pointer;
+          color: $primaryColor;
+        }
+
+        .post-like-counter {
+          font-size: 15px;
+        }
+      }
+
+      .post-comment-body {
         cursor: pointer;
-        color: $primaryColor;
+        border-bottom: 1px dashed gray;
+        font-size: 16px;
+        margin-right: 10px;
       }
-
-      .post-like-counter {
-        font-size: 15px;
-      }
-    }
-
-    .post-comment-body {
-      cursor: pointer;
-      border-bottom: 1px dashed gray;
-      font-size: 16px;
-      margin-right: 10px;
     }
   }
 
   .post-comments-container {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+
+    padding: 10px;
 
     .post-comment-input-container {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      margin: 5px 10px 5px 10px;
+      margin: 5px 10px 0px 10px;
 
       @include mobile {
         flex-direction: column;

@@ -122,8 +122,9 @@
         padding: 3px 10px 4px 10px;
         text-align: left;
         font-size: 12px;
-        background-color: $backgroundColor;
-        color: rgb(199, 150, 85);
+        font-weight: 500;
+        background-color: $editedBackgroundColor;
+        color: $primaryColorFaded;
         border-radius: 20px;
       }
 

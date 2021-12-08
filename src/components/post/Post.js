@@ -216,116 +216,119 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
         className="post-wrapper"
         style={sidebarOpen ? { pointerEvents: "none" } : {}}
       >
-        <div className="post-top">
-          <div className="post-top-left">
-            <Link to={`/profile/${user.username}`}>
-              <img
-                className="post-avatar"
-                src={user.profilePicture ? user.profilePicture : noAvi}
-                alt=""
-              />
-              <span className="post-username">{user.username}</span>
-            </Link>
-            <span className="post-date">{format(post.createdAt)}</span>
-          </div>
-          {/* options button - delete/edit */}
-          {(user.username === currentUser.username || currentUser.isAdmin) && (
-            <div className="post-top-right">
-              <MoreVert
-                className="post-options-icon"
-                onClick={() => handleShowOptions()}
-              />
-              {showOptions && !showDelete && !showEdit && (
-                <div className="post-options-div">
-                  <button
-                    className="post-options-delete"
-                    onClick={() => setShowDelete(!showDelete)}
-                  >
-                    delete post
-                  </button>
-                  <button
-                    className="post-options-edit"
-                    onClick={() => setShowEdit(!showEdit)}
-                  >
-                    edit post
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-        {/* Post content */}
-        <div className="post-center">
-          <span className="post-body">{post?.body}</span>
-          {/* edit input container */}
-          {showEdit && (
-            <div className="post-edit-form-container">
-              <form onSubmit={handleEditPost}>
-                <textarea
-                  className="edit-input"
-                  type="text"
-                  maxlength="500"
-                  ref={editBody}
-                  onChange={(e) => setDisableButton(e.target.value)}
-                  defaultValue={post?.body ? post?.body : null}
+        <div className="post-upper">
+          <div className="post-top">
+            <div className="post-top-left">
+              <Link to={`/profile/${user.username}`}>
+                <img
+                  className="post-avatar"
+                  src={user.profilePicture ? user.profilePicture : noAvi}
+                  alt=""
                 />
-                <button
-                  disabled={isInvalid}
-                  type="submit"
-                  className={isInvalid ? "invalid" : "edit-options-submit"}
-                >
-                  edit
-                </button>
-                <button
-                  className="edit-options-cancel"
-                  onClick={() => handleCancelAllOptions()}
-                >
-                  cancel
-                </button>
-              </form>
+                <span className="post-username">{user.username}</span>
+              </Link>
+              <span className="post-date">{format(post.createdAt)}</span>
             </div>
-          )}
-          {post.edited && (
-            <span className="post-edit">
-              edit: {format(post.editedtimestamp)}
-            </span>
-          )}
-          <img className="post-img" src={post.img} alt="" />
-        </div>
-        <div className="post-bottom">
-          <div className="post-bottom-left">
-            {isLiked ? (
-              <Favorite className="like-icon" onClick={likeHandler} />
-            ) : (
-              <FavoriteBorder className="like-icon" onClick={likeHandler} />
+            {/* options button - delete/edit */}
+            {(user.username === currentUser.username ||
+              currentUser.isAdmin) && (
+              <div className="post-top-right">
+                <MoreVert
+                  className="post-options-icon"
+                  onClick={() => handleShowOptions()}
+                />
+                {showOptions && !showDelete && !showEdit && (
+                  <div className="post-options-div">
+                    <button
+                      className="post-options-delete"
+                      onClick={() => setShowDelete(!showDelete)}
+                    >
+                      delete post
+                    </button>
+                    <button
+                      className="post-options-edit"
+                      onClick={() => setShowEdit(!showEdit)}
+                    >
+                      edit post
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
-            {like === 1 ? (
-              isLiked ? (
-                <span className="post-like-counter">You like this</span>
+          </div>
+          {/* Post content */}
+          <div className="post-center">
+            <span className="post-body">{post?.body}</span>
+            {/* edit input container */}
+            {showEdit && (
+              <div className="post-edit-form-container">
+                <form onSubmit={handleEditPost}>
+                  <textarea
+                    className="edit-input"
+                    type="text"
+                    maxlength="500"
+                    ref={editBody}
+                    onChange={(e) => setDisableButton(e.target.value)}
+                    defaultValue={post?.body ? post?.body : null}
+                  />
+                  <button
+                    disabled={isInvalid}
+                    type="submit"
+                    className={isInvalid ? "invalid" : "edit-options-submit"}
+                  >
+                    edit
+                  </button>
+                  <button
+                    className="edit-options-cancel"
+                    onClick={() => handleCancelAllOptions()}
+                  >
+                    cancel
+                  </button>
+                </form>
+              </div>
+            )}
+            {post.edited && (
+              <span className="post-edit">
+                edit: {format(post.editedtimestamp)}
+              </span>
+            )}
+            <img className="post-img" src={post.img} alt="" />
+          </div>
+          <div className="post-bottom">
+            <div className="post-bottom-left">
+              {isLiked ? (
+                <Favorite className="like-icon" onClick={likeHandler} />
               ) : (
-                <span className="post-like-counter">1 person likes this</span>
-              )
-            ) : like > 1 ? (
-              isLiked ? (
-                like === 2 ? (
-                  <span className="post-like-counter">
-                    You and {like - 1} other person like this
-                  </span>
+                <FavoriteBorder className="like-icon" onClick={likeHandler} />
+              )}
+              {like === 1 ? (
+                isLiked ? (
+                  <span className="post-like-counter">You like this</span>
+                ) : (
+                  <span className="post-like-counter">1 person likes this</span>
+                )
+              ) : like > 1 ? (
+                isLiked ? (
+                  like === 2 ? (
+                    <span className="post-like-counter">
+                      You and {like - 1} other person like this
+                    </span>
+                  ) : (
+                    <span className="post-like-counter">
+                      You and {like - 1} other people like this
+                    </span>
+                  )
                 ) : (
                   <span className="post-like-counter">
-                    You and {like - 1} other people like this
+                    {like} people like this
                   </span>
                 )
               ) : (
                 <span className="post-like-counter">
-                  {like} people like this
+                  Be the first to like this
                 </span>
-              )
-            ) : (
-              <span className="post-like-counter">
-                Be the first to like this
-              </span>
-            )}
+              )}
+            </div>
           </div>
         </div>
         <div className="post-comments-container">
