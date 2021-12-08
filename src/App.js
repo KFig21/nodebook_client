@@ -62,31 +62,25 @@ function App() {
   return (
     <Router basename="/">
       <div className="app">
-        <Routes>
-          {/* LOGIN ROUTE, if there's a user redirect to home */}
-          <Route exact path="/login" element={<Login />}></Route>
-          {/* SIGNUP ROUTE*/}
-          <Route
-            exact
-            path="/signup"
-            element={<Signup userAuth={userAuth} setUserAuth={setUserAuth} />}
-          ></Route>
-        </Routes>
-        {user && (
-          <div className="home-container">
+        <div className="home-container">
+          {user && (
             <Sidebar
               currentPage={currentPage}
               notificationsCount={notificationsCount}
               sidebarOpen={sidebarOpen}
               setSidebarOpen={setSidebarOpen}
             />
-            <div className="left-container">
-              <Routes>
-                {/* HOME ROUTE, if no user go to LOGIN */}
-                <Route
-                  exact
-                  path="/"
-                  element={
+          )}
+          <div className="left-container">
+            <Routes>
+              {/* HOME ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Home
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
@@ -94,12 +88,16 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* PROFILE ROUTE, if no user go to LOGIN */}
-                <Route
-                  path="/profile/:username"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* PROFILE ROUTE, if no user go to LOGIN */}
+              <Route
+                path="/profile/:username"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Profile
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
@@ -107,12 +105,16 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* NOTIFICATIONS ROUTE, if no user go to LOGIN */}
-                <Route
-                  path="/notifications/:username"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* NOTIFICATIONS ROUTE, if no user go to LOGIN */}
+              <Route
+                path="/notifications/:username"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Notifications
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
@@ -121,13 +123,17 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* FOLLOWERS ROUTE, if no user go to LOGIN */}
-                <Route
-                  exact
-                  path="/:id/followers"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* FOLLOWERS ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/:id/followers"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Follows
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
@@ -135,13 +141,17 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* FOLLOWING ROUTE, if no user go to LOGIN */}
-                <Route
-                  exact
-                  path="/:id/following"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* FOLLOWING ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/:id/following"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Follows
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
@@ -149,26 +159,34 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* EXPLORE ROUTE, if no user go to LOGIN */}
-                <Route
-                  exact
-                  path="/explore/:userId"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* EXPLORE ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/explore/:userId"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Explore
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* POST ROUTE, if no user go to LOGIN */}
-                <Route
-                  exact
-                  path="/post/:postId"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* POST ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/post/:postId"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Post
                       user={user}
                       currentPage={currentPage}
@@ -177,13 +195,17 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* UPDATE USER ROUTE, if no user go to LOGIN */}
-                <Route
-                  exact
-                  path="/:id/update"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* UPDATE USER ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/:id/update"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Update
                       user={user}
                       currentPage={currentPage}
@@ -192,37 +214,56 @@ function App() {
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* LOGIN ROUTE, if there's a user redirect to home */}
-                <Route
-                  exact
-                  path="/login"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* LOGIN ROUTE, if there's a user redirect to home */}
+              <Route
+                exact
+                path="/login"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
                     <Home
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
+                      fetchNotifications={fetchNotifications}
+                      sidebarOpen={sidebarOpen}
+                      setSidebarOpen={setSidebarOpen}
                     />
-                  }
-                ></Route>
-                {/* SIGNUP ROUTE*/}
-                <Route
-                  exact
-                  path="/signup"
-                  element={
+                  )
+                }
+              ></Route>
+              {/* SIGNUP ROUTE*/}
+              <Route
+                exact
+                path="/signup"
+                element={
+                  !user ? (
                     <Signup userAuth={userAuth} setUserAuth={setUserAuth} />
-                  }
-                ></Route>
-              </Routes>
-            </div>
+                  ) : (
+                    <Home
+                      currentPage={currentPage}
+                      setCurrentPage={setCurrentPage}
+                      fetchNotifications={fetchNotifications}
+                      sidebarOpen={sidebarOpen}
+                      setSidebarOpen={setSidebarOpen}
+                    />
+                  )
+                }
+              ></Route>
+            </Routes>
+          </div>
+          {user && (
             <MobileNavFooter
               currentPage={currentPage}
               notificationsCount={notificationsCount}
               sidebarOpen={sidebarOpen}
               setSidebarOpen={setSidebarOpen}
             />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </Router>
   );
