@@ -1,0 +1,57 @@
+@import "../../global.scss";
+
+.share-page {
+  height: calc(100vh - $navbarHeight);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  @include mobile {
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    min-height: calc(100vh - $navbarHeight - $footerHeight);
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+
+  .share-container {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+    max-width: 700px;
+
+    @include mobile {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+      padding: 20px 15px 0px 15px;
+    }
+
+    .share-input-desktop {
+      border: none;
+      width: 84%;
+      margin: 2.5px 5px 0px 5px;
+      padding: 10px 12px;
+      font-size: 18px;
+      background-color: $formInputColor;
+      resize: vertical;
+      min-height: 45px;
+      height: 125px;
+      max-height: 270px;
+      border-radius: 3px;
+      color: white;
+      outline: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+
+      &:focus,
+      &:hover {
+        background-color: $formInputFocusColor;
+      }
+    }
+  }
+}

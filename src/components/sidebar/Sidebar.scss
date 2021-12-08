@@ -91,7 +91,7 @@
         }
 
         @include mobile {
-          font-size: 30px;
+          font-size: 26px;
           padding: 10px 30px;
 
           &:hover {
@@ -173,6 +173,39 @@
           border-bottom-right-radius: 100px;
         }
       }
+
+      .share-link {
+        background-color: $primaryColorFaded;
+
+        @include mobile {
+          border-radius: 0px;
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 100px;
+        }
+
+        &:hover {
+          background-color: $primaryColor;
+        }
+      }
+
+      .active-share-link {
+        font-weight: bold;
+        border-radius: 0px;
+        border-left: solid 4px $primaryColor;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+        overflow: visible;
+        padding: 10px 20px 10px 16px;
+        background-color: transparent;
+
+        &:hover {
+          border-radius: 0px;
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 100px;
+          background-color: $formInputFocusColor;
+        }
+      }
+
       .logout-button {
         display: flex;
         align-items: center;
@@ -187,7 +220,7 @@
         border-radius: 100px;
 
         @include mobile {
-          font-size: 30px;
+          font-size: 26px;
           padding: 10px 30px;
         }
 

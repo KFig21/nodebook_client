@@ -16,6 +16,7 @@ import Explore from "./pages/explore/Explore";
 import Notifications from "./pages/notifications/Notifications";
 import Sidebar from "./components/sidebar/Sidebar";
 import MobileNavFooter from "./components/mobileNavFooter/MobileNavFooter";
+import Share from "./pages/share/Share";
 
 function App() {
   const [userAuth, setUserAuth] = useState(false);
@@ -188,6 +189,25 @@ function App() {
                     <Login />
                   ) : (
                     <Post
+                      user={user}
+                      currentPage={currentPage}
+                      setCurrentPage={setCurrentPage}
+                      fetchNotifications={fetchNotifications}
+                      sidebarOpen={sidebarOpen}
+                      setSidebarOpen={setSidebarOpen}
+                    />
+                  )
+                }
+              ></Route>
+              {/* SHARE ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/share"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
+                    <Share
                       user={user}
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}

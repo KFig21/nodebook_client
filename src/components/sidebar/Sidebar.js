@@ -15,6 +15,8 @@ import {
   Language,
   Public,
   GitHub,
+  Create,
+  CreateOutlined,
 } from "@material-ui/icons";
 import { logoutCall } from "../../apiCalls";
 import Logo from "./Logo";
@@ -154,6 +156,23 @@ export default function Sidebar({
                 <Language className="sidebar-icon" />
               )}{" "}
               Explore
+            </div>
+          </Link>
+          {/* SHARE */}
+          <Link to={`/share`}>
+            <div
+              onClick={() => handleOptionClick()}
+              className={
+                "sidebar-link share-link" +
+                (currentPage === "Share" ? " active-share-link" : "")
+              }
+            >
+              {currentPage === "Share" ? (
+                <Create className="sidebar-icon" />
+              ) : (
+                <CreateOutlined className="sidebar-icon" />
+              )}{" "}
+              Share
             </div>
           </Link>
           {/* LOGOUT */}

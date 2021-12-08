@@ -268,6 +268,7 @@ export default function Nav({
       {currentPage === "Notifications" && <NotificationsNav />}
       {currentPage === "Post" && <PostNav />}
       {currentPage === "Explore" && <TimelineNav />}
+      {currentPage === "Share" && <TimelineNav />}
     </>
   );
 }

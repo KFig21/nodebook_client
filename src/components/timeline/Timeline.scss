@@ -19,6 +19,19 @@
   align-items: center;
   max-width: 700px;
   margin: 0px auto;
+
+  .share-dektop-container {
+    display: block;
+    width: 100%;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  @include mobile {
+    padding: 20px 20px 0px 20px;
+  }
 }
 
 .timeline-sticky-info-container {

@@ -9,6 +9,8 @@ import {
   PersonOutlineRounded,
   Notifications,
   NotificationsOutlined,
+  Create,
+  CreateOutlined,
 } from "@material-ui/icons";
 
 export default function MobileNavFooter({
@@ -88,6 +90,21 @@ export default function MobileNavFooter({
                   </div>
                 )}
               </div>
+            )}
+          </div>
+        </Link>
+        {/* Share */}
+        <Link to="/share">
+          <div
+            className={
+              "footer-link " +
+              (currentPage === "Share" ? "active-nav-link" : "")
+            }
+          >
+            {currentPage === "Share" ? (
+              <Create className="footer-icon" />
+            ) : (
+              <CreateOutlined className="footer-icon" />
             )}
           </div>
         </Link>

@@ -13,6 +13,10 @@
   // border-top: solid 2px $borderColor;
   // border-left: solid 2px $borderColor;
   // border-right: solid 2px $borderColor;
+
+  @include mobile {
+    margin: 0px 0px 20px 0px;
+  }
 }
 
 .post-wrapper {

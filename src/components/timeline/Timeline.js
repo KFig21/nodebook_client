@@ -59,7 +59,11 @@ export default function Timeline({
         ) : (
           <div onScroll={handleScroll}>
             <div className="timeline-wrapper">
-              {(!username || username === user.username) && <Share />}
+              {(!username || username === user.username) && (
+                <div className="share-dektop-container">
+                  <Share />
+                </div>
+              )}
               {posts.map((post) => (
                 <Post
                   key={post._id}

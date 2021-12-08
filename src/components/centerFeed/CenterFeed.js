@@ -169,7 +169,11 @@ export default function CenterFeed({
             {feed === "posts" && (
               <div className="feed-wrapper">
                 {(!profileUser.username ||
-                  profileUser.username === currentUser.username) && <Share />}
+                  profileUser.username === currentUser.username) && (
+                  <div className="share-dektop-container">
+                    <Share />
+                  </div>
+                )}
                 {posts.length > 0 ? (
                   <>
                     {posts.map((p) => (
