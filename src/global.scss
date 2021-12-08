@@ -52,6 +52,20 @@ $glassGradient: linear-gradient(
   }
 }
 
+::-webkit-resizer {
+  // display: none;
+  border-right: 2px solid $primaryColorFaded;
+  border-bottom: 2px solid $primaryColorFaded;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 50%,
+    $postBackgroundColor 51%,
+    $postBackgroundColor 100%
+  );
+}
+
 $width: 768px;
 
 @mixin mobile {

@@ -145,6 +145,7 @@
 
     .post-edit-form-container {
       margin-bottom: 10px;
+
       .edit-input {
         border: none;
         width: 97%;
@@ -164,12 +165,8 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
           "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
           "Helvetica Neue", sans-serif;
-        ::-webkit-resizer {
-          display: none;
-
-          @include mobile {
-            max-height: 300px;
-          }
+        @include mobile {
+          max-height: 200px;
         }
 
         &:focus,
@@ -289,9 +286,6 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
           "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
           "Helvetica Neue", sans-serif;
-        ::-webkit-resizer {
-          display: none;
-        }
 
         @include mobile {
           width: 100%;
@@ -317,7 +311,6 @@
           border: solid 2px $primaryColorFaded;
           font-weight: 500;
           font-size: 16px;
-          margin-right: 10px;
           cursor: pointer;
           color: white;
           height: 45px;
@@ -344,7 +337,8 @@
             text-align: center;
             background-image: $glassGradient;
 
-            &:focus {
+            &:focus,
+            &:hover {
               border: none;
               background-color: transparent;
               color: $primaryColor;
