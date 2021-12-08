@@ -2,10 +2,10 @@
 
 .comment-container {
   display: flex;
-  padding: 5px 15px;
+  padding: 0px 15px 9px 15px;
 
   @include mobile {
-    padding: 5px 0px;
+    padding: 0px 0px 9px 0px;
   }
 
   .comment-avatar-container {
