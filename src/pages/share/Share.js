@@ -64,7 +64,7 @@ export default function Share({
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
-      <div className="share-page">
+      <div className="share-page" onClick={() => setSidebarOpen(false)}>
         <div className="share-container">
           <div className="share">
             <div className="share-wrapper">
