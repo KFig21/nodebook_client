@@ -1,8 +1,5 @@
 @import "../../global.scss";
 
-$bottomHeight: 70px;
-$topHeight: calc(100vh - $bottomHeight);
-
 .sidebar {
   flex: 2.5;
   height: 100vh;
@@ -38,7 +35,6 @@ $topHeight: calc(100vh - $bottomHeight);
   .sidebar-wrapper {
     padding: 5px 20px 0 0;
     min-width: 250px;
-    height: $topHeight;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -216,7 +212,7 @@ $topHeight: calc(100vh - $bottomHeight);
     position: absolute;
     bottom: 0px;
     width: 100%;
-    height: $bottomHeight;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,7 +222,8 @@ $topHeight: calc(100vh - $bottomHeight);
     font-weight: 500;
 
     @include mobile {
-      position: absolute;
+      position: fixed;
+      padding-bottom: 60px;
     }
 
     &:hover,
