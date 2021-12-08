@@ -45,7 +45,7 @@
           margin: auto;
           top: 100px;
           border: 4px solid $backgroundColor;
-          z-index: 3;
+          z-index: 5;
 
           @include mobile {
             top: 50px;

@@ -22,7 +22,6 @@
     top: 0;
     left: -100%;
     width: 84%;
-    z-index: 5;
     align-items: flex-start;
     background-color: $sidebarColorMobile;
     backdrop-filter: blur(3px);
@@ -223,7 +222,7 @@
 
     @include mobile {
       position: fixed;
-      padding-bottom: 75px;
+      padding-bottom: 90px;
     }
 
     &:hover,
