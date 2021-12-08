@@ -41,7 +41,9 @@ export default function Sidebar({
   return (
     <div className={"sidebar " + (sidebarOpen && "active")}>
       <div className="sidebar-wrapper">
-        <Logo />
+        <div className="sidebar-logo-container">
+          <Logo />
+        </div>
         {/* TIMELINE */}
         <Link to="/">
           <div

@@ -182,7 +182,7 @@ export default function CenterFeed({
                     ))}
                   </>
                 ) : (
-                  <span className="no-content-message">No posts yet 😞</span>
+                  <span className="no-content-message">No posts yet ☹</span>
                 )}
               </div>
             )}
@@ -201,7 +201,7 @@ export default function CenterFeed({
                   </>
                 ) : (
                   <span className="no-content-message">
-                    Nothing to see here 😞
+                    Nothing to see here ☹
                   </span>
                 )}
               </div>
@@ -221,7 +221,7 @@ export default function CenterFeed({
                   </>
                 ) : (
                   <span className="no-content-message">
-                    Nothing to see here 😞
+                    Nothing to see here ☹
                   </span>
                 )}
               </div>

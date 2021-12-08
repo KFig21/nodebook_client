@@ -174,8 +174,10 @@
         justify-content: center;
         padding: 40px 30px;
         font-size: 24px;
-        border: 3px solid $borderColor;
+        font-weight: 500;
+        border: 3px solid $fadedButtonColor;
         border-radius: 25px;
+        color: $fadedButtonColor;
       }
 
       // profile info
