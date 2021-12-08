@@ -94,7 +94,11 @@ export default function Sidebar({
             )}{" "}
             Notifications
             {notificationsCount > 0 && (
-              <div className="notification-badge">{notificationsCount}</div>
+              <div className="notification-badge-container">
+                <div className="notification-badge">
+                  <span className="badge-count">{notificationsCount}</span>
+                </div>
+              </div>
             )}
           </div>
         </Link>

@@ -66,14 +66,26 @@ export default function MobileNavFooter({
               <div className="notifications-icon-container">
                 <Notifications className="footer-icon" />
                 {notificationsCount > 0 && (
-                  <div className="notification-badge">{notificationsCount}</div>
+                  <div className="footer-notification-badge-container">
+                    <div className="footer-notification-badge">
+                      <span className="footer-badge-count">
+                        {notificationsCount}
+                      </span>
+                    </div>
+                  </div>
                 )}
               </div>
             ) : (
               <div className="notifications-icon-container">
                 <NotificationsOutlined className="footer-icon" />
                 {notificationsCount > 0 && (
-                  <div className="notification-badge">{notificationsCount}</div>
+                  <div className="footer-notification-badge-container">
+                    <div className="footer-notification-badge">
+                      <span className="footer-badge-count">
+                        {notificationsCount}
+                      </span>
+                    </div>
+                  </div>
                 )}
               </div>
             )}
