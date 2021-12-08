@@ -31,178 +31,239 @@
       left: 0px;
     }
   }
-}
 
-.sidebar-wrapper {
-  padding: 5px 20px 0 0;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  @include mobile {
-    padding: 5px 0px 0 0;
-  }
-
-  .sidebar-logo-container {
-    margin-bottom: 25px;
-
-    .navbar-svg {
-      max-height: 40px;
-      max-width: 40px;
-      background-color: $navbarColor;
-      background-size: 200% 200%;
-      margin-left: 15px;
-
-      .navbar-svg-g {
-        fill: $primaryColor;
-      }
-      @include mobile {
-        margin-top: 70px;
-        margin-bottom: 3px;
-      }
-    }
+  .sidebar-wrapper {
+    padding: 5px 20px 0 0;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
     @include mobile {
-      margin-bottom: 0px;
+      padding: 5px 0px 0 0;
     }
-  }
 
-  a,
-  .sidebar-logout {
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .sidebar-logo-container {
+      margin-bottom: 25px;
 
-    .sidebar-link {
+      .navbar-svg {
+        max-height: 40px;
+        max-width: 40px;
+        background-color: $navbarColor;
+        background-size: 200% 200%;
+        margin-left: 15px;
+
+        .navbar-svg-g {
+          fill: $primaryColor;
+        }
+        @include mobile {
+          margin-top: 70px;
+          margin-bottom: 3px;
+        }
+      }
+
+      @include mobile {
+        margin-bottom: 0px;
+      }
+    }
+
+    a,
+    .sidebar-logout {
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin: 5px 0px;
-      padding: 10px 20px;
-      border-radius: 100px;
-      transition: background-color 0.25s ease;
-      position: relative;
 
-      &:hover {
-        // background-image: $glassGradient;
-        background-color: $formInputFocusColor;
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 5px 0px;
+        padding: 10px 20px;
         border-radius: 100px;
-      }
-
-      @include mobile {
-        font-size: 30px;
-        padding: 10px 30px;
+        transition: background-color 0.25s ease;
+        position: relative;
 
         &:hover {
-          background-color: unset;
+          // background-image: $glassGradient;
+          background-color: $formInputFocusColor;
           border-radius: 100px;
         }
-      }
-
-      .sidebar-icon {
-        margin-right: 10px;
 
         @include mobile {
-          height: 30px;
-          width: 30px;
-        }
-      }
+          font-size: 30px;
+          padding: 10px 30px;
 
-      .notification-badge-container {
-        font-size: 11px;
-        font-weight: 700;
-        width: 19px;
-        height: 19px;
-        position: absolute;
-        top: 8px;
-        left: 14px;
-
-        @include mobile {
-          font-size: 12px;
-          left: 24px;
-          top: 9px;
-          width: 21px;
-          height: 21px;
+          &:hover {
+            background-color: unset;
+            border-radius: 100px;
+          }
         }
 
-        .notification-badge {
-          border: solid 2px $sidebarColor;
-          background-color: $primaryColor;
-          border-radius: 25px;
-          position: relative;
-          width: 100%;
-          height: 100%;
+        .sidebar-icon {
+          margin-right: 10px;
 
-          .badge-count {
-            position: absolute;
-            color: $navbarColor;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+          @include mobile {
+            height: 30px;
+            width: 30px;
+          }
+        }
+
+        .notification-badge-container {
+          font-size: 11px;
+          font-weight: 700;
+          width: 19px;
+          height: 19px;
+          position: absolute;
+          top: 8px;
+          left: 14px;
+
+          @include mobile {
+            font-size: 12px;
+            left: 24px;
+            top: 9px;
+            width: 21px;
+            height: 21px;
+          }
+
+          .notification-badge {
+            border: solid 2px $sidebarColor;
+            background-color: $primaryColor;
+            border-radius: 25px;
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            .badge-count {
+              position: absolute;
+              color: $navbarColor;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
           }
         }
       }
-    }
 
-    .active-nav-link {
-      font-weight: bold;
-      border-radius: 0px;
-      border-left: solid 4px $primaryColor;
-      border-top-right-radius: 100px;
-      border-bottom-right-radius: 100px;
-      overflow: visible;
-      padding: 10px 20px 10px 16px;
-
-      .notification-badge-container {
-        left: 10px;
-      }
-
-      @include mobile {
-        padding: 10px 30px 10px 26px;
-
-        .notification-badge-container {
-          left: 19px;
-        }
-      }
-
-      &:hover {
-        // background-image: $glassGradient;
+      .active-nav-link {
+        font-weight: bold;
         border-radius: 0px;
+        border-left: solid 4px $primaryColor;
         border-top-right-radius: 100px;
         border-bottom-right-radius: 100px;
+        overflow: visible;
+        padding: 10px 20px 10px 16px;
+
+        .notification-badge-container {
+          left: 10px;
+        }
+
+        @include mobile {
+          padding: 10px 30px 10px 26px;
+
+          .notification-badge-container {
+            left: 19px;
+          }
+        }
+
+        &:hover {
+          // background-image: $glassGradient;
+          border-radius: 0px;
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 100px;
+        }
+      }
+      .logout-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 5px 0px;
+        padding: 10px 20px;
+        border-radius: 100px;
+
+        @include mobile {
+          font-size: 30px;
+          padding: 10px 30px;
+        }
+
+        .sidebar-icon {
+          margin-right: 10px;
+
+          @include mobile {
+            height: 30px;
+            width: 30px;
+          }
+        }
+
+        &:hover {
+          background-color: $formInputFocusColor;
+        }
       }
     }
-    .logout-button {
+  }
+
+  .sidebar-personal-info-container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 15px;
+    color: $fadedButtonColor;
+    font-size: 18px;
+    font-weight: 500;
+
+    &:hover,
+    &:focus {
+      .made-by {
+        color: $fadedTextColor;
+      }
+    }
+
+    .made-by {
+      transition: all 0.2s ease;
+
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+
+    a {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      background-color: transparent;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 5px 0px;
-      padding: 10px 20px;
-      border-radius: 100px;
-
-      @include mobile {
-        font-size: 30px;
-        padding: 10px 30px;
-      }
-
-      .sidebar-icon {
+      color: inherit;
+      .sidebar-kf {
+        max-height: 23px;
+        max-width: 23px;
+        border-radius: 50px;
+        background-color: $fadedButtonColor;
         margin-right: 10px;
+        transition: all 0.2s ease;
+        cursor: pointer;
 
-        @include mobile {
-          height: 30px;
-          width: 30px;
+        &:hover {
+          background-color: $primaryColor;
         }
       }
 
-      &:hover {
-        background-color: $formInputFocusColor;
+      .sidebar-icon {
+        cursor: pointer;
+        margin-left: 10px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+          color: $primaryColor;
+        }
       }
     }
   }
