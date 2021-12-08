@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/nodebook_client/static/css/main.7246b888.chunk.css",
-    "main.js": "/nodebook_client/static/js/main.7254dbb8.chunk.js",
-    "main.js.map": "/nodebook_client/static/js/main.7254dbb8.chunk.js.map",
+    "main.css": "/nodebook_client/static/css/main.4f4edc7a.chunk.css",
+    "main.js": "/nodebook_client/static/js/main.963cead7.chunk.js",
+    "main.js.map": "/nodebook_client/static/js/main.963cead7.chunk.js.map",
     "runtime-main.js": "/nodebook_client/static/js/runtime-main.bdc9ef66.js",
     "runtime-main.js.map": "/nodebook_client/static/js/runtime-main.bdc9ef66.js.map",
-    "static/js/2.2e076f8e.chunk.js": "/nodebook_client/static/js/2.2e076f8e.chunk.js",
-    "static/js/2.2e076f8e.chunk.js.map": "/nodebook_client/static/js/2.2e076f8e.chunk.js.map",
+    "static/js/2.f30b6fcf.chunk.js": "/nodebook_client/static/js/2.f30b6fcf.chunk.js",
+    "static/js/2.f30b6fcf.chunk.js.map": "/nodebook_client/static/js/2.f30b6fcf.chunk.js.map",
     "index.html": "/nodebook_client/index.html",
-    "static/css/main.7246b888.chunk.css.map": "/nodebook_client/static/css/main.7246b888.chunk.css.map",
-    "static/js/2.2e076f8e.chunk.js.LICENSE.txt": "/nodebook_client/static/js/2.2e076f8e.chunk.js.LICENSE.txt",
+    "static/css/main.4f4edc7a.chunk.css.map": "/nodebook_client/static/css/main.4f4edc7a.chunk.css.map",
+    "static/js/2.f30b6fcf.chunk.js.LICENSE.txt": "/nodebook_client/static/js/2.f30b6fcf.chunk.js.LICENSE.txt",
     "static/media/cover.cfc827b9.png": "/nodebook_client/static/media/cover.cfc827b9.png",
     "static/media/wordmark.eff11fb7.png": "/nodebook_client/static/media/wordmark.eff11fb7.png"
   },
   "entrypoints": [
     "static/js/runtime-main.bdc9ef66.js",
-    "static/js/2.2e076f8e.chunk.js",
-    "static/css/main.7246b888.chunk.css",
-    "static/js/main.7254dbb8.chunk.js"
+    "static/js/2.f30b6fcf.chunk.js",
+    "static/css/main.4f4edc7a.chunk.css",
+    "static/js/main.963cead7.chunk.js"
   ]
 }
