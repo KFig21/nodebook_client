@@ -199,7 +199,7 @@ export default function Comment({ comment, fetchNotifications }) {
                 <textarea
                   className="edit-input"
                   type="text"
-                  maxlength="500"
+                  maxLength={500}
                   ref={editBody}
                   onChange={(e) => setDisableButton(e.target.value)}
                   defaultValue={comment.body ? comment.body : null}

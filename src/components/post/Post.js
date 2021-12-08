@@ -266,7 +266,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                   <textarea
                     className="edit-input"
                     type="text"
-                    maxlength="500"
+                    maxLength={500}
                     ref={editBody}
                     onChange={(e) => setDisableButton(e.target.value)}
                     defaultValue={post?.body ? post?.body : null}
@@ -339,6 +339,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               ref={commentRef}
               onChange={(e) => setDisableComment(e.target.value)}
               placeholder="add a comment!"
+              maxLength={500}
             />
             <form
               onSubmit={submitComment}

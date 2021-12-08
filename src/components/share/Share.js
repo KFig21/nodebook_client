@@ -51,11 +51,12 @@ export default function Share() {
             src={user.profilePicture ? user.profilePicture : noAvi}
             alt=""
           />
-          <input
+          <textarea
             placeholder={"What's on your mind " + user.username + "?"}
             className="share-input"
             onChange={(e) => setDisableButton(e.target.value)}
             ref={body}
+            maxLength={500}
           />
         </div>
         <hr className="share-hr" />

@@ -13,7 +13,7 @@
 
     .share-top {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
 
       .share-avatar {
@@ -27,14 +27,20 @@
       .share-input {
         border: none;
         width: 84%;
-        margin: 0px 5px;
+        margin: 2.5px 5px 0px 5px;
         padding: 10px 12px;
-        font-size: 16px;
+        font-size: 18px;
         background-color: $formInputColor;
-        // background-image: $glassGradient;
+        resize: vertical;
+        min-height: 45px;
+        height: 45px;
+        max-height: 270px;
         border-radius: 3px;
         color: white;
         outline: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
 
         &:focus,
         &:hover {
