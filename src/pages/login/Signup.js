@@ -2,7 +2,7 @@ import { React, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 // import { useForm } from "react-hook-form";
 import axios from "axios";
-import wordmark from "../../assets/wordmark4.png";
+import wordmark from "../../assets/wordmark.png";
 import "./Login.scss";
 
 export default function Signup({ setUserAuth }) {

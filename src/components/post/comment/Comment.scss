@@ -172,7 +172,8 @@
         .edit-options-submit {
           min-width: 60px;
           border: 2px solid $editButtonTextColor;
-          color: $editButtonTextColor;
+          color: white;
+          background-image: $glassGradient;
 
           &:hover,
           &:focus {
@@ -184,7 +185,8 @@
         .edit-options-cancel {
           width: 80px;
           border: 2px solid $primaryColor;
-          color: $primaryColor;
+          color: white;
+          background-image: $glassGradient;
 
           &:hover,
           &:focus {

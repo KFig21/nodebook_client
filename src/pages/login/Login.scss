@@ -26,7 +26,7 @@
       margin: unset;
       height: unset;
       padding: 10px 30px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .login-left-title {
@@ -47,16 +47,16 @@
     .glow {
       position: absolute;
       width: 99%;
-      height: 102px;
-      border-radius: 0px 19px 19px 19px;
+      height: 129px;
+      border-radius: 0px 32px 32px 32px;
       background-color: $primaryColor;
       box-shadow: 0px 0px 10px 5px $primaryColor;
-      animation: animated-glow 6s ease infinite;
+      animation: animated-glow 9s ease infinite;
 
       @include mobile {
-        border-radius: 0px 13px 13px 13px;
+        border-radius: 0px 20px 20px 20px;
         max-width: 298px;
-        height: 60px;
+        height: 77px;
       }
     }
 
@@ -64,18 +64,18 @@
       0% {
         box-shadow: 0px 0px 0px 0px $primaryColor;
       }
-      25% {
+      29% {
         box-shadow: 0px 0px 0px 0px $primaryColor;
       }
 
-      48% {
+      44% {
         box-shadow: 0px 0px 15px 10px $primaryColor;
       }
-      52% {
+      56% {
         box-shadow: 0px 0px 15px 10px $primaryColor;
       }
 
-      75% {
+      71% {
         box-shadow: 0px 0px 0px 0px $primaryColor;
       }
       100% {

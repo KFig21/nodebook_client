@@ -7,7 +7,7 @@ import "./Login.scss";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
-import wordmark from "../../assets/wordmark4.png";
+import wordmark from "../../assets/wordmark.png";
 
 export default function Login() {
   // const { register, handleSubmit } = useForm();
