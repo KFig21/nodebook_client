@@ -52,7 +52,7 @@ export default function Share() {
             alt=""
           />
           <textarea
-            placeholder={"What's on your mind " + user.username + "?"}
+            placeholder={"What's up " + user.username + "?"}
             className="share-input"
             onChange={(e) => setDisableButton(e.target.value)}
             ref={body}

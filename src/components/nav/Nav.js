@@ -131,14 +131,14 @@ export default function Nav({
           <span className="nav-title">
             {currentPage === "Followers" && (
               <>
-                {user.username} - {currentPage} {" ("}
+                {currentPage} {" ("}
                 {user.followers.length}
                 {") "}
               </>
             )}
             {currentPage === "Following" && (
               <>
-                {user.username} - {currentPage} {" ("}
+                {currentPage} {" ("}
                 {user.followings.length}
                 {") "}
               </>
@@ -220,7 +220,7 @@ export default function Nav({
           {user ? (
             <div className="nav-info-container">
               <span className="nav-title">
-                {user.username} - Notifications {"(" + notificationsCount + ")"}
+                Notifications {"(" + notificationsCount + ")"}
               </span>
             </div>
           ) : (

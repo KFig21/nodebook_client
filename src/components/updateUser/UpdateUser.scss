@@ -9,6 +9,11 @@
   min-height: calc(100vh - $navbarHeight);
   height: calc(100vh - $navbarHeight);
 
+  @include mobile {
+    min-height: calc(100vh - $navbarHeight - $footerHeight);
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
+
   .update-form {
     display: flex;
     flex-direction: column;
@@ -55,7 +60,7 @@
     .message-before-update-button {
       border-top: solid 2px $primaryColor;
       border-bottom: solid 2px $primaryColor;
-      padding: 10px;
+      padding: 10px 0px 15px 0px;
       margin: 14px 0px;
       display: flex;
       align-items: center;
