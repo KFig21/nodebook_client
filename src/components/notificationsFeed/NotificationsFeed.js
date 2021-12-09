@@ -258,7 +258,11 @@ export default function NotificationsFeed({
             ) : waitingOnLoad ? (
               <Loader type={"full-screen"} />
             ) : (
-              <span className="no-notifications-message">No notifications</span>
+              <div className="full-width-wrapper">
+                <span className="no-notifications-message">
+                  No notifications
+                </span>
+              </div>
             )}
           </>
         )}

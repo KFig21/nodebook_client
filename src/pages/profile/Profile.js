@@ -183,7 +183,7 @@ export default function Profile({
     } else {
       setLoading(false);
     }
-  }, [feed, profileUser.username]);
+  }, [feed, profileUser.username, currentUser]);
 
   // infinite scroll functionality
   const handleScroll = (e) => {

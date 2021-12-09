@@ -9,7 +9,7 @@ import noAvi from "../../assets/noAvatar.png";
 import "./Post.scss";
 
 export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
-  const [like, setLike] = useState(post.likes.length);
+  const [like, setLike] = useState(post.likerIds.length);
   const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState([]);
   const [user, setUser] = useState({});
@@ -27,8 +27,8 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
 
   // get likes
   useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id));
-  }, [currentUser._id, post.likes]);
+    setIsLiked(post.likerIds.includes(currentUser._id));
+  }, [currentUser._id, post.likerIds]);
 
   // get user
   useEffect(() => {
@@ -63,7 +63,8 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
     try {
       axios.put(
         `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/like`,
-        { userId: currentUser._id }
+        // `http://localhost:3000/api/posts/${post._id}/like`,
+        { userId: currentUser._id, postId: post._id }
       );
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
@@ -301,33 +302,37 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               ) : (
                 <FavoriteBorder className="like-icon" onClick={likeHandler} />
               )}
-              {like === 1 ? (
-                isLiked ? (
-                  <span className="post-like-counter">You like this</span>
-                ) : (
-                  <span className="post-like-counter">1 person likes this</span>
-                )
-              ) : like > 1 ? (
-                isLiked ? (
-                  like === 2 ? (
-                    <span className="post-like-counter">
-                      You and {like - 1} other person like this
-                    </span>
+              <Link to={`/${post._id}/likes`}>
+                {like === 1 ? (
+                  isLiked ? (
+                    <span className="post-like-counter">You like this</span>
                   ) : (
                     <span className="post-like-counter">
-                      You and {like - 1} other people like this
+                      1 person likes this
+                    </span>
+                  )
+                ) : like > 1 ? (
+                  isLiked ? (
+                    like === 2 ? (
+                      <span className="post-like-counter">
+                        You and {like - 1} other person like this
+                      </span>
+                    ) : (
+                      <span className="post-like-counter">
+                        You and {like - 1} other people like this
+                      </span>
+                    )
+                  ) : (
+                    <span className="post-like-counter">
+                      {like} people like this
                     </span>
                   )
                 ) : (
                   <span className="post-like-counter">
-                    {like} people like this
+                    Be the first to like this
                   </span>
-                )
-              ) : (
-                <span className="post-like-counter">
-                  Be the first to like this
-                </span>
-              )}
+                )}
+              </Link>
             </div>
           </div>
         </div>

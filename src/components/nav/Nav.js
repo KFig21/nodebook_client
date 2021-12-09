@@ -257,6 +257,32 @@ export default function Nav({
     );
   };
 
+  const LikesNav = () => {
+    return (
+      <div className="navbar">
+        <div className="navbar-container">
+          <div className="mobile-menu-button-container">
+            <div
+              className="hamburger"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <MenuIcon className="hamburger-icon" />
+            </div>
+          </div>
+          {user && post ? (
+            <div className="nav-info-container">
+              <span className="nav-title">
+                {postUser.username} - {"(" + post.likes.length + " likes)"}
+              </span>
+            </div>
+          ) : (
+            <span className="nav-title">Loading...</span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       {currentPage === "Timeline" && <TimelineNav />}
@@ -269,6 +295,7 @@ export default function Nav({
       {currentPage === "Post" && <PostNav />}
       {currentPage === "Explore" && <TimelineNav />}
       {currentPage === "Share" && <TimelineNav />}
+      {currentPage === "Likes" && <LikesNav />}
     </>
   );
 }

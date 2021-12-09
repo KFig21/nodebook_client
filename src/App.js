@@ -12,6 +12,7 @@ import Post from "./pages/post/Post";
 import Login from "./pages/login/Login";
 import Signup from "./pages/login/Signup";
 import Update from "./pages/update/Update";
+import Likes from "./pages/likes/Likes";
 import Explore from "./pages/explore/Explore";
 import Notifications from "./pages/notifications/Notifications";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -154,6 +155,24 @@ function App() {
                     <Login />
                   ) : (
                     <Follows
+                      currentPage={currentPage}
+                      setCurrentPage={setCurrentPage}
+                      follow={"Following"}
+                      sidebarOpen={sidebarOpen}
+                      setSidebarOpen={setSidebarOpen}
+                    />
+                  )
+                }
+              ></Route>
+              {/* LIKES ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/:postId/likes"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
+                    <Likes
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
                       follow={"Following"}

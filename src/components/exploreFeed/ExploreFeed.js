@@ -7,7 +7,6 @@ import "./ExploreFeed.scss";
 
 export default function ExploreFeed({
   setCurrentPage,
-  currentPage,
   sidebarOpen,
   setSidebarOpen,
 }) {
