@@ -7,13 +7,17 @@ import { Favorite, FavoriteBorder, MoreVert } from "@material-ui/icons";
 import noAvi from "../../../assets/noAvatar.png";
 import "./Comment.scss";
 
-export default function Comment({ comment, fetchNotifications }) {
+export default function Comment({
+  comment,
+  fetchNotifications,
+  showDeletePost,
+}) {
   const [like, setLike] = useState(comment.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const { user: currentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [showOptions, setShowOptions] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
+  const [showDeleteComment, setShowDeleteComment] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const editBody = useRef();
   const [disableButton, setDisableButton] = useState("");
@@ -101,7 +105,7 @@ export default function Comment({ comment, fetchNotifications }) {
       alert(err);
     }
     setShowOptions(!showOptions);
-    setShowDelete(!showDelete);
+    setShowDeleteComment(!showDeleteComment);
     fetchNotifications();
     window.location.reload();
   };
@@ -128,8 +132,8 @@ export default function Comment({ comment, fetchNotifications }) {
   // open options functionality
   const handleOptions = () => {
     setShowOptions(!showOptions);
-    if (showDelete) {
-      setShowDelete(!showDelete);
+    if (showDeleteComment) {
+      setShowDeleteComment(!showDeleteComment);
     }
   };
 
@@ -137,8 +141,15 @@ export default function Comment({ comment, fetchNotifications }) {
   const handleCancelAllOptions = () => {
     setShowEdit(false);
     setShowOptions(false);
-    setShowDelete(false);
+    setShowDeleteComment(false);
   };
+
+  // if post delete options are open, close comment options{
+  useEffect(() => {
+    if (showDeletePost) {
+      handleCancelAllOptions();
+    }
+  }, [showDeletePost]);
 
   return (
     <div className="comment-container">
@@ -169,7 +180,7 @@ export default function Comment({ comment, fetchNotifications }) {
                   <div className="comment-options-div">
                     <button
                       className="comment-options-delete"
-                      onClick={() => setShowDelete(!showDelete)}
+                      onClick={() => setShowDeleteComment(!showDeleteComment)}
                     >
                       delete
                     </button>
@@ -226,7 +237,7 @@ export default function Comment({ comment, fetchNotifications }) {
             </div>
           )}
           {/* delete comment options container */}
-          {showDelete && (
+          {showDeleteComment && (
             <div className="delete-comment-container">
               <span>Are you sure you want to delete this comment?</span>
               <div className="delete-comment-button-container">
@@ -238,7 +249,7 @@ export default function Comment({ comment, fetchNotifications }) {
                 </button>
                 <button
                   className="cancel-button"
-                  onClick={() => setShowDelete(!showDelete)}
+                  onClick={() => setShowDeleteComment(!showDeleteComment)}
                 >
                   Cancel
                 </button>

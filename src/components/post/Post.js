@@ -18,7 +18,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   const editBody = useRef();
   let navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
+  const [showDeletePost, setShowDeletePost] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [disableButton, setDisableButton] = useState("");
   const isInvalid = disableButton === "" || disableButton === post.body;
@@ -165,7 +165,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
       alert(err);
     }
     setShowOptions(!showOptions);
-    setShowDelete(!showDelete);
+    setShowDeletePost(!showDeletePost);
     fetchNotifications();
     navigate("/", { replace: true });
     window.location.reload();
@@ -177,8 +177,8 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
     if (showEdit) {
       setShowEdit(!showEdit);
     }
-    if (showDelete) {
-      setShowEdit(!showDelete);
+    if (showDeletePost) {
+      setShowEdit(!showDeletePost);
     }
   };
 
@@ -186,12 +186,12 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   const handleCancelAllOptions = () => {
     setShowEdit(false);
     setShowOptions(false);
-    setShowDelete(false);
+    setShowDeletePost(false);
   };
 
   return (
     <div className="post">
-      {showDelete && (
+      {showDeletePost && (
         <div className="delete-post-container">
           <span className="delete-post-message">
             Are you sure you want to delete this post?
@@ -237,11 +237,11 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                   className="post-options-icon"
                   onClick={() => handleShowOptions()}
                 />
-                {showOptions && !showDelete && !showEdit && (
+                {showOptions && !showDeletePost && !showEdit && (
                   <div className="post-options-div">
                     <button
                       className="post-options-delete"
-                      onClick={() => setShowDelete(!showDelete)}
+                      onClick={() => setShowDeletePost(!showDeletePost)}
                     >
                       delete post
                     </button>
@@ -365,6 +365,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 <Comment
                   comment={comment}
                   fetchNotifications={fetchNotifications}
+                  showDeletePost={showDeletePost}
                 />
               ))}
             </div>
@@ -379,6 +380,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                   <Comment
                     comment={comment}
                     fetchNotifications={fetchNotifications}
+                    showDeletePost={showDeletePost}
                   />
                 ))}
               </div>
@@ -389,6 +391,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               <Comment
                 comment={comments[0]}
                 fetchNotifications={fetchNotifications}
+                showDeletePost={showDeletePost}
               />
               <button
                 className="view-more-comments-button"
