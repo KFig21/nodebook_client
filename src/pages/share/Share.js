@@ -33,28 +33,33 @@ export default function Share({
       body: body.current.value,
     };
     if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
-      // not working
+      const postWithImg = new FormData();
+
+      postWithImg.append("file", file);
+      postWithImg.append("userId", user._id);
+      postWithImg.append("body", body.current.value);
+
       try {
         await axios.post(
-          "https://radiant-oasis-77477.herokuapp.com/api/upload",
-          data
+          "https://radiant-oasis-77477.herokuapp.com/api/posts/image",
+          // `http://localhost:3000/api/posts/image`,
+          postWithImg
         );
+        navigate("/", { replace: true });
+        window.location.reload();
+      } catch (err) {}
+    } else {
+      // no file, send
+      try {
+        await axios.post(
+          "https://radiant-oasis-77477.herokuapp.com/api/posts",
+          // "http://localhost:3000/api/posts",
+          newPost
+        );
+        navigate("/", { replace: true });
+        window.location.reload();
       } catch (err) {}
     }
-    try {
-      await axios.post(
-        "https://radiant-oasis-77477.herokuapp.com/api/posts",
-        newPost
-      );
-      fetchNotifications();
-      navigate("/", { replace: true });
-    } catch (err) {}
   };
 
   return (
@@ -100,7 +105,7 @@ export default function Share({
                 <div className="share-options">
                   <label htmlFor="file" className="share-option">
                     <PermMedia className="share-icon" />
-                    <span className="share-option-text">Photo or Video</span>
+                    <span className="share-option-text">Add an image</span>
                     <input
                       style={{ display: "none" }}
                       type="file"

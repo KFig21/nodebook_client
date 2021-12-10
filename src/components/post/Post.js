@@ -293,7 +293,17 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 edit: {format(post.editedtimestamp)}
               </span>
             )}
-            <img className="post-img" src={post.img} alt="" />
+            {post.img && (
+              <div className="post-img-wrapper">
+                <div className="post-img-container">
+                  <img
+                    className="post-img"
+                    src={"data:image/jpg;base64," + post.img}
+                    alt=""
+                  />
+                </div>
+              </div>
+            )}
           </div>
           <div className="post-bottom">
             <div className="post-bottom-left">
