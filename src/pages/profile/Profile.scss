@@ -26,13 +26,32 @@
       .profile-cover {
         position: relative;
 
+        .cover-img-container {
+          position: relative;
+
+          .edit-icon-container {
+            top: 20px;
+            right: 20px;
+            position: absolute;
+          }
+
+          .edit-icon {
+            cursor: pointer;
+            color: white;
+
+            &:hover {
+              color: $primaryColor;
+            }
+          }
+        }
+
         .profile-cover-img {
           width: 100%;
           height: 200px;
           object-fit: cover;
 
           @include mobile {
-            height: 100px;
+            height: 120px;
           }
         }
 
@@ -55,8 +74,8 @@
           @include mobile {
             top: 50px;
             left: 15px;
-            width: 68px;
-            height: 68px;
+            width: 94px;
+            height: 94px;
           }
 
           .profile-avatar {
@@ -65,14 +84,15 @@
             object-fit: cover;
 
             @include mobile {
-              width: 68px;
-              height: 68px;
+              width: 94px;
+              height: 94px;
             }
           }
           .plus-sign-container {
             display: none;
             position: absolute;
-            background-color: $formInputColor;
+            background-color: rgba(128, 128, 128, 0.45);
+            opacity: 0.85;
             width: 100%;
             height: 100%;
             align-items: center;
@@ -263,6 +283,57 @@
           }
 
           .avatar-modal-cancel-img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            color: crimson;
+          }
+        }
+
+        .cover-modal-img-container {
+          position: relative;
+          min-width: 500px;
+          min-height: 500px;
+          max-width: 500px;
+          max-height: 500px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include mobile {
+            width: 100%;
+            min-width: 95vw;
+            min-height: 95vw;
+            max-width: 95vw;
+            max-height: 95vw;
+          }
+
+          .cover-modal-cropper {
+            width: 100%;
+            position: absolute;
+            object-fit: contain;
+            display: block;
+          }
+
+          .cover-modal-img {
+            min-width: 500px;
+            max-width: 500px;
+            object-fit: cover;
+            display: block;
+
+            @include mobile {
+              min-width: 95vw;
+              max-width: 95vw;
+            }
+          }
+
+          .cover-modal-cancel-img {
             position: absolute;
             top: 5px;
             right: 5px;

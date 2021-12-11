@@ -8,7 +8,10 @@ import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
 import plusSign from "../../assets/plusSign.png";
 import avatarCropper from "../../assets/avatarCropper.png";
+import coverCropper from "../../assets/coverCropper.png";
 import { PermMedia, Cancel } from "@material-ui/icons";
+import { Edit } from "@material-ui/icons";
+import Loader from "../../components/loader/Loader";
 import "./Profile.scss";
 
 export default function Profile({
@@ -28,8 +31,10 @@ export default function Profile({
   const [posts, setPosts] = useState([]);
   const [friends, setFriends] = useState([]);
   const [avatarModal, setAvatarModal] = useState(false);
+  const [coverModal, setCoverModal] = useState(false);
   const [file, setFile] = useState(null);
   const isInvalid = file === "" || file === null;
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     const checkFollowing = async () => {
@@ -221,6 +226,7 @@ export default function Profile({
 
   const handleAvatarUpdate = async (e) => {
     e.preventDefault();
+    setSending(true);
     if (file) {
       const data = new FormData();
 
@@ -233,6 +239,31 @@ export default function Profile({
           // `http://localhost:3000/api/users/avatar/`,
           data
         );
+        setSending(false);
+
+        window.location.reload();
+      } catch (err) {}
+    }
+  };
+
+  const handleCoverUpdate = async (e) => {
+    e.preventDefault();
+    setSending(true);
+
+    if (file) {
+      const data = new FormData();
+
+      data.append("file", file);
+      data.append("userId", currentUser._id);
+
+      try {
+        await axios.put(
+          "https://radiant-oasis-77477.herokuapp.com/api/users/cover",
+          // `http://localhost:3000/api/users/cover/`,
+          data
+        );
+        setSending(false);
+
         window.location.reload();
       } catch (err) {}
     }
@@ -255,85 +286,178 @@ export default function Profile({
             onScroll={handleScroll}
           >
             {/* AVATAR CHANGE MODAL */}
-            {avatarModal && (
-              <div className="avatar-modal-wrapper">
-                <div className="avatar-modal-container">
-                  {file && (
-                    <div className="avatar-modal-img-container">
-                      <img
-                        className="avatar-modal-cropper"
-                        src={avatarCropper}
-                        alt=""
-                      />
-                      <img
-                        className="avatar-modal-img"
-                        src={URL.createObjectURL(file)}
-                        alt=""
-                      />
-                      <Cancel
-                        className="avatar-modal-cancel-img"
-                        onClick={() => setFile("")}
-                      />
-                    </div>
-                  )}
-                  <div className="avatar-modal-bottom-container">
-                    <form
-                      className="avatar-modal-bottom"
-                      onSubmit={handleAvatarUpdate}
-                      encType="multipart/form-data"
-                    >
-                      <div className="avatar-modal-options">
-                        <label htmlFor="file" className="avatar-modal-option">
-                          <PermMedia className="file-icon" />
-                          <span className="avatar-modal-option-text">
-                            Select a new avatar
-                          </span>
-                          <input
-                            style={{ display: "none" }}
-                            type="file"
-                            id="file"
-                            name="file"
-                            accept=".png,.jpeg,.jpg"
-                            onChange={(e) => setFile(e.target.files[0])}
-                          />
-                        </label>
+            {avatarModal &&
+              (!sending ? (
+                <div className="avatar-modal-wrapper">
+                  <div className="avatar-modal-container">
+                    {file && (
+                      <div className="avatar-modal-img-container">
+                        <img
+                          className="avatar-modal-cropper"
+                          src={avatarCropper}
+                          alt=""
+                        />
+                        <img
+                          className="avatar-modal-img"
+                          src={URL.createObjectURL(file)}
+                          alt=""
+                        />
+                        <Cancel
+                          className="avatar-modal-cancel-img"
+                          onClick={() => setFile("")}
+                        />
                       </div>
-                      <button
-                        type="submit"
-                        className={
-                          isInvalid
-                            ? "save-button invalid-save-button"
-                            : "save-button"
-                        }
-                        disabled={isInvalid}
+                    )}
+                    <div className="avatar-modal-bottom-container">
+                      <form
+                        className="avatar-modal-bottom"
+                        onSubmit={handleAvatarUpdate}
+                        encType="multipart/form-data"
                       >
-                        save
-                      </button>
-                    </form>
+                        <div className="avatar-modal-options">
+                          <label htmlFor="file" className="avatar-modal-option">
+                            <PermMedia className="file-icon" />
+                            <span className="avatar-modal-option-text">
+                              Select a new avatar
+                            </span>
+                            <input
+                              style={{ display: "none" }}
+                              type="file"
+                              id="file"
+                              name="file"
+                              accept=".png,.jpeg,.jpg"
+                              onChange={(e) => setFile(e.target.files[0])}
+                            />
+                          </label>
+                        </div>
+                        <button
+                          type="submit"
+                          className={
+                            isInvalid
+                              ? "save-button invalid-save-button"
+                              : "save-button"
+                          }
+                          disabled={isInvalid}
+                        >
+                          save
+                        </button>
+                      </form>
+                    </div>
                   </div>
+                  <div
+                    className="modal-background"
+                    onClick={() => setAvatarModal(false)}
+                  ></div>
                 </div>
-                <div
-                  className="modal-background"
-                  onClick={() => setAvatarModal(false)}
-                ></div>
-              </div>
-            )}
+              ) : (
+                <div className="avatar-modal-wrapper">
+                  <div className="avatar-modal-container">
+                    <Loader />
+                  </div>
+                  <div className="modal-background"></div>
+                </div>
+              ))}
+            {/* COVER CHANGE MODAL */}
+            {coverModal &&
+              (!sending ? (
+                <div className="avatar-modal-wrapper">
+                  <div className="avatar-modal-container">
+                    {file && (
+                      <div className="cover-modal-img-container">
+                        <img
+                          className="cover-modal-cropper"
+                          src={coverCropper}
+                          alt=""
+                        />
+                        <img
+                          className="cover-modal-img"
+                          src={URL.createObjectURL(file)}
+                          alt=""
+                        />
+                        <Cancel
+                          className="cover-modal-cancel-img"
+                          onClick={() => setFile("")}
+                        />
+                      </div>
+                    )}
+                    <div className="avatar-modal-bottom-container">
+                      <form
+                        className="avatar-modal-bottom"
+                        onSubmit={handleCoverUpdate}
+                        encType="multipart/form-data"
+                      >
+                        <div className="avatar-modal-options">
+                          <label htmlFor="file" className="avatar-modal-option">
+                            <PermMedia className="file-icon" />
+                            <span className="avatar-modal-option-text">
+                              Select a new cover
+                            </span>
+                            <input
+                              style={{ display: "none" }}
+                              type="file"
+                              id="file"
+                              name="file"
+                              accept=".png,.jpeg,.jpg"
+                              onChange={(e) => setFile(e.target.files[0])}
+                            />
+                          </label>
+                        </div>
+                        <button
+                          type="submit"
+                          className={
+                            isInvalid
+                              ? "save-button invalid-save-button"
+                              : "save-button"
+                          }
+                          disabled={isInvalid}
+                        >
+                          save
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                  <div
+                    className="modal-background"
+                    onClick={() => setCoverModal(false)}
+                  ></div>
+                </div>
+              ) : (
+                <div className="avatar-modal-wrapper">
+                  <div className="avatar-modal-container">
+                    <Loader />
+                  </div>
+                  <div className="modal-background"></div>
+                </div>
+              ))}
             {/* PROFILE */}
             <div className="profile-right-top">
               <div className="profile-cover">
-                <img
-                  className="profile-cover-img"
-                  src={
-                    profileUser.coverPicture ? profileUser.coverPicture : cover
-                  }
-                  alt=""
-                />
+                <div className="cover-img-container">
+                  <img
+                    className="profile-cover-img"
+                    src={
+                      profileUser.coverPicture
+                        ? "data:image/jpg;base64," + profileUser.coverPicture
+                        : cover
+                    }
+                    alt=""
+                  />
+                  {username === currentUser.username && (
+                    <div
+                      className="edit-icon-container"
+                      title="update cover image"
+                      onClick={() => setCoverModal(true)}
+                    >
+                      <Edit className="edit-icon" />
+                    </div>
+                  )}
+                </div>
                 {username === currentUser.username ? (
                   <div
                     className="profile-img-container"
                     onClick={() => setAvatarModal(true)}
                   >
-                    <div className="plus-sign-container">
+                    <div className="plus-sign-container" title="update avatar">
                       <img
                         className="profile-avatar-plus"
                         src={plusSign}
