@@ -32,7 +32,18 @@
           .edit-icon-container {
             top: 20px;
             right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: absolute;
+            border-radius: 3px;
+            background-color: $formInputFocusColor;
+            padding: 2px;
+
+            @include mobile {
+              top: 10px;
+              right: 10px;
+            }
           }
 
           .edit-icon {
