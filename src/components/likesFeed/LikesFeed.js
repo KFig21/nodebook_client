@@ -153,35 +153,48 @@ export default function LikesFeed({
           <div className="likesFeed-post-container">
             <div className="likesFeed-post-upper">
               <div className="likesFeed-post-top">
-                <div className="likesFeed-post-top-left">
-                  <Link to={`/profile/${user.username}`}>
-                    <img
-                      className="likesFeed-post-avatar"
-                      src={
-                        user.profilePicture
-                          ? "data:image/jpg;base64," + user.profilePicture
-                          : noAvi
-                      }
-                      alt=""
-                    />
+                <Link to={`/profile/${user.username}`}>
+                  <img
+                    className="likesFeed-post-avatar"
+                    src={
+                      user.profilePicture
+                        ? "data:image/jpg;base64," + user.profilePicture
+                        : noAvi
+                    }
+                    alt=""
+                  />
+                </Link>
+                <div className="post-top-center">
+                  <div className="post-info">
                     <span className="likesFeed-post-username">
                       {user.username}
                     </span>
-                  </Link>
-                  <span className="likesFeed-post-date">
-                    {format(post.createdAt)}
-                  </span>
+                    <span className="likesFeed-post-date">
+                      {format(post.createdAt)}
+                    </span>
+                  </div>
+                  <span className="likesFeed-post-body">{post?.body}</span>
+                  {post.edited && (
+                    <span className="likesFeed-post-edit">
+                      edit: {format(post.editedtimestamp)}
+                    </span>
+                  )}
                 </div>
               </div>
+
               {/* Post content */}
               <div className="likesFeed-post-center">
-                <span className="likesFeed-post-body">{post?.body}</span>
-                {post.edited && (
-                  <span className="likesFeed-post-edit">
-                    edit: {format(post.editedtimestamp)}
-                  </span>
+                {post.img && (
+                  <div className="likesFeed-post-img-wrapper">
+                    <div className="likesFeed-post-img-container">
+                      <img
+                        className="likesFeed-post-img"
+                        src={"data:image/jpg;base64," + post.img}
+                        alt=""
+                      />
+                    </div>
+                  </div>
                 )}
-                <img className="likesFeed-post-img" src={post.img} alt="" />
               </div>
             </div>
           </div>

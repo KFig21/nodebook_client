@@ -30,7 +30,7 @@ export default function Profile({
   const [friends, setFriends] = useState([]);
   const [avatarModal, setAvatarModal] = useState(false);
   const [file, setFile] = useState(null);
-  const isInvalid = file === "";
+  const isInvalid = file === "" || file === null;
 
   useEffect(() => {
     const checkFollowing = async () => {

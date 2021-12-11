@@ -41,20 +41,21 @@
       .notification-top {
         display: flex;
         justify-content: center;
+        align-items: center;
         margin-bottom: 5px;
 
         a {
-          height: 36px;
+          height: 50px;
           display: flex;
           align-items: center;
           margin-bottom: 5px;
 
           .notification-avatar {
-            width: 36px;
-            height: 36px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 15px;
+            margin-right: 12px;
           }
         }
 
@@ -113,11 +114,25 @@
 
       .content-body {
         margin-left: 51px;
+        margin-right: 10px;
         background-color: $postBackgroundColor;
         padding: 7px 15px 10px 15px;
         font-size: 17px;
         border-radius: 0px 15px 15px 15px;
-        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          width: 100%;
+          text-align: left;
+        }
+
+        .notification-img {
+          margin: 10px;
+          max-height: 150px;
+        }
       }
       .content-follow {
         margin-left: 51px;
