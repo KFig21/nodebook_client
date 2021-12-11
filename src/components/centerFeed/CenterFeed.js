@@ -12,13 +12,16 @@ import Follower from "../follower/Follower";
 export default function CenterFeed({
   profileUser,
   feed,
-  handleChangeFeed,
   fetchNotifications,
   loading,
   posts,
   friends,
   handleFollowingStatus,
   sidebarOpen,
+  loadNewUser,
+  getInitialPosts,
+  getInitialFollows,
+  setToInfo,
 }) {
   const { user: currentUser } = useContext(AuthContext);
 
@@ -46,7 +49,7 @@ export default function CenterFeed({
             {/* INFO BUTTON */}
             <div
               style={sidebarOpen ? { pointerEvents: "none" } : {}}
-              onClick={() => handleChangeFeed("info")}
+              onClick={() => setToInfo()}
               className={
                 "profile-info-clickable " +
                 (feed === "info" ? "pic-active" : "")
@@ -58,7 +61,7 @@ export default function CenterFeed({
             {/* POSTS BUTTON */}
             <div
               style={sidebarOpen ? { pointerEvents: "none" } : {}}
-              onClick={() => handleChangeFeed("posts")}
+              onClick={() => getInitialPosts()}
               className={
                 "profile-info-clickable " +
                 (feed === "posts" ? "pic-active" : "")
@@ -73,7 +76,7 @@ export default function CenterFeed({
             {/* FOLLOWERS BUTTON */}
             <div
               style={sidebarOpen ? { pointerEvents: "none" } : {}}
-              onClick={() => handleChangeFeed("followers")}
+              onClick={() => getInitialFollows("followers")}
               className={
                 "profile-info-clickable " +
                 (feed === "followers" ? "pic-active" : "")
@@ -88,7 +91,7 @@ export default function CenterFeed({
             {/* FOLLOWING BUTTON */}
             <div
               style={sidebarOpen ? { pointerEvents: "none" } : {}}
-              onClick={() => handleChangeFeed("following")}
+              onClick={() => getInitialFollows("following")}
               className={
                 "profile-info-clickable " +
                 (feed === "following" ? "pic-active" : "")
@@ -174,7 +177,7 @@ export default function CenterFeed({
                     <Share />
                   </div>
                 )}
-                {posts.length > 0 ? (
+                {posts.length > 0 && loading === false ? (
                   <>
                     {posts.map((p) => (
                       <Post
@@ -198,7 +201,7 @@ export default function CenterFeed({
                     {friends.map((friend) => (
                       <Follower
                         friend={friend}
-                        handleChangeFeed={handleChangeFeed}
+                        loadNewUser={loadNewUser}
                         handleFollowingStatus={handleFollowingStatus}
                       />
                     ))}
@@ -218,7 +221,7 @@ export default function CenterFeed({
                     {friends.map((friend) => (
                       <Follower
                         friend={friend}
-                        handleChangeFeed={handleChangeFeed}
+                        loadNewUser={loadNewUser}
                         handleFollowingStatus={handleFollowingStatus}
                       />
                     ))}

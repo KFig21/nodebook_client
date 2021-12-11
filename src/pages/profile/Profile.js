@@ -19,7 +19,6 @@ export default function Profile({
   setSidebarOpen,
 }) {
   const [profileUser, setProfileUser] = useState({});
-  const [profileAvatar, setProfileAvatar] = useState("");
   const username = useParams().username;
   const [followed, setFollowed] = useState(false);
   const [feed, setFeed] = useState("posts");
@@ -45,52 +44,121 @@ export default function Profile({
   });
 
   // gets the profiles user info
-  useEffect(() => {
+  const loadNewUser = async (newUser) => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${username}`
-        // `http://localhost:3000/api/users?username=${username}`
+        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${newUser}`
+        // `http://localhost:3000/api/users?username=${newUser}`
       );
       setProfileUser(res.data);
       setFeed("posts");
+      fetchPosts(res.data.username);
     };
+
+    const fetchPosts = async (userFetched) => {
+      setTimeout(async function () {
+        const res = await axios.get(
+          `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${userFetched}/0`
+          // `http://localhost:3000/api/posts/profile/${userFetched}/0`
+        );
+        setPosts(res.data);
+        setLoading(false);
+      }, 1000);
+    };
+    setLoading(true);
     fetchUser();
+  };
+
+  const getInitialPosts = async () => {
+    setLoading(true);
+    setPosts([]);
+    setSkip(0);
+    setFeed("posts");
+    setTimeout(async function () {
+      console.log(profileUser.username);
+      const res = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/0`
+        // `http://localhost:3000/api/posts/profile/${profileUser.username}/0`
+      );
+      setPosts(res.data);
+      setLoading(false);
+    }, 1000);
+  };
+
+  const getInitialFollows = async (type) => {
+    setLoading(true);
+    setFeed(type);
+    setSkip(0);
+    setTimeout(async function () {
+      try {
+        const followsList = await axios.get(
+          `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/${type}-profile/${currentUser._id}/0`
+          // `http://localhost:3000/api/users/${profileUser._id}/${type}-profile/${currentUser._id}/0`
+        );
+        setFriends(followsList.data);
+      } catch (err) {
+        console.log(err);
+      }
+      setLoading(false);
+    }, 300);
+  };
+
+  const getScrollPosts = async () => {
+    const res = await axios.get(
+      `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/${skip}`
+      // `http://localhost:3000/api/posts/profile/${profileUser.username}/${skip}`
+    );
+    setPosts([...posts, ...res.data]);
+    setLoading(false);
+  };
+
+  const getScrollFollows = async () => {
+    try {
+      const followsList = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/${skip}`
+        // `http://localhost:3000/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/${skip}`
+      );
+      setFriends([...friends, ...followsList.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const setToInfo = async () => {
+    setFeed("info");
+  };
+
+  // infinite scroll functionality
+  const handleScroll = (e) => {
+    const { offsetHeight, scrollTop, scrollHeight } = e.target;
+    if (offsetHeight + scrollTop > scrollHeight * 0.98) {
+      if (feed === "posts" && posts.length > skip + 4) {
+        setSkip(posts.length);
+      } else if (feed !== "posts" && friends.length > skip + 9) {
+        setSkip(friends.length);
+      }
+    }
+  };
+
+  useEffect(() => {
+    loadNewUser(username);
     if (username === currentUser.username) {
       setCurrentPage("Profile");
     } else {
       setCurrentPage("NotUsersProfile");
     }
-  }, [username, currentPage]);
+  }, [username]);
 
   // gets posts on scroll
   useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/${skip}`
-        // `http://localhost:3000/api/posts/profile/${profileUser.username}/${skip}`
-      );
-      setPosts([...posts, ...res.data]);
-      setLoading(false);
-    };
-    if (feed === "posts" && profileUser.username) {
-      fetchPosts();
+    if (feed === "posts" && profileUser.username && skip > 0) {
+      getScrollPosts();
     }
-  }, [currentUser._id, skip]);
-
-  // gets posts on profile or feed switch
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/0`
-        // `http://localhost:3000/api/posts/profile/${profileUser.username}/${skip}`
-      );
-      setPosts(res.data);
-      setLoading(false);
-    };
-    if (feed === "posts" && profileUser.username) {
-      fetchPosts();
+    // update follows on infinite scroll
+    if (feed === "followers" || feed === "following") {
+      getScrollFollows();
     }
-  }, [profileUser.username, feed]);
+  }, [skip]);
 
   // FOLLOW FEED FUNCTIONALITY
   // FOLLOW FEED FUNCTIONALITY
@@ -149,68 +217,6 @@ export default function Profile({
     };
 
     updateFollow();
-  };
-
-  // update follows on infinite scroll
-  useEffect(() => {
-    const getFollows = async () => {
-      try {
-        const followsList = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/${skip}`
-          // `http://localhost:3000/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/${skip}`
-        );
-        setFriends([...friends, ...followsList.data]);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (feed === "followers" || feed === "following") {
-      getFollows();
-    }
-  }, [skip]);
-
-  // update page on new follow or feed switch
-  useEffect(() => {
-    const getFollows = async () => {
-      setTimeout(async function () {
-        try {
-          const followsList = await axios.get(
-            `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/0`
-            // `http://localhost:3000/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/0`
-          );
-          setFriends(followsList.data);
-        } catch (err) {
-          console.log(err);
-        }
-        setLoading(false);
-      }, 300);
-    };
-    if (feed === "followers" || feed === "following") {
-      getFollows();
-    } else {
-      setLoading(false);
-    }
-  }, [feed, profileUser.username, currentUser]);
-
-  // infinite scroll functionality
-  const handleScroll = (e) => {
-    const { offsetHeight, scrollTop, scrollHeight } = e.target;
-
-    if (offsetHeight + scrollTop > scrollHeight * 0.98) {
-      if (feed === "posts" && posts.length > skip + 4) {
-        setSkip(posts.length);
-      } else if (feed !== "posts" && friends.length > skip + 9) {
-        setSkip(friends.length);
-      }
-    }
-  };
-
-  const handleChangeFeed = (newFeed) => {
-    setPosts([]);
-    setFriends([]);
-    setLoading(true);
-    setSkip(0);
-    setFeed(newFeed);
   };
 
   const handleAvatarUpdate = async (e) => {
@@ -365,13 +371,16 @@ export default function Profile({
               <CenterFeed
                 profileUser={profileUser}
                 feed={feed}
-                handleChangeFeed={handleChangeFeed}
                 fetchNotifications={fetchNotifications}
                 loading={loading}
                 posts={posts}
                 friends={friends}
                 handleFollowingStatus={handleFollowingStatus}
                 sidebarOpen={sidebarOpen}
+                loadNewUser={loadNewUser}
+                getInitialPosts={getInitialPosts}
+                getInitialFollows={getInitialFollows}
+                setToInfo={setToInfo}
               />
             </div>
           </div>

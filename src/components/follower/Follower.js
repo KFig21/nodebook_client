@@ -9,8 +9,8 @@ import noAvi from "../../assets/noAvatar.png";
 export default function Follower({
   friend,
   handleFollowingStatus,
-  handleChangeFeed,
   sidebarOpen,
+  loadNewUser,
 }) {
   const { user: currentUser } = useContext(AuthContext);
   const [followStatus, setFollowStatus] = useState("");
@@ -59,7 +59,7 @@ export default function Follower({
           <Link
             to={"/profile/" + friend.username}
             style={{ textDecoration: "none" }}
-            onClick={() => handleChangeFeed("posts")}
+            onClick={() => loadNewUser(friend.username)}
           >
             <div className="follow-container-left">
               <img
