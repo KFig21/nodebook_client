@@ -113,7 +113,7 @@
       }
 
       .content-body {
-        margin-left: 51px;
+        margin-left: 62px;
         margin-right: 10px;
         background-color: $postBackgroundColor;
         padding: 7px 15px 10px 15px;
@@ -130,12 +130,12 @@
         }
 
         .notification-img {
-          margin: 10px;
+          margin: 10px 10px 5px 10px;
           max-height: 150px;
         }
       }
       .content-follow {
-        margin-left: 51px;
+        margin-left: 62px;
         background-color: transparent;
         border: 2px solid $fadedButtonColor;
         color: $fadedTextColor;
@@ -160,7 +160,7 @@
     margin-right: auto;
     margin-top: 3px;
     margin-bottom: 12px;
-    padding-left: 58px;
+    padding-left: 68px;
 
     @include mobile {
       padding-left: 0px;

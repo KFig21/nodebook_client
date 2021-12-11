@@ -24,8 +24,8 @@ export default function Post({
   useEffect(() => {
     const fetchPost = async () => {
       const res = await axios.get(
-        // `https://radiant-oasis-77477.herokuapp.com/api/posts/${postId}`
-        `http://localhost:3000/api/posts/${postId}`
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/${postId}`
+        // `http://localhost:3000/api/posts/${postId}`
       );
       setPost(res.data);
     };
