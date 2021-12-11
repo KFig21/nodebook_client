@@ -3,10 +3,12 @@ import { useParams } from "react-router";
 import axios from "axios";
 import CenterFeed from "../../components/centerFeed/CenterFeed";
 import Nav from "../../components/nav/Nav";
-// import ProfileInfo from "../../components/profileInfo/ProfileInfo";
 import { AuthContext } from "../../context/AuthContext";
 import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
+import plusSign from "../../assets/plusSign.png";
+import avatarCropper from "../../assets/avatarCropper.png";
+import { PermMedia, Cancel } from "@material-ui/icons";
 import "./Profile.scss";
 
 export default function Profile({
@@ -17,6 +19,7 @@ export default function Profile({
   setSidebarOpen,
 }) {
   const [profileUser, setProfileUser] = useState({});
+  const [profileAvatar, setProfileAvatar] = useState("");
   const username = useParams().username;
   const [followed, setFollowed] = useState(false);
   const [feed, setFeed] = useState("posts");
@@ -25,6 +28,9 @@ export default function Profile({
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [friends, setFriends] = useState([]);
+  const [avatarModal, setAvatarModal] = useState(false);
+  const [file, setFile] = useState(null);
+  const isInvalid = file === "";
 
   useEffect(() => {
     const checkFollowing = async () => {
@@ -43,6 +49,7 @@ export default function Profile({
     const fetchUser = async () => {
       const res = await axios.get(
         `https://radiant-oasis-77477.herokuapp.com/api/users?username=${username}`
+        // `http://localhost:3000/api/users?username=${username}`
       );
       setProfileUser(res.data);
       setFeed("posts");
@@ -206,6 +213,25 @@ export default function Profile({
     setFeed(newFeed);
   };
 
+  const handleAvatarUpdate = async (e) => {
+    e.preventDefault();
+    if (file) {
+      const data = new FormData();
+
+      data.append("file", file);
+      data.append("userId", currentUser._id);
+
+      try {
+        await axios.put(
+          "https://radiant-oasis-77477.herokuapp.com/api/users/avatar",
+          // `http://localhost:3000/api/users/avatar/`,
+          data
+        );
+        window.location.reload();
+      } catch (err) {}
+    }
+  };
+
   return (
     <>
       <div className="container" id="container">
@@ -222,6 +248,71 @@ export default function Profile({
             onClick={() => setSidebarOpen(false)}
             onScroll={handleScroll}
           >
+            {/* AVATAR CHANGE MODAL */}
+            {avatarModal && (
+              <div className="avatar-modal-wrapper">
+                <div className="avatar-modal-container">
+                  {file && (
+                    <div className="avatar-modal-img-container">
+                      <img
+                        className="avatar-modal-cropper"
+                        src={avatarCropper}
+                        alt=""
+                      />
+                      <img
+                        className="avatar-modal-img"
+                        src={URL.createObjectURL(file)}
+                        alt=""
+                      />
+                      <Cancel
+                        className="avatar-modal-cancel-img"
+                        onClick={() => setFile("")}
+                      />
+                    </div>
+                  )}
+                  <div className="avatar-modal-bottom-container">
+                    <form
+                      className="avatar-modal-bottom"
+                      onSubmit={handleAvatarUpdate}
+                      encType="multipart/form-data"
+                    >
+                      <div className="avatar-modal-options">
+                        <label htmlFor="file" className="avatar-modal-option">
+                          <PermMedia className="file-icon" />
+                          <span className="avatar-modal-option-text">
+                            Select a new avatar
+                          </span>
+                          <input
+                            style={{ display: "none" }}
+                            type="file"
+                            id="file"
+                            name="file"
+                            accept=".png,.jpeg,.jpg"
+                            onChange={(e) => setFile(e.target.files[0])}
+                          />
+                        </label>
+                      </div>
+                      <button
+                        type="submit"
+                        className={
+                          isInvalid
+                            ? "save-button invalid-save-button"
+                            : "save-button"
+                        }
+                        disabled={isInvalid}
+                      >
+                        save
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div
+                  className="modal-background"
+                  onClick={() => setAvatarModal(false)}
+                ></div>
+              </div>
+            )}
+            {/* PROFILE */}
             <div className="profile-right-top">
               <div className="profile-cover">
                 <img
@@ -231,15 +322,43 @@ export default function Profile({
                   }
                   alt=""
                 />
-                <img
-                  className="profile-avatar"
-                  src={
-                    profileUser.profilePicture
-                      ? profileUser.profilePicture
-                      : noAvi
-                  }
-                  alt=""
-                />
+                {username === currentUser.username ? (
+                  <div
+                    className="profile-img-container"
+                    onClick={() => setAvatarModal(true)}
+                  >
+                    <div className="plus-sign-container">
+                      <img
+                        className="profile-avatar-plus"
+                        src={plusSign}
+                        alt=""
+                      />
+                    </div>
+                    <img
+                      className="profile-avatar"
+                      src={
+                        profileUser.profilePicture
+                          ? "data:image/jpg;base64," +
+                            profileUser.profilePicture
+                          : noAvi
+                      }
+                      alt=""
+                    />
+                  </div>
+                ) : (
+                  <div className="profile-img-container">
+                    <img
+                      className="profile-avatar"
+                      src={
+                        profileUser.profilePicture
+                          ? "data:image/jpg;base64," +
+                            profileUser.profilePicture
+                          : noAvi
+                      }
+                      alt=""
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="profile-right-bottom">

@@ -157,7 +157,11 @@ export default function LikesFeed({
                   <Link to={`/profile/${user.username}`}>
                     <img
                       className="likesFeed-post-avatar"
-                      src={user.profilePicture ? user.profilePicture : noAvi}
+                      src={
+                        user.profilePicture
+                          ? "data:image/jpg;base64," + user.profilePicture
+                          : noAvi
+                      }
                       alt=""
                     />
                     <span className="likesFeed-post-username">

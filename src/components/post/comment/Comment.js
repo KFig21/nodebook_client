@@ -155,7 +155,15 @@ export default function Comment({
     <div className="comment-container">
       <div className="comment-avatar-container">
         <Link to={`/profile/${user.username}`}>
-          <img className="comment-avatar" src={noAvi} alt="" />
+          <img
+            className="comment-avatar"
+            src={
+              user.profilePicture
+                ? "data:image/jpg;base64," + user.profilePicture
+                : noAvi
+            }
+            alt=""
+          />
         </Link>
       </div>
       <div className="comment-right">

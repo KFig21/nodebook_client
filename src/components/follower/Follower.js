@@ -63,7 +63,11 @@ export default function Follower({
           >
             <div className="follow-container-left">
               <img
-                src={friend.profilePicture ? friend.profilePicture : noAvi}
+                src={
+                  friend.profilePicture
+                    ? "data:image/jpg;base64," + friend.profilePicture
+                    : noAvi
+                }
                 alt=""
                 className="follow-img"
               />

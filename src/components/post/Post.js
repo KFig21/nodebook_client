@@ -35,6 +35,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
     const fetchUser = async () => {
       const res = await axios.get(
         `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${post.userId}`
+        // `http://localhost:3000/api/users?userId=${post.userId}`
       );
       setUser(res.data);
     };
@@ -223,7 +224,11 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               <Link to={`/profile/${user.username}`}>
                 <img
                   className="post-avatar"
-                  src={user.profilePicture ? user.profilePicture : noAvi}
+                  src={
+                    user.profilePicture
+                      ? "data:image/jpg;base64," + user.profilePicture
+                      : noAvi
+                  }
                   alt=""
                 />
                 <span className="post-username">{user.username}</span>

@@ -159,7 +159,11 @@ export default function Notification({
                 <Link to={`/profile/${user.username}`}>
                   <img
                     className="notification-avatar"
-                    src={user.profilePicture ? user.profilePicture : noAvi}
+                    src={
+                      user.profilePicture
+                        ? "data:image/jpg;base64," + user.profilePicture
+                        : noAvi
+                    }
                     alt=""
                   />
                 </Link>

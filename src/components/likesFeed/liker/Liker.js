@@ -57,7 +57,11 @@ export default function Liker({ liker, handleFollowingStatus, sidebarOpen }) {
           >
             <div className="follow-container-left">
               <img
-                src={liker.profilePicture ? liker.profilePicture : noAvi}
+                src={
+                  liker.profilePicture
+                    ? "data:image/jpg;base64," + liker.profilePicture
+                    : noAvi
+                }
                 alt=""
                 className="follow-img"
               />

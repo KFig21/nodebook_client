@@ -12,6 +12,7 @@
     overflow-y: scroll;
     overflow: overlay;
     height: 100%;
+    position: relative;
 
     @include mobile {
       max-width: 100%;
@@ -35,23 +36,64 @@
           }
         }
 
-        .profile-avatar {
-          width: 150px;
-          height: 150px;
+        .profile-img-container {
+          width: 142px;
+          height: 142px;
           border-radius: 50%;
-          object-fit: cover;
           position: absolute;
           left: 45px;
           margin: auto;
           top: 100px;
           border: 4px solid $backgroundColor;
           z-index: 5;
+          overflow: hidden;
+          box-sizing: unset;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
           @include mobile {
             top: 50px;
             left: 15px;
-            width: 75px;
-            height: 75px;
+            width: 68px;
+            height: 68px;
+          }
+
+          .profile-avatar {
+            width: 142px;
+            height: 142px;
+            object-fit: cover;
+
+            @include mobile {
+              width: 68px;
+              height: 68px;
+            }
+          }
+          .plus-sign-container {
+            display: none;
+            position: absolute;
+            background-color: $formInputColor;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            .profile-avatar-plus {
+              width: 120px;
+              height: 120px;
+              object-fit: cover;
+            }
+          }
+          &:hover {
+            .plus-sign-container {
+              display: flex;
+            }
+            @include mobile {
+              .plus-sign-container {
+                display: none;
+              }
+            }
           }
         }
       }
@@ -65,6 +107,173 @@
         max-width: 100%;
         min-width: 100%;
         width: 100%;
+      }
+    }
+
+    .modal-background {
+      background-color: $modalWrapperBackgroundColor;
+      backdrop-filter: blur(5px);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .avatar-modal-wrapper {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+
+      .avatar-modal-container {
+        width: 95%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $sidebarColor;
+        z-index: 11;
+        border-radius: 0px 20px 20px 20px;
+        padding: 0px;
+        overflow: hidden;
+        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.14);
+
+        @include mobile {
+          border-radius: 0px 10px 10px 10px;
+        }
+
+        .avatar-modal-bottom-container {
+          background-color: $backgroundColor;
+          width: 100%;
+          padding: 10px;
+
+          .avatar-modal-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .avatar-modal-options {
+              display: flex;
+              margin-left: 20px;
+
+              .avatar-modal-option {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                cursor: pointer;
+
+                .file-icon {
+                  font-size: 18px;
+                  margin-right: 10px;
+                  color: $primaryColorFaded;
+                }
+
+                &:hover {
+                  .share-icon {
+                    color: $primaryColor;
+                  }
+                }
+
+                .avatar-modal-option-text {
+                  font-size: 16px;
+                  font-weight: 500;
+                }
+              }
+            }
+
+            .save-button {
+              border: none;
+              padding: 7px;
+              border-radius: 5px;
+              background-color: transparent;
+              background-image: $glassGradient;
+              border: solid 2px $primaryColorFaded;
+              font-weight: 500;
+              font-size: 16px;
+              margin-right: 20px;
+              cursor: pointer;
+              color: white;
+              outline: none;
+
+              &:hover,
+              &:focus {
+                background-image: none;
+                border: solid 2px $primaryColor;
+                background-color: $primaryColor;
+              }
+            }
+
+            .invalid-save-button {
+              background-image: none;
+              color: $fadedButtonColor;
+              border: solid 2px $fadedButtonColor;
+
+              &:hover,
+              &:focus {
+                background-image: none;
+                border: solid 2px $fadedButtonColor;
+                background-color: transparent;
+                color: $fadedButtonColor;
+              }
+            }
+          }
+        }
+        .avatar-modal-img-container {
+          position: relative;
+          min-width: 500px;
+          min-height: 500px;
+          max-width: 500px;
+          max-height: 500px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include mobile {
+            width: 100%;
+            min-width: 95vw;
+            min-height: 95vw;
+            max-width: 95vw;
+            max-height: 95vw;
+          }
+
+          .avatar-modal-cropper {
+            width: 100%;
+            position: absolute;
+            object-fit: contain;
+            display: block;
+          }
+
+          .avatar-modal-img {
+            min-width: 500px;
+            min-height: 500px;
+            object-fit: cover;
+            display: block;
+
+            @include mobile {
+              min-width: 95vw;
+              min-height: 95vw;
+            }
+          }
+
+          .avatar-modal-cancel-img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            color: crimson;
+          }
+        }
       }
     }
   }

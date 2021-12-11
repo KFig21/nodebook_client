@@ -30,7 +30,6 @@ export default function Timeline({
         `https://radiant-oasis-77477.herokuapp.com/api/posts/timeline/${user._id}/${skip}`
         // `http://localhost:3000/api/posts/timeline/${user._id}/${skip}`
       );
-      console.log(res.data);
       setPosts([...posts, ...res.data]);
       setLoading(false);
     };

@@ -31,8 +31,8 @@ function App() {
     // set a buffer for new notifications to get set before fetching
     setTimeout(async function () {
       const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${user._id}`
-        // `http://localhost:3000/api/users?userId=${user._id}`
+        `https://radiant-oasis-77477.herokuapp.com/api/users/notifications?userId=${user._id}`
+        // `http://localhost:3000/api/users/notifications?userId=${user._id}`
       );
       setUserData(res.data);
       let count = 0;

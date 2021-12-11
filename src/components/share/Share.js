@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { PermMedia, Cancel } from "@material-ui/icons";
@@ -11,6 +11,21 @@ export default function Share() {
   const [file, setFile] = useState(null);
   const [disableButton, setDisableButton] = useState("");
   const isInvalid = disableButton === "";
+  const [avatar, setAvatar] = useState(null);
+
+  // fetch current users avatar
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${user.username}`
+        // `http://localhost:3000/api/users?username=${user.username}`
+      );
+      setAvatar(res.data.profilePicture);
+    };
+    if (user) {
+      fetchUser();
+    }
+  }, [user]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -52,7 +67,7 @@ export default function Share() {
         <div className="share-top">
           <img
             className="share-avatar"
-            src={user.profilePicture ? user.profilePicture : noAvi}
+            src={avatar ? "data:image/jpg;base64," + avatar : noAvi}
             alt=""
           />
           <textarea
