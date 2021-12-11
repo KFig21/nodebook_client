@@ -2,21 +2,26 @@
 
 .comment-container {
   display: flex;
-  padding: 5px 15px;
+  padding: 5px 10px;
 
   @include mobile {
     padding: 5px 0px;
   }
 
   .comment-avatar-container {
-    max-height: 30px;
-    max-width: 30px;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
     margin-right: 12px;
     margin-top: 5px;
 
     .comment-avatar {
-      max-height: 30px;
-      max-width: 30px;
+      min-height: 40px;
+      min-width: 40px;
+      max-height: 40px;
+      max-width: 40px;
+      object-fit: cover;
       border-radius: 50px;
     }
   }
@@ -44,15 +49,17 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        height: 28px;
 
         .comment-info-left {
           display: flex;
-          align-items: center;
-          justify-content: center;
+          align-items: baseline;
+          justify-content: baseline;
 
           .comment-username {
             font-weight: 500;
             margin-right: 8px;
+            font-size: 17px;
             color: white;
           }
 
@@ -126,6 +133,10 @@
         background-color: $editedBackgroundColor;
         color: $primaryColorFaded;
         border-radius: 20px;
+
+        @include mobile {
+          margin: 2px auto 2px 4px;
+        }
       }
 
       .edit-input {
@@ -266,13 +277,26 @@
       .like-icon {
         width: 24px;
         height: 24px;
-        margin-right: 8px;
+        margin-right: 6px;
         cursor: pointer;
+        color: $primaryColorFaded;
+
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+
+      .liked {
         color: $primaryColor;
       }
 
       .post-like-counter {
         font-size: 15px;
+        color: $fadedTextColor;
+
+        &:hover {
+          color: white;
+        }
       }
     }
   }

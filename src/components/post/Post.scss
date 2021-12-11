@@ -25,41 +25,73 @@
     background-color: $postBackgroundColor;
     border-radius: 3px 25px 25px 25px;
 
+    @include mobile {
+      padding: 10px;
+    }
+
     .post-top {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       position: relative;
 
-      .post-top-left {
+      a {
+        height: 50px;
         display: flex;
         align-items: center;
+        color: white;
+        margin-right: 12px;
 
-        a {
-          height: 32px;
+        .post-avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .post-top-center {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
+
+        .post-info {
           display: flex;
-          align-items: center;
-          color: white;
+          align-items: baseline;
+          justify-content: baseline;
 
-          .post-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
+          .post-username {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 10px 0px 0px;
+            cursor: pointer;
+            color: white;
+          }
+
+          .post-date {
+            font-size: 12px;
+            color: $fadedTextColor;
           }
         }
-
-        .post-username {
+        .post-body {
+          padding: 3px 0px;
+          text-align: left;
           font-size: 18px;
-          font-weight: 500;
-          margin: 0 10px;
-          cursor: pointer;
-          color: white;
         }
 
-        .post-date {
+        .post-edit {
+          margin-left: 0px;
+          margin-right: auto;
+          margin-top: 5px;
+          margin-bottom: 2px;
+          padding: 3px 10px 4px 10px;
+          text-align: left;
           font-size: 12px;
-          color: $fadedTextColor;
+          font-weight: 500;
+          background-color: $editedBackgroundColor;
+          color: $primaryColorFaded;
+          border-radius: 20px;
         }
       }
 
@@ -122,34 +154,20 @@
     }
 
     .post-center {
-      margin: 18px 0px 16px 0px;
       display: flex;
       flex-direction: column;
       justify-content: start;
 
-      .post-body {
-        padding: 0px 10px;
-        text-align: left;
-        font-size: 22px;
-        margin-bottom: 8px;
-      }
-      .post-edit {
-        margin-left: 10px;
-        margin-right: auto;
-        padding: 3px 10px 4px 10px;
-        text-align: left;
-        font-size: 12px;
-        font-weight: 500;
-        background-color: $editedBackgroundColor;
-        color: $primaryColorFaded;
-        border-radius: 20px;
-      }
-
       .post-img-wrapper {
+        margin: 10px 0px 4px 0px;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @include mobile {
+          margin: 8px 0px 2px 0px;
+        }
 
         .post-img-container {
           width: 95%;
@@ -257,21 +275,35 @@
     .post-bottom {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      margin-top: 6px;
 
       .post-bottom-left {
         display: flex;
         align-items: center;
+        margin-left: 60px;
 
         a {
-          color: white;
+          color: $fadedTextColor;
+
+          &:hover {
+            color: white;
+          }
         }
 
         .like-icon {
           width: 24px;
           height: 24px;
-          margin-right: 8px;
+          margin-right: 6px;
           cursor: pointer;
+          color: $primaryColorFaded;
+
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+
+        .liked {
           color: $primaryColor;
         }
 

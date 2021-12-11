@@ -220,20 +220,29 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
       >
         <div className="post-upper">
           <div className="post-top">
-            <div className="post-top-left">
-              <Link to={`/profile/${user.username}`}>
-                <img
-                  className="post-avatar"
-                  src={
-                    user.profilePicture
-                      ? "data:image/jpg;base64," + user.profilePicture
-                      : noAvi
-                  }
-                  alt=""
-                />
+            <Link to={`/profile/${user.username}`}>
+              <img
+                className="post-avatar"
+                src={
+                  user.profilePicture
+                    ? "data:image/jpg;base64," + user.profilePicture
+                    : noAvi
+                }
+                alt=""
+              />
+            </Link>
+
+            <div className="post-top-center">
+              <div className="post-info">
                 <span className="post-username">{user.username}</span>
-              </Link>
-              <span className="post-date">{format(post.createdAt)}</span>
+                <span className="post-date">{format(post.createdAt)}</span>
+              </div>
+              <span className="post-body">{post?.body}</span>
+              {post.edited && (
+                <span className="post-edit">
+                  edit: {format(post.editedtimestamp)}
+                </span>
+              )}
             </div>
             {/* options button - delete/edit */}
             {(user.username === currentUser.username ||
@@ -264,7 +273,6 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
           </div>
           {/* Post content */}
           <div className="post-center">
-            <span className="post-body">{post?.body}</span>
             {/* edit input container */}
             {showEdit && (
               <div className="post-edit-form-container">
@@ -293,11 +301,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 </form>
               </div>
             )}
-            {post.edited && (
-              <span className="post-edit">
-                edit: {format(post.editedtimestamp)}
-              </span>
-            )}
+
             {post.img && (
               <div className="post-img-wrapper">
                 <div className="post-img-container">
@@ -313,7 +317,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
           <div className="post-bottom">
             <div className="post-bottom-left">
               {isLiked ? (
-                <Favorite className="like-icon" onClick={likeHandler} />
+                <Favorite className="like-icon liked" onClick={likeHandler} />
               ) : (
                 <FavoriteBorder className="like-icon" onClick={likeHandler} />
               )}

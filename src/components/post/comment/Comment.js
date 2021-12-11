@@ -267,7 +267,7 @@ export default function Comment({
         </div>
         <div className="comment-like-container">
           {isLiked ? (
-            <Favorite className="like-icon" onClick={likeHandler} />
+            <Favorite className="like-icon liked" onClick={likeHandler} />
           ) : (
             <FavoriteBorder className="like-icon" onClick={likeHandler} />
           )}
