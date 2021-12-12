@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/nodebook_client/static/css/main.c9038378.chunk.css",
-    "main.js": "/nodebook_client/static/js/main.f809132a.chunk.js",
-    "main.js.map": "/nodebook_client/static/js/main.f809132a.chunk.js.map",
+    "main.css": "/nodebook_client/static/css/main.e9f88c17.chunk.css",
+    "main.js": "/nodebook_client/static/js/main.1f3e800a.chunk.js",
+    "main.js.map": "/nodebook_client/static/js/main.1f3e800a.chunk.js.map",
     "runtime-main.js": "/nodebook_client/static/js/runtime-main.bdc9ef66.js",
     "runtime-main.js.map": "/nodebook_client/static/js/runtime-main.bdc9ef66.js.map",
     "static/js/2.c3bc4a4b.chunk.js": "/nodebook_client/static/js/2.c3bc4a4b.chunk.js",
     "static/js/2.c3bc4a4b.chunk.js.map": "/nodebook_client/static/js/2.c3bc4a4b.chunk.js.map",
     "index.html": "/nodebook_client/index.html",
-    "static/css/main.c9038378.chunk.css.map": "/nodebook_client/static/css/main.c9038378.chunk.css.map",
+    "static/css/main.e9f88c17.chunk.css.map": "/nodebook_client/static/css/main.e9f88c17.chunk.css.map",
     "static/js/2.c3bc4a4b.chunk.js.LICENSE.txt": "/nodebook_client/static/js/2.c3bc4a4b.chunk.js.LICENSE.txt",
     "static/media/avatarCropper.4a059494.png": "/nodebook_client/static/media/avatarCropper.4a059494.png",
     "static/media/cover.cfc827b9.png": "/nodebook_client/static/media/cover.cfc827b9.png",
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.bdc9ef66.js",
     "static/js/2.c3bc4a4b.chunk.js",
-    "static/css/main.c9038378.chunk.css",
-    "static/js/main.f809132a.chunk.js"
+    "static/css/main.e9f88c17.chunk.css",
+    "static/js/main.1f3e800a.chunk.js"
   ]
 }
