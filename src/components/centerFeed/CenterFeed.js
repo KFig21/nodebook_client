@@ -92,7 +92,7 @@ export default function CenterFeed({
               }
             >
               <span className="count">
-                {profileUser.posts ? profileUser.images.length : "0"}
+                {profileUser.images ? profileUser.images.length : "0"}
               </span>
               <span className="button-name">images</span>
               <ImageIcon className="profile-info-icon" />
