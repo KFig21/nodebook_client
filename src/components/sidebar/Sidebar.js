@@ -63,7 +63,7 @@ export default function Sidebar({
               ) : (
                 <HomeOutlined className="sidebar-icon" />
               )}{" "}
-              Timeline
+              <span className="sidebar-link-text">Timeline</span>
             </div>
           </Link>
           {/* PROFILE */}
@@ -80,7 +80,7 @@ export default function Sidebar({
               ) : (
                 <PersonOutlineRounded className="sidebar-icon" />
               )}{" "}
-              Profile
+              <span className="sidebar-link-text">Profile</span>
             </div>
           </Link>
           {/* NOTIFICATIONS */}
@@ -97,7 +97,7 @@ export default function Sidebar({
               ) : (
                 <NotificationsOutlined className="sidebar-icon" />
               )}{" "}
-              Notifications
+              <span className="sidebar-link-text">Notifications</span>
               {notificationsCount > 0 && (
                 <div className="notification-badge-container">
                   <div className="notification-badge">
@@ -121,7 +121,7 @@ export default function Sidebar({
               ) : (
                 <GroupOutlined className="sidebar-icon" />
               )}{" "}
-              Followers
+              <span className="sidebar-link-text">Followers</span>
             </div>
           </Link>
           {/* FOLLOWING */}
@@ -138,7 +138,7 @@ export default function Sidebar({
               ) : (
                 <GroupOutlined className="sidebar-icon" />
               )}{" "}
-              Following
+              <span className="sidebar-link-text">Following</span>
             </div>
           </Link>
           {/* EXPLORE */}
@@ -155,7 +155,7 @@ export default function Sidebar({
               ) : (
                 <Language className="sidebar-icon" />
               )}{" "}
-              Explore
+              <span className="sidebar-link-text">Explore</span>
             </div>
           </Link>
           {/* SHARE */}
@@ -172,13 +172,14 @@ export default function Sidebar({
               ) : (
                 <CreateOutlined className="sidebar-icon" />
               )}{" "}
-              Share
+              <span className="sidebar-link-text">Share</span>
             </div>
           </Link>
           {/* LOGOUT */}
           <div className="sidebar-logout">
             <button className="logout-button" onClick={logout}>
-              <ExitToApp className="sidebar-icon" /> Logout
+              <ExitToApp className="sidebar-icon" />{" "}
+              <span className="sidebar-link-text">Logout</span>
             </button>
           </div>
         </>

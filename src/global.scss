@@ -81,6 +81,15 @@ $width: 768px;
   }
 }
 
+@mixin smallDesktop {
+  // @media (min-height: 421px) {
+  @media (min-height: 1px) {
+    @media (max-width: 1300px) and (min-width: #{$width}) {
+      @content;
+    }
+  }
+}
+
 // @mixin mobileKeyboard {
 //   @media (max-height: 500px) {
 //     @media (max-width: 500px) {

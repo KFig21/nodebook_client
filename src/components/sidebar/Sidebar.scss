@@ -17,8 +17,15 @@
   transition: ease all 0.5s;
   position: relative;
 
+  @include smallDesktop {
+    flex: unset;
+    padding-left: 10px;
+  }
+
   @include mobile {
     position: fixed;
+    flex: 2.5;
+    padding-left: unset;
     top: 0;
     left: -100%;
     width: 84%;
@@ -40,6 +47,11 @@
 
     @include mobile {
       padding: 5px 0px 0 0;
+    }
+
+    @include smallDesktop {
+      padding: 5px 0px 0 0;
+      min-width: unset;
     }
 
     .sidebar-logo-container {
@@ -73,6 +85,12 @@
       align-items: center;
       justify-content: center;
 
+      .sidebar-link-text {
+        @include smallDesktop {
+          display: none;
+        }
+      }
+
       .sidebar-link {
         display: flex;
         align-items: center;
@@ -100,8 +118,18 @@
           }
         }
 
+        .sidebar-link-text {
+          @include smallDesktop {
+            display: none;
+          }
+        }
+
         .sidebar-icon {
           margin-right: 10px;
+
+          @include smallDesktop {
+            margin-right: 0px;
+          }
 
           @include mobile {
             height: 30px;
@@ -227,6 +255,10 @@
         .sidebar-icon {
           margin-right: 10px;
 
+          @include smallDesktop {
+            margin-right: 0px;
+          }
+
           @include mobile {
             height: 30px;
             width: 30px;
@@ -253,9 +285,17 @@
     font-size: 18px;
     font-weight: 500;
 
+    @include smallDesktop {
+      flex-direction: column;
+      width: 64px;
+      padding-left: 0px;
+      margin-bottom: 20px;
+    }
+
     @include mobile {
-      position: fixed;
-      padding-bottom: 90px;
+      position: relative;
+      height: 100%;
+      min-height: 70px;
     }
 
     &:hover,
@@ -267,6 +307,10 @@
 
     .made-by {
       transition: all 0.2s ease;
+
+      @include smallDesktop {
+        display: none;
+      }
 
       @include mobile {
         font-size: 20px;
@@ -287,6 +331,11 @@
         transition: all 0.2s ease;
         cursor: pointer;
 
+        @include smallDesktop {
+          margin-right: 0px;
+          margin-bottom: 20px;
+        }
+
         &:hover {
           background-color: $primaryColor;
         }
@@ -297,6 +346,10 @@
         margin-left: 10px;
         transition: all 0.2s ease;
         cursor: pointer;
+
+        @include smallDesktop {
+          margin-left: 0px;
+        }
 
         &:hover {
           color: $primaryColor;
