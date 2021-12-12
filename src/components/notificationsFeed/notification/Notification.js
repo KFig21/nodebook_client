@@ -161,8 +161,9 @@ export default function Notification({
                   <img
                     className="notification-avatar"
                     src={
-                      user.profilePicture
-                        ? "data:image/jpg;base64," + user.profilePicture
+                      user.avatar
+                        ? "https://nodebook-images.s3.amazonaws.com/" +
+                          user.avatar
                         : noAvi
                     }
                     alt=""
@@ -191,7 +192,10 @@ export default function Notification({
                   {content.img && (
                     <img
                       className="notification-img"
-                      src={"data:image/jpg;base64," + content.img}
+                      src={
+                        "https://nodebook-images.s3.amazonaws.com/" +
+                        content.img
+                      }
                       alt=""
                     />
                   )}

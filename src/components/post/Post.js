@@ -155,8 +155,8 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   const handleDeletePost = async () => {
     try {
       await axios.delete(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/`,
-        // `http://localhost:3000/api/posts/${post._id}/`,
+        // `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/`,
+        `http://localhost:3000/api/posts/${post._id}/`,
         {
           data: {
             userId: currentUser._id,
@@ -224,8 +224,8 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               <img
                 className="post-avatar"
                 src={
-                  user.profilePicture
-                    ? "data:image/jpg;base64," + user.profilePicture
+                  user.avatar
+                    ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
                     : noAvi
                 }
                 alt=""
@@ -307,7 +307,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 <div className="post-img-container">
                   <img
                     className="post-img"
-                    src={"data:image/jpg;base64," + post.img}
+                    src={"https://nodebook-images.s3.amazonaws.com/" + post.img}
                     alt=""
                   />
                 </div>

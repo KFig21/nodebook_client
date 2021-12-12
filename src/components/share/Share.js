@@ -6,26 +6,25 @@ import noAvi from "../../assets/noAvatar.png";
 import "./Share.scss";
 
 export default function Share() {
-  const { user } = useContext(AuthContext);
+  const { user: currentUser } = useContext(AuthContext);
   const body = useRef();
   const [file, setFile] = useState(null);
   const [disableButton, setDisableButton] = useState("");
   const isInvalid = disableButton === "";
-  const [avatar, setAvatar] = useState(null);
+  const [user, setUser] = useState({});
+  const [error, setError] = useState(false);
 
-  // fetch current users avatar
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${user.username}`
-        // `http://localhost:3000/api/users?username=${user.username}`
+        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${currentUser.username}`
+        // `http://localhost:3000/api/users?username=${currentUser.username}`
       );
-      setAvatar(res.data.profilePicture);
+      setUser(res.data);
     };
-    if (user) {
-      fetchUser();
-    }
-  }, [user]);
+
+    fetchUser();
+  }, [currentUser]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -47,7 +46,9 @@ export default function Share() {
           postWithImg
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        setError(true);
+      }
     } else {
       // no file, send
       try {
@@ -57,7 +58,9 @@ export default function Share() {
           newPost
         );
         window.location.reload();
-      } catch (err) {}
+      } catch (err) {
+        setError(true);
+      }
     }
   };
 
@@ -67,7 +70,11 @@ export default function Share() {
         <div className="share-top">
           <img
             className="share-avatar"
-            src={avatar ? "data:image/jpg;base64," + avatar : noAvi}
+            src={
+              user.avatar
+                ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
+                : noAvi
+            }
             alt=""
           />
           <textarea
@@ -117,6 +124,13 @@ export default function Share() {
             Share
           </button>
         </form>
+        {error && (
+          <div className="error-div">
+            <span className="error-message">
+              <strong>Error:</strong> File too large or incorrect type
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

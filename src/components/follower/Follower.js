@@ -64,8 +64,9 @@ export default function Follower({
             <div className="follow-container-left">
               <img
                 src={
-                  friend.profilePicture
-                    ? "data:image/jpg;base64," + friend.profilePicture
+                  friend.avatar
+                    ? "https://nodebook-images.s3.amazonaws.com/" +
+                      friend.avatar
                     : noAvi
                 }
                 alt=""

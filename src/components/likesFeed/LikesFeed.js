@@ -157,8 +157,9 @@ export default function LikesFeed({
                   <img
                     className="likesFeed-post-avatar"
                     src={
-                      user.profilePicture
-                        ? "data:image/jpg;base64," + user.profilePicture
+                      user.avatar
+                        ? "https://nodebook-images.s3.amazonaws.com/" +
+                          user.avatar
                         : noAvi
                     }
                     alt=""
@@ -189,7 +190,9 @@ export default function LikesFeed({
                     <div className="likesFeed-post-img-container">
                       <img
                         className="likesFeed-post-img"
-                        src={"data:image/jpg;base64," + post.img}
+                        src={
+                          "https://nodebook-images.s3.amazonaws.com/" + post.img
+                        }
                         alt=""
                       />
                     </div>

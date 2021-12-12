@@ -239,8 +239,6 @@ export default function Profile({
           // `http://localhost:3000/api/users/avatar/`,
           data
         );
-        setSending(false);
-
         window.location.reload();
       } catch (err) {}
     }
@@ -262,8 +260,6 @@ export default function Profile({
           // `http://localhost:3000/api/users/cover/`,
           data
         );
-        setSending(false);
-
         window.location.reload();
       } catch (err) {}
     }
@@ -344,10 +340,14 @@ export default function Profile({
                       </form>
                     </div>
                   </div>
-                  <div
-                    className="modal-background"
-                    onClick={() => setAvatarModal(false)}
-                  ></div>
+                  {sending ? (
+                    <div className="modal-background"></div>
+                  ) : (
+                    <div
+                      className="modal-background"
+                      onClick={() => setAvatarModal(false)}
+                    ></div>
+                  )}
                 </div>
               ) : (
                 <div className="avatar-modal-wrapper">
@@ -416,10 +416,14 @@ export default function Profile({
                       </form>
                     </div>
                   </div>
-                  <div
-                    className="modal-background"
-                    onClick={() => setCoverModal(false)}
-                  ></div>
+                  {sending ? (
+                    <div className="modal-background"></div>
+                  ) : (
+                    <div
+                      className="modal-background"
+                      onClick={() => setCoverModal(false)}
+                    ></div>
+                  )}
                 </div>
               ) : (
                 <div className="avatar-modal-wrapper">
@@ -436,8 +440,9 @@ export default function Profile({
                   <img
                     className="profile-cover-img"
                     src={
-                      profileUser.coverPicture
-                        ? "data:image/jpg;base64," + profileUser.coverPicture
+                      profileUser.cover
+                        ? "https://nodebook-images.s3.amazonaws.com/" +
+                          profileUser.cover
                         : cover
                     }
                     alt=""
@@ -467,9 +472,9 @@ export default function Profile({
                     <img
                       className="profile-avatar"
                       src={
-                        profileUser.profilePicture
-                          ? "data:image/jpg;base64," +
-                            profileUser.profilePicture
+                        profileUser.avatar
+                          ? "https://nodebook-images.s3.amazonaws.com/" +
+                            profileUser.avatar
                           : noAvi
                       }
                       alt=""
@@ -480,9 +485,9 @@ export default function Profile({
                     <img
                       className="profile-avatar"
                       src={
-                        profileUser.profilePicture
-                          ? "data:image/jpg;base64," +
-                            profileUser.profilePicture
+                        profileUser.avatar
+                          ? "https://nodebook-images.s3.amazonaws.com/" +
+                            profileUser.avatar
                           : noAvi
                       }
                       alt=""

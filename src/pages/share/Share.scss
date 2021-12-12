@@ -56,4 +56,20 @@
       }
     }
   }
+  .error-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .error-message {
+      padding: 3px 15px;
+      border-radius: 30px;
+      background-color: $deleteButtonHoverColor;
+      color: $deleteButtonTextColor;
+
+      strong {
+        margin-right: 6px;
+      }
+    }
+  }
 }

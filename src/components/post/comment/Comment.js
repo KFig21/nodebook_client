@@ -158,8 +158,8 @@ export default function Comment({
           <img
             className="comment-avatar"
             src={
-              user.profilePicture
-                ? "data:image/jpg;base64," + user.profilePicture
+              user.avatar
+                ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
                 : noAvi
             }
             alt=""
