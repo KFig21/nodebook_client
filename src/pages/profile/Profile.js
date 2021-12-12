@@ -29,6 +29,7 @@ export default function Profile({
   const [skip, setSkip] = useState(0);
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [images, setImages] = useState([]);
   const [friends, setFriends] = useState([]);
   const [avatarModal, setAvatarModal] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
@@ -90,6 +91,23 @@ export default function Profile({
     }, 1000);
   };
 
+  const getInitialImages = async () => {
+    setLoading(true);
+    setPosts([]);
+    setImages([]);
+    setSkip(0);
+    setFeed("images");
+    setTimeout(async function () {
+      console.log(profileUser.username);
+      const res = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/images/0`
+        // `http://localhost:3000/api/posts/profile/${profileUser.username}/images/0`
+      );
+      setImages(res.data);
+      setLoading(false);
+    }, 1000);
+  };
+
   const getInitialFollows = async (type) => {
     setLoading(true);
     setFeed(type);
@@ -128,6 +146,8 @@ export default function Profile({
       console.log(err);
     }
   };
+
+  // GET SCROLL IMAGES
 
   const setToInfo = async () => {
     setFeed("info");
@@ -503,12 +523,14 @@ export default function Profile({
                 fetchNotifications={fetchNotifications}
                 loading={loading}
                 posts={posts}
+                images={images}
                 friends={friends}
                 handleFollowingStatus={handleFollowingStatus}
                 sidebarOpen={sidebarOpen}
                 loadNewUser={loadNewUser}
                 getInitialPosts={getInitialPosts}
                 getInitialFollows={getInitialFollows}
+                getInitialImages={getInitialImages}
                 setToInfo={setToInfo}
               />
             </div>

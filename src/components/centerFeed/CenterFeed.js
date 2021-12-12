@@ -2,11 +2,18 @@ import React, { useContext } from "react";
 import "./CenterFeed.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { AccountBox, Chat, Group, Edit } from "@material-ui/icons";
+import {
+  AccountBox,
+  Chat,
+  Group,
+  Edit,
+  Image as ImageIcon,
+} from "@material-ui/icons";
 // component imports
 import Loader from "../../components/loader/Loader";
 import Share from "../share/Share";
 import Post from "../post/Post";
+import Image from "../image/Image";
 import Follower from "../follower/Follower";
 
 export default function CenterFeed({
@@ -15,12 +22,14 @@ export default function CenterFeed({
   fetchNotifications,
   loading,
   posts,
+  images,
   friends,
   handleFollowingStatus,
   sidebarOpen,
   loadNewUser,
   getInitialPosts,
   getInitialFollows,
+  getInitialImages,
   setToInfo,
 }) {
   const { user: currentUser } = useContext(AuthContext);
@@ -44,23 +53,24 @@ export default function CenterFeed({
             </div>
           </div>
         </div>
-        <div className="profile-header-buttons-container">
+        <div
+          className="profile-header-buttons-container"
+          style={sidebarOpen ? { pointerEvents: "none" } : {}}
+        >
           <div className="profile-header-buttons-wrapper">
             {/* INFO BUTTON */}
             <div
-              style={sidebarOpen ? { pointerEvents: "none" } : {}}
               onClick={() => setToInfo()}
               className={
                 "profile-info-clickable " +
                 (feed === "info" ? "pic-active" : "")
               }
             >
-              info
+              <span className="button-name">info</span>
               <AccountBox className="profile-info-icon" />
             </div>
             {/* POSTS BUTTON */}
             <div
-              style={sidebarOpen ? { pointerEvents: "none" } : {}}
               onClick={() => getInitialPosts()}
               className={
                 "profile-info-clickable " +
@@ -70,12 +80,25 @@ export default function CenterFeed({
               <span className="count">
                 {profileUser.posts ? profileUser.posts.length : "0"}
               </span>
-              posts
+              <span className="button-name">posts</span>
               <Chat className="profile-info-icon" />
+            </div>
+            {/* IMAGES BUTTON */}
+            <div
+              onClick={() => getInitialImages()}
+              className={
+                "profile-info-clickable " +
+                (feed === "images" ? "pic-active" : "")
+              }
+            >
+              <span className="count">
+                {profileUser.posts ? profileUser.images.length : "0"}
+              </span>
+              <span className="button-name">images</span>
+              <ImageIcon className="profile-info-icon" />
             </div>
             {/* FOLLOWERS BUTTON */}
             <div
-              style={sidebarOpen ? { pointerEvents: "none" } : {}}
               onClick={() => getInitialFollows("followers")}
               className={
                 "profile-info-clickable " +
@@ -85,12 +108,11 @@ export default function CenterFeed({
               <span className="count">
                 {profileUser.followers ? profileUser.followers.length : "0"}
               </span>
-              followers
+              <span className="button-name">followers</span>
               <Group className="profile-info-icon" />
             </div>
             {/* FOLLOWING BUTTON */}
             <div
-              style={sidebarOpen ? { pointerEvents: "none" } : {}}
               onClick={() => getInitialFollows("following")}
               className={
                 "profile-info-clickable " +
@@ -100,7 +122,7 @@ export default function CenterFeed({
               <span className="count">
                 {profileUser.followings ? profileUser.followings.length : "0"}
               </span>
-              following
+              <span className="button-name">following</span>
               <Group className="profile-info-icon" />
             </div>
           </div>
@@ -178,18 +200,37 @@ export default function CenterFeed({
                   </div>
                 )}
                 {posts.length > 0 && loading === false ? (
-                  <>
-                    {posts.map((p) => (
+                  <div className="profile-posts-feed">
+                    {posts.map((post) => (
                       <Post
-                        key={p._id}
-                        post={p}
+                        key={post._id}
+                        post={post}
                         page="timeline"
                         fetchNotifications={fetchNotifications}
                       />
                     ))}
-                  </>
+                  </div>
                 ) : (
                   <span className="no-content-message">No posts yet ☹</span>
+                )}
+              </div>
+            )}
+            {/* IMAGES FEED */}
+            {feed === "images" && (
+              <div className="feed-wrapper">
+                {images.length > 0 && loading === false ? (
+                  <div className="profile-images-feed">
+                    {images.map((image) => (
+                      <Image
+                        key={image._id}
+                        image={image}
+                        page="timeline"
+                        fetchNotifications={fetchNotifications}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <span className="no-content-message">No images yet ☹</span>
                 )}
               </div>
             )}
@@ -197,7 +238,7 @@ export default function CenterFeed({
             {feed === "followers" && (
               <div className="feed-wrapper">
                 {friends.length > 0 ? (
-                  <>
+                  <div className="profile-follows-feed">
                     {friends.map((friend) => (
                       <Follower
                         friend={friend}
@@ -205,7 +246,7 @@ export default function CenterFeed({
                         handleFollowingStatus={handleFollowingStatus}
                       />
                     ))}
-                  </>
+                  </div>
                 ) : (
                   <span className="no-content-message">
                     Nothing to see here ☹
@@ -217,7 +258,7 @@ export default function CenterFeed({
             {feed === "following" && (
               <div className="feed-wrapper">
                 {friends.length > 0 ? (
-                  <>
+                  <div className="profile-follows-feed">
                     {friends.map((friend) => (
                       <Follower
                         friend={friend}
@@ -225,7 +266,7 @@ export default function CenterFeed({
                         handleFollowingStatus={handleFollowingStatus}
                       />
                     ))}
-                  </>
+                  </div>
                 ) : (
                   <span className="no-content-message">
                     Nothing to see here ☹

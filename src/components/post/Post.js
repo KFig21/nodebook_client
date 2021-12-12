@@ -155,8 +155,8 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   const handleDeletePost = async () => {
     try {
       await axios.delete(
-        // `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/`,
-        `http://localhost:3000/api/posts/${post._id}/`,
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/`,
+        // `http://localhost:3000/api/posts/${post._id}/`,
         {
           data: {
             userId: currentUser._id,

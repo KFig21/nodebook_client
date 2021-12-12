@@ -74,6 +74,7 @@
     z-index: 3;
     padding-top: 10px;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+    overflow-x: hidden;
 
     .profile-header-buttons-wrapper {
       display: flex;
@@ -86,9 +87,6 @@
       @include mobile {
         max-width: 100%;
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
       }
 
       .profile-info-clickable {
@@ -103,6 +101,14 @@
         font-size: 17px;
         padding: 8px 0px;
         cursor: pointer;
+        transition: all 0.2s ease;
+
+        .button-name {
+          @include mobile {
+            width: 0px;
+            visibility: hidden;
+          }
+        }
 
         &:hover {
           background-color: $formInputColor;
@@ -127,6 +133,10 @@
 
         .profile-info-icon {
           margin: 0px 0px 0px 10px;
+
+          @include mobile {
+            margin: 0px 0px 0px 2px;
+          }
         }
       }
 
@@ -139,8 +149,13 @@
         }
 
         @include mobile {
+          padding: 8px 12px;
           &:hover {
             border-bottom: solid 3px $primaryColor;
+          }
+          .button-name {
+            visibility: visible;
+            width: auto;
           }
         }
       }
@@ -165,7 +180,7 @@
         max-width: 100%;
         min-width: 100%;
         width: 100%;
-        padding: 20px 15px 0px 15px;
+        padding: 10px 5px 0px 5px;
       }
 
       .no-content-message {
@@ -238,6 +253,35 @@
         }
       }
 
+      // profile posts
+      .profile-posts-feed {
+        width: 100%;
+
+        @include mobile {
+          padding: 10px 10px 0px 10px;
+        }
+      }
+
+      // profile follows
+      .profile-follows-feed {
+        width: 100%;
+        min-width: 100%;
+        width: 100%;
+        padding: 0px 5px 10px 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      // profile images
+      .profile-images-feed {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      // share post
       .share-dektop-container {
         display: block;
         width: 100%;
