@@ -3,7 +3,6 @@
 .sidebar {
   flex: 2.5;
   height: 100vh;
-  padding-top: 10px;
   overflow-y: scroll;
   position: sticky;
   top: 0; /* required */
@@ -16,10 +15,13 @@
   align-items: flex-end;
   transition: ease all 0.5s;
   position: relative;
+  overflow: overlay;
+  padding-top: 10px;
 
   @include smallDesktop {
     flex: unset;
-    padding-left: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
   }
 
   @include mobile {
@@ -57,6 +59,12 @@
     .sidebar-logo-container {
       margin-bottom: 25px;
 
+      @include smallDesktop {
+        width: 100%;
+        margin: auto auto 25px auto;
+        padding-left: 10px;
+      }
+
       .navbar-svg {
         max-height: 40px;
         max-width: 40px;
@@ -70,6 +78,10 @@
         @include mobile {
           margin-top: 70px;
           margin-bottom: 3px;
+        }
+
+        @include smallDesktop {
+          margin-left: 0px;
         }
       }
 
@@ -106,6 +118,10 @@
           // background-image: $glassGradient;
           background-color: $formInputFocusColor;
           border-radius: 100px;
+        }
+
+        @include smallDesktop {
+          margin-left: 10px;
         }
 
         @include mobile {
@@ -146,6 +162,11 @@
           top: 8px;
           left: 14px;
 
+          @include smallDesktop {
+            left: 14px;
+            top: 5px;
+          }
+
           @include mobile {
             font-size: 12px;
             left: 24px;
@@ -184,6 +205,19 @@
 
         .notification-badge-container {
           left: 10px;
+
+          @include smallDesktop {
+            left: 20px;
+            top: 5px;
+          }
+        }
+
+        @include smallDesktop {
+          margin-left: 0px;
+
+          .sidebar-icon {
+            margin-left: 10px;
+          }
         }
 
         @include mobile {
@@ -226,6 +260,14 @@
         padding: 10px 20px 10px 16px;
         background-color: transparent;
 
+        @include smallDesktop {
+          margin-left: 0px;
+
+          .sidebar-icon {
+            margin-left: 10px;
+          }
+        }
+
         &:hover {
           border-radius: 0px;
           border-top-right-radius: 100px;
@@ -250,6 +292,10 @@
         @include mobile {
           font-size: 26px;
           padding: 10px 30px;
+        }
+
+        @include smallDesktop {
+          margin-left: 10px;
         }
 
         .sidebar-icon {
@@ -280,7 +326,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 15px;
     color: $fadedButtonColor;
     font-size: 18px;
     font-weight: 500;
@@ -288,7 +333,6 @@
     @include smallDesktop {
       flex-direction: column;
       width: 64px;
-      padding-left: 0px;
       margin-bottom: 20px;
     }
 
