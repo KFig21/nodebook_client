@@ -16,8 +16,13 @@
       width: 100%;
     }
 
+    @include mobileHorizontal {
+      max-width: calc(100vw - 84px);
+    }
+
     @include mobile {
       min-width: unset;
+      max-width: unset;
       width: unset;
     }
   }

@@ -64,6 +64,10 @@
           @include mobile {
             height: 120px;
           }
+
+          @include mobileHorizontal {
+            height: 120px;
+          }
         }
 
         .profile-img-container {
@@ -89,6 +93,12 @@
             width: 94px;
             height: 94px;
           }
+          @include mobileHorizontal {
+            top: 50px;
+            left: 15px;
+            width: 94px;
+            height: 94px;
+          }
 
           .profile-avatar {
             width: 142px;
@@ -96,6 +106,11 @@
             object-fit: cover;
 
             @include mobile {
+              width: 94px;
+              height: 94px;
+            }
+
+            @include mobileHorizontal {
               width: 94px;
               height: 94px;
             }

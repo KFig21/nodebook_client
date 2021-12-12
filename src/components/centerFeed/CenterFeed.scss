@@ -38,6 +38,17 @@
         max-width: 100%;
         width: 100%;
       }
+      @include smallDesktop {
+        padding: 0px 0px 0px 200px;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      @include mobileHorizontal {
+        padding: 0px 0px 0px 120px;
+        max-width: 100%;
+        width: 100%;
+      }
 
       .profile-info {
         display: flex;

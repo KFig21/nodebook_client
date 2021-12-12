@@ -20,8 +20,11 @@
 
   @include smallDesktop {
     flex: unset;
-    margin-left: 10px;
     padding-right: 10px;
+  }
+
+  @include mobileHorizontal {
+    min-width: 74px;
   }
 
   @include mobile {
@@ -412,7 +415,7 @@
 
 @include mobileHorizontal {
   .sidebar::-webkit-scrollbar-thumb {
-    background-color: $navbarColor;
+    background-color: $formInputColor;
     border: solid 0px transparent;
     // border-radius: 10px;
     background-clip: content-box;
