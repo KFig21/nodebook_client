@@ -342,6 +342,13 @@
       min-height: 70px;
     }
 
+    @include mobileHorizontal {
+      position: relative;
+      margin-top: 10px;
+      height: 100%;
+      min-height: 70px;
+    }
+
     &:hover,
     &:focus {
       .made-by {
@@ -400,5 +407,17 @@
         }
       }
     }
+  }
+}
+
+@include mobileHorizontal {
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: $navbarColor;
+    border: solid 0px transparent;
+    // border-radius: 10px;
+    background-clip: content-box;
+  }
+  .sidebar::-webkit-scrollbar {
+    width: 6px;
   }
 }

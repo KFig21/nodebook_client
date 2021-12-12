@@ -90,17 +90,16 @@ $width: 768px;
   }
 }
 
+@mixin mobileHorizontal {
+  @media (max-height: 420px) {
+    @media (min-width: 700px) {
+      @content;
+    }
+  }
+}
 // @mixin mobileKeyboard {
 //   @media (max-height: 500px) {
 //     @media (max-width: 500px) {
-//       @content;
-//     }
-//   }
-// }
-
-// @mixin mobileHorizontal {
-//   @media (max-height: 420px) {
-//     @media (min-width: 700px) {
 //       @content;
 //     }
 //   }
