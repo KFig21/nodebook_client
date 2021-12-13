@@ -17,6 +17,10 @@ export default function FollowFeed({
   const [skip, setSkip] = useState(0);
   const { user: currentUser, dispatch } = useContext(AuthContext);
 
+  // FIX THIS PAGE get rid of useEffects
+  // FIX THIS PAGE reset skip count
+  // FIX THIS PAGE
+
   // set current page on load
   useEffect(() => {
     setCurrentPage(follow);
@@ -113,7 +117,7 @@ export default function FollowFeed({
   const handleScroll = (e) => {
     const { offsetHeight, scrollTop, scrollHeight } = e.target;
 
-    if (offsetHeight + scrollTop > scrollHeight * 0.95) {
+    if (offsetHeight + scrollTop > scrollHeight * 0.9) {
       setSkip(friends.length);
     }
   };

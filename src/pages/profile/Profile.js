@@ -170,7 +170,7 @@ export default function Profile({
   // infinite scroll functionality
   const handleScroll = (e) => {
     const { offsetHeight, scrollTop, scrollHeight } = e.target;
-    if (offsetHeight + scrollTop > scrollHeight * 0.95) {
+    if (offsetHeight + scrollTop > scrollHeight * 0.85) {
       if (feed === "posts" && posts.length > skip + 4) {
         setSkip(posts.length);
       } else if (feed !== "posts" && friends.length > skip + 9) {

@@ -42,7 +42,7 @@ export default function Timeline({
   const handleScroll = (e) => {
     const { offsetHeight, scrollTop, scrollHeight } = e.target;
 
-    if (offsetHeight + scrollTop > scrollHeight * 0.95) {
+    if (offsetHeight + scrollTop > scrollHeight * 0.85) {
       setSkip(posts.length);
     }
   };
