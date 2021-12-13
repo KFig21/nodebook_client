@@ -32,6 +32,13 @@
       padding: 20px 15px 0px 15px;
     }
 
+    @include mobileHorizontal {
+      max-width: 500px;
+      min-width: 300px;
+      width: 100%;
+      padding: 20px 15px 0px 15px;
+    }
+
     .share-input-desktop {
       border: none;
       width: 84%;

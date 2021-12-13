@@ -107,7 +107,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           <span className="nav-title">{currentPage}</span>
@@ -125,7 +129,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           <span className="nav-title">
@@ -158,7 +166,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           {profileUser ? (
@@ -188,7 +200,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           {user ? (
@@ -214,7 +230,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           {user ? (
@@ -240,7 +260,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           {user && post ? (
@@ -266,7 +290,11 @@ export default function Nav({
               className="hamburger"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon className="hamburger-icon" />
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
             </div>
           </div>
           {user && post ? (

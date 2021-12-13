@@ -75,7 +75,7 @@
 
       @include mobileHorizontal {
         width: 100%;
-        margin: auto auto 25px auto;
+        margin: auto auto 10px auto;
         padding-left: 10px;
       }
 
@@ -98,6 +98,7 @@
         @include mobile {
           margin-top: 70px;
           margin-bottom: 3px;
+          margin-left: 25px;
         }
 
         @include mobileHorizontal {
@@ -414,7 +415,7 @@
       position: relative;
       margin-top: 10px;
       height: 100%;
-      min-height: 70px;
+      min-height: 80px;
       // add
       flex-direction: column;
       width: 64px;
@@ -458,12 +459,12 @@
 
         @include mobileHorizontal {
           margin-right: 0px;
-          margin-bottom: 20px;
+          margin-bottom: 25px;
         }
 
         @include smallDesktop {
           margin-right: 0px;
-          margin-bottom: 20px;
+          margin-bottom: 25px;
         }
 
         &:hover {
