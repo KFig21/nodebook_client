@@ -2,8 +2,8 @@ $backgroundColor: rgb(40, 40, 41);
 $navbarColor: rgb(30, 30, 30);
 $sidebarColor: rgb(21, 21, 21);
 $sidebarColorMobile: rgba(21, 21, 21, 0.93);
-$postBackgroundColor: rgba(255, 255, 255, 0.13);
-$postContainerBackgroundColor: rgba(255, 255, 255, 0.11);
+$postBackgroundColor: #505050;
+$postContainerBackgroundColor: rgba(196, 196, 196, 0.137);
 $commentButtonBackgroundColor: rgba(180, 180, 180, 0.09);
 $textWhite: rgb(247, 247, 247);
 $primaryColor: #4bb44b;
@@ -136,6 +136,17 @@ $width: 768px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.profile-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 // app

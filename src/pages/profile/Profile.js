@@ -78,10 +78,11 @@ export default function Profile({
   const getInitialPosts = async () => {
     setLoading(true);
     setPosts([]);
+    setImages([]);
+    setFriends([]);
     setSkip(0);
     setFeed("posts");
     setTimeout(async function () {
-      console.log(profileUser.username);
       const res = await axios.get(
         `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/0`
         // `http://localhost:3000/api/posts/profile/${profileUser.username}/0`
@@ -95,22 +96,25 @@ export default function Profile({
     setLoading(true);
     setPosts([]);
     setImages([]);
+    setFriends([]);
     setSkip(0);
     setFeed("images");
     setTimeout(async function () {
-      console.log(profileUser.username);
       const res = await axios.get(
         `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/images/0`
         // `http://localhost:3000/api/posts/profile/${profileUser.username}/images/0`
       );
       setImages(res.data);
       setLoading(false);
-    }, 1000);
+    }, 500);
   };
 
   const getInitialFollows = async (type) => {
     setLoading(true);
     setFeed(type);
+    setPosts([]);
+    setImages([]);
+    setFriends([]);
     setSkip(0);
     setTimeout(async function () {
       try {
@@ -147,7 +151,17 @@ export default function Profile({
     }
   };
 
-  // GET SCROLL IMAGES
+  const getScrollImages = async () => {
+    try {
+      const newImages = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/images/${skip}`
+        // `http://localhost:3000/api/posts/profile/${profileUser.username}/images/${skip}`
+      );
+      setImages([...images, ...newImages.data]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const setToInfo = async () => {
     setFeed("info");
@@ -156,11 +170,13 @@ export default function Profile({
   // infinite scroll functionality
   const handleScroll = (e) => {
     const { offsetHeight, scrollTop, scrollHeight } = e.target;
-    if (offsetHeight + scrollTop > scrollHeight * 0.98) {
+    if (offsetHeight + scrollTop > scrollHeight * 0.95) {
       if (feed === "posts" && posts.length > skip + 4) {
         setSkip(posts.length);
       } else if (feed !== "posts" && friends.length > skip + 9) {
         setSkip(friends.length);
+      } else if (feed === "images" && images.length > skip + 8) {
+        setSkip(images.length);
       }
     }
   };
@@ -174,14 +190,18 @@ export default function Profile({
     }
   }, [username]);
 
-  // gets posts on scroll
   useEffect(() => {
+    // gets posts on scroll
     if (feed === "posts" && profileUser.username && skip > 0) {
       getScrollPosts();
     }
     // update follows on infinite scroll
     if (feed === "followers" || feed === "following") {
       getScrollFollows();
+    }
+    // update imagess on infinite scroll
+    if (feed === "images") {
+      getScrollImages();
     }
   }, [skip]);
 
