@@ -18,6 +18,7 @@
 
     @include mobileHorizontal {
       max-width: calc(100vw - 84px);
+      min-width: unset;
     }
 
     @include mobile {

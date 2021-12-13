@@ -195,7 +195,7 @@ export default function CenterFeed({
               <div className="feed-wrapper">
                 {(!profileUser.username ||
                   profileUser.username === currentUser.username) && (
-                  <div className="share-dektop-container">
+                  <div className="share-desktop-container">
                     <Share />
                   </div>
                 )}

@@ -41,6 +41,10 @@
           width: 100%;
         }
 
+        @include mobileHorizontal {
+          width: 100%;
+        }
+
         .notification-type-header-title {
           font-size: 20px;
           white-space: nowrap;
@@ -55,6 +59,10 @@
           margin-left: 20px;
 
           @include mobile {
+            max-width: unset;
+          }
+
+          @include mobileHorizontal {
             max-width: unset;
           }
 

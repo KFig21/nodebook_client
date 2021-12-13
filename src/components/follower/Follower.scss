@@ -70,6 +70,10 @@
       @include mobile {
         display: none;
       }
+
+      @include mobileHorizontal {
+        display: none;
+      }
     }
 
     .follow-button {

@@ -38,6 +38,12 @@
         padding: 12px;
       }
 
+      @include mobileHorizontal {
+        width: 100%;
+        padding: 12px;
+        max-width: 500px;
+      }
+
       .notification-top {
         display: flex;
         justify-content: center;
@@ -171,6 +177,12 @@
       justify-content: center;
     }
 
+    @include mobileHorizontal {
+      max-width: 500px;
+      padding-left: 0px;
+      justify-content: center;
+    }
+
     button {
       cursor: pointer;
       font-size: 16px;
@@ -182,6 +194,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @include mobileHorizontal {
+        padding: 4px 14px;
+      }
     }
 
     .button-icon {

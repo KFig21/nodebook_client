@@ -22,6 +22,14 @@
       height: calc(100vh - $navbarHeight - $footerHeight);
     }
 
+    @include mobileHorizontal {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+      min-height: calc(100vh - $navbarHeight);
+      height: calc(100vh - $navbarHeight);
+    }
+
     .profile-right-top {
       .profile-cover {
         position: relative;

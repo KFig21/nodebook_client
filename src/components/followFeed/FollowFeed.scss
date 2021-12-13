@@ -16,4 +16,8 @@
   align-items: center;
   max-width: 700px;
   margin: auto;
+
+  @include mobileHorizontal {
+    max-width: 500px;
+  }
 }

@@ -60,7 +60,7 @@ export default function Timeline({
           <div onScroll={handleScroll}>
             <div className="timeline-wrapper">
               {(!username || username === user.username) && (
-                <div className="share-dektop-container">
+                <div className="share-desktop-container">
                   <Share />
                 </div>
               )}

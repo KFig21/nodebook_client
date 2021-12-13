@@ -74,7 +74,7 @@ $width: 768px;
 
 @mixin mobile {
   // @media (min-height: 421px) {
-  @media (min-height: 1px) {
+  @media (min-height: 421px) {
     @media (max-width: #{$width}) {
       @content;
     }
@@ -92,7 +92,7 @@ $width: 768px;
 
 @mixin mobileHorizontal {
   @media (max-height: 420px) {
-    @media (min-width: 700px) {
+    @media (min-width: 600px) {
       @content;
     }
   }

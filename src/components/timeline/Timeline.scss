@@ -20,17 +20,26 @@
   max-width: 700px;
   margin: 0px auto;
 
-  .share-dektop-container {
+  .share-desktop-container {
     display: block;
     width: 100%;
 
     @include mobile {
       display: none;
     }
+
+    @include mobileHorizontal {
+      display: none;
+    }
   }
 
   @include mobile {
     padding: 20px 20px 0px 20px;
+  }
+
+  @include mobileHorizontal {
+    padding: 20px 20px 0px 20px;
+    max-width: 500px;
   }
 }
 

@@ -24,7 +24,9 @@
   }
 
   @include mobileHorizontal {
+    flex: unset;
     min-width: 74px;
+    padding-right: 10px;
   }
 
   @include mobile {
@@ -54,6 +56,11 @@
       padding: 5px 0px 0 0;
     }
 
+    @include mobileHorizontal {
+      padding: 5px 0px 0 0;
+      min-width: unset;
+    }
+
     @include smallDesktop {
       padding: 5px 0px 0 0;
       min-width: unset;
@@ -61,6 +68,16 @@
 
     .sidebar-logo-container {
       margin-bottom: 25px;
+
+      @include mobile {
+        margin-bottom: 0px;
+      }
+
+      @include mobileHorizontal {
+        width: 100%;
+        margin: auto auto 25px auto;
+        padding-left: 10px;
+      }
 
       @include smallDesktop {
         width: 100%;
@@ -83,13 +100,13 @@
           margin-bottom: 3px;
         }
 
+        @include mobileHorizontal {
+          margin-left: 0px;
+        }
+
         @include smallDesktop {
           margin-left: 0px;
         }
-      }
-
-      @include mobile {
-        margin-bottom: 0px;
       }
     }
 
@@ -101,6 +118,9 @@
       justify-content: center;
 
       .sidebar-link-text {
+        @include mobileHorizontal {
+          display: none;
+        }
         @include smallDesktop {
           display: none;
         }
@@ -123,10 +143,6 @@
           border-radius: 100px;
         }
 
-        @include smallDesktop {
-          margin-left: 10px;
-        }
-
         @include mobile {
           font-size: 26px;
           padding: 10px 30px;
@@ -137,7 +153,18 @@
           }
         }
 
+        @include mobileHorizontal {
+          margin-left: 10px;
+        }
+
+        @include smallDesktop {
+          margin-left: 10px;
+        }
+
         .sidebar-link-text {
+          @include mobileHorizontal {
+            display: none;
+          }
           @include smallDesktop {
             display: none;
           }
@@ -146,13 +173,17 @@
         .sidebar-icon {
           margin-right: 10px;
 
-          @include smallDesktop {
-            margin-right: 0px;
-          }
-
           @include mobile {
             height: 30px;
             width: 30px;
+          }
+
+          @include mobileHorizontal {
+            margin-right: 0px;
+          }
+
+          @include smallDesktop {
+            margin-right: 0px;
           }
         }
 
@@ -165,17 +196,22 @@
           top: 8px;
           left: 14px;
 
-          @include smallDesktop {
-            left: 14px;
-            top: 5px;
-          }
-
           @include mobile {
             font-size: 12px;
             left: 24px;
             top: 9px;
             width: 21px;
             height: 21px;
+          }
+
+          @include mobileHorizontal {
+            left: 14px;
+            top: 5px;
+          }
+
+          @include smallDesktop {
+            left: 14px;
+            top: 5px;
           }
 
           .notification-badge {
@@ -209,9 +245,22 @@
         .notification-badge-container {
           left: 10px;
 
+          @include mobileHorizontal {
+            left: 20px;
+            top: 5px;
+          }
+
           @include smallDesktop {
             left: 20px;
             top: 5px;
+          }
+        }
+
+        @include mobileHorizontal {
+          margin-left: 0px;
+
+          .sidebar-icon {
+            margin-left: 10px;
           }
         }
 
@@ -263,6 +312,14 @@
         padding: 10px 20px 10px 16px;
         background-color: transparent;
 
+        @include mobileHorizontal {
+          margin-left: 0px;
+
+          .sidebar-icon {
+            margin-left: 10px;
+          }
+        }
+
         @include smallDesktop {
           margin-left: 0px;
 
@@ -297,6 +354,10 @@
           padding: 10px 30px;
         }
 
+        @include mobileHorizontal {
+          margin-left: 10px;
+        }
+
         @include smallDesktop {
           margin-left: 10px;
         }
@@ -304,13 +365,17 @@
         .sidebar-icon {
           margin-right: 10px;
 
-          @include smallDesktop {
-            margin-right: 0px;
-          }
-
           @include mobile {
             height: 30px;
             width: 30px;
+          }
+
+          @include mobileHorizontal {
+            margin-right: 0px;
+          }
+
+          @include smallDesktop {
+            margin-right: 0px;
           }
         }
 
@@ -333,16 +398,16 @@
     font-size: 18px;
     font-weight: 500;
 
-    @include smallDesktop {
-      flex-direction: column;
-      width: 64px;
-      margin-bottom: 20px;
-    }
-
     @include mobile {
       position: relative;
       height: 100%;
       min-height: 70px;
+    }
+
+    @include smallDesktop {
+      flex-direction: column;
+      width: 64px;
+      margin-bottom: 20px;
     }
 
     @include mobileHorizontal {
@@ -350,6 +415,10 @@
       margin-top: 10px;
       height: 100%;
       min-height: 70px;
+      // add
+      flex-direction: column;
+      width: 64px;
+      margin-bottom: 20px;
     }
 
     &:hover,
@@ -362,12 +431,14 @@
     .made-by {
       transition: all 0.2s ease;
 
-      @include smallDesktop {
-        display: none;
-      }
-
       @include mobile {
         font-size: 20px;
+      }
+      @include mobileHorizontal {
+        display: none;
+      }
+      @include smallDesktop {
+        display: none;
       }
     }
 
@@ -385,6 +456,11 @@
         transition: all 0.2s ease;
         cursor: pointer;
 
+        @include mobileHorizontal {
+          margin-right: 0px;
+          margin-bottom: 20px;
+        }
+
         @include smallDesktop {
           margin-right: 0px;
           margin-bottom: 20px;
@@ -400,6 +476,10 @@
         margin-left: 10px;
         transition: all 0.2s ease;
         cursor: pointer;
+
+        @include mobileHorizontal {
+          margin-left: 0px;
+        }
 
         @include smallDesktop {
           margin-left: 0px;
