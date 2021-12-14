@@ -10,15 +10,16 @@ export default function Nav({
   profileUser,
   currentPage,
   post,
+  likesUser,
+  postUser,
+  comment,
   notificationsCount,
   sidebarOpen,
   setSidebarOpen,
 }) {
   const username = useParams().username;
-  const postId = useParams().postId;
   const [followed, setFollowed] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
-  const [postUser, setPostUser] = useState({});
 
   useEffect(() => {
     const checkFollowing = async () => {
@@ -27,21 +28,6 @@ export default function Nav({
     };
     checkFollowing();
   });
-
-  useEffect(() => {
-    if (postId) {
-      const fetchPost = async () => {
-        const postData = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/posts/${postId}`
-        );
-        const fetchUser = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${postData.data.userId}`
-        );
-        setPostUser(fetchUser.data);
-      };
-      fetchPost();
-    }
-  }, [postId]);
 
   const handleClick = async () => {
     console.log("followed", followed);
@@ -270,7 +256,17 @@ export default function Nav({
           {user && post ? (
             <div className="nav-info-container">
               <span className="nav-title">
-                {postUser.username} - {"(" + post.comments.length + " replies)"}
+                {post.comments.length === 1 ? (
+                  <>
+                    {postUser.username} -{" "}
+                    {"(" + post.comments.length + " reply)"}
+                  </>
+                ) : (
+                  <>
+                    {postUser.username} -{" "}
+                    {"(" + post.comments.length + " replies)"}
+                  </>
+                )}
               </span>
             </div>
           ) : (
@@ -281,7 +277,47 @@ export default function Nav({
     );
   };
 
-  const LikesNav = () => {
+  const CommentLikesNav = () => {
+    return (
+      <div className="navbar">
+        <div className="navbar-container">
+          <div className="mobile-menu-button-container">
+            <div
+              className="hamburger"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <MenuIcon
+                className={
+                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
+                }
+              />
+            </div>
+          </div>
+          {user && comment ? (
+            <div className="nav-info-container">
+              <span className="nav-title">
+                {comment.likes.length === 1 ? (
+                  <>
+                    {likesUser.username} -{" "}
+                    {"(" + comment.likes.length + "  like)"}
+                  </>
+                ) : (
+                  <>
+                    {likesUser.username} -{" "}
+                    {"(" + comment.likes.length + " likes)"}
+                  </>
+                )}
+              </span>
+            </div>
+          ) : (
+            <span className="nav-title">Loading...</span>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const PostLikesNav = () => {
     return (
       <div className="navbar">
         <div className="navbar-container">
@@ -300,7 +336,15 @@ export default function Nav({
           {user && post ? (
             <div className="nav-info-container">
               <span className="nav-title">
-                {postUser.username} - {"(" + post.likes.length + " likes)"}
+                {post.likes.length === 1 ? (
+                  <>
+                    {likesUser.username} - {"(" + post.likes.length + " like)"}
+                  </>
+                ) : (
+                  <>
+                    {likesUser.username} - {"(" + post.likes.length + " likes)"}
+                  </>
+                )}
               </span>
             </div>
           ) : (
@@ -321,9 +365,10 @@ export default function Nav({
       {currentPage === "Following" && <FollowsNav />}
       {currentPage === "Notifications" && <NotificationsNav />}
       {currentPage === "Post" && <PostNav />}
+      {currentPage === "CommentLikes" && <CommentLikesNav />}
       {currentPage === "Explore" && <TimelineNav />}
       {currentPage === "Share" && <TimelineNav />}
-      {currentPage === "Likes" && <LikesNav />}
+      {currentPage === "PostLikes" && <PostLikesNav />}
     </>
   );
 }

@@ -25,7 +25,7 @@ export default function Comment({
 
   // set user like status on comment
   useEffect(() => {
-    setIsLiked(comment.likes.includes(currentUser._id));
+    setIsLiked(comment.likerIds.includes(currentUser._id));
   }, [currentUser._id, comment.likes]);
 
   // fetch user on load
@@ -43,9 +43,8 @@ export default function Comment({
   const likeHandler = (type) => {
     try {
       axios.put(
-        "https://radiant-oasis-77477.herokuapp.com/api/comments/" +
-          comment._id +
-          "/like",
+        `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment._id}/like`,
+        // `http://localhost:3000/api/comments/${comment._id}/like`,
         { userId: currentUser._id }
       );
     } catch (err) {}
@@ -154,25 +153,47 @@ export default function Comment({
   return (
     <div className="comment-container">
       <div className="comment-avatar-container">
-        <Link to={`/profile/${user.username}`}>
-          <img
-            className="comment-avatar"
-            src={
-              user.avatar
-                ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
-                : noAvi
-            }
-            alt=""
-          />
-        </Link>
+        {user.username ? (
+          <Link to={`/profile/${user.username}`}>
+            <img
+              className="comment-avatar"
+              src={
+                user.avatar
+                  ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
+                  : noAvi
+              }
+              alt=""
+            />
+          </Link>
+        ) : (
+          // does not allow a link to an undefined user if timeline hasnt fully loaded yet
+          <div className="not-a-link">
+            <img
+              className="comment-avatar"
+              src={
+                user.avatar
+                  ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
+                  : noAvi
+              }
+              alt=""
+            />
+          </div>
+        )}
       </div>
       <div className="comment-right">
         <div className="comment-body-container">
           <div className="commenter-info-container">
             <div className="comment-info-left">
-              <Link to={`/profile/${user.username}`}>
-                <span className="comment-username">{user.username}</span>
-              </Link>
+              {user.username ? (
+                <Link to={`/profile/${user.username}`}>
+                  <span className="comment-username">{user.username}</span>
+                </Link>
+              ) : (
+                // does not allow a link to an undefined user if timeline hasnt fully loaded yet
+                <div className="not-a-link">
+                  <span className="comment-username">Loading</span>
+                </div>
+              )}
               <span className="comment-date">{format(comment.createdAt)}</span>
             </div>
 
@@ -271,29 +292,37 @@ export default function Comment({
           ) : (
             <FavoriteBorder className="like-icon" onClick={likeHandler} />
           )}
-          {like === 1 ? (
-            isLiked ? (
-              <span className="post-like-counter">You like this</span>
-            ) : (
-              <span className="post-like-counter">1 person likes this</span>
-            )
-          ) : like > 1 ? (
-            isLiked ? (
-              like === 2 ? (
-                <span className="post-like-counter">
-                  You and {like - 1} other person like this
-                </span>
+          <Link to={`/comment/${comment._id}/likes`}>
+            {like === 1 ? (
+              isLiked ? (
+                <span className="comment-like-counter">You like this</span>
               ) : (
-                <span className="post-like-counter">
-                  You and {like - 1} other people like this
+                <span className="comment-like-counter">
+                  1 person likes this
+                </span>
+              )
+            ) : like > 1 ? (
+              isLiked ? (
+                like === 2 ? (
+                  <span className="comment-like-counter">
+                    You and {like - 1} other person like this
+                  </span>
+                ) : (
+                  <span className="comment-like-counter">
+                    You and {like - 1} other people like this
+                  </span>
+                )
+              ) : (
+                <span className="comment-like-counter">
+                  {like} people like this
                 </span>
               )
             ) : (
-              <span className="post-like-counter">{like} people like this</span>
-            )
-          ) : (
-            <span className="post-like-counter">Be the first to like this</span>
-          )}
+              <span className="comment-like-counter">
+                Be the first to like this
+              </span>
+            )}
+          </Link>
         </div>
       </div>
     </div>

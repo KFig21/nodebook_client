@@ -13,11 +13,19 @@
   }
 
   .likesFeed-post-upper {
-    padding: 14px;
+    padding: 10px;
     background-color: #595959;
     border-radius: 3px 25px 25px 25px;
     width: 100%;
-    max-width: 700px;
+    max-width: 620px;
+
+    @include mobileHorizontal {
+      max-width: 500px;
+    }
+
+    @include mobile {
+      padding: 10px 10px 7px 10px;
+    }
 
     .likesFeed-post-top {
       display: flex;
@@ -40,28 +48,71 @@
         }
       }
 
-      .post-top-center {
+      .likesFeed-post-top-center {
         display: flex;
         flex-direction: column;
         width: 100%;
         text-align: left;
 
-        .post-info {
+        .likesFeed-post-info {
           display: flex;
           align-items: baseline;
           justify-content: baseline;
 
-          .likesFeed-post-username {
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0 10px 0px 0px;
-            cursor: pointer;
+          a {
             color: white;
+            margin-right: unset;
+            height: unset;
+
+            .likesFeed-post-username {
+              font-size: 18px;
+              font-weight: 500;
+              margin: 0 10px 0px 0px;
+              cursor: pointer;
+            }
           }
 
           .likesFeed-post-date {
             font-size: 12px;
             color: $fadedTextColor;
+          }
+        }
+
+        .likesFeed-post-img-wrapper {
+          margin: 6px 0px 6px 0px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include mobile {
+            margin: 4px 0px 2px 0px;
+          }
+
+          .likesFeed-post-img-container {
+            width: 100%;
+            max-height: 300px;
+            background-color: $sidebarColor;
+            border-radius: 0px 20px 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-right: 10px;
+
+            @include mobile {
+              width: 100%;
+              max-height: 180px;
+            }
+            @include mobileHorizontal {
+              max-height: 180px;
+            }
+
+            .likesFeed-post-img {
+              width: 100%;
+              max-height: inherit;
+              object-fit: cover;
+            }
           }
         }
 
@@ -85,44 +136,28 @@
         }
       }
     }
+  }
+}
 
-    .likesFeed-post-center {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
+.likesFeed-wrapper {
+  padding: 10px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 620px;
+  margin: auto;
 
-      .likesFeed-post-img-wrapper {
-        margin: 10px 0px 4px 0px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  @include mobileHorizontal {
+    max-width: 500px;
+  }
 
-        @include mobile {
-          margin: 8px 0px 2px 0px;
-        }
-
-        .likesFeed-post-img-container {
-          width: 95%;
-          max-height: 300px;
-          background-color: $sidebarColor;
-          border-radius: 0px 20px 20px 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-
-          @include mobile {
-            width: 100%;
-          }
-
-          .likesFeed-post-img {
-            width: 100%;
-            max-height: inherit;
-            object-fit: contain;
-          }
-        }
-      }
-    }
+  .no-likes-message {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+    font-size: 24px;
+    color: $fadedButtonColor;
   }
 }

@@ -317,6 +317,7 @@
       // profile posts
       .profile-posts-feed {
         width: 100%;
+        max-width: 620px;
 
         @include mobile {
           padding: 10px 10px 0px 10px;
@@ -347,6 +348,7 @@
       .share-desktop-container {
         display: block;
         width: 100%;
+        max-width: 620px;
 
         @include mobile {
           display: none;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../loader/Loader";
-import Post from "../post/Post";
+import PostPagePost from "../post/PostPagePost";
+import axios from "axios";
 
 export default function PostPage({
   post,
@@ -9,12 +10,67 @@ export default function PostPage({
   setSidebarOpen,
 }) {
   const [loading, setLoading] = useState(true);
+  const [skip, setSkip] = useState(0);
+  const [comments, setComments] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     if (post) {
-      setLoading(false);
+      fetchUser();
     }
   }, [post]);
+
+  const getInitialComments = async () => {
+    const fetchComments = async () => {
+      setSkip(0);
+      const res = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/comments/0`
+        // `http://localhost:3000/api/posts/${post._id}/comments/0`
+      );
+      setComments(
+        res.data.sort((p1, p2) => {
+          return new Date(p1.createdAt) - new Date(p2.createdAt);
+        })
+      );
+      setTimeout(async function () {
+        setLoading(false);
+      }, 1000);
+    };
+    if (post.comments && post._id) {
+      fetchComments();
+    }
+  };
+
+  const fetchUser = async () => {
+    const res = await axios.get(
+      `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${post.userId}`
+      // `http://localhost:3000/api/users?userId=${post.userId}`
+    );
+    setUser(res.data);
+    getInitialComments();
+  };
+
+  const getScrollComments = async () => {
+    const res = await axios.get(
+      `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/comments/${skip}`
+      // `http://localhost:3000/api/posts/${post._id}/comments/${skip}`
+    );
+    setComments([...comments, ...res.data]);
+    setLoading(false);
+  };
+
+  // infinite scroll functionality
+  const handleScroll = (e) => {
+    const { offsetHeight, scrollTop, scrollHeight } = e.target;
+    if (offsetHeight + scrollTop > scrollHeight * 0.85) {
+      setSkip(comments.length);
+    }
+  };
+
+  useEffect(() => {
+    // gets comments on scroll
+    getScrollComments();
+  }, [skip]);
 
   return (
     <div
@@ -22,6 +78,7 @@ export default function PostPage({
       onClick={() => {
         setSidebarOpen(false);
       }}
+      onScroll={handleScroll}
     >
       <>
         {loading ? (
@@ -29,12 +86,15 @@ export default function PostPage({
         ) : (
           <div>
             <div className="timeline-wrapper">
-              <Post
+              <PostPagePost
                 key={post._id}
                 post={post}
+                user={user}
+                comments={comments}
                 page="postPage"
                 fetchNotifications={fetchNotifications}
                 sidebarOpen={sidebarOpen}
+                getInitialComments={getInitialComments}
               />
             </div>
           </div>

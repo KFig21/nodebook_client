@@ -8,11 +8,16 @@ import Comment from "./comment/Comment";
 import noAvi from "../../assets/noAvatar.png";
 import "./Post.scss";
 
-export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
+export default function Post({
+  post,
+  comments,
+  page,
+  fetchNotifications,
+  sidebarOpen,
+  user,
+}) {
   const [like, setLike] = useState(post.likerIds.length);
   const [isLiked, setIsLiked] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [user, setUser] = useState({});
   const { user: currentUser } = useContext(AuthContext);
   const commentRef = useRef();
   const editBody = useRef();
@@ -29,36 +34,6 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
   useEffect(() => {
     setIsLiked(post.likerIds.includes(currentUser._id));
   }, [currentUser._id, post.likerIds]);
-
-  // get user
-  useEffect(() => {
-    const fetchUser = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${post.userId}`
-        // `http://localhost:3000/api/users?userId=${post.userId}`
-      );
-      setUser(res.data);
-    };
-    fetchUser();
-  }, [post.userId]);
-
-  // get comments
-  useEffect(() => {
-    const fetchComments = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/comments/0`
-        // `http://localhost:3000/api/posts/${post._id}/comments/0`
-      );
-      setComments(
-        res.data.sort((p1, p2) => {
-          return new Date(p1.createdAt) - new Date(p2.createdAt);
-        })
-      );
-    };
-    if (post.comments) {
-      fetchComments();
-    }
-  }, [user]);
 
   // toggle likes
   const likeHandler = () => {
@@ -221,47 +196,23 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
       >
         <div className="post-upper">
           <div className="post-top">
-            {user.username ? (
-              <Link to={`/profile/${user.username}`}>
-                <img
-                  className="post-avatar"
-                  src={
-                    user.avatar
-                      ? "https://nodebook-images.s3.amazonaws.com/" +
-                        user.avatar
-                      : noAvi
-                  }
-                  alt=""
-                />
-              </Link>
-            ) : (
-              // does not allow a link to an undefined user if timeline hasnt fully loaded yet
-              <div className="not-a-link">
-                <img
-                  className="post-avatar"
-                  src={
-                    user.avatar
-                      ? "https://nodebook-images.s3.amazonaws.com/" +
-                        user.avatar
-                      : noAvi
-                  }
-                  alt=""
-                />
-              </div>
-            )}
+            <Link to={`/profile/${user.username}`}>
+              <img
+                className="post-avatar"
+                src={
+                  user.avatar
+                    ? "https://nodebook-images.s3.amazonaws.com/" + user.avatar
+                    : noAvi
+                }
+                alt=""
+              />
+            </Link>
 
             <div className="post-top-center">
               <div className="post-info">
-                {user.username ? (
-                  <Link to={`/profile/${user.username}`}>
-                    <span className="post-username">{user.username}</span>
-                  </Link>
-                ) : (
-                  // does not allow a link to an undefined user if timeline hasnt fully loaded yet
-                  <div className="not-a-link">
-                    <span className="post-username">Loading</span>
-                  </div>
-                )}
+                <Link to={`/profile/${user.username}`}>
+                  <span className="post-username">{user.username}</span>
+                </Link>
                 <span className="post-date">{format(post.createdAt)}</span>
               </div>
               <span className="post-body">{post?.body}</span>
@@ -353,7 +304,7 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
               ) : (
                 <FavoriteBorder className="like-icon" onClick={likeHandler} />
               )}
-              <Link to={`/post/${post._id}/likes`}>
+              <Link to={`/${post._id}/likes`}>
                 {like === 1 ? (
                   isLiked ? (
                     <span className="post-like-counter">You like this</span>

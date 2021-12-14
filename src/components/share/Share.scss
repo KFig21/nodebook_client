@@ -14,11 +14,13 @@
     .share-top {
       display: flex;
       align-items: flex-start;
-      justify-content: center;
+      justify-content: flex-start;
 
       .share-avatar {
         width: 50px;
         height: 50px;
+        min-width: 50px;
+        min-height: 50px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 10px;
@@ -26,8 +28,8 @@
 
       .share-input {
         border: none;
-        width: 84%;
-        margin: 2.5px 5px 0px 5px;
+        width: 100%;
+        margin: 2.5px 20px 0px 5px;
         padding: 10px 12px;
         font-size: 18px;
         background-color: $formInputColor;

@@ -31,7 +31,9 @@ export default function Timeline({
         // `http://localhost:3000/api/posts/timeline/${user._id}/${skip}`
       );
       setPosts([...posts, ...res.data]);
-      setLoading(false);
+      setTimeout(async function () {
+        setLoading(false);
+      }, 500);
     };
     if (username) {
       fetchPosts();

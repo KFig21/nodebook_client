@@ -12,7 +12,8 @@ import Post from "./pages/post/Post";
 import Login from "./pages/login/Login";
 import Signup from "./pages/login/Signup";
 import Update from "./pages/update/Update";
-import Likes from "./pages/likes/Likes";
+import PostLikes from "./pages/likes/PostLikes";
+import CommentLikes from "./pages/likes/CommentLikes";
 import Explore from "./pages/explore/Explore";
 import Notifications from "./pages/notifications/Notifications";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -164,18 +165,34 @@ function App() {
                   )
                 }
               ></Route>
-              {/* LIKES ROUTE, if no user go to LOGIN */}
+              {/* POST LIKES ROUTE, if no user go to LOGIN */}
               <Route
                 exact
-                path="/:postId/likes"
+                path="/post/:postId/likes"
                 element={
                   !user ? (
                     <Login />
                   ) : (
-                    <Likes
+                    <PostLikes
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
-                      follow={"Following"}
+                      sidebarOpen={sidebarOpen}
+                      setSidebarOpen={setSidebarOpen}
+                    />
+                  )
+                }
+              ></Route>
+              {/* COMMENT LIKES ROUTE, if no user go to LOGIN */}
+              <Route
+                exact
+                path="/comment/:commentId/likes"
+                element={
+                  !user ? (
+                    <Login />
+                  ) : (
+                    <CommentLikes
+                      currentPage={currentPage}
+                      setCurrentPage={setCurrentPage}
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />
@@ -208,7 +225,6 @@ function App() {
                     <Login />
                   ) : (
                     <Post
-                      user={user}
                       currentPage={currentPage}
                       setCurrentPage={setCurrentPage}
                       fetchNotifications={fetchNotifications}

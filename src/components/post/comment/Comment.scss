@@ -2,10 +2,10 @@
 
 .comment-container {
   display: flex;
-  padding: 5px 10px;
+  padding: 0px 10px 5px 10px;
 
   @include mobile {
-    padding: 5px 0px;
+    padding: 0px 0px 5px 0px;
   }
 
   .comment-avatar-container {
@@ -290,9 +290,10 @@
         color: $primaryColor;
       }
 
-      .post-like-counter {
+      .comment-like-counter {
         font-size: 15px;
         color: $fadedTextColor;
+        cursor: pointer;
 
         &:hover {
           color: white;

@@ -17,12 +17,12 @@
 
 .post-wrapper {
   .post-upper {
-    padding: 14px;
+    padding: 10px;
     background-color: $postBackgroundColor;
     border-radius: 3px 25px 25px 25px;
 
     @include mobile {
-      padding: 10px;
+      padding: 10px 10px 7px 10px;
     }
 
     .post-top {
@@ -31,12 +31,13 @@
       justify-content: space-between;
       position: relative;
 
-      a {
+      a,
+      .not-a-link {
         height: 50px;
         display: flex;
         align-items: center;
         color: white;
-        margin-right: 12px;
+        margin-right: 10px;
 
         .post-avatar {
           width: 50px;
@@ -56,13 +57,20 @@
           display: flex;
           align-items: baseline;
           justify-content: baseline;
+          margin-right: 25px;
 
-          .post-username {
-            font-size: 18px;
-            font-weight: 500;
-            margin: 0 10px 0px 0px;
-            cursor: pointer;
+          a,
+          .not-a-link {
             color: white;
+            margin-right: unset;
+            height: unset;
+
+            .post-username {
+              font-size: 18px;
+              font-weight: 500;
+              margin: 0 10px 0px 0px;
+              cursor: pointer;
+            }
           }
 
           .post-date {
@@ -74,6 +82,148 @@
           padding: 3px 0px;
           text-align: left;
           font-size: 18px;
+
+          @include mobile {
+            padding: 1px 0px;
+          }
+          @include mobileHorizontal {
+            padding: 1px 0px;
+          }
+        }
+
+        .post-edit-wrapper {
+          .post-edit-form-container {
+            margin-bottom: 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            form {
+              width: 100%;
+            }
+
+            .edit-input {
+              border: none;
+              width: 100%;
+              min-width: 100%;
+              max-width: 100%;
+              min-height: 50px;
+              max-height: 150px;
+              margin: 10px 0px;
+              padding: 7px 12px;
+              font-size: 18px;
+              background-color: $backgroundColor;
+              // background-image: $glassGradient;
+              border-radius: 3px;
+              color: white;
+              outline: none;
+              resize: vertical;
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+                "Droid Sans", "Helvetica Neue", sans-serif;
+              @include mobile {
+                max-height: 200px;
+              }
+
+              &:focus,
+              &:hover {
+                background-color: $navbarColor;
+              }
+            }
+
+            .edit-form-buttons-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              button {
+                font-weight: 600;
+                padding: 7px;
+                border-radius: 5px;
+                background-color: transparent;
+                cursor: pointer;
+                font-size: 18px;
+                height: 38px;
+                max-height: 38px;
+                margin: 0px 30px;
+                outline: none;
+              }
+
+              .edit-options-submit {
+                width: 60px;
+                border: 2px solid $editButtonTextColor;
+                color: white;
+                background-image: $glassGradient;
+
+                &:hover,
+                &:focus {
+                  background-color: $editButtonTextColor;
+                  color: black;
+                }
+              }
+
+              .edit-options-cancel {
+                width: 80px;
+                border: 2px solid $primaryColor;
+                color: white;
+                background-image: $glassGradient;
+
+                &:hover,
+                &:focus {
+                  background-color: $primaryColor;
+                  color: black;
+                }
+              }
+
+              .invalid {
+                opacity: 0.5;
+                min-width: 60px;
+                border: 2px solid white;
+                color: white;
+                cursor: unset;
+              }
+            }
+          }
+        }
+
+        .post-img-wrapper {
+          margin: 6px 0px 4px 0px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include mobile {
+            margin: 4px 0px 2px 0px;
+          }
+
+          .post-img-container {
+            width: 100%;
+            max-height: 300px;
+            background-color: $sidebarColor;
+            border-radius: 0px 20px 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-right: 10px;
+
+            @include mobile {
+              width: 100%;
+              max-height: 180px;
+            }
+            @include mobileHorizontal {
+              max-height: 180px;
+            }
+
+            .post-img {
+              width: 100%;
+              max-height: inherit;
+              object-fit: cover;
+            }
+          }
         }
 
         .post-edit {
@@ -92,6 +242,10 @@
       }
 
       .post-top-right {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+
         .post-options-icon {
           color: white;
           cursor: pointer;
@@ -104,9 +258,9 @@
           position: absolute;
           top: 0px;
           right: 25px;
+          display: flex;
 
           @include mobile {
-            display: flex;
             flex-direction: column;
           }
 
@@ -116,6 +270,7 @@
             padding: 5px 12px;
             font-weight: 700;
             cursor: pointer;
+            white-space: nowrap;
           }
 
           .post-options-edit {
@@ -149,133 +304,11 @@
       }
     }
 
-    .post-center {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-
-      .post-img-wrapper {
-        margin: 10px 0px 4px 0px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        @include mobile {
-          margin: 8px 0px 2px 0px;
-        }
-
-        .post-img-container {
-          width: 95%;
-          max-height: 300px;
-          background-color: $sidebarColor;
-          border-radius: 0px 20px 20px 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-
-          @include mobile {
-            width: 100%;
-          }
-          @include mobileHorizontal {
-            max-height: 180px;
-          }
-
-          .post-img {
-            width: 100%;
-            max-height: inherit;
-            object-fit: contain;
-          }
-        }
-      }
-
-      .post-edit-form-container {
-        margin-bottom: 10px;
-
-        .edit-input {
-          border: none;
-          width: 97%;
-          min-width: 97%;
-          max-width: 97%;
-          min-height: 50px;
-          max-height: 150px;
-          margin: 10px 5px;
-          padding: 7px 12px;
-          font-size: 18px;
-          background-color: $backgroundColor;
-          // background-image: $glassGradient;
-          border-radius: 3px;
-          color: white;
-          outline: none;
-          resize: vertical;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-            "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-            "Helvetica Neue", sans-serif;
-          @include mobile {
-            max-height: 200px;
-          }
-
-          &:focus,
-          &:hover {
-            background-color: $navbarColor;
-          }
-        }
-
-        button {
-          font-weight: 600;
-          padding: 7px;
-          border-radius: 5px;
-          background-color: transparent;
-          cursor: pointer;
-          font-size: 18px;
-          height: 38px;
-          max-height: 38px;
-          margin: 0px 30px;
-          outline: none;
-        }
-
-        .edit-options-submit {
-          width: 60px;
-          border: 2px solid $editButtonTextColor;
-          color: white;
-          background-image: $glassGradient;
-
-          &:hover,
-          &:focus {
-            background-color: $editButtonTextColor;
-            color: black;
-          }
-        }
-
-        .edit-options-cancel {
-          width: 80px;
-          border: 2px solid $primaryColor;
-          color: white;
-          background-image: $glassGradient;
-
-          &:hover,
-          &:focus {
-            background-color: $primaryColor;
-            color: black;
-          }
-        }
-
-        .invalid {
-          opacity: 0.5;
-          min-width: 60px;
-          border: 2px solid white;
-          color: white;
-          cursor: unset;
-        }
-      }
-    }
-
     .post-bottom {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      margin-top: 6px;
+      margin-top: 3px;
 
       .post-bottom-left {
         display: flex;
@@ -323,13 +356,13 @@
   .post-comments-container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 10px 10px 5px 10px;
 
     .post-comment-input-container {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      margin: 5px 10px;
+      margin: 5px 10px 10px 10px;
 
       @include mobile {
         flex-direction: column;
@@ -337,7 +370,7 @@
         border-radius: 3px;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
-        margin: 5px 10px 5px 10px;
+        margin: 5px 10px 10px 10px;
       }
 
       .comment-input {
