@@ -296,15 +296,15 @@ export default function Nav({
           {user && comment ? (
             <div className="nav-info-container">
               <span className="nav-title">
-                {comment.likes.length === 1 ? (
+                {comment.likerIds.length === 1 ? (
                   <>
                     {likesUser.username} -{" "}
-                    {"(" + comment.likes.length + "  like)"}
+                    {"(" + comment.likerIds.length + "  like)"}
                   </>
                 ) : (
                   <>
                     {likesUser.username} -{" "}
-                    {"(" + comment.likes.length + " likes)"}
+                    {"(" + comment.likerIds.length + " likes)"}
                   </>
                 )}
               </span>
@@ -336,13 +336,15 @@ export default function Nav({
           {user && post ? (
             <div className="nav-info-container">
               <span className="nav-title">
-                {post.likes.length === 1 ? (
+                {post.likerIds.length === 1 ? (
                   <>
-                    {likesUser.username} - {"(" + post.likes.length + " like)"}
+                    {likesUser.username} -{" "}
+                    {"(" + post.likerIds.length + " like)"}
                   </>
                 ) : (
                   <>
-                    {likesUser.username} - {"(" + post.likes.length + " likes)"}
+                    {likesUser.username} -{" "}
+                    {"(" + post.likerIds.length + " likes)"}
                   </>
                 )}
               </span>
