@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PostLikesFeed from "../../components/likesFeed/PostLikesFeed";
+import ImageModal from "../../components/imageModal/ImageModal";
 import Nav from "../../components/nav/Nav";
 import { useParams } from "react-router";
 import axios from "axios";
@@ -14,6 +15,7 @@ export default function PostLikes({
   const postId = useParams().postId;
   const [post, setPost] = useState("");
   const [user, setUser] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   const getPostInfo = async () => {
     const fetchPost = await axios.get(
@@ -32,6 +34,13 @@ export default function PostLikes({
     getPostInfo();
   }, [postId]);
 
+  // image modal
+  const handleSetModal = (post) => {
+    setTimeout(function () {
+      setShowModal(true);
+    }, 250);
+  };
+
   return (
     <div className="container" id="container">
       <Nav
@@ -41,12 +50,21 @@ export default function PostLikes({
         post={post}
         likesUser={user}
       />
+      {showModal && (
+        <ImageModal
+          post={post}
+          directional={false}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
       <PostLikesFeed
         setCurrentPage={setCurrentPage}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         post={post}
         user={user}
+        handleSetModal={handleSetModal}
       />
     </div>
   );

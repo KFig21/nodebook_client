@@ -31,6 +31,7 @@ export default function CenterFeed({
   getInitialFollows,
   getInitialImages,
   setToInfo,
+  handleSetModal,
 }) {
   const { user: currentUser } = useContext(AuthContext);
 
@@ -206,6 +207,7 @@ export default function CenterFeed({
                         key={post._id}
                         post={post}
                         page="timeline"
+                        handleSetModal={handleSetModal}
                         fetchNotifications={fetchNotifications}
                       />
                     ))}
@@ -226,6 +228,7 @@ export default function CenterFeed({
                         image={image}
                         page="timeline"
                         fetchNotifications={fetchNotifications}
+                        handleSetModal={handleSetModal}
                       />
                     ))}
                   </div>

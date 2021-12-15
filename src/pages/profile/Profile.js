@@ -6,12 +6,18 @@ import Nav from "../../components/nav/Nav";
 import { AuthContext } from "../../context/AuthContext";
 import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
-import plusSign from "../../assets/plusSign.png";
 import avatarCropper from "../../assets/avatarCropper.png";
 import coverCropper from "../../assets/coverCropper.png";
-import { PermMedia, Cancel } from "@material-ui/icons";
+import {
+  PermMedia,
+  Cancel,
+  AccountCircle,
+  Image as ImageIcon,
+} from "@material-ui/icons";
 import { Edit } from "@material-ui/icons";
 import Loader from "../../components/loader/Loader";
+import ImageModal from "../../components/imageModal/ImageModal";
+import CoverImageModal from "../../components/imageModal/CoverImageModal";
 import "./Profile.scss";
 
 export default function Profile({
@@ -31,11 +37,15 @@ export default function Profile({
   const [posts, setPosts] = useState([]);
   const [images, setImages] = useState([]);
   const [friends, setFriends] = useState([]);
+  const [sending, setSending] = useState(false);
+  const [image, setImage] = useState({});
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [showCoverImageModal, setShowCoverImageModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
   const [file, setFile] = useState(null);
   const isInvalid = file === "" || file === null;
-  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     const checkFollowing = async () => {
@@ -305,9 +315,236 @@ export default function Profile({
     }
   };
 
+  // image modal
+  const handleSetModal = (post) => {
+    setImage(post);
+    setTimeout(function () {
+      setShowImageModal(true);
+    }, 250);
+  };
+
+  const openEditModal = () => {
+    setShowCoverImageModal(false);
+    setEditModal(true);
+    setAvatarModal(false);
+    setCoverModal(false);
+  };
+  const openAvatarEditModal = () => {
+    setEditModal(false);
+    setAvatarModal(true);
+    setCoverModal(false);
+    setShowCoverImageModal(false);
+  };
+  const openCoverEditModal = () => {
+    setEditModal(false);
+    setAvatarModal(false);
+    setCoverModal(true);
+    setShowCoverImageModal(false);
+  };
+  const closeAllModals = () => {
+    setEditModal(false);
+    setAvatarModal(false);
+    setCoverModal(false);
+    setShowCoverImageModal(false);
+  };
+
   return (
     <>
       <div className="container" id="container">
+        {/* IMAGE MODAL */}
+        {showImageModal && (
+          <ImageModal
+            post={image}
+            directional={true}
+            showModal={showImageModal}
+            setShowModal={setShowImageModal}
+          />
+        )}
+        {/* COVER IMAGE MODAL */}
+        {showCoverImageModal && (
+          <CoverImageModal
+            cover={profileUser.cover}
+            showModal={showCoverImageModal}
+            setShowModal={setShowCoverImageModal}
+          />
+        )}
+        {/* EDIT IMAGE SELECTION MODAL */}
+        {editModal && (
+          <div className="avatar-modal-wrapper">
+            <div className="avatar-modal-container">
+              <div className="edit-modal-message">
+                Which image do you want to change
+              </div>
+              <div className="edit-modal-selection-container">
+                <div
+                  className="edit-modal-option"
+                  onClick={openAvatarEditModal}
+                >
+                  <AccountCircle className="edit-modal-icon" />
+                  Avatar
+                </div>
+                <div className="edit-modal-option" onClick={openCoverEditModal}>
+                  <ImageIcon className="edit-modal-icon" />
+                  Cover
+                </div>
+              </div>
+            </div>
+            <div className="modal-background" onClick={closeAllModals}></div>
+          </div>
+        )}
+        {/* AVATAR CHANGE MODAL */}
+        {avatarModal &&
+          (!sending ? (
+            <div className="avatar-modal-wrapper">
+              <div className="avatar-modal-container">
+                {file && (
+                  <div className="avatar-modal-img-container">
+                    <img
+                      className="avatar-modal-cropper"
+                      src={avatarCropper}
+                      alt=""
+                    />
+                    <img
+                      className="avatar-modal-img"
+                      src={URL.createObjectURL(file)}
+                      alt=""
+                    />
+                    <Cancel
+                      className="avatar-modal-cancel-img"
+                      onClick={() => setFile("")}
+                    />
+                  </div>
+                )}
+                <div className="avatar-modal-bottom-container">
+                  <form
+                    className="avatar-modal-bottom"
+                    onSubmit={handleAvatarUpdate}
+                    encType="multipart/form-data"
+                  >
+                    <div className="avatar-modal-options">
+                      <label htmlFor="file" className="avatar-modal-option">
+                        <PermMedia className="file-icon" />
+                        <span className="avatar-modal-option-text">
+                          Select a new avatar
+                        </span>
+                        <input
+                          style={{ display: "none" }}
+                          type="file"
+                          id="file"
+                          name="file"
+                          accept=".png,.jpeg,.jpg"
+                          onChange={(e) => setFile(e.target.files[0])}
+                        />
+                      </label>
+                    </div>
+                    <button
+                      type="submit"
+                      className={
+                        isInvalid
+                          ? "save-button invalid-save-button"
+                          : "save-button"
+                      }
+                      disabled={isInvalid}
+                    >
+                      save
+                    </button>
+                  </form>
+                </div>
+              </div>
+              {sending ? (
+                <div className="modal-background"></div>
+              ) : (
+                <div
+                  className="modal-background"
+                  onClick={closeAllModals}
+                ></div>
+              )}
+            </div>
+          ) : (
+            <div className="avatar-modal-wrapper">
+              <div className="avatar-modal-container">
+                <Loader />
+              </div>
+              <div className="modal-background"></div>
+            </div>
+          ))}
+        {/* COVER CHANGE MODAL */}
+        {coverModal &&
+          (!sending ? (
+            <div className="avatar-modal-wrapper">
+              <div className="avatar-modal-container">
+                {file && (
+                  <div className="cover-modal-img-container">
+                    <img
+                      className="cover-modal-cropper"
+                      src={coverCropper}
+                      alt=""
+                    />
+                    <img
+                      className="cover-modal-img"
+                      src={URL.createObjectURL(file)}
+                      alt=""
+                    />
+                    <Cancel
+                      className="cover-modal-cancel-img"
+                      onClick={() => setFile("")}
+                    />
+                  </div>
+                )}
+                <div className="avatar-modal-bottom-container">
+                  <form
+                    className="avatar-modal-bottom"
+                    onSubmit={handleCoverUpdate}
+                    encType="multipart/form-data"
+                  >
+                    <div className="avatar-modal-options">
+                      <label htmlFor="file" className="avatar-modal-option">
+                        <PermMedia className="file-icon" />
+                        <span className="avatar-modal-option-text">
+                          Select a new cover
+                        </span>
+                        <input
+                          style={{ display: "none" }}
+                          type="file"
+                          id="file"
+                          name="file"
+                          accept=".png,.jpeg,.jpg"
+                          onChange={(e) => setFile(e.target.files[0])}
+                        />
+                      </label>
+                    </div>
+                    <button
+                      type="submit"
+                      className={
+                        isInvalid
+                          ? "save-button invalid-save-button"
+                          : "save-button"
+                      }
+                      disabled={isInvalid}
+                    >
+                      save
+                    </button>
+                  </form>
+                </div>
+              </div>
+              {sending ? (
+                <div className="modal-background"></div>
+              ) : (
+                <div
+                  className="modal-background"
+                  onClick={closeAllModals}
+                ></div>
+              )}
+            </div>
+          ) : (
+            <div className="avatar-modal-wrapper">
+              <div className="avatar-modal-container">
+                <Loader />
+              </div>
+              <div className="modal-background"></div>
+            </div>
+          ))}
+
         <div className="profile-right">
           <Nav
             user={currentUser}
@@ -321,163 +558,21 @@ export default function Profile({
             onClick={() => setSidebarOpen(false)}
             onScroll={handleScroll}
           >
-            {/* AVATAR CHANGE MODAL */}
-            {avatarModal &&
-              (!sending ? (
-                <div className="avatar-modal-wrapper">
-                  <div className="avatar-modal-container">
-                    {file && (
-                      <div className="avatar-modal-img-container">
-                        <img
-                          className="avatar-modal-cropper"
-                          src={avatarCropper}
-                          alt=""
-                        />
-                        <img
-                          className="avatar-modal-img"
-                          src={URL.createObjectURL(file)}
-                          alt=""
-                        />
-                        <Cancel
-                          className="avatar-modal-cancel-img"
-                          onClick={() => setFile("")}
-                        />
-                      </div>
-                    )}
-                    <div className="avatar-modal-bottom-container">
-                      <form
-                        className="avatar-modal-bottom"
-                        onSubmit={handleAvatarUpdate}
-                        encType="multipart/form-data"
-                      >
-                        <div className="avatar-modal-options">
-                          <label htmlFor="file" className="avatar-modal-option">
-                            <PermMedia className="file-icon" />
-                            <span className="avatar-modal-option-text">
-                              Select a new avatar
-                            </span>
-                            <input
-                              style={{ display: "none" }}
-                              type="file"
-                              id="file"
-                              name="file"
-                              accept=".png,.jpeg,.jpg"
-                              onChange={(e) => setFile(e.target.files[0])}
-                            />
-                          </label>
-                        </div>
-                        <button
-                          type="submit"
-                          className={
-                            isInvalid
-                              ? "save-button invalid-save-button"
-                              : "save-button"
-                          }
-                          disabled={isInvalid}
-                        >
-                          save
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                  {sending ? (
-                    <div className="modal-background"></div>
-                  ) : (
-                    <div
-                      className="modal-background"
-                      onClick={() => setAvatarModal(false)}
-                    ></div>
-                  )}
-                </div>
-              ) : (
-                <div className="avatar-modal-wrapper">
-                  <div className="avatar-modal-container">
-                    <Loader />
-                  </div>
-                  <div className="modal-background"></div>
-                </div>
-              ))}
-            {/* COVER CHANGE MODAL */}
-            {coverModal &&
-              (!sending ? (
-                <div className="avatar-modal-wrapper">
-                  <div className="avatar-modal-container">
-                    {file && (
-                      <div className="cover-modal-img-container">
-                        <img
-                          className="cover-modal-cropper"
-                          src={coverCropper}
-                          alt=""
-                        />
-                        <img
-                          className="cover-modal-img"
-                          src={URL.createObjectURL(file)}
-                          alt=""
-                        />
-                        <Cancel
-                          className="cover-modal-cancel-img"
-                          onClick={() => setFile("")}
-                        />
-                      </div>
-                    )}
-                    <div className="avatar-modal-bottom-container">
-                      <form
-                        className="avatar-modal-bottom"
-                        onSubmit={handleCoverUpdate}
-                        encType="multipart/form-data"
-                      >
-                        <div className="avatar-modal-options">
-                          <label htmlFor="file" className="avatar-modal-option">
-                            <PermMedia className="file-icon" />
-                            <span className="avatar-modal-option-text">
-                              Select a new cover
-                            </span>
-                            <input
-                              style={{ display: "none" }}
-                              type="file"
-                              id="file"
-                              name="file"
-                              accept=".png,.jpeg,.jpg"
-                              onChange={(e) => setFile(e.target.files[0])}
-                            />
-                          </label>
-                        </div>
-                        <button
-                          type="submit"
-                          className={
-                            isInvalid
-                              ? "save-button invalid-save-button"
-                              : "save-button"
-                          }
-                          disabled={isInvalid}
-                        >
-                          save
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                  {sending ? (
-                    <div className="modal-background"></div>
-                  ) : (
-                    <div
-                      className="modal-background"
-                      onClick={() => setCoverModal(false)}
-                    ></div>
-                  )}
-                </div>
-              ) : (
-                <div className="avatar-modal-wrapper">
-                  <div className="avatar-modal-container">
-                    <Loader />
-                  </div>
-                  <div className="modal-background"></div>
-                </div>
-              ))}
             {/* PROFILE */}
             <div className="profile-right-top">
               <div className="profile-cover">
                 <div className="cover-img-container">
+                  {username === currentUser.username && (
+                    <div
+                      className="edit-icon-container"
+                      title="update cover image"
+                      onClick={openEditModal}
+                    >
+                      <Edit className="edit-icon" />
+                    </div>
+                  )}
                   <img
+                    onClick={() => setShowCoverImageModal(true)}
                     className="profile-cover-img"
                     src={
                       profileUser.cover
@@ -487,28 +582,9 @@ export default function Profile({
                     }
                     alt=""
                   />
-                  {username === currentUser.username && (
-                    <div
-                      className="edit-icon-container"
-                      title="update cover image"
-                      onClick={() => setCoverModal(true)}
-                    >
-                      <Edit className="edit-icon" />
-                    </div>
-                  )}
                 </div>
                 {username === currentUser.username ? (
-                  <div
-                    className="profile-img-container"
-                    onClick={() => setAvatarModal(true)}
-                  >
-                    <div className="plus-sign-container" title="update avatar">
-                      <img
-                        className="profile-avatar-plus"
-                        src={plusSign}
-                        alt=""
-                      />
-                    </div>
+                  <div className="profile-img-container">
                     <img
                       className="profile-avatar"
                       src={
@@ -552,6 +628,7 @@ export default function Profile({
                 getInitialFollows={getInitialFollows}
                 getInitialImages={getInitialImages}
                 setToInfo={setToInfo}
+                handleSetModal={handleSetModal}
               />
             </div>
           </div>

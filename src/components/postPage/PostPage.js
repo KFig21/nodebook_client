@@ -8,6 +8,7 @@ export default function PostPage({
   fetchNotifications,
   sidebarOpen,
   setSidebarOpen,
+  handleSetModal,
 }) {
   const [loading, setLoading] = useState(true);
   const [skip, setSkip] = useState(0);
@@ -95,6 +96,7 @@ export default function PostPage({
                 fetchNotifications={fetchNotifications}
                 sidebarOpen={sidebarOpen}
                 getInitialComments={getInitialComments}
+                handleSetModal={handleSetModal}
               />
             </div>
           </div>

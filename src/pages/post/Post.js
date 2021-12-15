@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import PostPage from "../../components/postPage/PostPage";
 import Nav from "../../components/nav/Nav";
+import ImageModal from "../../components/imageModal/ImageModal";
 import "./Post.scss";
 
 export default function Post({
@@ -15,6 +16,7 @@ export default function Post({
   const postId = useParams().postId;
   const [post, setPost] = useState("");
   const [user, setUser] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   setCurrentPage("Post");
 
@@ -35,6 +37,13 @@ export default function Post({
     getPostInfo();
   }, [postId]);
 
+  // image modal
+  const handleSetModal = (post) => {
+    setTimeout(function () {
+      setShowModal(true);
+    }, 250);
+  };
+
   return (
     <div className="container" id="container">
       <Nav
@@ -44,11 +53,20 @@ export default function Post({
         setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
       />
+      {showModal && (
+        <ImageModal
+          post={post}
+          directional={false}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
       <PostPage
         post={post}
         fetchNotifications={fetchNotifications}
         setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
+        handleSetModal={handleSetModal}
       />
     </div>
   );

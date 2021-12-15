@@ -6,7 +6,7 @@ import { Comment, Favorite } from "@material-ui/icons";
 import "./Image.scss";
 import Loader from "../loader/Loader";
 
-export default function Image({ image, fetchNotifications }) {
+export default function Image({ image, fetchNotifications, handleSetModal }) {
   const [imageData, setImageData] = useState({});
   const { user: currentUser } = useContext(AuthContext);
 
@@ -24,8 +24,25 @@ export default function Image({ image, fetchNotifications }) {
     getImageData();
   }, [image]);
 
+  const handleSendImageInfo = async (postId) => {
+    const fetchPost = async () => {
+      const res = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/posts/${postId}`
+        // `http://localhost:3000/api/images/${image._id}`
+      );
+      sendPost(res.data);
+    };
+    const sendPost = async (post) => {
+      handleSetModal(post);
+    };
+    fetchPost();
+  };
+
   return (
-    <div className="image-wrapper">
+    <div
+      className="image-wrapper"
+      onClick={() => handleSendImageInfo(image.postId)}
+    >
       <div className="image-data-container">
         <div className="image-data">
           {imageData.comments && (

@@ -11,6 +11,7 @@ export default function Follower({
   handleFollowingStatus,
   sidebarOpen,
   loadNewUser,
+  currentPage,
 }) {
   const { user: currentUser } = useContext(AuthContext);
   const [followStatus, setFollowStatus] = useState("");
@@ -59,7 +60,11 @@ export default function Follower({
           <Link
             to={"/profile/" + friend.username}
             style={{ textDecoration: "none" }}
-            onClick={() => loadNewUser(friend.username)}
+            onClick={() =>
+              currentPage === "Followers" || currentPage === "Following"
+                ? null
+                : loadNewUser(friend.username)
+            }
           >
             <div className="follow-container-left">
               <img

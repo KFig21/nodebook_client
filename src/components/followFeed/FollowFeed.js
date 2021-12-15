@@ -17,14 +17,36 @@ export default function FollowFeed({
   const [skip, setSkip] = useState(0);
   const { user: currentUser, dispatch } = useContext(AuthContext);
 
-  // FIX THIS PAGE get rid of useEffects
-  // FIX THIS PAGE reset skip count
-  // FIX THIS PAGE
-
   // set current page on load
   useEffect(() => {
     setCurrentPage(follow);
   });
+
+  const getInitialFollows = async () => {
+    try {
+      const friendsList = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/users/${currentUser._id}/${follow}/0`
+        // `http://localhost:3000/api/users/${currentUser._id}/${follow}/0`
+      );
+      setFriends(friendsList.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getScrollFollows = async () => {
+    try {
+      const friendsList = await axios.get(
+        `https://radiant-oasis-77477.herokuapp.com/api/users/${currentUser._id}/${follow}/${skip}`
+        // `http://localhost:3000/api/users/${currentUser._id}/${follow}/${skip}`
+      );
+      setFriends([...friends, ...friendsList.data]);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleFollowingStatus = async (followed, userInQuestion) => {
     try {
@@ -81,36 +103,12 @@ export default function FollowFeed({
 
   // update page on infinite scroll
   useEffect(() => {
-    const getFollows = async () => {
-      try {
-        const friendsList = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${currentUser._id}/${follow}/${skip}`
-          // `http://localhost:3000/api/users/${currentUser._id}/${follow}/${skip}`
-        );
-        setFriends([...friends, ...friendsList.data]);
-      } catch (err) {
-        console.log(err);
-      }
-      setLoading(false);
-    };
-    getFollows();
+    getScrollFollows();
   }, [skip]);
 
   // update page on new follow
   useEffect(() => {
-    const getFollows = async () => {
-      try {
-        const friendsList = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${currentUser._id}/${follow}/0`
-          // `http://localhost:3000/api/users/${currentUser._id}/${follow}/0`
-        );
-        setFriends(friendsList.data);
-      } catch (err) {
-        console.log(err);
-      }
-      setLoading(false);
-    };
-    getFollows();
+    getInitialFollows();
   }, [currentUser, currentPage]);
 
   // infinite scroll functionality
@@ -139,6 +137,7 @@ export default function FollowFeed({
                   friend={friend}
                   handleFollowingStatus={handleFollowingStatus}
                   sidebarOpen={sidebarOpen}
+                  currentPage={currentPage}
                 />
               ))}
             </>

@@ -6,6 +6,7 @@ import Loader from "../../components/loader/Loader";
 import Share from "../share/Share";
 import Post from "../post/Post";
 import { AuthContext } from "../../context/AuthContext";
+import ImageModal from "../imageModal/ImageModal";
 
 export default function Timeline({
   fetchNotifications,
@@ -16,6 +17,8 @@ export default function Timeline({
   const [posts, setPosts] = useState([]);
   const [skip, setSkip] = useState(0);
   const { user } = useContext(AuthContext);
+  const [image, setImage] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   // set current page to "Timeline" on load
   useEffect(() => {
@@ -24,17 +27,18 @@ export default function Timeline({
 
   let username = user.username;
 
+  const fetchPosts = async () => {
+    const res = await axios.get(
+      `https://radiant-oasis-77477.herokuapp.com/api/posts/timeline/${user._id}/${skip}`
+      // `http://localhost:3000/api/posts/timeline/${user._id}/${skip}`
+    );
+    setPosts([...posts, ...res.data]);
+    setTimeout(async function () {
+      setLoading(false);
+    }, 500);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/timeline/${user._id}/${skip}`
-        // `http://localhost:3000/api/posts/timeline/${user._id}/${skip}`
-      );
-      setPosts([...posts, ...res.data]);
-      setTimeout(async function () {
-        setLoading(false);
-      }, 500);
-    };
     if (username) {
       fetchPosts();
     }
@@ -49,6 +53,14 @@ export default function Timeline({
     }
   };
 
+  // image modal
+  const handleSetModal = (post) => {
+    setImage(post);
+    setTimeout(function () {
+      setShowModal(true);
+    }, 250);
+  };
+
   return (
     <div
       className="timeline"
@@ -60,6 +72,14 @@ export default function Timeline({
           <Loader type={"full-screen"} />
         ) : (
           <div onScroll={handleScroll}>
+            {showModal && (
+              <ImageModal
+                post={image}
+                directional={true}
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
+            )}
             <div className="timeline-wrapper">
               {(!username || username === user.username) && (
                 <div className="share-desktop-container">
@@ -72,6 +92,7 @@ export default function Timeline({
                   post={post}
                   page="timeline"
                   fetchNotifications={fetchNotifications}
+                  handleSetModal={handleSetModal}
                 />
               ))}
             </div>

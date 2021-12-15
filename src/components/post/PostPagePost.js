@@ -15,6 +15,7 @@ export default function Post({
   fetchNotifications,
   sidebarOpen,
   user,
+  handleSetModal,
 }) {
   const [like, setLike] = useState(post.likerIds.length);
   const [isLiked, setIsLiked] = useState(false);
@@ -251,7 +252,10 @@ export default function Post({
                 </div>
               )}
               {post.img && (
-                <div className="post-img-wrapper">
+                <div
+                  className="post-img-wrapper"
+                  onClick={() => handleSetModal(post)}
+                >
                   <div className="post-img-container">
                     <img
                       className="post-img"
@@ -304,7 +308,7 @@ export default function Post({
               ) : (
                 <FavoriteBorder className="like-icon" onClick={likeHandler} />
               )}
-              <Link to={`/${post._id}/likes`}>
+              <Link to={`likes`}>
                 {like === 1 ? (
                   isLiked ? (
                     <span className="post-like-counter">You like this</span>

@@ -14,6 +14,7 @@ export default function PostLikesFeed({
   setSidebarOpen,
   post,
   user,
+  handleSetModal,
 }) {
   const [loading, setLoading] = useState(true);
   const [likers, setLikers] = useState([]);
@@ -165,7 +166,10 @@ export default function PostLikesFeed({
                   </div>
                   <span className="likesFeed-post-body">{post?.body}</span>
                   {post.img && (
-                    <div className="likesFeed-post-img-wrapper">
+                    <div
+                      className="likesFeed-post-img-wrapper"
+                      onClick={() => handleSetModal(post)}
+                    >
                       <div className="likesFeed-post-img-container">
                         <img
                           className="likesFeed-post-img"

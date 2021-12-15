@@ -8,7 +8,13 @@ import Comment from "./comment/Comment";
 import noAvi from "../../assets/noAvatar.png";
 import "./Post.scss";
 
-export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
+export default function Post({
+  post,
+  page,
+  fetchNotifications,
+  sidebarOpen,
+  handleSetModal,
+}) {
   const [like, setLike] = useState(post.likerIds.length);
   const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState([]);
@@ -300,7 +306,10 @@ export default function Post({ post, page, fetchNotifications, sidebarOpen }) {
                 </div>
               )}
               {post.img && (
-                <div className="post-img-wrapper">
+                <div
+                  className="post-img-wrapper"
+                  onClick={() => handleSetModal(post)}
+                >
                   <div className="post-img-container">
                     <img
                       className="post-img"
