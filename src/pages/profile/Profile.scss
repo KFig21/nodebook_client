@@ -200,7 +200,7 @@
           margin-left: 20px;
 
           @include mobileHorizontal {
-            margin-left: 10px;
+            margin-left: 8px;
           }
 
           .avatar-modal-option {
@@ -210,10 +210,18 @@
             margin-right: 15px;
             cursor: pointer;
 
+            @include mobileHorizontal {
+              margin-right: 8px;
+            }
+
             .file-icon {
               font-size: 18px;
               margin-right: 10px;
               color: $primaryColorFaded;
+
+              @include mobileHorizontal {
+                margin-right: 8px;
+              }
             }
 
             &:hover {
@@ -225,6 +233,10 @@
             .avatar-modal-option-text {
               font-size: 16px;
               font-weight: 500;
+
+              @include mobileHorizontal {
+                font-size: 14px;
+              }
             }
           }
         }
