@@ -10,6 +10,7 @@
   width: 100%;
   overflow-y: scroll;
   overflow: overlay;
+  color: $textWhite;
 
   @include mobile {
     min-height: calc(100vh - $navbarHeight - $footerHeight);

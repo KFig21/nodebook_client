@@ -36,7 +36,7 @@
       cursor: pointer;
       width: 100px;
       margin: 10px auto 0px auto;
-      color: white;
+      color: $textWhite;
 
       &:hover,
       &:focus {
@@ -85,7 +85,7 @@
       .update-form-input,
       .update-form-textarea {
         background-color: transparent;
-        color: white;
+        color: $textWhite;
         border: none;
         border-bottom: solid 2px $formInputColor;
         border-top-left-radius: 2px;

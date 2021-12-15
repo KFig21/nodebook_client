@@ -98,13 +98,14 @@ $width: 768px;
     }
   }
 }
-// @mixin mobileKeyboard {
-//   @media (max-height: 500px) {
-//     @media (max-width: 500px) {
-//       @content;
-//     }
-//   }
-// }
+
+@mixin mobileKeyboard {
+  @media (max-height: 500px) {
+    @media (max-width: 500px) {
+      @content;
+    }
+  }
+}
 
 .loader-full-screen {
   height: calc(100vh - $navbarHeight);

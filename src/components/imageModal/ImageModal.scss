@@ -64,7 +64,7 @@
         padding: 10px 20px;
         border-radius: 50px;
         background-color: rgba(146, 146, 146, 0.3);
-        border: none;
+        border: solid 2px transparent;
         cursor: pointer;
         transition: all 0.2s ease;
         z-index: 10;
@@ -75,9 +75,10 @@
         }
 
         &:hover {
-          background-color: $primaryColor;
-          color: white;
-          border: none;
+          // background-color: $primaryColor;
+          background-image: $glassGradient;
+          border: solid 2px $primaryColor;
+          color: $textWhite;
           box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
         }
       }

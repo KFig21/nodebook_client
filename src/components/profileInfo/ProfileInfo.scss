@@ -32,7 +32,7 @@
     }
 
     .profile-website-a {
-      color: white;
+      color: $textWhite;
       cursor: pointer;
       transition: all ease 0.12s;
       word-break: break-all;
@@ -95,5 +95,5 @@
 }
 
 a {
-  color: white;
+  color: $textWhite;
 }

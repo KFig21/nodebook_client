@@ -14,7 +14,7 @@
 
   .notification-link {
     width: 100%;
-    color: white;
+    color: $textWhite;
 
     &:hover {
       .notification-wrapper {
@@ -88,7 +88,7 @@
               font-weight: 500;
               margin: 0px 6px 0px 0px;
               cursor: pointer;
-              color: white;
+              color: $textWhite;
             }
           }
 

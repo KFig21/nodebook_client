@@ -260,12 +260,13 @@
       // profile info
       .profileInfo-container {
         width: 100%;
-        max-width: 100%;
+        max-width: 90%;
         height: 100%;
-        background-color: $navbarColor;
+        background-color: $sidebarColor;
         border-radius: 5px;
         margin: auto;
-        padding: 15px 25px;
+        padding: 20px 30px;
+        border-radius: 1px 25px 25px 25px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -291,7 +292,7 @@
           }
 
           .profile-website-a {
-            color: white;
+            color: $textWhite;
             cursor: pointer;
             transition: all ease 0.12s;
             word-break: break-all;
@@ -306,7 +307,7 @@
           top: 10px;
           right: 10px;
           cursor: pointer;
-          color: white;
+          color: $textWhite;
 
           &:hover {
             color: $primaryColor;

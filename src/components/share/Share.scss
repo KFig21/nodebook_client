@@ -3,10 +3,11 @@
 .share {
   width: 100%;
   border-radius: 0px 20px 20px 20px;
-  background-color: $navbarColor;
+  background-color: $sidebarColor;
   // -webkit-box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.4);
   // box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.4);
   margin-bottom: 20px;
+  color: $textWhite;
 
   .share-wrapper {
     padding: 10px;
@@ -38,7 +39,7 @@
         height: 45px;
         max-height: 270px;
         border-radius: 3px;
-        color: white;
+        color: $textWhite;
         outline: none;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
           "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -107,7 +108,7 @@
         font-size: 16px;
         margin-right: 20px;
         cursor: pointer;
-        color: white;
+        color: $textWhite;
         outline: none;
 
         &:hover,
@@ -127,7 +128,7 @@
           background-image: none;
           border: solid 2px $primaryColor;
           background-color: transparent;
-          color: white;
+          color: $textWhite;
         }
       }
     }

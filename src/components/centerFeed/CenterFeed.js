@@ -15,6 +15,7 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import Image from "../image/Image";
 import Follower from "../follower/Follower";
+import styled from "styled-components";
 
 export default function CenterFeed({
   profileUser,
@@ -41,9 +42,14 @@ export default function CenterFeed({
     return formattedDate;
   };
 
+  const Heading = styled.h1`
+    color: ${(props) => props.theme.colors.text};
+  `;
+
   return (
     <>
       <div className="profile-feed">
+        {/* <Heading>test</Heading> */}
         <div className="profile-header">
           <div className="profile-header-wrapper">
             <div className="profile-info">

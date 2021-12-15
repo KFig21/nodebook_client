@@ -57,7 +57,7 @@
 
           .edit-icon {
             cursor: pointer;
-            color: white;
+            color: $textWhite;
 
             &:hover {
               color: $primaryColor;
@@ -180,6 +180,11 @@
       border-radius: 0px 10px 10px 10px;
     }
 
+    @include mobileHorizontal {
+      min-width: 250px;
+      max-width: 250px;
+    }
+
     .avatar-modal-bottom-container {
       background-color: $sidebarColor;
       width: 100%;
@@ -193,6 +198,10 @@
         .avatar-modal-options {
           display: flex;
           margin-left: 20px;
+
+          @include mobileHorizontal {
+            margin-left: 10px;
+          }
 
           .avatar-modal-option {
             display: flex;
@@ -231,8 +240,12 @@
           font-size: 16px;
           margin-right: 20px;
           cursor: pointer;
-          color: white;
+          color: $textWhite;
           outline: none;
+
+          @include mobileHorizontal {
+            margin-right: 10px;
+          }
 
           &:hover,
           &:focus {
@@ -276,6 +289,14 @@
         max-height: 95vw;
       }
 
+      @include mobileHorizontal {
+        width: 100%;
+        min-width: 250px;
+        min-height: 250px;
+        max-width: 250px;
+        max-height: 250px;
+      }
+
       .avatar-modal-cropper {
         width: 100%;
         position: absolute;
@@ -292,6 +313,12 @@
         @include mobile {
           min-width: 95vw;
           min-height: 95vw;
+        }
+        @include mobileHorizontal {
+          min-width: 250px;
+          min-height: 250px;
+          max-width: 250px;
+          max-height: 250px;
         }
       }
 
@@ -327,6 +354,13 @@
         max-height: 95vw;
       }
 
+      @include mobileHorizontal {
+        min-width: 250px;
+        min-height: 250px;
+        max-width: 250px;
+        max-height: 250px;
+      }
+
       .cover-modal-cropper {
         width: 100%;
         position: absolute;
@@ -343,6 +377,13 @@
         @include mobile {
           min-width: 95vw;
           max-width: 95vw;
+        }
+
+        @include mobileHorizontal {
+          min-width: 250px;
+          min-height: 250px;
+          max-width: 250px;
+          max-height: 250px;
         }
       }
 
@@ -385,7 +426,7 @@
         }
 
         &:hover {
-          background-color: $fadedButtonColor;
+          background-color: $editedBackgroundColor;
         }
       }
     }

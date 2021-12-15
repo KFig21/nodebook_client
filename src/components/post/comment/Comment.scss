@@ -40,7 +40,7 @@
       border-radius: 3px 15px 15px 15px;
       padding: 7px 12px;
       font-size: 16px;
-      color: white;
+      color: $textWhite;
       text-align: left;
       display: flex;
       flex-direction: column;
@@ -60,7 +60,7 @@
             font-weight: 500;
             margin-right: 8px;
             font-size: 17px;
-            color: white;
+            color: $textWhite;
           }
 
           .comment-date {
@@ -74,7 +74,7 @@
           position: relative;
 
           .comment-options-icon {
-            color: white;
+            color: $textWhite;
             cursor: pointer;
 
             &:hover {
@@ -120,7 +120,7 @@
       }
 
       .comment-body {
-        color: white;
+        color: $textWhite;
         padding: 0px 5px 5px 5px;
       }
 
@@ -151,7 +151,7 @@
         font-size: 16px;
         background-color: $backgroundColor;
         border-radius: 3px;
-        color: white;
+        color: $textWhite;
         outline: none;
 
         &:focus,
@@ -183,7 +183,7 @@
         .edit-options-submit {
           min-width: 60px;
           border: 2px solid $editButtonTextColor;
-          color: white;
+          color: $textWhite;
           background-image: $glassGradient;
 
           &:hover,
@@ -196,7 +196,7 @@
         .edit-options-cancel {
           width: 80px;
           border: 2px solid $primaryColor;
-          color: white;
+          color: $textWhite;
           background-image: $glassGradient;
 
           &:hover,
@@ -210,7 +210,7 @@
           opacity: 0.5;
           min-width: 60px;
           border: 2px solid white;
-          color: white;
+          color: $textWhite;
           cursor: unset;
         }
       }
@@ -296,7 +296,7 @@
         cursor: pointer;
 
         &:hover {
-          color: white;
+          color: $textWhite;
         }
       }
     }

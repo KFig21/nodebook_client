@@ -21,12 +21,16 @@ import {
 import { logoutCall } from "../../apiCalls";
 import Logo from "./Logo";
 import KF from "./KF";
+// themes
+import purpleTheme from "../../styles/purpleTheme";
+import defaultTheme from "../../styles/defaultTheme";
 
 export default function Sidebar({
   currentPage,
   notificationsCount,
   sidebarOpen,
   setSidebarOpen,
+  setTheme,
 }) {
   const { user, dispatch } = useContext(AuthContext);
   let navigate = useNavigate();
@@ -175,6 +179,8 @@ export default function Sidebar({
               <span className="sidebar-link-text">Share</span>
             </div>
           </Link>
+          {/* <button onClick={() => setTheme(purpleTheme)}>purple theme</button>
+          <button onClick={() => setTheme(defaultTheme)}>green theme</button> */}
           {/* LOGOUT */}
           <div className="sidebar-logout">
             <button className="logout-button" onClick={logout}>

@@ -4,19 +4,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
   background-color: $sidebarColor;
 
   @include mobile {
     flex-direction: column;
   }
 
+  @include mobileHorizontal {
+    flex-direction: column;
+    justify-content: start;
+  }
+
   .login-left {
     padding: 30px;
-    margin-right: 20px;
+    margin-right: 40px;
     position: relative;
     width: 500px;
-    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,9 +35,21 @@
       margin-bottom: 50px;
     }
 
-    .login-left-title {
-      font-size: 80px;
-      color: $primaryColor;
+    @include mobileHorizontal {
+      width: 200px;
+      margin: unset;
+      height: unset;
+      padding: 10px 30px;
+      margin-bottom: 20px;
+      margin-top: 50px;
+    }
+
+    @include mobileKeyboard {
+      display: none;
+    }
+
+    @media (max-width: 950px) and (min-width: 769px) {
+      width: 350px;
     }
 
     .wordmark {
@@ -42,6 +60,19 @@
         width: 100%;
         max-width: 300px;
       }
+
+      @include mobileHorizontal {
+        max-width: 200px;
+        width: 200px;
+      }
+
+      @include mobileKeyboard {
+        display: none;
+      }
+
+      @media (max-width: 950px) and (min-width: 769px) {
+        width: 350px;
+      }
     }
 
     .glow {
@@ -51,12 +82,28 @@
       border-radius: 0px 32px 32px 32px;
       background-color: $primaryColor;
       box-shadow: 0px 0px 10px 5px $primaryColor;
-      animation: animated-glow 9s ease infinite;
+      animation: animated-glow 8s ease infinite;
+
+      @media (max-width: 950px) and (min-width: 769px) {
+        border-radius: 0px 25px 25px 25px;
+        width: 350px;
+        height: 90px;
+      }
 
       @include mobile {
         border-radius: 0px 20px 20px 20px;
         max-width: 298px;
         height: 77px;
+      }
+
+      @include mobileHorizontal {
+        border-radius: 0px 12px 12px 12px;
+        max-width: 198px;
+        height: 51px;
+      }
+
+      @include mobileKeyboard {
+        display: none;
       }
     }
 
@@ -64,18 +111,18 @@
       0% {
         box-shadow: 0px 0px 0px 0px $primaryColor;
       }
-      29% {
+      27% {
         box-shadow: 0px 0px 0px 0px $primaryColor;
       }
 
-      44% {
+      41% {
         box-shadow: 0px 0px 15px 10px $primaryColor;
       }
-      56% {
+      59% {
         box-shadow: 0px 0px 15px 10px $primaryColor;
       }
 
-      71% {
+      73% {
         box-shadow: 0px 0px 0px 0px $primaryColor;
       }
       100% {
@@ -84,32 +131,38 @@
     }
   }
 
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    border: solid 2px $primaryColor;
-    border-radius: 9px;
-    padding: 25px;
-    margin: 15px;
-    min-width: 300px;
-    background-image: $glassGradient;
+  .login-right {
+    @include mobileHorizontal {
+      padding: 10px 0px 30px 0px;
+    }
 
-    button {
-      background-color: $primaryColorFaded;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      padding: 7px 15px;
-      border-radius: 3px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      width: 100px;
-      margin: 10px auto 0px auto;
-      color: white;
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      border: solid 2px $primaryColor;
+      border-radius: 9px;
+      padding: 25px;
+      margin: 15px;
+      min-width: 300px;
+      background-image: $glassGradient;
 
-      &:hover,
-      &:focus {
-        background-color: $primaryColor;
+      button {
+        background-color: $primaryColorFaded;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        padding: 7px 15px;
+        border-radius: 3px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        width: 100px;
+        margin: 10px auto 0px auto;
+        color: $textWhite;
+
+        &:hover,
+        &:focus {
+          background-color: $primaryColor;
+        }
       }
     }
   }
@@ -117,7 +170,7 @@
 
 .form-input {
   background-color: transparent;
-  color: white;
+  color: $textWhite;
   border: none;
   border-bottom: solid 2px $formInputColor;
   border-top-left-radius: 2px;
@@ -139,7 +192,7 @@
   position: relative;
 
   .dont-have-an-account {
-    color: white;
+    color: $textWhite;
 
     a {
       color: $primaryColor;

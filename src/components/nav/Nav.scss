@@ -3,6 +3,7 @@
 .navbar {
   background-color: $navbarColor;
   height: $navbarHeight;
+  color: $textWhite;
   display: flex;
   width: 100%;
   margin: auto;
@@ -68,7 +69,7 @@
 .follow-button {
   border: none;
   background-color: $primaryColorFaded;
-  color: white;
+  color: $textWhite;
   border-radius: 5px;
   display: flex;
   align-items: center;

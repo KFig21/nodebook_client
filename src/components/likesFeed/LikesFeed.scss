@@ -37,7 +37,7 @@
         height: 50px;
         display: flex;
         align-items: center;
-        color: white;
+        color: $textWhite;
         margin-right: 12px;
 
         .likesFeed-post-avatar {
@@ -60,7 +60,7 @@
           justify-content: baseline;
 
           a {
-            color: white;
+            color: $textWhite;
             margin-right: unset;
             height: unset;
 

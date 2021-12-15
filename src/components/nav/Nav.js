@@ -196,7 +196,7 @@ export default function Nav({
           {user ? (
             <div className="nav-info-container">
               <span className="nav-title">
-                {user.username} - update profile
+                {user.username ? user.username : "Loading"} - update profile
               </span>
             </div>
           ) : (
@@ -258,12 +258,12 @@ export default function Nav({
               <span className="nav-title">
                 {post.comments.length === 1 ? (
                   <>
-                    {postUser.username} -{" "}
+                    {postUser.username ? postUser.username : "Loading"} -{" "}
                     {"(" + post.comments.length + " reply)"}
                   </>
                 ) : (
                   <>
-                    {postUser.username} -{" "}
+                    {postUser.username ? postUser.username : "Loading"} -{" "}
                     {"(" + post.comments.length + " replies)"}
                   </>
                 )}
@@ -298,12 +298,12 @@ export default function Nav({
               <span className="nav-title">
                 {comment.likerIds.length === 1 ? (
                   <>
-                    {likesUser.username} -{" "}
+                    {likesUser.username ? likesUser.username : "Loading"} -{" "}
                     {"(" + comment.likerIds.length + "  like)"}
                   </>
                 ) : (
                   <>
-                    {likesUser.username} -{" "}
+                    {likesUser.username ? likesUser.username : "Loading"} -{" "}
                     {"(" + comment.likerIds.length + " likes)"}
                   </>
                 )}
@@ -338,12 +338,12 @@ export default function Nav({
               <span className="nav-title">
                 {post.likerIds.length === 1 ? (
                   <>
-                    {likesUser.username} -{" "}
+                    {likesUser.username ? likesUser.username : "Loading"} -{" "}
                     {"(" + post.likerIds.length + " like)"}
                   </>
                 ) : (
                   <>
-                    {likesUser.username} -{" "}
+                    {likesUser.username ? likesUser.username : "Loading"} -{" "}
                     {"(" + post.likerIds.length + " likes)"}
                   </>
                 )}
