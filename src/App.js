@@ -79,6 +79,7 @@ function App() {
   useEffect(() => {
     if (user) {
       setTheme(findTheme(user.theme));
+      setSelectedTheme(user.theme);
     }
   }, [user]);
 

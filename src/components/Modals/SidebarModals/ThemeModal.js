@@ -4,6 +4,11 @@ import SC from "../../../themes/styledComponents";
 import { findTheme } from "../../../helpers/helperFunctions";
 import axios from "axios";
 import "./SidebarModal.scss";
+import { RadioButtonChecked, RadioButtonUnchecked } from "@material-ui/icons";
+import defaultThemeGreen from "../../../themes/defaultTheme_Green";
+import defaultThemeAqua from "../../../themes/defaultTheme_Aqua";
+import defaultThemeYellow from "../../../themes/defaultTheme_Yellow";
+import purpleTheme from "../../../themes/purpleTheme";
 
 export default function Theme({
   setLogoutModal,
@@ -23,6 +28,7 @@ export default function Theme({
   };
 
   const handleCancelThemeModal = () => {
+    setSelectedTheme(user.theme);
     setSidebarOpen(false);
     setLogoutModal(false);
     setThemeModal(!themeModal);
@@ -58,25 +64,80 @@ export default function Theme({
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("default green")}
+            style={{
+              backgroundColor: defaultThemeGreen.colors.backgroundColor,
+            }}
           >
+            {selectedTheme === "default green" ? (
+              <RadioButtonChecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeGreen.colors.primaryColor }}
+              />
+            ) : (
+              <RadioButtonUnchecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeGreen.colors.primaryColor }}
+              />
+            )}
             Default green
           </div>
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("default yellow")}
+            style={{
+              backgroundColor: defaultThemeYellow.colors.backgroundColor,
+            }}
           >
+            {" "}
+            {selectedTheme === "default yellow" ? (
+              <RadioButtonChecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeYellow.colors.primaryColor }}
+              />
+            ) : (
+              <RadioButtonUnchecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeYellow.colors.primaryColor }}
+              />
+            )}
             Default yellow
           </div>
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("default aqua")}
+            style={{ backgroundColor: defaultThemeAqua.colors.backgroundColor }}
           >
+            {" "}
+            {selectedTheme === "default aqua" ? (
+              <RadioButtonChecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeAqua.colors.primaryColor }}
+              />
+            ) : (
+              <RadioButtonUnchecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeAqua.colors.primaryColor }}
+              />
+            )}
             Default aqua
           </div>
           <div
-            className="sidebar-modal-option purple-option"
+            className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("purple")}
+            style={{ backgroundColor: purpleTheme.colors.backgroundColor }}
           >
+            {" "}
+            {selectedTheme === "purple" ? (
+              <RadioButtonChecked
+                className="theme-radio-icon"
+                style={{ fill: purpleTheme.colors.primaryColor }}
+              />
+            ) : (
+              <RadioButtonUnchecked
+                className="theme-radio-icon"
+                style={{ fill: purpleTheme.colors.primaryColor }}
+              />
+            )}
             Purple
           </div>
         </div>

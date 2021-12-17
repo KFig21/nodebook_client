@@ -273,7 +273,7 @@ const SC = {
       props.theme.colors.postBackgroundColor} !important;
   `,
   LikeIconContainer: styled.div`
-    color: ${(props) => props.theme.colors.likeColorFaded} !important;
+    color: ${(props) => props.theme.colors.likeColor} !important;
     height: 24px;
     &:hover {
       color: ${(props) => props.theme.colors.likeColor} !important;

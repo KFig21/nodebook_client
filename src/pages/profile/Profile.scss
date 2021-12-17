@@ -69,6 +69,7 @@
           width: 100%;
           height: 200px;
           object-fit: cover;
+          display: block;
 
           @include mobile {
             height: 120px;
@@ -80,14 +81,14 @@
         }
 
         .profile-img-container {
-          width: 142px;
-          height: 142px;
+          width: 140px;
+          height: 140px;
           border-radius: 50%;
           position: absolute;
           left: 45px;
           margin: auto;
           top: 100px;
-          border: 4px solid $backgroundColor;
+          border: 6px solid $backgroundColor;
           z-index: 5;
           overflow: hidden;
           box-sizing: unset;
@@ -100,6 +101,7 @@
             left: 15px;
             width: 94px;
             height: 94px;
+            border: 4px solid $backgroundColor;
           }
           @include mobileHorizontal {
             top: 50px;
@@ -109,8 +111,9 @@
           }
 
           .profile-avatar {
-            width: 142px;
-            height: 142px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
             object-fit: cover;
 
             @include mobile {

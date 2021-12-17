@@ -26,6 +26,7 @@
 
     @include mobile {
       background: rgb(0, 0, 0);
+      align-items: flex-end;
       background: linear-gradient(
         0deg,
         $navbarColor 60%,
@@ -39,8 +40,8 @@
       padding: 0px 30px;
 
       @include mobile {
-        padding: 32px 0px 0px 20px;
-        max-width: 100%;
+        padding: 5px 0px 0px 0px;
+        max-width: calc(100% - 125px);
         width: 100%;
       }
 
@@ -58,12 +59,19 @@
 
       .profile-info {
         display: flex;
+        flex-wrap: wrap;
         align-items: baseline;
         justify-content: flex-start;
 
+        @include mobile {
+          justify-content: flex-end;
+          margin-right: 30px;
+          max-width: 100%;
+          float: right;
+        }
+
         .profile-info-username {
           font-size: 40px;
-          margin-right: 10px;
           font-weight: 600;
 
           @include mobile {
@@ -73,6 +81,7 @@
 
         .profile-info-name {
           font-weight: 300;
+          margin-left: 10px;
           font-size: 30px;
           @include mobile {
             font-size: 18px;
