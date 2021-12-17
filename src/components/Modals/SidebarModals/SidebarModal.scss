@@ -50,26 +50,47 @@
       overflow-y: scroll;
       overflow: overlay;
       justify-content: flex-start;
+      position: relative;
 
       .sidebar-modal-option {
         font-size: 17px;
         padding: 20px;
         max-height: 64px;
         width: 100%;
-        background-color: $backgroundColor;
+        background-color: transparent;
+        border-top: solid 1px $sidebarColor;
+        border-bottom: solid 1px $sidebarColor;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
+        z-index: 2;
 
         .theme-radio-icon {
           position: absolute;
           left: 30px;
+          z-index: 2;
+        }
+
+        .theme-name {
+          z-index: 2;
+        }
+
+        .sidebar-modal-option-background {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          &:hover {
+            background-color: $formInputColor;
+          }
         }
 
         &:hover {
-          background-color: $editedBackgroundColor;
+          .sidebar-modal-option-background {
+            background-color: $formInputColor;
+          }
         }
       }
     }

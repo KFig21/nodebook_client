@@ -51,7 +51,7 @@ export default function CenterFeed({
     <>
       <div className="profile-feed">
         {/* <Heading>test</Heading> */}
-        <div className="profile-header">
+        <SC.ProfileHeader className="profile-header">
           <SC.ProfileHeader className="profile-header-wrapper">
             <div className="profile-info">
               <h4 className="profile-info-username">{profileUser.username}</h4>
@@ -60,7 +60,7 @@ export default function CenterFeed({
               </span>
             </div>
           </SC.ProfileHeader>
-        </div>
+        </SC.ProfileHeader>
         <SC.ProfileHeader
           className="profile-header-buttons-container"
           style={sidebarOpen ? { pointerEvents: "none" } : {}}

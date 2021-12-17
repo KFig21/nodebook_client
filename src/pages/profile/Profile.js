@@ -570,7 +570,7 @@ export default function Profile({
             themeModal={themeModal}
             logoutModal={logoutModal}
           />
-          <div
+          <SC.ScrollThumb
             className="profile-right-content"
             onClick={() => setSidebarOpen(false)}
             onScroll={handleScroll}
@@ -648,7 +648,7 @@ export default function Profile({
                 handleSetModal={handleSetModal}
               />
             </div>
-          </div>
+          </SC.ScrollThumb>
         </div>
       </div>
     </>

@@ -99,7 +99,9 @@ export default function Sidebar({
                 {notificationsCount > 0 && (
                   <div className="notification-badge-container">
                     <SC.NotificationBadge className="notification-badge">
-                      <span className="badge-count">{notificationsCount}</span>
+                      <span className="badge-count">
+                        {notificationsCount > 99 ? "+" : notificationsCount}
+                      </span>
                     </SC.NotificationBadge>
                   </div>
                 )}

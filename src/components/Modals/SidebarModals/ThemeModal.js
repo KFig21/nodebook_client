@@ -8,6 +8,7 @@ import { RadioButtonChecked, RadioButtonUnchecked } from "@material-ui/icons";
 import defaultThemeGreen from "../../../themes/defaultTheme_Green";
 import defaultThemeAqua from "../../../themes/defaultTheme_Aqua";
 import defaultThemeYellow from "../../../themes/defaultTheme_Yellow";
+import defaultThemeRed from "../../../themes/defaultTheme_Red";
 import purpleTheme from "../../../themes/purpleTheme";
 
 export default function Theme({
@@ -79,7 +80,8 @@ export default function Theme({
                 style={{ fill: defaultThemeGreen.colors.primaryColor }}
               />
             )}
-            Default green
+            <span className="theme-name">Default green</span>
+            <div className="sidebar-modal-option-background"></div>
           </div>
           <div
             className="sidebar-modal-option"
@@ -100,7 +102,8 @@ export default function Theme({
                 style={{ fill: defaultThemeYellow.colors.primaryColor }}
               />
             )}
-            Default yellow
+            <span className="theme-name">Default yellow</span>
+            <div className="sidebar-modal-option-background"></div>
           </div>
           <div
             className="sidebar-modal-option"
@@ -119,7 +122,28 @@ export default function Theme({
                 style={{ fill: defaultThemeAqua.colors.primaryColor }}
               />
             )}
-            Default aqua
+            <span className="theme-name">Default aqua</span>
+            <div className="sidebar-modal-option-background"></div>
+          </div>
+          <div
+            className="sidebar-modal-option"
+            onClick={() => handleThemeOptionClick("default red")}
+            style={{ backgroundColor: defaultThemeRed.colors.backgroundColor }}
+          >
+            {" "}
+            {selectedTheme === "default red" ? (
+              <RadioButtonChecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeRed.colors.primaryColor }}
+              />
+            ) : (
+              <RadioButtonUnchecked
+                className="theme-radio-icon"
+                style={{ fill: defaultThemeRed.colors.primaryColor }}
+              />
+            )}
+            <span className="theme-name">Default red</span>
+            <div className="sidebar-modal-option-background"></div>
           </div>
           <div
             className="sidebar-modal-option"
@@ -138,7 +162,8 @@ export default function Theme({
                 style={{ fill: purpleTheme.colors.primaryColor }}
               />
             )}
-            Purple
+            <span className="theme-name">Purple</span>
+            <div className="sidebar-modal-option-background"></div>
           </div>
         </div>
         <SC.ProfileModalMessageContainer className="sidebar-modal-button-container">

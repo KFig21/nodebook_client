@@ -65,7 +65,7 @@ export default function Timeline({
   };
 
   return (
-    <div
+    <SC.ScrollThumb
       className="timeline"
       onScroll={handleScroll}
       onClick={() => setSidebarOpen(false)}
@@ -112,6 +112,6 @@ export default function Timeline({
           </div>
         )}
       </>
-    </div>
+    </SC.ScrollThumb>
   );
 }

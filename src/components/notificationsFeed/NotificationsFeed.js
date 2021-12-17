@@ -242,7 +242,7 @@ export default function NotificationsFeed({
   };
 
   return (
-    <div
+    <SC.ScrollThumb
       className="notifications-feed-page"
       onClick={() => setSidebarOpen(false)}
     >
@@ -268,6 +268,6 @@ export default function NotificationsFeed({
           </>
         )}
       </>
-    </div>
+    </SC.ScrollThumb>
   );
 }

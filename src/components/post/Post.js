@@ -203,9 +203,9 @@ export default function Post({
     <div className="post">
       {showDeletePost && (
         <div className="delete-post-container">
-          <span className="delete-post-message">
+          <SC.DeletePostMessage className="delete-post-message">
             Are you sure you want to delete this post?
-          </span>
+          </SC.DeletePostMessage>
           <div className="delete-post-button-container">
             <button
               className="delete-button"

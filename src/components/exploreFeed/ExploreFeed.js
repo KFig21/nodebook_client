@@ -4,6 +4,7 @@ import axios from "axios";
 import ExploreUser from "./exploreUser/ExploreUser";
 import Loader from "../../components/loader/Loader";
 import "./ExploreFeed.scss";
+import SC from "../../themes/styledComponents";
 
 export default function ExploreFeed({
   setCurrentPage,
@@ -121,7 +122,7 @@ export default function ExploreFeed({
   };
 
   return (
-    <div
+    <SC.ScrollThumb
       className="followfeed"
       onScroll={handleScroll}
       onClick={() => setSidebarOpen(false)}
@@ -146,6 +147,6 @@ export default function ExploreFeed({
           )}
         </div>
       )}
-    </div>
+    </SC.ScrollThumb>
   );
 }

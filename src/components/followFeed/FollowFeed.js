@@ -4,6 +4,7 @@ import axios from "axios";
 import Follower from "../follower/Follower";
 import Loader from "../../components/loader/Loader";
 import "./FollowFeed.scss";
+import SC from "../../themes/styledComponents";
 
 export default function FollowFeed({
   currentPage,
@@ -121,7 +122,7 @@ export default function FollowFeed({
   };
 
   return (
-    <div
+    <SC.ScrollThumb
       className="followfeed"
       onScroll={handleScroll}
       onClick={() => setSidebarOpen(false)}
@@ -154,6 +155,6 @@ export default function FollowFeed({
           )}
         </div>
       )}
-    </div>
+    </SC.ScrollThumb>
   );
 }

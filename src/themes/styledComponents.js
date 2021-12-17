@@ -3,12 +3,17 @@ import styled from "styled-components";
 const SC = {
   // ---------- APP.JS ----------
   ContentContainer: styled.div`
-    background-color: ${(props) =>
-      props.theme.colors.backgroundColor} !important;
+    background-color: ${(props) => props.theme.colors.sidebarColor} !important;
     };
-    &::-webkit-scrollbar-thumb {
+  `,
+  ScrollThumb: styled.div`
+    ::-webkit-scrollbar-thumb {
       background-color: ${(props) =>
-        props.theme.colors.primaryColor} !important;
+        props.theme.colors.scrollThumbColor} !important;
+      &:hover {
+        background-color: ${(props) =>
+          props.theme.colors.primaryColorFaded} !important;
+      }
     }
   `,
 
@@ -97,12 +102,16 @@ const SC = {
     color: ${(props) => props.theme.colors.textWhite} !important;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      border-color: ${(props) => props.theme.colors.primaryColor} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
     &:focus {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      border-color: ${(props) => props.theme.colors.primaryColor} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
@@ -112,12 +121,16 @@ const SC = {
     color: ${(props) => props.theme.colors.textWhite} !important;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      border-color: ${(props) => props.theme.colors.primaryColor} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
     &:focus {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      border-color: ${(props) => props.theme.colors.primaryColor} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
@@ -130,6 +143,7 @@ const SC = {
   `,
   ProfileInfoContainer: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
+    border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
   `,
   ProfileImagesContainer: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
@@ -180,6 +194,8 @@ const SC = {
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.profileNavIconColorActive} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
     }
     height: 24px;
   `,
@@ -210,12 +226,14 @@ const SC = {
     border-color: ${(props) => props.theme.colors.primaryColor} !important;
     background-color: transparent !important;
     &:hover {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
     &:focus {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
@@ -242,7 +260,6 @@ const SC = {
     padding: 40px 30px;
     font-size: 24px;
     font-weight: 500;
-    border-radius: 25px;
     @media (min-height: 421px) {
       @media (max-width: 768px) {
         flex-direction: column;
@@ -265,6 +282,16 @@ const SC = {
   `,
   InfoIcon: styled.span`
     color: ${(props) => props.theme.colors.primaryColor} !important;
+  `,
+  UpdateProfileInput: styled.input`
+    &:focus {
+      border-color: ${(props) => props.theme.colors.primaryColor} !important;
+    }
+  `,
+  UpdateProfileTextarea: styled.textarea`
+    &:focus {
+      border-color: ${(props) => props.theme.colors.primaryColor} !important;
+    }
   `,
 
   // ---------- POSTS, COMMENTS ----------
@@ -313,12 +340,14 @@ const SC = {
     color: ${(props) => props.theme.colors.textWhite} !important;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
     &:focus {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
@@ -356,6 +385,9 @@ const SC = {
       border-color: ${(props) => props.theme.colors.primaryColor} !important;
       color: ${(props) => props.theme.colors.textWhite} !important;
     }
+  `,
+  DeletePostMessage: styled.div`
+    border-color: ${(props) => props.theme.colors.primaryColor} !important;
   `,
 
   // ---------- FOLLOWERS, FOLLOWING, LIKERS ----------
@@ -453,6 +485,11 @@ const SC = {
   ShareContainer: styled.div`
     background-color: ${(props) =>
       props.theme.colors.shareContainerColor} !important;
+    ::webkit-resizer {
+      border-right: 2px solid ${(props) => props.theme.colors.primaryColorFaded} !important;
+      border-bottom: 2px solid
+        ${(props) => props.theme.colors.primaryColorFaded} !important;
+    }
   `,
   ShareHR: styled.hr`
     border-color: ${(props) => props.theme.colors.primaryColor} !important;
@@ -468,12 +505,14 @@ const SC = {
     color: ${(props) => props.theme.colors.textWhite} !important;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
     &:focus {
-      color: ${(props) => props.theme.colors.textWhite} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
@@ -490,7 +529,7 @@ const SC = {
   // webkit resizer not working
   ShareTextArea: styled.textarea`
     color: ${(props) => props.theme.colors.textWhite} !important;
-    &::webkit-resizer {
+    ::webkit-resizer {
       border-right: 2px solid ${(props) => props.theme.colors.primaryColorFaded} !important;
       border-bottom: 2px solid
         ${(props) => props.theme.colors.primaryColorFaded} !important;

@@ -27,11 +27,11 @@
     @include mobile {
       background: rgb(0, 0, 0);
       align-items: flex-end;
-      background: linear-gradient(
-        0deg,
-        $navbarColor 60%,
-        $backgroundColor 100%
-      );
+      // background: linear-gradient(
+      //   0deg,
+      //   $navbarColor 60%,
+      //   $backgroundColor 100%
+      // );
     }
 
     .profile-header-wrapper {
@@ -265,9 +265,10 @@
         padding: 40px 30px;
         font-size: 24px;
         font-weight: 500;
-        border-radius: 25px;
+        border-radius: 1px 25px 25px 25px;
         border: 3px solid $fadedButtonColor;
         color: $fadedButtonColor;
+        margin-top: 15px;
       }
 
       // profile info
@@ -275,8 +276,9 @@
         width: 100%;
         max-width: 90%;
         height: 100%;
-        background-color: $sidebarColor;
-        border-radius: 5px;
+        background-color: transparent;
+        background-image: $glassGradient;
+        border: solid 2px;
         margin: auto;
         padding: 20px 30px;
         border-radius: 1px 25px 25px 25px;
@@ -285,6 +287,7 @@
         flex-direction: column;
         text-align: left;
         font-size: 18px;
+        margin-top: 20px;
 
         .profile-info-div {
           padding: 5px;
@@ -324,11 +327,17 @@
               background-color: #23c5d9;
               color: black;
             }
+            // DEFAULT Red THEME
+            &.defaultred {
+              background-color: crimson;
+              color: black;
+            }
           }
 
           .profile-info-strong {
             font-weight: bold;
             min-width: 90px;
+            color: $fadedTextColor;
           }
 
           .profile-website-a {

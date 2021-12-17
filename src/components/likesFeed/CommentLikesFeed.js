@@ -129,7 +129,7 @@ export default function PostLikesFeed({
   };
 
   return (
-    <div
+    <SC.ScrollThumb
       className="followfeed"
       onScroll={handleScroll}
       onClick={() => setSidebarOpen(false)}
@@ -192,6 +192,6 @@ export default function PostLikesFeed({
           </div>
         </div>
       )}
-    </div>
+    </SC.ScrollThumb>
   );
 }

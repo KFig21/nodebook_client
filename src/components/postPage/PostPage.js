@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../loader/Loader";
 import PostPagePost from "../post/PostPagePost";
 import axios from "axios";
+import SC from "../../themes/styledComponents";
 
 export default function PostPage({
   post,
@@ -74,7 +75,7 @@ export default function PostPage({
   }, [skip]);
 
   return (
-    <div
+    <SC.ScrollThumb
       className="timeline"
       onClick={() => {
         setSidebarOpen(false);
@@ -102,6 +103,6 @@ export default function PostPage({
           </div>
         )}
       </>
-    </div>
+    </SC.ScrollThumb>
   );
 }

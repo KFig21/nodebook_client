@@ -124,6 +124,10 @@ $width: 768px;
   align-items: center;
   justify-content: center;
   width: 100%;
+
+  @include mobile {
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
 }
 
 .loader-notification {
