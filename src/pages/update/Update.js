@@ -7,11 +7,16 @@ export default function Update({
   currentPage,
   setCurrentPage,
   updateType,
+  handleSidebar,
 }) {
   setCurrentPage("Update");
   return (
     <div className="container" id="container">
-      <Nav user={user} currentPage={currentPage} />
+      <Nav
+        user={user}
+        currentPage={currentPage}
+        handleSidebar={handleSidebar}
+      />
       {updateType === "user" && <UpdateUser user={user} />}
     </div>
   );

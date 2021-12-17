@@ -113,10 +113,7 @@ export default function NotificationsFeed({
 
   const NewNotificationsFeed = () => {
     return (
-      <div
-        className="notifications-container"
-        onClick={() => setSidebarOpen(false)}
-      >
+      <div className="notifications-container">
         <SC.NotificationHeader
           className="notification-type-header"
           style={sidebarOpen ? { pointerEvents: "none" } : {}}
@@ -245,7 +242,10 @@ export default function NotificationsFeed({
   };
 
   return (
-    <div className="notifications-feed-page">
+    <div
+      className="notifications-feed-page"
+      onClick={() => setSidebarOpen(false)}
+    >
       <>
         {loading ? (
           <Loader type={"full-screen"} />

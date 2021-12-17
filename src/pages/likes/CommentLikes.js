@@ -10,6 +10,7 @@ export default function CommentLikes({
   setCurrentPage,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
 }) {
   const commentId = useParams().commentId;
   const [comment, setComment] = useState("");
@@ -38,6 +39,7 @@ export default function CommentLikes({
         currentPage={currentPage}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        handleSidebar={handleSidebar}
         comment={comment}
         likesUser={user}
       />

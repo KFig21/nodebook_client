@@ -63,9 +63,9 @@ $glassGradient: linear-gradient(
   // border-radius: 10px;
   background-clip: content-box;
 
-  &:hover {
-    background-color: $primaryColorFaded;
-  }
+  // &:hover {
+  //   background-color: $primaryColorFaded;
+  // }
 }
 
 ::-webkit-resizer {
@@ -165,9 +165,10 @@ $width: 768px;
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Poppins, sans-serif;
+  // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  //   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  //   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $textWhite;

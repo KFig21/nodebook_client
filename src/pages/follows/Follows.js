@@ -9,6 +9,7 @@ export default function Followers({
   follow,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
 }) {
   return (
     <div className="container" id="container">
@@ -16,6 +17,7 @@ export default function Followers({
         currentPage={currentPage}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        handleSidebar={handleSidebar}
       />
       <FollowFeed
         follow={follow}

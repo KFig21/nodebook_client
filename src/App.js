@@ -87,10 +87,17 @@ function App() {
     setLogoutModal(false);
     setThemeModal(!themeModal);
   };
+
   const handleLogoutModal = () => {
     setSidebarOpen(false);
     setThemeModal(false);
     setLogoutModal(!logoutModal);
+  };
+
+  const handleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+    setThemeModal(false);
+    setLogoutModal(false);
   };
 
   return (
@@ -147,6 +154,7 @@ function App() {
                         fetchNotifications={fetchNotifications}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -164,6 +172,9 @@ function App() {
                         fetchNotifications={fetchNotifications}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
+                        themeModal={themeModal}
+                        logoutModal={logoutModal}
                       />
                     )
                   }
@@ -182,6 +193,7 @@ function App() {
                         notificationsCount={notificationsCount}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -200,6 +212,7 @@ function App() {
                         follow={"Followers"}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -218,6 +231,7 @@ function App() {
                         follow={"Following"}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -235,6 +249,7 @@ function App() {
                         setCurrentPage={setCurrentPage}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -252,6 +267,7 @@ function App() {
                         setCurrentPage={setCurrentPage}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -269,6 +285,7 @@ function App() {
                         setCurrentPage={setCurrentPage}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -287,6 +304,7 @@ function App() {
                         fetchNotifications={fetchNotifications}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -306,6 +324,7 @@ function App() {
                         fetchNotifications={fetchNotifications}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -325,6 +344,7 @@ function App() {
                         updateType={"user"}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -343,6 +363,7 @@ function App() {
                         fetchNotifications={fetchNotifications}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -361,6 +382,7 @@ function App() {
                         fetchNotifications={fetchNotifications}
                         sidebarOpen={sidebarOpen}
                         setSidebarOpen={setSidebarOpen}
+                        handleSidebar={handleSidebar}
                       />
                     )
                   }
@@ -373,6 +395,7 @@ function App() {
                 notificationsCount={notificationsCount}
                 sidebarOpen={sidebarOpen}
                 setSidebarOpen={setSidebarOpen}
+                handleSidebar={handleSidebar}
               />
             )}
           </div>

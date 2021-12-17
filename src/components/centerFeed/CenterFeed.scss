@@ -64,6 +64,7 @@
         .profile-info-username {
           font-size: 40px;
           margin-right: 10px;
+          font-weight: 600;
 
           @include mobile {
             font-size: 24px;
@@ -246,6 +247,7 @@
 
       .no-content-message {
         width: 100%;
+        max-width: 620px;
         display: flex;
         align-items: center;
         justify-content: center;

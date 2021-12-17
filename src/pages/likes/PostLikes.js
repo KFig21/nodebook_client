@@ -11,6 +11,7 @@ export default function PostLikes({
   setCurrentPage,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
 }) {
   const postId = useParams().postId;
   const [post, setPost] = useState("");
@@ -47,6 +48,7 @@ export default function PostLikes({
         currentPage={currentPage}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        handleSidebar={handleSidebar}
         post={post}
         likesUser={user}
       />

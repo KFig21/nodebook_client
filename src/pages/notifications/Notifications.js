@@ -9,6 +9,7 @@ export default function Notifications({
   notificationsCount,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
 }) {
   return (
     <div className="container" id="container">
@@ -16,7 +17,7 @@ export default function Notifications({
         currentPage={currentPage}
         notificationsCount={notificationsCount}
         sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
+        handleSidebar={handleSidebar}
       />
       <NotificationsFeed
         fetchNotifications={fetchNotifications}

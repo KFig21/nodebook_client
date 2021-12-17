@@ -27,6 +27,9 @@ export default function Profile({
   fetchNotifications,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
+  themeModal,
+  logoutModal,
 }) {
   const [profileUser, setProfileUser] = useState({});
   const username = useParams().username;
@@ -563,7 +566,9 @@ export default function Profile({
             profileUser={profileUser}
             currentPage={currentPage}
             sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen}
+            handleSidebar={handleSidebar}
+            themeModal={themeModal}
+            logoutModal={logoutModal}
           />
           <div
             className="profile-right-content"

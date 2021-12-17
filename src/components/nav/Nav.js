@@ -16,7 +16,9 @@ export default function Nav({
   comment,
   notificationsCount,
   sidebarOpen,
-  setSidebarOpen,
+  handleSidebar,
+  themeModal,
+  logoutModal,
 }) {
   const username = useParams().username;
   const [followed, setFollowed] = useState(false);
@@ -92,7 +94,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -110,7 +112,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -143,7 +145,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -151,15 +153,18 @@ export default function Nav({
           {profileUser ? (
             <div className="nav-info-container">
               <span className="nav-title">{profileUser.username}</span>
-              {username !== user.username && (
-                <SC.FollowButton
-                  className="follow-button"
-                  onClick={handleClick}
-                >
-                  {followed ? "Unfollow" : "Follow"}
-                  {followed ? <Remove /> : <Add />}
-                </SC.FollowButton>
-              )}
+              {username !== user.username &&
+                !sidebarOpen &&
+                !themeModal &&
+                !logoutModal && (
+                  <SC.FollowButton
+                    className="follow-button"
+                    onClick={handleClick}
+                  >
+                    {followed ? "Unfollow" : "Follow"}
+                    {followed ? <Remove /> : <Add />}
+                  </SC.FollowButton>
+                )}
             </div>
           ) : (
             <span className="nav-title">Loading...</span>
@@ -176,7 +181,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -202,7 +207,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -228,7 +233,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -264,7 +269,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>
@@ -300,7 +305,7 @@ export default function Nav({
           <div className="mobile-menu-button-container">
             <SC.Hamburger
               className={sidebarOpen ? "hamburger active" : "hamburger"}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={handleSidebar}
             >
               <MenuIcon className="hamburger-icon" />
             </SC.Hamburger>

@@ -148,65 +148,67 @@ export default function Notification({
         <Loader type={"notification"} />
       ) : (
         <>
-          <Link
-            to={
-              notification.type === "follow"
-                ? `/profile/${user.username}`
-                : `/post/${notification.postId}`
-            }
-            className="notification-link"
-          >
-            <div className="notification-wrapper">
-              <div className="notification-top">
-                <Link to={`/profile/${user.username}`}>
-                  <img
-                    className="notification-avatar"
-                    src={
-                      user.avatar
-                        ? "https://nodebook-images.s3.amazonaws.com/" +
-                          user.avatar
-                        : noAvi
-                    }
-                    alt=""
-                  />
-                </Link>
-                <div className="notification-desc">
-                  <Link
-                    className="notification-username-link"
-                    to={`/profile/${user.username}`}
-                  >
-                    <span className="notification-username">
-                      {user.username !== currentUser.username
-                        ? user.username
-                        : "You"}
-                    </span>
-                  </Link>
-                  {notification.type === "commentLike" && <CommentLikeMsg />}
-                  {notification.type === "postLike" && <PostLikeMsg />}
-                  {notification.type === "comment" && <CommentMsg />}
-                  {notification.type === "follow" && <FollowMsg />}
-                </div>
-              </div>
-              {notification.type !== "follow" && (
-                <SC.ContentBody className="content-body">
-                  <span>{content.body}</span>
-                  {content.img && (
+          <SC.NotificationWrapper>
+            <Link
+              to={
+                notification.type === "follow"
+                  ? `/profile/${user.username}`
+                  : `/post/${notification.postId}`
+              }
+              className="notification-link"
+            >
+              <div className="notification-wrapper">
+                <div className="notification-top">
+                  <Link to={`/profile/${user.username}`}>
                     <img
-                      className="notification-img"
+                      className="notification-avatar"
                       src={
-                        "https://nodebook-images.s3.amazonaws.com/" +
-                        content.img
+                        user.avatar
+                          ? "https://nodebook-images.s3.amazonaws.com/" +
+                            user.avatar
+                          : noAvi
                       }
                       alt=""
                     />
-                  )}
-                </SC.ContentBody>
-              )}
-              {notification.type === "follow" && (
-                <span className="content-follow">View their profile</span>
-              )}
-            </div>
-          </Link>
+                  </Link>
+                  <div className="notification-desc">
+                    <Link
+                      className="notification-username-link"
+                      to={`/profile/${user.username}`}
+                    >
+                      <span className="notification-username">
+                        {user.username !== currentUser.username
+                          ? user.username
+                          : "You"}
+                      </span>
+                    </Link>
+                    {notification.type === "commentLike" && <CommentLikeMsg />}
+                    {notification.type === "postLike" && <PostLikeMsg />}
+                    {notification.type === "comment" && <CommentMsg />}
+                    {notification.type === "follow" && <FollowMsg />}
+                  </div>
+                </div>
+                {notification.type !== "follow" && (
+                  <SC.ContentBody className="content-body">
+                    <span>{content.body}</span>
+                    {content.img && (
+                      <img
+                        className="notification-img"
+                        src={
+                          "https://nodebook-images.s3.amazonaws.com/" +
+                          content.img
+                        }
+                        alt=""
+                      />
+                    )}
+                  </SC.ContentBody>
+                )}
+                {notification.type === "follow" && (
+                  <span className="content-follow">View their profile</span>
+                )}
+              </div>
+            </Link>
+          </SC.NotificationWrapper>
           <div className="notification-buttons-container">
             <SC.SeenButton
               className="notification-read-button"

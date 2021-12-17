@@ -5,6 +5,11 @@ const SC = {
   ContentContainer: styled.div`
     background-color: ${(props) =>
       props.theme.colors.backgroundColor} !important;
+    };
+    &::-webkit-scrollbar-thumb {
+      background-color: ${(props) =>
+        props.theme.colors.primaryColor} !important;
+    }
   `,
 
   // ---------- SIDEBAR, FOOTER, NAV ----------
@@ -28,6 +33,9 @@ const SC = {
     background-color: ${(props) =>
       props.theme.colors.primaryColorFaded} !important;
     color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
@@ -429,6 +437,17 @@ const SC = {
         props.theme.colors.notificationDeleteButton} !important;
     }
   `,
+  NotificationWrapper: styled.span`
+    a {
+      &:hover {
+        .content-follow {
+          color: ${(props) => props.theme.colors.textWhite} !important;
+          border-color: ${(props) =>
+            props.theme.colors.primaryColor} !important;
+        }
+      }
+    }
+  `,
 
   // ---------- SHARE ----------
   ShareContainer: styled.div`
@@ -486,11 +505,15 @@ const SC = {
   `,
   ShareIcon: styled.div`
     color: ${(props) => props.theme.colors.ShareIconColor} !important;
-    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
   ShareIconActive: styled.div`
     color: ${(props) => props.theme.colors.primaryColor} !important;
-    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
 
   // ---------- MISC ----------

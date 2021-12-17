@@ -14,6 +14,7 @@ export default function Share({
   fetchNotifications,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
 }) {
   const { user: currentUser } = useContext(AuthContext);
   const body = useRef();
@@ -87,6 +88,7 @@ export default function Share({
         currentPage={currentPage}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        handleSidebar={handleSidebar}
       />
       <div className="share-page" onClick={() => setSidebarOpen(false)}>
         <div className="share-container">

@@ -12,6 +12,7 @@ export default function Post({
   fetchNotifications,
   sidebarOpen,
   setSidebarOpen,
+  handleSidebar,
 }) {
   const postId = useParams().postId;
   const [post, setPost] = useState("");
@@ -50,8 +51,8 @@ export default function Post({
         postUser={user}
         post={post}
         currentPage={currentPage}
-        setSidebarOpen={setSidebarOpen}
         sidebarOpen={sidebarOpen}
+        handleSidebar={handleSidebar}
       />
       {showModal && (
         <ImageModal
