@@ -1,9 +1,10 @@
 import React from "react";
 import "./Sidebar.scss";
+import SC from "../../themes/styledComponents";
 
 export default function Logo() {
   return (
-    <svg
+    <SC.LogoSvg
       className="navbar-svg"
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +13,7 @@ export default function Logo() {
       viewBox="0 0 4000.000000 4000.000000"
       preserveAspectRatio="xMidYMid meet"
     >
-      <g
+      <SC.LogoG
         transform="translate(0.000000,4000.000000) scale(0.100000,-0.100000)"
         fill="#000000"
         stroke="none"
@@ -41,7 +42,7 @@ export default function Logo() {
 87 c301 356 727 763 1118 1068 940 733 2065 1257 3274 1528 504 112 1019 186
 1510 216 96 6 198 12 225 14 137 10 1105 -4 1295 -18z"
         />
-      </g>
-    </svg>
+      </SC.LogoG>
+    </SC.LogoSvg>
   );
 }

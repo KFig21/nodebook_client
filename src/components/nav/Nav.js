@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Nav.scss";
 import { Add, Remove } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
+import SC from "../../themes/styledComponents";
 
 export default function Nav({
   profileUser,
@@ -86,41 +87,33 @@ export default function Nav({
 
   const TimelineNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           <span className="nav-title">{currentPage}</span>
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const FollowsNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           <span className="nav-title">
             {currentPage === "Followers" && (
@@ -139,59 +132,54 @@ export default function Nav({
             )}
           </span>
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const ProfileNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           {profileUser ? (
             <div className="nav-info-container">
               <span className="nav-title">{profileUser.username}</span>
               {username !== user.username && (
-                <button className="follow-button" onClick={handleClick}>
+                <SC.FollowButton
+                  className="follow-button"
+                  onClick={handleClick}
+                >
                   {followed ? "Unfollow" : "Follow"}
                   {followed ? <Remove /> : <Add />}
-                </button>
+                </SC.FollowButton>
               )}
             </div>
           ) : (
             <span className="nav-title">Loading...</span>
           )}
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const UpdateNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           {user ? (
             <div className="nav-info-container">
@@ -203,25 +191,21 @@ export default function Nav({
             <span className="nav-title">Loading...</span>
           )}
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const NotificationsNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           {user ? (
             <div className="nav-info-container">
@@ -233,25 +217,21 @@ export default function Nav({
             <span className="nav-title">Loading...</span>
           )}
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const PostNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           {user && post ? (
             <div className="nav-info-container">
@@ -273,25 +253,21 @@ export default function Nav({
             <span className="nav-title">Loading...</span>
           )}
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const CommentLikesNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           {user && comment ? (
             <div className="nav-info-container">
@@ -313,25 +289,21 @@ export default function Nav({
             <span className="nav-title">Loading...</span>
           )}
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 
   const PostLikesNav = () => {
     return (
-      <div className="navbar">
+      <SC.Navbar className="navbar">
         <div className="navbar-container">
           <div className="mobile-menu-button-container">
-            <div
-              className="hamburger"
+            <SC.Hamburger
+              className={sidebarOpen ? "hamburger active" : "hamburger"}
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <MenuIcon
-                className={
-                  sidebarOpen ? "hamburger-icon active" : "hamburger-icon"
-                }
-              />
-            </div>
+              <MenuIcon className="hamburger-icon" />
+            </SC.Hamburger>
           </div>
           {user && post ? (
             <div className="nav-info-container">
@@ -353,7 +325,7 @@ export default function Nav({
             <span className="nav-title">Loading...</span>
           )}
         </div>
-      </div>
+      </SC.Navbar>
     );
   };
 

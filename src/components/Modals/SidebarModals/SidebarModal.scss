@@ -1,0 +1,124 @@
+@import "../../../global.scss";
+
+.sidebar-modal-wrapper {
+  position: absolute;
+  height: calc(100% - $navbarHeight);
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: $navbarHeight;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  .sidebar-modal-container {
+    width: 95%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $sidebarColor;
+    z-index: 11;
+    border-radius: 0px 20px 20px 20px;
+    padding: 0px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.14);
+
+    @include mobile {
+      border-radius: 0px 10px 10px 10px;
+    }
+
+    @include mobileHorizontal {
+      min-width: 250px;
+      max-width: 250px;
+    }
+
+    .sidebar-modal-message {
+      padding: 20px;
+      width: 100%;
+      font-size: 20px;
+    }
+
+    .theme-modal-selection-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: space-around;
+
+      .sidebar-modal-option {
+        font-size: 17px;
+        padding: 20px;
+        width: 100%;
+        background-color: $backgroundColor;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .edit-modal-icon {
+          color: $primaryColor;
+          margin-right: 6px;
+        }
+
+        &:hover {
+          background-color: $editedBackgroundColor;
+        }
+
+        &.purple-option {
+          background-color: rgb(59, 30, 97);
+
+          &:hover {
+            background-color: rgb(87, 56, 128);
+          }
+        }
+      }
+    }
+
+    .logout-modal-selection-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
+
+      .logout-modal-option {
+        font-size: 17px;
+        padding: 20px;
+        width: 100%;
+        background-color: $backgroundColor;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .sidebar-modal-button-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+
+      button {
+        border: none;
+        padding: 7px;
+        border-radius: 5px;
+        background-color: transparent;
+        background-image: $glassGradient;
+        border: 2px solid $primaryColor;
+        font-weight: 500;
+        min-width: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        margin: 10px 20px;
+        cursor: pointer;
+        color: $textWhite;
+        outline: none;
+      }
+    }
+  }
+}

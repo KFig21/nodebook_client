@@ -7,6 +7,7 @@ import Loader from "../loader/Loader";
 import { format } from "timeago.js";
 import noAvi from "../../assets/noAvatar.png";
 import "./LikesFeed.scss";
+import SC from "../../themes/styledComponents";
 
 export default function PostLikesFeed({
   setCurrentPage,
@@ -138,7 +139,7 @@ export default function PostLikesFeed({
       ) : (
         <div className="likers-feed">
           <div className="likesFeed-post-container">
-            <div className="likesFeed-post-upper">
+            <SC.PostUpper className="likesFeed-post-upper">
               <div className="likesFeed-post-top">
                 <Link to={`/profile/${user.username}`}>
                   <img
@@ -171,7 +172,7 @@ export default function PostLikesFeed({
                   )}
                 </div>
               </div>
-            </div>
+            </SC.PostUpper>
           </div>
           <div className="likesFeed-wrapper">
             {likers.length > 0 ? (

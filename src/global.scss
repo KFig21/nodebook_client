@@ -7,27 +7,38 @@ $postContainerBackgroundColor: rgba(196, 196, 196, 0.137);
 $commentButtonBackgroundColor: rgba(180, 180, 180, 0.09);
 $textWhite: rgb(247, 247, 247);
 $primaryColor: #4bb44b;
-$primaryColorFaded: rgba(75, 180, 75, 0.7);
+$primaryColorFaded: #4bb44bb3;
 $primaryColorGlow: rgba(75, 180, 75, 0.45);
 $formInputFocusColor: rgba(100, 100, 100, 0.5);
 $formInputColor: rgba(100, 100, 100, 0.28);
 $navbarHeight: 60px;
+$testColor: #695199;
 $footerHeight: 50px;
-$scrollThumbColor: hsla(0, 0%, 45%, 0.7);
+$scrollThumbColor: rgba(115, 115, 115, 0.7);
 $scollTrackColor: transparent;
 $subTextColor: rgb(175, 175, 175);
 $borderColor: rgb(100, 100, 100);
 $darkBorder: rgb(15, 15, 15);
-$deleteButtonTextColor: rgb(255, 23, 70);
-$deleteButtonHoverColor: rgba(255, 79, 114, 0.2);
+$deleteButtonTextColor: #ff1746;
+$deleteButtonHoverColor: #ff4f7233;
 $editButtonTextColor: orange;
 $editButtonBackgroundColor: rgba(255, 166, 0, 0.2);
-$fadedTextColor: rgb(197, 197, 197);
+$fadedTextColor: #c5c5c5;
 $fadedButtonColor: rgb(71, 71, 71);
 $editedBackgroundColor: rgb(67, 67, 67);
 $notificationHoverColor: rgba(151, 151, 151, 0.07);
 $modalWrapperBackgroundColor: rgba(141, 141, 141, 0.26);
 $darkModalWrapperBackgroundColor: rgba(33, 36, 37, 0.65);
+$notificationSeenButtonFaded: transparent;
+$notificationSeenButtonFadedText: #474747;
+$notificationSeenButtonFadedBorder: #474747;
+$notificationDeleteButtonFaded: transparent;
+$notificationDeleteButtonFadedText: #ff4f7233;
+$notificationDeleteButtonFadedBorder: #ff4f7233;
+$notificationSeenButton: #4bb44b;
+$notificationDeleteButton: #ff1746;
+$notificationSeenButtonText: #000000;
+$notificationDeleteButtonText: #000000;
 $glassGradient: linear-gradient(
   135deg,
   rgba(255, 255, 255, 0.04) 0%,
@@ -58,9 +69,9 @@ $glassGradient: linear-gradient(
 }
 
 ::-webkit-resizer {
-  // display: none;
-  border-right: 2px solid $primaryColorFaded;
-  border-bottom: 2px solid $primaryColorFaded;
+  // FIND OUT HOW TO CHANGE COLOR WITH STYLED COMPONENTS
+  border-right: 2px solid $borderColor;
+  border-bottom: 2px solid $borderColor;
   cursor: pointer;
   background: linear-gradient(
     135deg,
@@ -112,7 +123,6 @@ $width: 768px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $backgroundColor;
   width: 100%;
 }
 
@@ -121,7 +131,6 @@ $width: 768px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $backgroundColor;
 }
 
 .loader-center-feed {
@@ -188,7 +197,6 @@ code {
   width: 100%;
   position: relative;
   height: 100vh;
-  background-color: $backgroundColor;
   background-size: cover;
   background-position: center;
   // overflow: overlay;

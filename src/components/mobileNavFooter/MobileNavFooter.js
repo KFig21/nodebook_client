@@ -12,6 +12,7 @@ import {
   Create,
   CreateOutlined,
 } from "@material-ui/icons";
+import SC from "../../themes/styledComponents";
 
 export default function MobileNavFooter({
   currentPage,
@@ -21,7 +22,7 @@ export default function MobileNavFooter({
 }) {
   const { user } = useContext(AuthContext);
   return (
-    <div
+    <SC.NavFooter
       className="mobile-nav-footer"
       style={sidebarOpen ? { pointerEvents: "none" } : {}}
     >
@@ -82,11 +83,11 @@ export default function MobileNavFooter({
                 <NotificationsOutlined className="footer-icon" />
                 {notificationsCount > 0 && (
                   <div className="footer-notification-badge-container">
-                    <div className="footer-notification-badge">
+                    <SC.NotificationBadge className="footer-notification-badge">
                       <span className="footer-badge-count">
                         {notificationsCount}
                       </span>
-                    </div>
+                    </SC.NotificationBadge>
                   </div>
                 )}
               </div>
@@ -109,6 +110,6 @@ export default function MobileNavFooter({
           </div>
         </Link>
       </div>
-    </div>
+    </SC.NavFooter>
   );
 }

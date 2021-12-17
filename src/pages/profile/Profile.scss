@@ -57,10 +57,10 @@
 
           .edit-icon {
             cursor: pointer;
-            color: $textWhite;
+            // color: $textWhite;
 
             &:hover {
-              color: $primaryColor;
+              // color: $primaryColor;
             }
           }
         }
@@ -94,7 +94,6 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.3);
 
           @include mobile {
             top: 50px;
@@ -149,7 +148,7 @@
   cursor: pointer;
 }
 
-.avatar-modal-wrapper {
+.profile-modal-wrapper {
   position: absolute;
   height: calc(100% - $navbarHeight);
   width: 100%;
@@ -162,14 +161,14 @@
   justify-content: center;
   z-index: 10;
 
-  .avatar-modal-container {
+  .profile-modal-container {
     width: 95%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: $sidebarColor;
+    // background-color: $sidebarColor;
     z-index: 11;
     border-radius: 0px 20px 20px 20px;
     padding: 0px;
@@ -217,7 +216,7 @@
             .file-icon {
               font-size: 18px;
               margin-right: 10px;
-              color: $primaryColorFaded;
+              // color: $primaryColorFaded;
 
               @include mobileHorizontal {
                 margin-right: 8px;
@@ -235,7 +234,7 @@
               font-weight: 500;
 
               @include mobileHorizontal {
-                font-size: 14px;
+                font-size: 13px;
               }
             }
           }
@@ -433,7 +432,7 @@
         justify-content: center;
 
         .edit-modal-icon {
-          color: $primaryColor;
+          // color: $primaryColor;
           margin-right: 6px;
         }
 

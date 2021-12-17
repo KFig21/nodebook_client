@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import "./Timeline.scss";
 import axios from "axios";
 // component imports
@@ -6,7 +7,9 @@ import Loader from "../../components/loader/Loader";
 import Share from "../share/Share";
 import Post from "../post/Post";
 import { AuthContext } from "../../context/AuthContext";
-import ImageModal from "../imageModal/ImageModal";
+import ImageModal from "../Modals/ImageModals/ImageModal";
+import SC from "../../themes/styledComponents";
+import { Language } from "@material-ui/icons";
 
 export default function Timeline({
   fetchNotifications,
@@ -95,6 +98,16 @@ export default function Timeline({
                   handleSetModal={handleSetModal}
                 />
               ))}
+              {posts.length === 0 && !loading && (
+                <SC.ProfileNoContent className="no-content-message">
+                  Check out users in
+                  <Link to={`/explore/${user._id}`}>
+                    <SC.ExploreLink>
+                      <Language className="timeline-icon" /> explore
+                    </SC.ExploreLink>
+                  </Link>
+                </SC.ProfileNoContent>
+              )}
             </div>
           </div>
         )}

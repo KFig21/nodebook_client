@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./NotificationsFeed.scss";
 import Loader from "../../components/loader/Loader";
 import Notification from "./notification/Notification";
+import SC from "../../themes/styledComponents";
 
 export default function NotificationsFeed({
   fetchNotifications,
@@ -116,7 +117,7 @@ export default function NotificationsFeed({
         className="notifications-container"
         onClick={() => setSidebarOpen(false)}
       >
-        <div
+        <SC.NotificationHeader
           className="notification-type-header"
           style={sidebarOpen ? { pointerEvents: "none" } : {}}
         >
@@ -128,34 +129,34 @@ export default function NotificationsFeed({
             </span>
             {newNotifications.length > 0 && (
               <div className="notification-type-button-container">
-                <button
+                <SC.SeenButton
                   className="notification-read-button desktop-button"
                   onClick={() => handleSeenStatus("new")}
                 >
                   Mark all as seen
-                </button>
-                <button
+                </SC.SeenButton>
+                <SC.DeleteButton
                   className="notification-delete-button desktop-button"
                   onClick={() => handleDeleteBatch("new")}
                 >
                   Delete all new
-                </button>
-                <button
+                </SC.DeleteButton>
+                <SC.SeenButton
                   className="notification-read-button mobile-button"
                   onClick={() => handleSeenStatus("new")}
                 >
                   All seen
-                </button>
-                <button
+                </SC.SeenButton>
+                <SC.DeleteButton
                   className="notification-delete-button mobile-button"
                   onClick={() => handleDeleteBatch("new")}
                 >
                   Delete all
-                </button>
+                </SC.DeleteButton>
               </div>
             )}
           </div>
-        </div>
+        </SC.NotificationHeader>
         <div
           className="notifications-holder"
           style={sidebarOpen ? { pointerEvents: "none" } : {}}
@@ -184,7 +185,7 @@ export default function NotificationsFeed({
   const SeenNotificationsFeed = () => {
     return (
       <div className="notifications-container">
-        <div className="notification-type-header">
+        <SC.NotificationHeader className="notification-type-header">
           <div className="notification-type-header-wrapper">
             <span className="notification-type-header-title ">
               Seen {"("}
@@ -193,34 +194,34 @@ export default function NotificationsFeed({
             </span>
             {seenNotifications.length > 0 && (
               <div className="notification-type-button-container">
-                <button
+                <SC.SeenButton
                   className="notification-read-button desktop-button"
                   onClick={() => handleSeenStatus("seen")}
                 >
                   Mark all as new
-                </button>
-                <button
+                </SC.SeenButton>
+                <SC.DeleteButton
                   className="notification-delete-button desktop-button"
                   onClick={() => handleDeleteBatch("seen")}
                 >
                   Delete all seen
-                </button>
-                <button
+                </SC.DeleteButton>
+                <SC.SeenButton
                   className="notification-read-button mobile-button"
                   onClick={() => handleSeenStatus("seen")}
                 >
                   All new
-                </button>
-                <button
+                </SC.SeenButton>
+                <SC.DeleteButton
                   className="notification-delete-button mobile-button"
                   onClick={() => handleDeleteBatch("seen")}
                 >
                   Delete all
-                </button>
+                </SC.DeleteButton>
               </div>
             )}
           </div>
-        </div>
+        </SC.NotificationHeader>
         <div className="notifications-holder">
           {seenNotifications.length > 0 ? (
             seenNotifications.map((notification) => (

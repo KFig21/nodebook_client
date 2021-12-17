@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PostLikesFeed from "../../components/likesFeed/PostLikesFeed";
-import ImageModal from "../../components/imageModal/ImageModal";
+import ImageModal from "../../components/Modals/ImageModals/ImageModal";
 import Nav from "../../components/nav/Nav";
 import { useParams } from "react-router";
 import axios from "axios";

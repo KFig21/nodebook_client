@@ -16,8 +16,9 @@ import {
 } from "@material-ui/icons";
 import { Edit } from "@material-ui/icons";
 import Loader from "../../components/loader/Loader";
-import ImageModal from "../../components/imageModal/ImageModal";
-import CoverImageModal from "../../components/imageModal/CoverImageModal";
+import ImageModal from "../../components/Modals/ImageModals/ImageModal";
+import CoverImageModal from "../../components/Modals/ImageModals/CoverImageModal";
+import SC from "../../themes/styledComponents";
 import "./Profile.scss";
 
 export default function Profile({
@@ -351,6 +352,37 @@ export default function Profile({
   return (
     <>
       <div className="container" id="container">
+        {/* EDIT IMAGE SELECTION MODAL */}
+        {editModal && (
+          <div className="profile-modal-wrapper">
+            <div className="profile-modal-container">
+              <SC.ProfileModalMessageContainer className="edit-modal-message">
+                Which image do you want to change
+              </SC.ProfileModalMessageContainer>
+              <SC.ProfileModalMessageContainer className="edit-modal-selection-container">
+                <SC.ProfileModalButton
+                  className="edit-modal-option"
+                  onClick={openAvatarEditModal}
+                >
+                  <SC.ProfileModalButtonIcon>
+                    <AccountCircle className="edit-modal-icon" />
+                  </SC.ProfileModalButtonIcon>
+                  Avatar
+                </SC.ProfileModalButton>
+                <SC.ProfileModalButton
+                  className="edit-modal-option"
+                  onClick={openCoverEditModal}
+                >
+                  <SC.ProfileModalButtonIcon>
+                    <ImageIcon className="edit-modal-icon" />
+                  </SC.ProfileModalButtonIcon>
+                  Cover
+                </SC.ProfileModalButton>
+              </SC.ProfileModalMessageContainer>
+            </div>
+            <div className="modal-background" onClick={closeAllModals}></div>
+          </div>
+        )}
         {/* IMAGE MODAL */}
         {showImageModal && (
           <ImageModal
@@ -368,35 +400,11 @@ export default function Profile({
             setShowModal={setShowCoverImageModal}
           />
         )}
-        {/* EDIT IMAGE SELECTION MODAL */}
-        {editModal && (
-          <div className="avatar-modal-wrapper">
-            <div className="avatar-modal-container">
-              <div className="edit-modal-message">
-                Which image do you want to change
-              </div>
-              <div className="edit-modal-selection-container">
-                <div
-                  className="edit-modal-option"
-                  onClick={openAvatarEditModal}
-                >
-                  <AccountCircle className="edit-modal-icon" />
-                  Avatar
-                </div>
-                <div className="edit-modal-option" onClick={openCoverEditModal}>
-                  <ImageIcon className="edit-modal-icon" />
-                  Cover
-                </div>
-              </div>
-            </div>
-            <div className="modal-background" onClick={closeAllModals}></div>
-          </div>
-        )}
         {/* AVATAR CHANGE MODAL */}
         {avatarModal &&
           (!sending ? (
-            <div className="avatar-modal-wrapper">
-              <div className="avatar-modal-container">
+            <div className="profile-modal-wrapper">
+              <SC.ProfileModalMessageContainer className="profile-modal-container">
                 {file && (
                   <div className="avatar-modal-img-container">
                     <img
@@ -415,7 +423,7 @@ export default function Profile({
                     />
                   </div>
                 )}
-                <div className="avatar-modal-bottom-container">
+                <SC.ProfileModalMessageContainer className="avatar-modal-bottom-container">
                   <form
                     className="avatar-modal-bottom"
                     onSubmit={handleAvatarUpdate}
@@ -423,7 +431,9 @@ export default function Profile({
                   >
                     <div className="avatar-modal-options">
                       <label htmlFor="file" className="avatar-modal-option">
-                        <PermMedia className="file-icon" />
+                        <SC.ProfileModalFileIcon>
+                          <PermMedia className="file-icon" />
+                        </SC.ProfileModalFileIcon>
                         <span className="avatar-modal-option-text">
                           Select a new avatar
                         </span>
@@ -437,7 +447,7 @@ export default function Profile({
                         />
                       </label>
                     </div>
-                    <button
+                    <SC.ProfileImageSaveButton
                       type="submit"
                       className={
                         isInvalid
@@ -447,10 +457,10 @@ export default function Profile({
                       disabled={isInvalid}
                     >
                       save
-                    </button>
+                    </SC.ProfileImageSaveButton>
                   </form>
-                </div>
-              </div>
+                </SC.ProfileModalMessageContainer>
+              </SC.ProfileModalMessageContainer>
               {sending ? (
                 <div className="modal-background"></div>
               ) : (
@@ -461,18 +471,18 @@ export default function Profile({
               )}
             </div>
           ) : (
-            <div className="avatar-modal-wrapper">
-              <div className="avatar-modal-container">
+            <div className="profile-modal-wrapper">
+              <SC.ProfileModalMessageContainer className="profile-modal-container">
                 <Loader />
-              </div>
+              </SC.ProfileModalMessageContainer>
               <div className="modal-background"></div>
             </div>
           ))}
         {/* COVER CHANGE MODAL */}
         {coverModal &&
           (!sending ? (
-            <div className="avatar-modal-wrapper">
-              <div className="avatar-modal-container">
+            <div className="profile-modal-wrapper">
+              <SC.ProfileModalMessageContainer className="profile-modal-container">
                 {file && (
                   <div className="cover-modal-img-container">
                     <img
@@ -491,7 +501,7 @@ export default function Profile({
                     />
                   </div>
                 )}
-                <div className="avatar-modal-bottom-container">
+                <SC.ProfileModalMessageContainer className="avatar-modal-bottom-container">
                   <form
                     className="avatar-modal-bottom"
                     onSubmit={handleCoverUpdate}
@@ -499,7 +509,9 @@ export default function Profile({
                   >
                     <div className="avatar-modal-options">
                       <label htmlFor="file" className="avatar-modal-option">
-                        <PermMedia className="file-icon" />
+                        <SC.ProfileModalFileIcon>
+                          <PermMedia className="file-icon" />
+                        </SC.ProfileModalFileIcon>
                         <span className="avatar-modal-option-text">
                           Select a new cover
                         </span>
@@ -513,7 +525,7 @@ export default function Profile({
                         />
                       </label>
                     </div>
-                    <button
+                    <SC.ProfileImageSaveButton
                       type="submit"
                       className={
                         isInvalid
@@ -523,10 +535,10 @@ export default function Profile({
                       disabled={isInvalid}
                     >
                       save
-                    </button>
+                    </SC.ProfileImageSaveButton>
                   </form>
-                </div>
-              </div>
+                </SC.ProfileModalMessageContainer>
+              </SC.ProfileModalMessageContainer>
               {sending ? (
                 <div className="modal-background"></div>
               ) : (
@@ -537,10 +549,10 @@ export default function Profile({
               )}
             </div>
           ) : (
-            <div className="avatar-modal-wrapper">
-              <div className="avatar-modal-container">
+            <div className="profile-modal-wrapper">
+              <SC.ProfileModalMessageContainer className="profile-modal-container">
                 <Loader />
-              </div>
+              </SC.ProfileModalMessageContainer>
               <div className="modal-background"></div>
             </div>
           ))}
@@ -563,13 +575,13 @@ export default function Profile({
               <div className="profile-cover">
                 <div className="cover-img-container">
                   {username === currentUser.username && (
-                    <div
+                    <SC.ProfileCoverEditButtonIcon
                       className="edit-icon-container"
                       title="update cover image"
                       onClick={openEditModal}
                     >
                       <Edit className="edit-icon" />
-                    </div>
+                    </SC.ProfileCoverEditButtonIcon>
                   )}
                   <img
                     onClick={() => setShowCoverImageModal(true)}
@@ -584,7 +596,7 @@ export default function Profile({
                   />
                 </div>
                 {username === currentUser.username ? (
-                  <div className="profile-img-container">
+                  <SC.AvatarContainer className="profile-img-container">
                     <img
                       className="profile-avatar"
                       src={
@@ -595,9 +607,9 @@ export default function Profile({
                       }
                       alt=""
                     />
-                  </div>
+                  </SC.AvatarContainer>
                 ) : (
-                  <div className="profile-img-container">
+                  <SC.AvatarContainer className="profile-img-container">
                     <img
                       className="profile-avatar"
                       src={
@@ -608,7 +620,7 @@ export default function Profile({
                       }
                       alt=""
                     />
-                  </div>
+                  </SC.AvatarContainer>
                 )}
               </div>
             </div>

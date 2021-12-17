@@ -1,4 +1,4 @@
-@import "../../global.scss";
+@import "../../../global.scss";
 
 .image-modal-wrapper {
   position: absolute;
@@ -51,24 +51,25 @@
       }
     }
 
-    .view-post-button {
+    a {
       position: absolute;
-      bottom: -50px;
+      bottom: -65px;
 
       @include mobileHorizontal {
-        bottom: -45px;
+        bottom: -55px;
       }
 
-      a {
+      .view-post-button {
         font-size: 18px;
-        padding: 10px 20px;
+        padding: 9px 20px 12px 20px;
         border-radius: 50px;
-        background-color: rgba(146, 146, 146, 0.3);
         border: solid 2px transparent;
         cursor: pointer;
         transition: all 0.2s ease;
         z-index: 10;
-        color: rgba(255, 255, 255, 0.548);
+
+        // background-color: rgba(146, 146, 146, 0.3);
+        // color: rgba(255, 255, 255, 0.548);
 
         @include mobileHorizontal {
           padding: 8px 20px;

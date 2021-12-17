@@ -15,7 +15,7 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import Image from "../image/Image";
 import Follower from "../follower/Follower";
-import styled from "styled-components";
+import SC from "../../themes/styledComponents";
 
 export default function CenterFeed({
   profileUser,
@@ -42,98 +42,129 @@ export default function CenterFeed({
     return formattedDate;
   };
 
-  const Heading = styled.h1`
-    color: ${(props) => props.theme.colors.text};
-  `;
+  const formatTheme = (theme) => {
+    let themeClass = theme.split(" ").join("");
+    return themeClass;
+  };
 
   return (
     <>
       <div className="profile-feed">
         {/* <Heading>test</Heading> */}
         <div className="profile-header">
-          <div className="profile-header-wrapper">
+          <SC.ProfileHeader className="profile-header-wrapper">
             <div className="profile-info">
               <h4 className="profile-info-username">{profileUser.username}</h4>
               <span className="profile-info-name">
                 {profileUser.firstname} {profileUser.lastname}
               </span>
             </div>
-          </div>
+          </SC.ProfileHeader>
         </div>
-        <div
+        <SC.ProfileHeader
           className="profile-header-buttons-container"
           style={sidebarOpen ? { pointerEvents: "none" } : {}}
         >
-          <div className="profile-header-buttons-wrapper">
+          <SC.ProfileHeader className="profile-header-buttons-wrapper">
             {/* INFO BUTTON */}
-            <div
+            <SC.ProfileNavButton
               onClick={() => setToInfo()}
               className={
                 "profile-info-clickable " +
                 (feed === "info" ? "pic-active" : "")
               }
             >
-              <span className="button-name">info</span>
-              <AccountBox className="profile-info-icon" />
-            </div>
+              <SC.ProfileNavButtonText className="button-name">
+                info
+              </SC.ProfileNavButtonText>
+              <SC.ProfileNavButtonIcon
+                className={feed === "info" ? "icon-active" : ""}
+              >
+                <AccountBox className="profile-info-icon" />
+              </SC.ProfileNavButtonIcon>
+            </SC.ProfileNavButton>
             {/* POSTS BUTTON */}
-            <div
+            <SC.ProfileNavButton
               onClick={() => getInitialPosts()}
               className={
                 "profile-info-clickable " +
                 (feed === "posts" ? "pic-active" : "")
               }
             >
-              <span className="count">
+              <SC.ProfileNavButtonCount className="count">
                 {profileUser.posts ? profileUser.posts.length : "0"}
-              </span>
-              <span className="button-name">posts</span>
-              <Chat className="profile-info-icon" />
-            </div>
+              </SC.ProfileNavButtonCount>
+              <SC.ProfileNavButtonText className="button-name">
+                posts
+              </SC.ProfileNavButtonText>
+              <SC.ProfileNavButtonIcon
+                className={feed === "posts" ? "icon-active" : ""}
+              >
+                <Chat className="profile-info-icon" />
+              </SC.ProfileNavButtonIcon>
+            </SC.ProfileNavButton>
             {/* IMAGES BUTTON */}
-            <div
+            <SC.ProfileNavButton
               onClick={() => getInitialImages()}
               className={
                 "profile-info-clickable " +
                 (feed === "images" ? "pic-active" : "")
               }
             >
-              <span className="count">
+              <SC.ProfileNavButtonCount className="count">
                 {profileUser.images ? profileUser.images.length : "0"}
-              </span>
-              <span className="button-name">images</span>
-              <ImageIcon className="profile-info-icon" />
-            </div>
+              </SC.ProfileNavButtonCount>
+              <SC.ProfileNavButtonText className="button-name">
+                images
+              </SC.ProfileNavButtonText>
+              <SC.ProfileNavButtonIcon
+                className={feed === "images" ? "icon-active" : ""}
+              >
+                <ImageIcon className="profile-info-icon" />
+              </SC.ProfileNavButtonIcon>
+            </SC.ProfileNavButton>
             {/* FOLLOWERS BUTTON */}
-            <div
+            <SC.ProfileNavButton
               onClick={() => getInitialFollows("followers")}
               className={
                 "profile-info-clickable " +
                 (feed === "followers" ? "pic-active" : "")
               }
             >
-              <span className="count">
+              <SC.ProfileNavButtonCount className="count">
                 {profileUser.followers ? profileUser.followers.length : "0"}
-              </span>
-              <span className="button-name">followers</span>
-              <Group className="profile-info-icon" />
-            </div>
+              </SC.ProfileNavButtonCount>
+              <SC.ProfileNavButtonText className="button-name">
+                followers
+              </SC.ProfileNavButtonText>
+              <SC.ProfileNavButtonIcon
+                className={feed === "followers" ? "icon-active" : ""}
+              >
+                <Group className="profile-info-icon" />
+              </SC.ProfileNavButtonIcon>
+            </SC.ProfileNavButton>
             {/* FOLLOWING BUTTON */}
-            <div
+            <SC.ProfileNavButton
               onClick={() => getInitialFollows("following")}
               className={
                 "profile-info-clickable " +
                 (feed === "following" ? "pic-active" : "")
               }
             >
-              <span className="count">
+              <SC.ProfileNavButtonCount className="count">
                 {profileUser.followings ? profileUser.followings.length : "0"}
-              </span>
-              <span className="button-name">following</span>
-              <Group className="profile-info-icon" />
-            </div>
-          </div>
-        </div>
+              </SC.ProfileNavButtonCount>
+              <SC.ProfileNavButtonText className="button-name">
+                following
+              </SC.ProfileNavButtonText>
+              <SC.ProfileNavButtonIcon
+                className={feed === "following" ? "icon-active" : ""}
+              >
+                <Group className="profile-info-icon" />
+              </SC.ProfileNavButtonIcon>
+            </SC.ProfileNavButton>
+          </SC.ProfileHeader>
+        </SC.ProfileHeader>
         {loading ? (
           <Loader type={"center-feed"} />
         ) : (
@@ -141,12 +172,12 @@ export default function CenterFeed({
             {/* INFO FEED */}
             {feed === "info" && (
               <div className="feed-wrapper">
-                <div className="profileInfo-container">
+                <SC.ProfileInfoContainer className="profileInfo-container">
                   {currentUser._id === profileUser._id && (
                     <Link to={`/${currentUser._id}/update`}>
-                      <div title="update user info">
+                      <SC.ProfileEditButtonIcon title="update user info">
                         <Edit className="edit-icon" />
-                      </div>
+                      </SC.ProfileEditButtonIcon>
                     </Link>
                   )}
                   <div className="profile-info-div">
@@ -181,20 +212,31 @@ export default function CenterFeed({
                     <div className="profile-info-strong">Website:</div>{" "}
                     <div className="profile-info-content">
                       {profileUser.website ? (
-                        <a
+                        <SC.ProfileLink
                           href={profileUser.website}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="profile-website-a"
                         >
                           {profileUser.website}
-                        </a>
+                        </SC.ProfileLink>
                       ) : (
                         "private"
                       )}
                     </div>
                   </div>
-                </div>
+                  {/* Theme */}
+                  <div className="profile-info-div theme">
+                    <div className="profile-info-strong">Theme:</div>{" "}
+                    <div
+                      className={`profile-info-content theme-container ${formatTheme(
+                        profileUser.theme
+                      )}`}
+                    >
+                      {profileUser.theme}
+                    </div>
+                  </div>
+                </SC.ProfileInfoContainer>
               </div>
             )}
             {/* POST FEED */}
@@ -219,7 +261,9 @@ export default function CenterFeed({
                     ))}
                   </div>
                 ) : (
-                  <span className="no-content-message">No posts yet ☹</span>
+                  <SC.ProfileNoContent className="no-content-message">
+                    No posts yet ☹
+                  </SC.ProfileNoContent>
                 )}
               </div>
             )}
@@ -239,7 +283,9 @@ export default function CenterFeed({
                     ))}
                   </div>
                 ) : (
-                  <span className="no-content-message">No images yet ☹</span>
+                  <SC.ProfileNoContent className="no-content-message">
+                    No images yet ☹
+                  </SC.ProfileNoContent>
                 )}
               </div>
             )}
@@ -257,9 +303,9 @@ export default function CenterFeed({
                     ))}
                   </div>
                 ) : (
-                  <span className="no-content-message">
+                  <SC.ProfileNoContent className="no-content-message">
                     Nothing to see here ☹
-                  </span>
+                  </SC.ProfileNoContent>
                 )}
               </div>
             )}
@@ -277,9 +323,9 @@ export default function CenterFeed({
                     ))}
                   </div>
                 ) : (
-                  <span className="no-content-message">
+                  <SC.ProfileNoContent className="no-content-message">
                     Nothing to see here ☹
-                  </span>
+                  </SC.ProfileNoContent>
                 )}
               </div>
             )}

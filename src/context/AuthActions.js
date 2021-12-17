@@ -11,6 +11,11 @@ export const LoginFailure = () => ({
   type: "LOGIN_FAILURE",
 });
 
+export const Theme = (theme) => ({
+  type: "THEME",
+  payload: theme,
+});
+
 export const Follow = (userId) => ({
   type: "FOLLOW",
   payload: userId,

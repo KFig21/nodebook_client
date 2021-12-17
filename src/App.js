@@ -16,12 +16,17 @@ import PostLikes from "./pages/likes/PostLikes";
 import CommentLikes from "./pages/likes/CommentLikes";
 import Explore from "./pages/explore/Explore";
 import Notifications from "./pages/notifications/Notifications";
+import Share from "./pages/share/Share";
+// components
 import Sidebar from "./components/sidebar/Sidebar";
 import MobileNavFooter from "./components/mobileNavFooter/MobileNavFooter";
-import Share from "./pages/share/Share";
+import LogoutModal from "./components/Modals/SidebarModals/LogoutModal";
+import ThemeModal from "./components/Modals/SidebarModals/ThemeModal";
 // themes
 import { ThemeProvider } from "styled-components";
-import defaultTheme from "./styles/purpleTheme";
+import SC from "./themes/styledComponents";
+import defaultTheme_Green from "./themes/defaultTheme_Green";
+import { findTheme } from "./helpers/helperFunctions";
 
 function App() {
   const [userAuth, setUserAuth] = useState(false);
@@ -30,6 +35,11 @@ function App() {
   const [userData, setUserData] = useState({});
   const [notificationsCount, setNotificationsCount] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [theme, setTheme] = useState(defaultTheme_Green);
+
+  const [themeModal, setThemeModal] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState("");
+  const [logoutModal, setLogoutModal] = useState(false);
 
   const fetchNotifications = async () => {
     // set a buffer for new notifications to get set before fetching
@@ -65,7 +75,23 @@ function App() {
     }
   }, [user]);
 
-  const [theme, setTheme] = useState(defaultTheme);
+  // set theme
+  useEffect(() => {
+    if (user) {
+      setTheme(findTheme(user.theme));
+    }
+  }, [user]);
+
+  const handleThemeModal = () => {
+    setSidebarOpen(false);
+    setLogoutModal(false);
+    setThemeModal(!themeModal);
+  };
+  const handleLogoutModal = () => {
+    setSidebarOpen(false);
+    setThemeModal(false);
+    setLogoutModal(!logoutModal);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -78,10 +104,34 @@ function App() {
                 notificationsCount={notificationsCount}
                 sidebarOpen={sidebarOpen}
                 setSidebarOpen={setSidebarOpen}
-                setTheme={setTheme}
+                handleThemeModal={handleThemeModal}
+                handleLogoutModal={handleLogoutModal}
               />
             )}
-            <div className={"left-container"}>
+            <SC.ContentContainer className={"content-container"}>
+              {/* LOGOUT MODAL */}
+              {logoutModal && (
+                <LogoutModal
+                  setLogoutModal={setLogoutModal}
+                  setSidebarOpen={setSidebarOpen}
+                  handleLogoutModal={handleLogoutModal}
+                />
+              )}
+
+              {/* THEME MODAL */}
+              {themeModal && (
+                <ThemeModal
+                  setLogoutModal={setLogoutModal}
+                  setSidebarOpen={setSidebarOpen}
+                  setThemeModal={setThemeModal}
+                  selectedTheme={selectedTheme}
+                  setSelectedTheme={setSelectedTheme}
+                  setTheme={setTheme}
+                  themeModal={themeModal}
+                  handleThemeModal={handleThemeModal}
+                />
+              )}
+
               <Routes>
                 {/* HOME ROUTE, if no user go to LOGIN */}
                 <Route
@@ -316,7 +366,7 @@ function App() {
                   }
                 ></Route>
               </Routes>
-            </div>
+            </SC.ContentContainer>
             {user && (
               <MobileNavFooter
                 currentPage={currentPage}

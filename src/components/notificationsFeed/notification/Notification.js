@@ -14,6 +14,7 @@ import {
 } from "@material-ui/icons";
 import "./Notification.scss";
 import noAvi from "../../../assets/noAvatar.png";
+import SC from "../../../themes/styledComponents";
 
 export default function Notification({
   notification,
@@ -142,7 +143,7 @@ export default function Notification({
   };
 
   return (
-    <div className="notification-container">
+    <SC.NotificationContainer className="notification-container">
       {loading ? (
         <Loader type={"notification"} />
       ) : (
@@ -187,7 +188,7 @@ export default function Notification({
                 </div>
               </div>
               {notification.type !== "follow" && (
-                <div className="content-body">
+                <SC.ContentBody className="content-body">
                   <span>{content.body}</span>
                   {content.img && (
                     <img
@@ -199,7 +200,7 @@ export default function Notification({
                       alt=""
                     />
                   )}
-                </div>
+                </SC.ContentBody>
               )}
               {notification.type === "follow" && (
                 <span className="content-follow">View their profile</span>
@@ -207,7 +208,7 @@ export default function Notification({
             </div>
           </Link>
           <div className="notification-buttons-container">
-            <button
+            <SC.SeenButton
               className="notification-read-button"
               onClick={handleMarkAsRead}
             >
@@ -216,16 +217,16 @@ export default function Notification({
               ) : (
                 <AddAlertOutlined className="button-icon" />
               )}
-            </button>
-            <button
+            </SC.SeenButton>
+            <SC.DeleteButton
               className="notification-delete-button"
               onClick={handleDelete}
             >
               <DeleteForeverOutlined className="button-icon" />
-            </button>
+            </SC.DeleteButton>
           </div>
         </>
       )}
-    </div>
+    </SC.NotificationContainer>
   );
 }

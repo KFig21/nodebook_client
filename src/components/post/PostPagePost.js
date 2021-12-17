@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Comment from "./comment/Comment";
 import noAvi from "../../assets/noAvatar.png";
 import "./Post.scss";
+import SC from "../../themes/styledComponents";
 
 export default function Post({
   post,
@@ -195,7 +196,7 @@ export default function Post({
         className="post-wrapper"
         style={sidebarOpen ? { pointerEvents: "none" } : {}}
       >
-        <div className="post-upper">
+        <SC.PostUpper className="post-upper">
           <div className="post-top">
             <Link to={`/profile/${user.username}`}>
               <img
@@ -268,19 +269,21 @@ export default function Post({
                 </div>
               )}
               {post.edited && (
-                <span className="post-edit">
+                <SC.PostEdit className="post-edit">
                   edit: {format(post.editedtimestamp)}
-                </span>
+                </SC.PostEdit>
               )}
             </div>
             {/* options button - delete/edit */}
             {(user.username === currentUser.username ||
               currentUser.isAdmin) && (
               <div className="post-top-right">
-                <MoreVert
-                  className="post-options-icon"
-                  onClick={() => handleShowOptions()}
-                />
+                <SC.MoreVert>
+                  <MoreVert
+                    className="post-options-icon"
+                    onClick={() => handleShowOptions()}
+                  />
+                </SC.MoreVert>
                 {showOptions && !showDeletePost && !showEdit && (
                   <div className="post-options-div">
                     <button
@@ -304,9 +307,13 @@ export default function Post({
           <div className="post-bottom">
             <div className="post-bottom-left">
               {isLiked ? (
-                <Favorite className="like-icon liked" onClick={likeHandler} />
+                <SC.LikeIconContainer>
+                  <Favorite className="like-icon liked" onClick={likeHandler} />
+                </SC.LikeIconContainer>
               ) : (
-                <FavoriteBorder className="like-icon" onClick={likeHandler} />
+                <SC.LikeIconContainer>
+                  <FavoriteBorder className="like-icon" onClick={likeHandler} />
+                </SC.LikeIconContainer>
               )}
               <Link to={`likes`}>
                 {like === 1 ? (
@@ -341,10 +348,10 @@ export default function Post({
               </Link>
             </div>
           </div>
-        </div>
+        </SC.PostUpper>
         <div className="post-comments-container">
           <div className="post-comment-input-container">
-            <textarea
+            <SC.CommentTextarea
               className="comment-input"
               type="text"
               ref={commentRef}
@@ -356,7 +363,7 @@ export default function Post({
               onSubmit={submitComment}
               className="post-comment-button-container"
             >
-              <button
+              <SC.CommentButton
                 type="submit"
                 disabled={commentButtonIsInvalid}
                 className={
@@ -366,7 +373,7 @@ export default function Post({
                 }
               >
                 comment
-              </button>
+              </SC.CommentButton>
             </form>
           </div>
           {/* postPage - show all comments */}

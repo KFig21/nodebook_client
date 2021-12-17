@@ -5,6 +5,7 @@ import "./ExploreUser.scss";
 import { AuthContext } from "../../../context/AuthContext";
 import Loader from "../../loader/Loader";
 import noAvi from "../../../assets/noAvatar.png";
+import SC from "../../../themes/styledComponents";
 
 export default function Follower({
   friend,
@@ -43,7 +44,7 @@ export default function Follower({
   });
 
   return (
-    <div className="follow-container" key={friend._id}>
+    <SC.FollowContainer className="follow-container" key={friend._id}>
       {loading ? (
         <Loader type={"follower"} />
       ) : (
@@ -75,7 +76,7 @@ export default function Follower({
           {followStatus !== "you" && (
             <div className="follow-container-right">
               <span className="follow-status-span">{followStatus}</span>
-              <button
+              <SC.FollowButton
                 disabled={sidebarOpen}
                 className="follow-button"
                 onClick={() =>
@@ -84,11 +85,11 @@ export default function Follower({
               >
                 {friend.followingStatus ? "Unfollow" : "Follow"}
                 {friend.followingStatus ? <Remove /> : <Add />}
-              </button>
+              </SC.FollowButton>
             </div>
           )}
         </>
       )}
-    </div>
+    </SC.FollowContainer>
   );
 }

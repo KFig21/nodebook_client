@@ -6,6 +6,7 @@ import Nav from "../../components/nav/Nav";
 import noAvi from "../../assets/noAvatar.png";
 import { PermMedia, Cancel } from "@material-ui/icons";
 import "./Share.scss";
+import SC from "../../themes/styledComponents";
 
 export default function Share({
   currentPage,
@@ -89,7 +90,7 @@ export default function Share({
       />
       <div className="share-page" onClick={() => setSidebarOpen(false)}>
         <div className="share-container">
-          <div className="share">
+          <SC.ShareContainer className="share">
             <div className="share-wrapper">
               <div className="share-top">
                 <img
@@ -102,7 +103,7 @@ export default function Share({
                   }
                   alt=""
                 />
-                <textarea
+                <SC.ShareTextArea
                   placeholder={"What's up " + user.username + "?"}
                   className="share-input-desktop"
                   onChange={(e) => setDisableButton(e.target.value)}
@@ -110,7 +111,7 @@ export default function Share({
                   maxLength={500}
                 />
               </div>
-              <hr className="share-hr" />
+              <SC.ShareHR className="share-hr" />
               {file && (
                 <div className="share-img-container">
                   <img
@@ -127,7 +128,9 @@ export default function Share({
               <form className="share-bottom" onSubmit={submitHandler}>
                 <div className="share-options">
                   <label htmlFor="file" className="share-option">
-                    <PermMedia className="share-icon" />
+                    <SC.ShareOptions>
+                      <PermMedia className="share-icon" />
+                    </SC.ShareOptions>
                     <span className="share-option-text">Add an image</span>
                     <input
                       style={{ display: "none" }}
@@ -138,7 +141,7 @@ export default function Share({
                     />
                   </label>
                 </div>
-                <button
+                <SC.ShareSubmitButton
                   type="submit"
                   className={
                     isInvalid
@@ -148,7 +151,7 @@ export default function Share({
                   disabled={isInvalid}
                 >
                   Share
-                </button>
+                </SC.ShareSubmitButton>
               </form>
               {error && (
                 <div className="error-div">
@@ -158,7 +161,7 @@ export default function Share({
                 </div>
               )}
             </div>
-          </div>
+          </SC.ShareContainer>
         </div>
       </div>
     </div>

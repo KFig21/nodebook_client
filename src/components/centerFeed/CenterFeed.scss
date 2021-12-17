@@ -249,11 +249,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
         padding: 40px 30px;
         font-size: 24px;
         font-weight: 500;
-        border: 3px solid $fadedButtonColor;
         border-radius: 25px;
+        border: 3px solid $fadedButtonColor;
         color: $fadedButtonColor;
       }
 
@@ -278,12 +280,39 @@
           display: flex;
           position: relative;
 
+          &.theme {
+            align-items: center;
+          }
+
           .profile-info-content {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: flex-start;
             width: 100%;
+
+            &.theme-container {
+              font-weight: 500;
+              font-size: 16px;
+              width: auto;
+              padding: 6px 15px;
+              border-radius: 25px;
+            }
+            // DEFAULT GREEN THEME
+            &.defaultgreen {
+              background-color: #4bb44b;
+              color: black;
+            }
+            // DEFAULT YELLOW THEME
+            &.defaultyellow {
+              background-color: rgb(255, 196, 0);
+              color: black;
+            }
+            // DEFAULT AQUA THEME
+            &.defaultaqua {
+              background-color: #23c5d9;
+              color: black;
+            }
           }
 
           .profile-info-strong {
@@ -307,10 +336,10 @@
           top: 10px;
           right: 10px;
           cursor: pointer;
-          color: $textWhite;
+          // color: $textWhite;
 
           &:hover {
-            color: $primaryColor;
+            // color: $primaryColor;
           }
         }
       }

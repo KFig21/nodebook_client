@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import PostPage from "../../components/postPage/PostPage";
 import Nav from "../../components/nav/Nav";
-import ImageModal from "../../components/imageModal/ImageModal";
+import ImageModal from "../../components/Modals/ImageModals/ImageModal";
 import "./Post.scss";
 
 export default function Post({

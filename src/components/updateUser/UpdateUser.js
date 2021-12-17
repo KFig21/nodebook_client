@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./UpdateUser.scss";
 import axios from "axios";
 import { logoutCall } from "../../apiCalls";
+import SC from "../../themes/styledComponents";
 
 export default function UpdateUser() {
   let firstname = useRef();
@@ -61,7 +62,7 @@ export default function UpdateUser() {
         navigate("/", { replace: true });
       } else {
         // if the username did change, navigate to the login page
-        alert(`You're new username is ${username.current.value}`);
+        alert(`Your new username is ${username.current.value}`);
         localStorage.clear();
         logoutCall(dispatch);
         navigate("/login", { replace: true });
@@ -75,7 +76,7 @@ export default function UpdateUser() {
 
   return (
     <div className="update-user-page">
-      <div className="update-form">
+      <SC.UpdateProfileContainer className="update-form">
         <form onSubmit={handleClick}>
           {/* first name */}
           <div className="update-item-div">
@@ -189,21 +190,21 @@ export default function UpdateUser() {
               // {...register("confirm-password", { required: true })}
             ></input>
           </div>
-          <div className="message-before-update-button">
+          <SC.VerticallyBorderedContainer className="message-before-update-button">
             <span>
-              <span className="info-icon">ⓘ</span> If you are changing your
-              username you will be logged out after updating
+              <SC.InfoIcon className="info-icon">ⓘ</SC.InfoIcon> If you are
+              changing your username you will be logged out after updating
             </span>
-          </div>
+          </SC.VerticallyBorderedContainer>
 
           {error && (
             <div className="error-msg">
               <span>{errorMsg}</span>
             </div>
           )}
-          <button type="submit">Update</button>
+          <SC.FollowButton type="submit">Update</SC.FollowButton>
         </form>
-      </div>
+      </SC.UpdateProfileContainer>
     </div>
   );
 }

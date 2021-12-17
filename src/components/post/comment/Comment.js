@@ -6,6 +6,7 @@ import { format } from "timeago.js";
 import { Favorite, FavoriteBorder, MoreVert } from "@material-ui/icons";
 import noAvi from "../../../assets/noAvatar.png";
 import "./Comment.scss";
+import SC from "../../../themes/styledComponents";
 
 export default function Comment({
   comment,
@@ -181,7 +182,7 @@ export default function Comment({
         )}
       </div>
       <div className="comment-right">
-        <div className="comment-body-container">
+        <SC.CommentBody className="comment-body-container">
           <div className="commenter-info-container">
             <div className="comment-info-left">
               {user.username ? (
@@ -201,10 +202,12 @@ export default function Comment({
             {(user.username === currentUser.username ||
               currentUser.isAdmin) && (
               <div className="comment-info-right">
-                <MoreVert
-                  className="comment-options-icon"
-                  onClick={() => handleOptions()}
-                />
+                <SC.MoreVert>
+                  <MoreVert
+                    className="comment-options-icon"
+                    onClick={() => handleOptions()}
+                  />
+                </SC.MoreVert>
                 {showOptions && (
                   <div className="comment-options-div">
                     <button
@@ -285,12 +288,16 @@ export default function Comment({
               </div>
             </div>
           )}
-        </div>
+        </SC.CommentBody>
         <div className="comment-like-container">
           {isLiked ? (
-            <Favorite className="like-icon liked" onClick={likeHandler} />
+            <SC.LikeIconContainer>
+              <Favorite className="like-icon liked" onClick={likeHandler} />
+            </SC.LikeIconContainer>
           ) : (
-            <FavoriteBorder className="like-icon" onClick={likeHandler} />
+            <SC.LikeIconContainer>
+              <FavoriteBorder className="like-icon" onClick={likeHandler} />
+            </SC.LikeIconContainer>
           )}
           <Link to={`/comment/${comment._id}/likes`}>
             {like === 1 ? (

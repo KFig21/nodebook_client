@@ -88,7 +88,7 @@
       .navbar-svg {
         max-height: 40px;
         max-width: 40px;
-        background-color: $navbarColor;
+        background-color: $sidebarColor;
         background-size: 200% 200%;
         margin-left: 15px;
 
@@ -232,60 +232,59 @@
             }
           }
         }
-      }
+        &.active-nav-link {
+          font-weight: bold;
+          border-radius: 0px;
+          border-left: solid 4px $primaryColor;
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 100px;
+          overflow: visible;
+          padding: 10px 20px 10px 16px;
 
-      .active-nav-link {
-        font-weight: bold;
-        border-radius: 0px;
-        border-left: solid 4px $primaryColor;
-        border-top-right-radius: 100px;
-        border-bottom-right-radius: 100px;
-        overflow: visible;
-        padding: 10px 20px 10px 16px;
+          .notification-badge-container {
+            left: 10px;
 
-        .notification-badge-container {
-          left: 10px;
+            @include mobileHorizontal {
+              left: 20px;
+              top: 5px;
+            }
+
+            @include smallDesktop {
+              left: 20px;
+              top: 5px;
+            }
+          }
 
           @include mobileHorizontal {
-            left: 20px;
-            top: 5px;
+            margin-left: 0px;
+
+            .sidebar-icon {
+              margin-left: 10px;
+            }
           }
 
           @include smallDesktop {
-            left: 20px;
-            top: 5px;
+            margin-left: 0px;
+
+            .sidebar-icon {
+              margin-left: 10px;
+            }
           }
-        }
 
-        @include mobileHorizontal {
-          margin-left: 0px;
+          @include mobile {
+            padding: 10px 30px 10px 26px;
 
-          .sidebar-icon {
-            margin-left: 10px;
+            .notification-badge-container {
+              left: 19px;
+            }
           }
-        }
 
-        @include smallDesktop {
-          margin-left: 0px;
-
-          .sidebar-icon {
-            margin-left: 10px;
+          &:hover {
+            // background-image: $glassGradient;
+            border-radius: 0px;
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
           }
-        }
-
-        @include mobile {
-          padding: 10px 30px 10px 26px;
-
-          .notification-badge-container {
-            left: 19px;
-          }
-        }
-
-        &:hover {
-          // background-image: $glassGradient;
-          border-radius: 0px;
-          border-top-right-radius: 100px;
-          border-bottom-right-radius: 100px;
         }
       }
 
@@ -349,6 +348,7 @@
         margin: 5px 0px;
         padding: 10px 20px;
         border-radius: 100px;
+        transition: background-color 0.25s ease;
 
         @include mobile {
           font-size: 26px;
@@ -486,9 +486,9 @@
           margin-left: 0px;
         }
 
-        &:hover {
-          color: $primaryColor;
-        }
+        // &:hover {
+        //   color: $primaryColor;
+        // }
       }
     }
   }

@@ -5,6 +5,7 @@ import "./Liker.scss";
 import { AuthContext } from "../../../context/AuthContext";
 import Loader from "../../loader/Loader";
 import noAvi from "../../../assets/noAvatar.png";
+import SC from "../../../themes/styledComponents";
 
 export default function Liker({ liker, handleFollowingStatus, sidebarOpen }) {
   const { user: currentUser } = useContext(AuthContext);
@@ -39,7 +40,7 @@ export default function Liker({ liker, handleFollowingStatus, sidebarOpen }) {
   });
 
   return (
-    <div
+    <SC.FollowContainer
       className={
         followStatus !== "you"
           ? "follow-container"
@@ -77,7 +78,7 @@ export default function Liker({ liker, handleFollowingStatus, sidebarOpen }) {
           {followStatus !== "you" && (
             <div className="follow-container-right">
               <span className="follow-status-span">{followStatus}</span>
-              <button
+              <SC.FollowButton
                 disabled={sidebarOpen}
                 className="follow-button"
                 onClick={() =>
@@ -86,11 +87,11 @@ export default function Liker({ liker, handleFollowingStatus, sidebarOpen }) {
               >
                 {liker.followingStatus ? "Unfollow" : "Follow"}
                 {liker.followingStatus ? <Remove /> : <Add />}
-              </button>
+              </SC.FollowButton>
             </div>
           )}
         </>
       )}
-    </div>
+    </SC.FollowContainer>
   );
 }

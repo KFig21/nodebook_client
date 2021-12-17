@@ -10,7 +10,6 @@
   width: 100%;
   overflow-y: scroll;
   overflow: overlay;
-  color: $textWhite;
 
   @include mobile {
     min-height: calc(100vh - $navbarHeight - $footerHeight);
@@ -78,21 +77,23 @@
           }
 
           .notification-read-button {
-            color: $fadedButtonColor;
-            border: solid 2px $fadedButtonColor;
+            // color: $fadedButtonColor;
+            border: solid 2px transparent;
+            // background-color: $notificationSeenButtonFaded;
             &:hover {
-              border: solid 2px $primaryColor;
-              background-color: $primaryColor;
-              color: black;
+              // border: solid 2px $primaryColor;
+              // background-color: $primaryColor;
+              // color: black;
             }
           }
           .notification-delete-button {
-            color: $deleteButtonHoverColor;
-            border: solid 2px $deleteButtonHoverColor;
+            // color: $fadedButtonColor;
+            border: solid 2px transparent;
+            // background-color: $notificationDeleteButtonFaded;
             &:hover {
-              border: solid 2px $deleteButtonTextColor;
-              background-color: $deleteButtonTextColor;
-              color: black;
+              // border: solid 2px $deleteButtonTextColor;
+              // background-color: $deleteButtonTextColor;
+              // color: black;
             }
           }
 

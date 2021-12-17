@@ -2,7 +2,6 @@
 
 .followfeed {
   flex: 9;
-  background-color: $backgroundColor;
   min-height: calc(100vh - $navbarHeight);
   height: calc(100vh - $navbarHeight);
   overflow-y: scroll;

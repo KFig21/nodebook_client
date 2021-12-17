@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SC from "../../../themes/styledComponents";
 import "./ImageModal.scss";
 
 export default function ImageModal({
@@ -14,9 +15,11 @@ export default function ImageModal({
         className={directional ? "modal-container" : "modal-container static"}
       >
         {directional && (
-          <div className="view-post-button">
-            <Link to={"/post/" + post._id}>view post</Link>
-          </div>
+          <Link to={"/post/" + post._id}>
+            <SC.ViewPostButton className="view-post-button">
+              view post
+            </SC.ViewPostButton>
+          </Link>
         )}
         <img
           className={directional ? "modal-img" : "modal-img static"}

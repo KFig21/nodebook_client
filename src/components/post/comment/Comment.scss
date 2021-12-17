@@ -74,11 +74,11 @@
           position: relative;
 
           .comment-options-icon {
-            color: $textWhite;
+            // color: $textWhite;
             cursor: pointer;
 
             &:hover {
-              color: $primaryColor;
+              // color: $primaryColor;
             }
           }
           .comment-options-div {
@@ -279,15 +279,9 @@
         height: 24px;
         margin-right: 6px;
         cursor: pointer;
-        color: $primaryColorFaded;
-
-        &:hover {
-          color: $primaryColor;
-        }
       }
 
       .liked {
-        color: $primaryColor;
       }
 
       .comment-like-counter {

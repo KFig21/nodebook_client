@@ -1,8 +1,9 @@
 import React from "react";
+import SC from "../../themes/styledComponents";
 
 export default function Logo() {
   return (
-    <svg
+    <SC.KFsvg
       className="sidebar-kf"
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +12,7 @@ export default function Logo() {
       viewBox="0 0 655.000000 657.000000"
       preserveAspectRatio="xMidYMid meet"
     >
-      <g
+      <SC.KFg
         transform="translate(0.000000,657.000000) scale(0.100000,-0.100000)"
         fill="#151515"
         stroke="none"
@@ -45,7 +46,7 @@ export default function Logo() {
 -360 -108 -245 -58 -469 -84 -725 -84 -379 0 -658 50 -1107 197 l-33 10 0
 1116 0 1116 1120 -1120 c820 -820 1116 -1122 1105 -1127z"
         />
-      </g>
-    </svg>
+      </SC.KFg>
+    </SC.KFsvg>
   );
 }

@@ -5,6 +5,7 @@ import noAvi from "../../assets/noAvatar.png";
 import { Comment, Favorite } from "@material-ui/icons";
 import "./Image.scss";
 import Loader from "../loader/Loader";
+import SC from "../../themes/styledComponents";
 
 export default function Image({ image, fetchNotifications, handleSetModal }) {
   const [imageData, setImageData] = useState({});
@@ -39,7 +40,7 @@ export default function Image({ image, fetchNotifications, handleSetModal }) {
   };
 
   return (
-    <div
+    <SC.ProfileImagesContainer
       className="image-wrapper"
       onClick={() => handleSendImageInfo(image.postId)}
     >
@@ -72,6 +73,6 @@ export default function Image({ image, fetchNotifications, handleSetModal }) {
       ) : (
         <Loader type={" profile-image"} />
       )}
-    </div>
+    </SC.ProfileImagesContainer>
   );
 }
