@@ -43,6 +43,7 @@ const purpleTheme = {
     notificationDeleteButtonText: "#000000",
     notificationHoverColor: "rgba(151, 151, 151, 0.07)",
     // text
+    primaryColorContrastText: "rgb(247, 247, 247)",
     textWhite: "rgb(247, 247, 247)",
     fadedTextColor: "rgb(197, 197, 197)",
     subTextColor: "rgb(175, 175, 175)",

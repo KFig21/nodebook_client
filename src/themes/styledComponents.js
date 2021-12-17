@@ -27,11 +27,13 @@ const SC = {
   ShareButton: styled.div`
     background-color: ${(props) =>
       props.theme.colors.primaryColorFaded} !important;
+    color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
     }
     &.active-share-link {
+      color: ${(props) => props.theme.colors.textWhite} !important;
       border-left: solid 4px ${(props) => props.theme.colors.primaryColor} !important;
       background-color: transparent !important;
     }
@@ -370,9 +372,12 @@ const SC = {
   FollowButton: styled.button`
     background-color: ${(props) =>
       props.theme.colors.primaryColorFaded} !important;
+    color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
     }
   `,
 
