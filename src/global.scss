@@ -96,7 +96,7 @@ $width: 768px;
 @mixin smallDesktop {
   // @media (min-height: 421px) {
   @media (min-height: 1px) {
-    @media (max-width: 1300px) and (min-width: #{$width}) {
+    @media (max-width: 1300px) and (min-width: 820px) {
       @content;
     }
   }
@@ -104,7 +104,7 @@ $width: 768px;
 
 @mixin mobileHorizontal {
   @media (max-height: 420px) {
-    @media (min-width: 600px) {
+    @media (min-width: 600px) and (max-width: 820px) {
       @content;
     }
   }

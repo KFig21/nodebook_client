@@ -80,7 +80,7 @@ export default function CenterFeed({
               onClick={() => setToInfo()}
               className={
                 "profile-info-clickable " +
-                (feed === "info" ? "pic-active" : "")
+                (feed === "info" ? "pic-active" : "first")
               }
             >
               <SC.ProfileNavButtonText className="button-name">
@@ -156,7 +156,7 @@ export default function CenterFeed({
             <SC.ProfileNavButton
               onClick={() => getInitialFollows("following")}
               className={
-                "profile-info-clickable " +
+                "profile-info-clickable last " +
                 (feed === "following" ? "pic-active" : "")
               }
             >

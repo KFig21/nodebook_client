@@ -137,7 +137,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 25%;
+        width: 20%;
         border: none;
         border-bottom: solid 3px $borderColor;
         background-color: transparent;
@@ -146,6 +146,18 @@
         padding: 8px 0px;
         cursor: pointer;
         transition: all 0.2s ease;
+
+        &.first {
+          @include mobile {
+            width: 70%;
+          }
+        }
+
+        &.last {
+          @include mobile {
+            padding-right: 15px;
+          }
+        }
 
         .button-name {
           @include mobile {
@@ -382,7 +394,7 @@
         max-width: 620px;
 
         @include mobile {
-          padding: 10px 10px 0px 10px;
+          padding: 10px 15px 0px 15px;
         }
       }
 
@@ -391,7 +403,7 @@
         width: 100%;
         min-width: 100%;
         width: 100%;
-        padding: 0px 5px 10px 5px;
+        padding: 0px 15px 10px 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -404,6 +416,7 @@
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 20px;
+        padding: 0px 5px 10px 5px;
       }
 
       // share post
