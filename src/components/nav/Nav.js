@@ -164,9 +164,7 @@ export default function Nav({
           </div>
           {user ? (
             <div className="nav-info-container">
-              <span className="nav-title">
-                {user.username ? user.username : "Loading"} - update profile
-              </span>
+              <span className="nav-title">update profile</span>
             </div>
           ) : (
             <span className="nav-title">Loading...</span>

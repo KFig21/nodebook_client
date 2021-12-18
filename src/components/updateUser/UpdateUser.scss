@@ -24,9 +24,10 @@
     min-width: 350px;
     max-width: 350px;
     background-image: $glassGradient;
+    // background-color: $sidebarColor;
 
     button {
-      background-color: $primaryColorFaded;
+      background-color: transparent;
       border: none;
       outline: none;
       font-size: 16px;
@@ -40,7 +41,7 @@
 
       &:hover,
       &:focus {
-        background-color: $primaryColor;
+        // background-color: $primaryColor;
       }
     }
 
@@ -55,21 +56,6 @@
       margin: auto;
       width: 100%;
       padding: 6px 12px;
-    }
-
-    .message-before-update-button {
-      border-top: solid 2px $primaryColor;
-      border-bottom: solid 2px $primaryColor;
-      padding: 10px 0px 15px 0px;
-      margin: 14px 0px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .info-icon {
-        font-size: 18px;
-        color: $primaryColor;
-      }
     }
 
     .update-item-div {
