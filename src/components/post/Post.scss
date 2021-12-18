@@ -18,6 +18,9 @@
     @include mobile {
       padding: 10px 10px 7px 10px;
     }
+    @include mobileKeyboard {
+      padding: 10px 10px 7px 10px;
+    }
 
     .post-top {
       display: flex;
@@ -78,6 +81,10 @@
           font-size: 18px;
 
           @include mobile {
+            padding: 1px 0px;
+          }
+
+          @include mobileKeyboard {
             padding: 1px 0px;
           }
           @include mobileHorizontal {
@@ -194,6 +201,10 @@
             margin: 4px 0px 2px 0px;
           }
 
+          @include mobileKeyboard {
+            margin: 4px 0px 2px 0px;
+          }
+
           .post-img-container {
             width: 100%;
             max-height: 300px;
@@ -206,6 +217,10 @@
             margin-right: 10px;
 
             @include mobile {
+              width: 100%;
+              max-height: 180px;
+            }
+            @include mobileKeyboard {
               width: 100%;
               max-height: 180px;
             }
@@ -495,6 +510,11 @@
         }
 
         @include mobile {
+          border-radius: 5px;
+          border: solid 2px $primaryColorFaded;
+        }
+
+        @include mobileKeyboard {
           border-radius: 5px;
           border: solid 2px $primaryColorFaded;
         }

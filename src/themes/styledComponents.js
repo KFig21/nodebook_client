@@ -55,6 +55,9 @@ const SC = {
       background-color: transparent !important;
     }
   `,
+  SidebarLogoTop: styled.div`
+    background-color: ${(props) => props.theme.colors.sidebarColor} !important;
+  `,
   SidebarLink: styled.div`
     &:hover {
       background-color: ${(props) =>
@@ -365,6 +368,15 @@ const SC = {
       @media (max-width: 768px) {
         background-color: ${(props) =>
           props.theme.colors.commentButtonBackgroundColor} !important;
+      }
+    }
+    @media (max-height: 500px) {
+      @media (max-width: 500px) {
+        background-color: ${(props) =>
+          props.theme.colors.commentButtonBackgroundColor} !important;
+        &.invalid-comment-button {
+          color: ${(props) => props.theme.colors.fadedTextColor} !important;
+        }
       }
     }
   `,

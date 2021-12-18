@@ -43,9 +43,9 @@ export default function Sidebar({
       <SC.Sidebar className={sidebarOpen ? "sidebar active" : "sidebar"}>
         {/* <div className={sidebarOpen ? "sidebar active" : "sidebar"}> */}
         <div className="sidebar-wrapper">
-          <div className="sidebar-logo-container">
+          <SC.SidebarLogoTop className="sidebar-logo-container">
             <Logo />
-          </div>
+          </SC.SidebarLogoTop>
           {/* TIMELINE */}
           <>
             <Link to="/">
