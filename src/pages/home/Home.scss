@@ -27,5 +27,11 @@
       max-width: unset;
       width: unset;
     }
+
+    @include mobileKeyboard {
+      min-width: unset;
+      max-width: unset;
+      width: unset;
+    }
   }
 }

@@ -32,6 +32,7 @@
     }
 
     @include mobileHorizontal {
+      max-height: calc(100% - $navbarHeight);
       min-width: 250px;
       max-width: 250px;
     }
@@ -40,6 +41,10 @@
       padding: 20px;
       width: 100%;
       font-size: 20px;
+
+      @include mobileHorizontal {
+        padding: 13px;
+      }
     }
 
     .theme-modal-selection-container {
@@ -66,6 +71,10 @@
         justify-content: center;
         position: relative;
         z-index: 2;
+
+        @include mobileHorizontal {
+          padding: 13px;
+        }
 
         .theme-radio-icon {
           position: absolute;

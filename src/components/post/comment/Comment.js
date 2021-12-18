@@ -35,11 +35,11 @@ export default function Comment({
   }, [currentUser._id, comment.likes]);
 
   // fetch user on load
+  const fetchUser = async () => {
+    const res = await fetchUserById(comment.userId);
+    setUser(res);
+  };
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetchUserById(comment.userId);
-      setUser(res);
-    };
     fetchUser();
   }, [comment.userId]);
 
@@ -123,6 +123,9 @@ export default function Comment({
   // open options functionality
   const handleOptions = () => {
     setShowOptions(!showOptions);
+    if (showEdit) {
+      setShowEdit(!showEdit);
+    }
     if (showDeleteComment) {
       setShowDeleteComment(!showDeleteComment);
     }
@@ -199,7 +202,7 @@ export default function Comment({
                     onClick={() => handleOptions()}
                   />
                 </SC.MoreVert>
-                {showOptions && (
+                {showOptions && !showDeleteComment && !showEdit && (
                   <div className="comment-options-div">
                     <button
                       className="comment-options-delete"
@@ -272,7 +275,7 @@ export default function Comment({
                 </button>
                 <button
                   className="cancel-button"
-                  onClick={() => setShowDeleteComment(!showDeleteComment)}
+                  onClick={() => handleCancelAllOptions()}
                 >
                   Cancel
                 </button>

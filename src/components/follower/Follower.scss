@@ -37,6 +37,10 @@
           @include mobile {
             font-size: 18px;
           }
+
+          @include mobileKeyboard {
+            font-size: 18px;
+          }
         }
 
         .follow-name {
@@ -46,6 +50,10 @@
           color: $subTextColor;
 
           @include mobile {
+            font-size: 15px;
+          }
+
+          @include mobileKeyboard {
             font-size: 15px;
           }
         }
@@ -71,6 +79,10 @@
         display: none;
       }
 
+      @include mobileKeyboard {
+        display: none;
+      }
+
       @include mobileHorizontal {
         display: none;
       }
@@ -93,6 +105,11 @@
       transition: all 0.15s ease;
 
       @include mobile {
+        font-size: 13px;
+        min-width: unset;
+      }
+
+      @include mobileKeyboard {
         font-size: 13px;
         min-width: unset;
       }

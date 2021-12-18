@@ -10,6 +10,11 @@
     min-height: calc(100vh - $navbarHeight - $footerHeight);
     height: calc(100vh - $navbarHeight - $footerHeight);
   }
+
+  @include mobileKeyboard {
+    min-height: calc(100vh - $navbarHeight - $footerHeight);
+    height: calc(100vh - $navbarHeight - $footerHeight);
+  }
 }
 
 .timeline-wrapper {
@@ -28,12 +33,20 @@
       display: none;
     }
 
+    @include mobileKeyboard {
+      display: none;
+    }
+
     @include mobileHorizontal {
       display: none;
     }
   }
 
   @include mobile {
+    padding: 20px 20px 0px 20px;
+  }
+
+  @include mobileKeyboard {
     padding: 20px 20px 0px 20px;
   }
 

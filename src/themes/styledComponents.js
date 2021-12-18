@@ -338,6 +338,9 @@ const SC = {
   CommentButton: styled.button`
     color: ${(props) => props.theme.colors.textWhite} !important;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
+    font-size: 28px !important;
+    min-width: 45px !important;
+    position: relative !important;
     &:hover {
       color: ${(props) =>
         props.theme.colors.primaryColorContrastText} !important;
@@ -364,6 +367,12 @@ const SC = {
           props.theme.colors.commentButtonBackgroundColor} !important;
       }
     }
+  `,
+  CommentButtonSpan: styled.span`
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   `,
   MoreVert: styled.div`
     color: ${(props) => props.theme.colors.textWhite} !important;

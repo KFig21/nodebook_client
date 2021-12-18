@@ -15,6 +15,11 @@
     width: 100%;
   }
 
+  @include mobileKeyboard {
+    max-width: 100%;
+    width: 100%;
+  }
+
   .profile-header {
     width: 100%;
     background-color: $navbarColor;
@@ -27,11 +32,11 @@
     @include mobile {
       background: rgb(0, 0, 0);
       align-items: flex-end;
-      // background: linear-gradient(
-      //   0deg,
-      //   $navbarColor 60%,
-      //   $backgroundColor 100%
-      // );
+    }
+
+    @include mobileKeyboard {
+      background: rgb(0, 0, 0);
+      align-items: flex-end;
     }
 
     .profile-header-wrapper {
@@ -40,6 +45,12 @@
       padding: 0px 30px;
 
       @include mobile {
+        padding: 5px 0px 0px 0px;
+        max-width: calc(100% - 125px);
+        width: 100%;
+      }
+
+      @include mobileKeyboard {
         padding: 5px 0px 0px 0px;
         max-width: calc(100% - 125px);
         width: 100%;
@@ -70,11 +81,22 @@
           float: right;
         }
 
+        @include mobileKeyboard {
+          justify-content: flex-end;
+          margin-right: 30px;
+          max-width: 100%;
+          float: right;
+        }
+
         .profile-info-username {
           font-size: 40px;
           font-weight: 600;
 
           @include mobile {
+            font-size: 24px;
+          }
+
+          @include mobileKeyboard {
             font-size: 24px;
           }
         }
@@ -83,7 +105,14 @@
           font-weight: 300;
           margin-left: 10px;
           font-size: 30px;
+
           @include mobile {
+            font-size: 18px;
+            line-height: 20px;
+            height: 18px;
+          }
+
+          @include mobileKeyboard {
             font-size: 18px;
             line-height: 20px;
             height: 18px;
@@ -128,6 +157,11 @@
         width: 100%;
       }
 
+      @include mobileKeyboard {
+        max-width: 100%;
+        width: 100%;
+      }
+
       @include mobileHorizontal {
         max-width: 100%;
         width: 100%;
@@ -151,16 +185,26 @@
           @include mobile {
             width: 70%;
           }
+          @include mobileKeyboard {
+            width: 70%;
+          }
         }
 
         &.last {
           @include mobile {
             padding-right: 15px;
           }
+          @include mobileKeyboard {
+            padding-right: 15px;
+          }
         }
 
         .button-name {
           @include mobile {
+            width: 0px;
+            visibility: hidden;
+          }
+          @include mobileKeyboard {
             width: 0px;
             visibility: hidden;
           }
@@ -184,6 +228,15 @@
           }
         }
 
+        @include mobileKeyboard {
+          width: 100%;
+
+          &:hover {
+            background-color: rgb(10, 10, 10);
+            border-bottom: solid 3px $primaryColor;
+          }
+        }
+
         .count {
           font-weight: 700;
           margin-right: 6px;
@@ -195,6 +248,10 @@
           margin: 0px 0px 0px 10px;
 
           @include mobile {
+            margin: 0px 0px 0px 2px;
+          }
+
+          @include mobileKeyboard {
             margin: 0px 0px 0px 2px;
           }
         }
@@ -225,6 +282,23 @@
           }
         }
 
+        @include mobileKeyboard {
+          padding: 8px 12px;
+          &:hover {
+            border-bottom: solid 3px $primaryColor;
+          }
+          .button-name {
+            visibility: visible;
+            width: auto;
+          }
+
+          .profile-info-icon {
+            @include mobileKeyboard {
+              margin: 0px 0px 0px 5px;
+            }
+          }
+        }
+
         @include mobileHorizontal {
           padding: 8px 12px;
           &:hover {
@@ -236,7 +310,7 @@
           }
 
           .profile-info-icon {
-            @include mobile {
+            @include mobileHorizontal {
               margin: 0px 0px 0px 5px;
             }
           }
@@ -256,6 +330,11 @@
       min-width: 100%;
       width: 100%;
     }
+    @include mobileKeyboard {
+      max-width: 100%;
+      min-width: 100%;
+      width: 100%;
+    }
     .feed-wrapper {
       padding: 20px 15px;
       display: flex;
@@ -265,6 +344,13 @@
       max-width: 700px;
 
       @include mobile {
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+        padding: 10px 5px 0px 5px;
+      }
+
+      @include mobileKeyboard {
         max-width: 100%;
         min-width: 100%;
         width: 100%;
@@ -396,6 +482,10 @@
         @include mobile {
           padding: 10px 15px 0px 15px;
         }
+
+        @include mobileKeyboard {
+          padding: 10px 15px 0px 15px;
+        }
       }
 
       // profile follows
@@ -430,6 +520,10 @@
         }
 
         @include mobileHorizontal {
+          display: none;
+        }
+
+        @include mobileKeyboard {
           display: none;
         }
       }

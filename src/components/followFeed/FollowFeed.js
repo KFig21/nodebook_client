@@ -28,7 +28,9 @@ export default function FollowFeed({
     try {
       const followsList = await fetchFollowsList(currentUser._id, follow, 0);
       setFriends(followsList);
-      setLoading(false);
+      setTimeout(async function () {
+        setLoading(false);
+      }, 200);
     } catch (err) {
       console.log(err);
     }
@@ -49,10 +51,12 @@ export default function FollowFeed({
     getScrollFollows();
   }, [skip]);
 
-  // update page on load
+  // update page on load or feed switch
   useEffect(() => {
+    setLoading(true);
+    setFriends([]);
     getInitialFollows();
-  }, []);
+  }, [follow]);
 
   // infinite scroll functionality
   const handleScroll = (e) => {

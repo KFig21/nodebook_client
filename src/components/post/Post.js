@@ -412,7 +412,7 @@ export default function Post({
                     : "comment-button"
                 }
               >
-                comment
+                <SC.CommentButtonSpan>+</SC.CommentButtonSpan>
               </SC.CommentButton>
             </form>
           </div>

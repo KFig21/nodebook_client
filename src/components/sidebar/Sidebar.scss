@@ -45,6 +45,22 @@
     }
   }
 
+  @include mobileKeyboard {
+    position: fixed;
+    flex: 2.5;
+    padding-left: unset;
+    top: 0;
+    left: -100%;
+    width: 84%;
+    align-items: flex-start;
+    background-color: $sidebarColorMobile;
+    backdrop-filter: blur(3px);
+
+    &.active {
+      left: 0px;
+    }
+  }
+
   .sidebar-wrapper {
     padding: 5px 20px 0 0;
     min-width: 270px;
@@ -54,6 +70,10 @@
     position: relative;
 
     @include mobile {
+      padding: 5px 0px 0 0;
+    }
+
+    @include mobileKeyboard {
       padding: 5px 0px 0 0;
     }
 
@@ -72,6 +92,10 @@
       margin-bottom: 25px;
 
       @include mobile {
+        margin-bottom: 0px;
+      }
+
+      @include mobileKeyboard {
         margin-bottom: 0px;
       }
 
@@ -103,6 +127,11 @@
           fill: $primaryColor;
         }
         @include mobile {
+          margin-top: 70px;
+          margin-bottom: 3px;
+          margin-left: 25px;
+        }
+        @include mobileKeyboard {
           margin-top: 70px;
           margin-bottom: 3px;
           margin-left: 25px;
@@ -161,6 +190,16 @@
           }
         }
 
+        @include mobileKeyboard {
+          font-size: 24px;
+          padding: 7px 30px;
+
+          &:hover {
+            background-color: unset;
+            border-radius: 100px;
+          }
+        }
+
         @include mobileHorizontal {
           margin-left: 10px;
         }
@@ -185,6 +224,10 @@
             height: 30px;
             width: 30px;
           }
+          @include mobileKeyboard {
+            height: 30px;
+            width: 30px;
+          }
 
           @include mobileHorizontal {
             margin-right: 0px;
@@ -205,6 +248,13 @@
           left: 14px;
 
           @include mobile {
+            font-size: 12px;
+            left: 24px;
+            top: 9px;
+            width: 21px;
+            height: 21px;
+          }
+          @include mobileKeyboard {
             font-size: 12px;
             left: 24px;
             top: 9px;
@@ -286,6 +336,14 @@
             }
           }
 
+          @include mobileKeyboard {
+            padding: 10px 30px 10px 26px;
+
+            .notification-badge-container {
+              left: 19px;
+            }
+          }
+
           &:hover {
             // background-image: $glassGradient;
             border-radius: 0px;
@@ -302,6 +360,12 @@
         justify-content: center;
 
         @include mobile {
+          border-radius: 0px;
+          border-top-right-radius: 100px;
+          border-bottom-right-radius: 100px;
+        }
+
+        @include mobileKeyboard {
           border-radius: 0px;
           border-top-right-radius: 100px;
           border-bottom-right-radius: 100px;
@@ -331,6 +395,14 @@
         }
 
         @include mobile {
+          margin-left: 0px;
+
+          .sidebar-icon {
+            margin-left: 10px;
+          }
+        }
+
+        @include mobileKeyboard {
           margin-left: 0px;
 
           .sidebar-icon {
@@ -372,6 +444,10 @@
           font-size: 26px;
           padding: 10px 30px;
         }
+        @include mobileKeyboard {
+          font-size: 26px;
+          padding: 10px 30px;
+        }
 
         @include mobileHorizontal {
           margin-left: 10px;
@@ -385,6 +461,10 @@
           margin-right: 10px;
 
           @include mobile {
+            height: 30px;
+            width: 30px;
+          }
+          @include mobileKeyboard {
             height: 30px;
             width: 30px;
           }
@@ -422,6 +502,11 @@
       height: 100%;
       min-height: 70px;
     }
+    @include mobileKeyboard {
+      position: relative;
+      height: 100%;
+      min-height: 70px;
+    }
 
     @include smallDesktop {
       flex-direction: column;
@@ -451,6 +536,9 @@
       transition: all 0.2s ease;
 
       @include mobile {
+        font-size: 20px;
+      }
+      @include mobileKeyboard {
         font-size: 20px;
       }
       @include mobileHorizontal {

@@ -351,6 +351,13 @@
       margin: 5px 10px 10px 10px;
 
       @include mobile {
+        border-radius: 3px;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        margin: 5px 8px 10px 8px;
+      }
+
+      @include mobileKeyboard {
         flex-direction: column;
         background-color: $backgroundColor;
         border-radius: 3px;
@@ -378,6 +385,10 @@
           "Helvetica Neue", sans-serif;
 
         @include mobile {
+          margin-right: 10px;
+        }
+
+        @include mobileKeyboard {
           width: 100%;
           margin-right: unset;
         }
@@ -388,7 +399,7 @@
       }
 
       .post-comment-button-container {
-        @include mobile {
+        @include mobileKeyboard {
           width: 100%;
         }
 
@@ -414,7 +425,7 @@
             border: solid 2px $primaryColor;
           }
 
-          @include mobile {
+          @include mobileKeyboard {
             margin-right: unset;
             border: unset;
             border-radius: unset;
@@ -442,7 +453,7 @@
           background-image: none;
           color: $fadedTextColor;
 
-          @include mobile {
+          @include mobileKeyboard {
             background-color: $commentButtonBackgroundColor;
             background-image: none;
             border-bottom-left-radius: 12px;
