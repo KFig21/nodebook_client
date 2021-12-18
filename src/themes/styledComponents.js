@@ -357,7 +357,8 @@ const SC = {
         props.theme.colors.primaryColor} !important;
     }
     &.invalid-comment-button {
-      color: ${(props) => props.theme.colors.fadedTextColor} !important;
+      color: ${(props) => props.theme.colors.borderColor} !important;
+      border-color: ${(props) => props.theme.colors.borderColor} !important;
       &:hover {
         color: ${(props) => props.theme.colors.textWhite} !important;
         background-color: transparent !important;
@@ -373,9 +374,11 @@ const SC = {
     @media (max-height: 500px) {
       @media (max-width: 500px) {
         background-color: ${(props) =>
-          props.theme.colors.commentButtonBackgroundColor} !important;
+          props.theme.colors.backgroundColor} !important;
         &.invalid-comment-button {
           color: ${(props) => props.theme.colors.fadedTextColor} !important;
+          background-color: ${(props) =>
+            props.theme.colors.commentButtonBackgroundColor} !important;
         }
       }
     }
