@@ -16,6 +16,11 @@ export const Theme = (theme) => ({
   payload: theme,
 });
 
+export const username = (username) => ({
+  type: "USERNAME",
+  payload: username,
+});
+
 export const Follow = (userId) => ({
   type: "FOLLOW",
   payload: userId,

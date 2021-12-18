@@ -6,6 +6,11 @@ import "./Nav.scss";
 import { Add, Remove } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import SC from "../../themes/styledComponents";
+import {
+  updateFollowStatus,
+  deleteFollowNotification,
+  sendFollowNotification,
+} from "../../helpers/apiCalls";
 
 export default function Nav({
   profileUser,
@@ -19,6 +24,7 @@ export default function Nav({
   handleSidebar,
   themeModal,
   logoutModal,
+  followersCount,
 }) {
   const username = useParams().username;
   const [followed, setFollowed] = useState(false);
@@ -32,55 +38,21 @@ export default function Nav({
     checkFollowing();
   });
 
-  const handleClick = async () => {
-    console.log("followed", followed);
+  const handleFollowingStatus = async () => {
     try {
       if (followed) {
-        await axios.put(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/unfollow`,
-          {
-            userId: user._id,
-          }
-        );
+        await updateFollowStatus(user._id, profileUser._id, "unfollow");
         dispatch({ type: "UNFOLLOW", payload: profileUser._id });
         // delete follow notification
         try {
-          axios.delete(
-            "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-            // "http://localhost:3000/api/notifications/",
-            {
-              data: {
-                sender: user._id,
-                recipient: profileUser._id,
-                postId: null,
-                commentId: null,
-                type: "follow",
-              },
-            }
-          );
+          await deleteFollowNotification(user._id, profileUser._id);
         } catch (err) {}
       } else {
-        await axios.put(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/follow`,
-          {
-            userId: user._id,
-          }
-        );
+        await updateFollowStatus(user._id, profileUser._id, "follow");
         dispatch({ type: "FOLLOW", payload: profileUser._id });
         // send follow notification
         try {
-          axios.post(
-            "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-            // "http://localhost:3000/api/notifications/",
-            {
-              sender: user._id,
-              recipient: profileUser._id,
-              postId: null,
-              commentId: null,
-              type: "follow",
-              seen: false,
-            }
-          );
+          await sendFollowNotification(user._id, profileUser._id);
         } catch (err) {}
       }
       setFollowed(!followed);
@@ -121,7 +93,7 @@ export default function Nav({
             {currentPage === "Followers" && (
               <>
                 {currentPage} {" ("}
-                {user.followers.length}
+                {followersCount}
                 {") "}
               </>
             )}
@@ -158,8 +130,12 @@ export default function Nav({
                 !themeModal &&
                 !logoutModal && (
                   <SC.FollowButton
-                    className="follow-button"
-                    onClick={handleClick}
+                    className={
+                      followed
+                        ? "follow-button Unfollow"
+                        : "follow-button Follow"
+                    }
+                    onClick={handleFollowingStatus}
                   >
                     {followed ? "Unfollow" : "Follow"}
                     {followed ? <Remove /> : <Add />}

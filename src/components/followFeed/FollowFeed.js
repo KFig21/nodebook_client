@@ -5,6 +5,7 @@ import Follower from "../follower/Follower";
 import Loader from "../../components/loader/Loader";
 import "./FollowFeed.scss";
 import SC from "../../themes/styledComponents";
+import { fetchFollowsList } from "../../helpers/apiCalls";
 
 export default function FollowFeed({
   currentPage,
@@ -25,11 +26,8 @@ export default function FollowFeed({
 
   const getInitialFollows = async () => {
     try {
-      const friendsList = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users/${currentUser._id}/${follow}/0`
-        // `http://localhost:3000/api/users/${currentUser._id}/${follow}/0`
-      );
-      setFriends(friendsList.data);
+      const followsList = await fetchFollowsList(currentUser._id, follow, 0);
+      setFriends(followsList);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -38,68 +36,12 @@ export default function FollowFeed({
 
   const getScrollFollows = async () => {
     try {
-      const friendsList = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users/${currentUser._id}/${follow}/${skip}`
-        // `http://localhost:3000/api/users/${currentUser._id}/${follow}/${skip}`
-      );
-      setFriends([...friends, ...friendsList.data]);
+      const followsList = await fetchFollowsList(currentUser._id, follow, skip);
+      setFriends([...friends, ...followsList]);
       setLoading(false);
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleFollowingStatus = async (followed, userInQuestion) => {
-    try {
-      if (followed) {
-        await axios.put(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${userInQuestion._id}/unfollow`,
-          {
-            userId: currentUser._id,
-          }
-        );
-        dispatch({ type: "UNFOLLOW", payload: userInQuestion._id });
-        // delete follow notification
-        try {
-          axios.delete(
-            "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-            // "http://localhost:3000/api/notifications/",
-            {
-              data: {
-                sender: currentUser._id,
-                recipient: userInQuestion._id,
-                postId: null,
-                commentId: null,
-                type: "follow",
-              },
-            }
-          );
-        } catch (err) {}
-      } else {
-        await axios.put(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${userInQuestion._id}/follow`,
-          {
-            userId: currentUser._id,
-          }
-        );
-        dispatch({ type: "FOLLOW", payload: userInQuestion._id });
-        // send follow notification
-        try {
-          axios.post(
-            "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-            // "http://localhost:3000/api/notifications/",
-            {
-              sender: currentUser._id,
-              recipient: userInQuestion._id,
-              postId: null,
-              commentId: null,
-              type: "follow",
-              seen: false,
-            }
-          );
-        } catch (err) {}
-      }
-    } catch (err) {}
   };
 
   // update page on infinite scroll
@@ -107,10 +49,10 @@ export default function FollowFeed({
     getScrollFollows();
   }, [skip]);
 
-  // update page on new follow
+  // update page on load
   useEffect(() => {
     getInitialFollows();
-  }, [currentUser, currentPage]);
+  }, []);
 
   // infinite scroll functionality
   const handleScroll = (e) => {
@@ -136,7 +78,6 @@ export default function FollowFeed({
               {friends.map((friend) => (
                 <Follower
                   friend={friend}
-                  handleFollowingStatus={handleFollowingStatus}
                   sidebarOpen={sidebarOpen}
                   currentPage={currentPage}
                 />

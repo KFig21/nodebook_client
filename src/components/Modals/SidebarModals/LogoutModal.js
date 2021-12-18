@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
-import { logoutCall } from "../../../apiCalls";
+import { logoutCall } from "../../../helpers/apiCalls";
 import SC from "../../../themes/styledComponents";
 import "./SidebarModal.scss";
 

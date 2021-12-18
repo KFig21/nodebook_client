@@ -34,6 +34,10 @@ const SC = {
     background-color: ${(props) => props.theme.colors.primaryColor} !important;
     border-color: ${(props) => props.theme.colors.sidebarColor} !important;
   `,
+  NotificationBadgeCount: styled.span`
+    color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
+    font-size: 10px !important;
+  `,
   ShareButton: styled.div`
     background-color: ${(props) =>
       props.theme.colors.primaryColorFaded} !important;
@@ -140,6 +144,7 @@ const SC = {
   // ---------- PROFILE ----------
   AvatarContainer: styled.div`
     border-color: ${(props) => props.theme.colors.navbarColor} !important;
+    background-color: ${(props) => props.theme.colors.navbarColor} !important;
   `,
   ProfileInfoContainer: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
@@ -277,12 +282,6 @@ const SC = {
   UpdateProfileContainer: styled.div`
     border-color: ${(props) => props.theme.colors.primaryColor} !important;
   `,
-  VerticallyBorderedContainer: styled.div`
-    border-color: ${(props) => props.theme.colors.primaryColor} !important;
-  `,
-  InfoIcon: styled.span`
-    color: ${(props) => props.theme.colors.primaryColor} !important;
-  `,
   UpdateProfileInput: styled.input`
     &:focus {
       border-color: ${(props) => props.theme.colors.primaryColor} !important;
@@ -410,14 +409,38 @@ const SC = {
     }
   `,
   FollowButton: styled.button`
-    background-color: ${(props) =>
-      props.theme.colors.primaryColorFaded} !important;
-    color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
+    font-weight: 600 !important;
+    border: 2px solid ${(props) => props.theme.colors.primaryColor} !important;
+    border-radius: 25px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 4px 5px 10px;
+    min-width: 105px;
+    transition: all 0.15s ease;
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.primaryColor} !important;
       color: ${(props) =>
         props.theme.colors.primaryColorContrastText} !important;
+    }
+    &.Follow {
+      background-color: ${(props) =>
+        props.theme.colors.primaryColor} !important;
+      color: ${(props) =>
+        props.theme.colors.primaryColorContrastText} !important;
+    }
+    &.Unfollow {
+      background-color: transparent !important;
+      color: ${(props) => props.theme.colors.textWhite} !important;
+      &:hover {
+        background-color: ${(props) =>
+          props.theme.colors.primaryColor} !important;
+        color: ${(props) =>
+          props.theme.colors.primaryColorContrastText} !important;
+      }
     }
   `,
 
@@ -543,7 +566,7 @@ const SC = {
     }
   `,
   ShareIcon: styled.div`
-    color: ${(props) => props.theme.colors.ShareIconColor} !important;
+    color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
     display: flex;
     align-items: center;
     justify-content: center;

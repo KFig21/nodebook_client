@@ -7,6 +7,11 @@ import { Favorite, FavoriteBorder, MoreVert } from "@material-ui/icons";
 import noAvi from "../../../assets/noAvatar.png";
 import "./Comment.scss";
 import SC from "../../../themes/styledComponents";
+import {
+  deleteComment,
+  editComment,
+  fetchUserById,
+} from "../../../helpers/apiCalls";
 
 export default function Comment({
   comment,
@@ -32,10 +37,8 @@ export default function Comment({
   // fetch user on load
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${comment.userId}`
-      );
-      setUser(res.data);
+      const res = await fetchUserById(comment.userId);
+      setUser(res);
     };
     fetchUser();
   }, [comment.userId]);
@@ -92,15 +95,7 @@ export default function Comment({
   // delete comment
   const handleDeleteComment = async () => {
     try {
-      await axios.delete(
-        `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment._id}/`,
-        // `http://localhost:3000/api/comments/${comment._id}/`,
-        {
-          data: {
-            userId: currentUser._id,
-          },
-        }
-      );
+      await deleteComment(comment._id, currentUser._id);
     } catch (err) {
       alert(err);
     }
@@ -120,11 +115,7 @@ export default function Comment({
       editedtimestamp: Date.now(),
     };
     try {
-      await axios.put(
-        `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment._id}/`,
-        // `http://localhost:3000/api/comments/${comment._id}/`,
-        updatedComment
-      );
+      await editComment(comment._id, updatedComment);
       window.location.reload();
     } catch (err) {}
   };
@@ -231,9 +222,9 @@ export default function Comment({
           {/* comment body */}
           <div className="comment-body">{comment.body}</div>
           {comment.edited && (
-            <span className="comment-edit">
+            <SC.PostEdit className="comment-edit">
               edit: {format(comment.editedtimestamp)}
-            </span>
+            </SC.PostEdit>
           )}
           {/* edit input container */}
           {showEdit && (

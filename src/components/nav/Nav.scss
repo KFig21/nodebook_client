@@ -67,9 +67,9 @@
 }
 
 .follow-button {
-  border: none;
-  background-color: $primaryColorFaded;
+  // background-color: $primaryColorFaded;
   color: $textWhite;
+  border: none;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -83,6 +83,6 @@
 
   &:hover {
     outline: none;
-    background-color: $primaryColor;
+    // background-color: $primaryColor;
   }
 }

@@ -8,6 +8,7 @@ import Comment from "./comment/Comment";
 import noAvi from "../../assets/noAvatar.png";
 import "./Post.scss";
 import SC from "../../themes/styledComponents";
+import { deletePost, submitComment, editPost } from "../../helpers/apiCalls";
 
 export default function Post({
   post,
@@ -87,7 +88,7 @@ export default function Post({
   };
 
   // submit comment
-  const submitComment = async (e) => {
+  const handleSubmitComment = async (e) => {
     e.preventDefault();
     const newComment = {
       userId: currentUser._id,
@@ -100,11 +101,7 @@ export default function Post({
     };
     // send comment post request
     try {
-      await axios.post(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/comment`,
-        // `http://localhost:3000/api/posts/${post._id}/comment`,
-        newComment
-      );
+      await submitComment(post._id, newComment);
     } catch (err) {}
     window.location.reload();
     fetchNotifications();
@@ -120,11 +117,7 @@ export default function Post({
       editedtimestamp: Date.now(),
     };
     try {
-      await axios.put(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}`,
-        // `http://localhost:3000/api/posts/${post._id}/`,
-        updatedPost
-      );
+      await editPost(post._id, updatedPost);
       window.location.reload();
     } catch (err) {}
   };
@@ -132,15 +125,7 @@ export default function Post({
   // delete post
   const handleDeletePost = async () => {
     try {
-      await axios.delete(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/`,
-        // `http://localhost:3000/api/posts/${post._id}/`,
-        {
-          data: {
-            userId: currentUser._id,
-          },
-        }
-      );
+      await deletePost(post._id, currentUser._id);
     } catch (err) {
       alert(err);
     }
@@ -360,7 +345,7 @@ export default function Post({
               maxLength={500}
             />
             <form
-              onSubmit={submitComment}
+              onSubmit={handleSubmitComment}
               className="post-comment-button-container"
             >
               <SC.CommentButton

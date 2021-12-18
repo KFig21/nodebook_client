@@ -78,7 +78,7 @@
 
     .follow-button {
       border: none;
-      background-color: $primaryColorFaded;
+      // background-color: $primaryColorFaded;
       color: $textWhite;
       border-radius: 5px;
       margin: 0px 15px;
@@ -99,7 +99,7 @@
 
       &:hover {
         outline: none;
-        background-color: $primaryColor;
+        // background-color: $primaryColor;
       }
     }
   }

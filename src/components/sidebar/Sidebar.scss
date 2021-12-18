@@ -51,6 +51,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
 
     @include mobile {
       padding: 5px 0px 0 0;
@@ -58,6 +59,7 @@
 
     @include mobileHorizontal {
       padding: 5px 0px 0 0;
+      margin-top: 60px;
       min-width: unset;
     }
 
@@ -74,9 +76,14 @@
       }
 
       @include mobileHorizontal {
-        width: 100%;
-        margin: auto auto 10px auto;
-        padding-left: 10px;
+        width: 84px;
+        margin: auto;
+        position: fixed;
+        padding-top: 20px;
+        padding-bottom: 5px;
+        top: 0px;
+        background-color: $sidebarColor;
+        z-index: 10;
       }
 
       @include smallDesktop {

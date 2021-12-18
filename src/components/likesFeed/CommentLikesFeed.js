@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 import Liker from "./liker/Liker";
 import Loader from "../loader/Loader";
 import { format } from "timeago.js";
 import noAvi from "../../assets/noAvatar.png";
 import "./LikesFeed.scss";
 import SC from "../../themes/styledComponents";
+import { fetchCommentLikers } from "../../helpers/apiCalls";
 
 export default function PostLikesFeed({
   setCurrentPage,
@@ -19,74 +19,18 @@ export default function PostLikesFeed({
   const [loading, setLoading] = useState(true);
   const [likers, setLikers] = useState([]);
   const [skip, setSkip] = useState(0);
-  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const { user: currentUser } = useContext(AuthContext);
 
   setCurrentPage("CommentLikes");
 
-  const handleFollowingStatus = async (followed, userInQuestion) => {
-    const updateFollow = async () => {
-      try {
-        if (followed) {
-          await axios.put(
-            `https://radiant-oasis-77477.herokuapp.com/api/users/${userInQuestion._id}/unfollow`,
-            {
-              userId: currentUser._id,
-            }
-          );
-          dispatch({ type: "UNFOLLOW", payload: userInQuestion._id });
-          // delete follow notification
-          try {
-            axios.delete(
-              "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-              // "http://localhost:3000/api/notifications/",
-              {
-                data: {
-                  sender: currentUser._id,
-                  recipient: userInQuestion._id,
-                  postId: null,
-                  commentId: null,
-                  type: "follow",
-                },
-              }
-            );
-          } catch (err) {}
-        } else {
-          await axios.put(
-            `https://radiant-oasis-77477.herokuapp.com/api/users/${userInQuestion._id}/follow`,
-            {
-              userId: currentUser._id,
-            }
-          );
-          dispatch({ type: "FOLLOW", payload: userInQuestion._id });
-          // send follow notification
-          try {
-            axios.post(
-              "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-              // "http://localhost:3000/api/notifications/",
-              {
-                sender: currentUser._id,
-                recipient: userInQuestion._id,
-                postId: null,
-                commentId: null,
-                type: "follow",
-                seen: false,
-              }
-            );
-          } catch (err) {}
-        }
-      } catch (err) {}
-    };
-
-    updateFollow();
-  };
-
   const getInitialLikers = async () => {
     try {
-      const likerList = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment._id}/likers/0/${currentUser._id}`
-        // `http://localhost:3000/api/comments/${comment._id}/likers/0/${currentUser._id}`
+      const likerList = await fetchCommentLikers(
+        comment._id,
+        skip,
+        currentUser._id
       );
-      setLikers(likerList.data);
+      setLikers(likerList);
     } catch (err) {
       console.log(err);
     }
@@ -95,11 +39,12 @@ export default function PostLikesFeed({
 
   const getScrollLikers = async () => {
     try {
-      const likerList = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment._id}/likers/${skip}/${currentUser._id}`
-        // `http://localhost:3000/api/comments/${comment._id}/likers/${skip}/${currentUser._id}`
+      const likerList = await fetchCommentLikers(
+        comment._id,
+        skip,
+        currentUser._id
       );
-      setLikers([...likers, ...likerList.data]);
+      setLikers([...likers, ...likerList]);
     } catch (err) {
       console.log(err);
     }
@@ -180,7 +125,6 @@ export default function PostLikesFeed({
                 {likers.map((liker) => (
                   <Liker
                     liker={liker}
-                    handleFollowingStatus={handleFollowingStatus}
                     key={liker._id}
                     sidebarOpen={sidebarOpen}
                   />

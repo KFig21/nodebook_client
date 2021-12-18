@@ -1,25 +1,37 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import SC from "../../themes/styledComponents";
+import "./Profile.scss";
+import {
+  fetchUserByUsername,
+  fetchInitialPosts,
+  fetchInitialImages,
+  fetchInitialfollowsForProfile,
+  fetchScrollPosts,
+  fetchScrollfollowsForProfile,
+  fetchScrollImages,
+} from "../../helpers/apiCalls";
+// components
 import CenterFeed from "../../components/centerFeed/CenterFeed";
 import Nav from "../../components/nav/Nav";
-import { AuthContext } from "../../context/AuthContext";
+import Loader from "../../components/loader/Loader";
+import ImageModal from "../../components/Modals/ImageModals/ImageModal";
+import CoverImageModal from "../../components/Modals/ImageModals/CoverImageModal";
+// images
 import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
 import avatarCropper from "../../assets/avatarCropper.png";
 import coverCropper from "../../assets/coverCropper.png";
+// icons
 import {
   PermMedia,
   Cancel,
   AccountCircle,
+  Edit,
   Image as ImageIcon,
 } from "@material-ui/icons";
-import { Edit } from "@material-ui/icons";
-import Loader from "../../components/loader/Loader";
-import ImageModal from "../../components/Modals/ImageModals/ImageModal";
-import CoverImageModal from "../../components/Modals/ImageModals/CoverImageModal";
-import SC from "../../themes/styledComponents";
-import "./Profile.scss";
 
 export default function Profile({
   currentPage,
@@ -34,8 +46,9 @@ export default function Profile({
   const [profileUser, setProfileUser] = useState({});
   const username = useParams().username;
   const [followed, setFollowed] = useState(false);
+  const [followedByUser, setFollowedByUser] = useState(false);
   const [feed, setFeed] = useState("posts");
-  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const { user: currentUser } = useContext(AuthContext);
   const [skip, setSkip] = useState(0);
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
@@ -48,15 +61,24 @@ export default function Profile({
   const [editModal, setEditModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
+  const [followerCount, setFollowersCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
   const [file, setFile] = useState(null);
   const isInvalid = file === "" || file === null;
 
   useEffect(() => {
+    // check if the current user follows the profile user
     const checkFollowing = async () => {
       let check = await currentUser.followings.includes(profileUser?._id);
       setFollowed(check);
     };
     checkFollowing();
+    // check if the profile user follows the current user
+    const checkIfFollowedByUser = async () => {
+      let check = await currentUser.followers.includes(profileUser?._id);
+      setFollowedByUser(check);
+    };
+    checkIfFollowedByUser();
     // remove unused error
     if (followed) {
       return null;
@@ -66,22 +88,22 @@ export default function Profile({
   // gets the profiles user info
   const loadNewUser = async (newUser) => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${newUser}`
-        // `http://localhost:3000/api/users?username=${newUser}`
-      );
-      setProfileUser(res.data);
+      const res = await fetchUserByUsername(newUser);
+      setProfileUser(res);
+      if (res.followers) {
+        setFollowersCount(res.followers.length);
+      }
+      if (res.followings) {
+        setFollowingCount(res.followings.length);
+      }
       setFeed("posts");
-      fetchPosts(res.data.username);
+      fetchPosts(res.username);
     };
 
     const fetchPosts = async (userFetched) => {
       setTimeout(async function () {
-        const res = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${userFetched}/0`
-          // `http://localhost:3000/api/posts/profile/${userFetched}/0`
-        );
-        setPosts(res.data);
+        const res = await fetchInitialPosts(userFetched);
+        setPosts(res);
         setLoading(false);
       }, 1000);
     };
@@ -97,11 +119,8 @@ export default function Profile({
     setSkip(0);
     setFeed("posts");
     setTimeout(async function () {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/0`
-        // `http://localhost:3000/api/posts/profile/${profileUser.username}/0`
-      );
-      setPosts(res.data);
+      const res = await fetchInitialPosts(profileUser.username);
+      setPosts(res);
       setLoading(false);
     }, 1000);
   };
@@ -114,11 +133,8 @@ export default function Profile({
     setSkip(0);
     setFeed("images");
     setTimeout(async function () {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/images/0`
-        // `http://localhost:3000/api/posts/profile/${profileUser.username}/images/0`
-      );
-      setImages(res.data);
+      const fetchedImages = await fetchInitialImages(profileUser.username);
+      setImages(fetchedImages);
       setLoading(false);
     }, 500);
   };
@@ -132,11 +148,12 @@ export default function Profile({
     setSkip(0);
     setTimeout(async function () {
       try {
-        const followsList = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/${type}-profile/${currentUser._id}/0`
-          // `http://localhost:3000/api/users/${profileUser._id}/${type}-profile/${currentUser._id}/0`
+        const followsList = await fetchInitialfollowsForProfile(
+          profileUser._id,
+          type,
+          currentUser._id
         );
-        setFriends(followsList.data);
+        setFriends(followsList);
       } catch (err) {
         console.log(err);
       }
@@ -145,21 +162,20 @@ export default function Profile({
   };
 
   const getScrollPosts = async () => {
-    const res = await axios.get(
-      `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/${skip}`
-      // `http://localhost:3000/api/posts/profile/${profileUser.username}/${skip}`
-    );
-    setPosts([...posts, ...res.data]);
+    const res = await fetchScrollPosts(profileUser.username, skip);
+    setPosts([...posts, ...res]);
     setLoading(false);
   };
 
   const getScrollFollows = async () => {
     try {
-      const followsList = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/${skip}`
-        // `http://localhost:3000/api/users/${profileUser._id}/${feed}-profile/${currentUser._id}/${skip}`
+      const followsList = await fetchScrollfollowsForProfile(
+        profileUser._id,
+        feed,
+        currentUser._id,
+        skip
       );
-      setFriends([...friends, ...followsList.data]);
+      setFriends([...friends, ...followsList]);
     } catch (err) {
       console.log(err);
     }
@@ -167,11 +183,8 @@ export default function Profile({
 
   const getScrollImages = async () => {
     try {
-      const newImages = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${profileUser.username}/images/${skip}`
-        // `http://localhost:3000/api/posts/profile/${profileUser.username}/images/${skip}`
-      );
-      setImages([...images, ...newImages.data]);
+      const newImages = await fetchScrollImages(profileUser.username, skip);
+      setImages([...images, ...newImages]);
     } catch (err) {
       console.log(err);
     }
@@ -218,65 +231,6 @@ export default function Profile({
       getScrollImages();
     }
   }, [skip]);
-
-  // FOLLOW FEED FUNCTIONALITY
-  // FOLLOW FEED FUNCTIONALITY
-  const handleFollowingStatus = async (followed, userInQuestion) => {
-    const updateFollow = async () => {
-      try {
-        if (followed) {
-          await axios.put(
-            `https://radiant-oasis-77477.herokuapp.com/api/users/${userInQuestion._id}/unfollow`,
-            {
-              userId: currentUser._id,
-            }
-          );
-          dispatch({ type: "UNFOLLOW", payload: userInQuestion._id });
-          // delete follow notification
-          try {
-            axios.delete(
-              "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-              // "http://localhost:3000/api/notifications/",
-              {
-                data: {
-                  sender: currentUser._id,
-                  recipient: userInQuestion._id,
-                  postId: null,
-                  commentId: null,
-                  type: "follow",
-                },
-              }
-            );
-          } catch (err) {}
-        } else {
-          await axios.put(
-            `https://radiant-oasis-77477.herokuapp.com/api/users/${userInQuestion._id}/follow`,
-            {
-              userId: currentUser._id,
-            }
-          );
-          dispatch({ type: "FOLLOW", payload: userInQuestion._id });
-          // send follow notification
-          try {
-            axios.post(
-              "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-              // "http://localhost:3000/api/notifications/",
-              {
-                sender: currentUser._id,
-                recipient: userInQuestion._id,
-                postId: null,
-                commentId: null,
-                type: "follow",
-                seen: false,
-              }
-            );
-          } catch (err) {}
-        }
-      } catch (err) {}
-    };
-
-    updateFollow();
-  };
 
   const handleAvatarUpdate = async (e) => {
     e.preventDefault();
@@ -633,12 +587,12 @@ export default function Profile({
               <CenterFeed
                 profileUser={profileUser}
                 feed={feed}
+                followedByUser={followedByUser}
                 fetchNotifications={fetchNotifications}
                 loading={loading}
                 posts={posts}
                 images={images}
                 friends={friends}
-                handleFollowingStatus={handleFollowingStatus}
                 sidebarOpen={sidebarOpen}
                 loadNewUser={loadNewUser}
                 getInitialPosts={getInitialPosts}
@@ -646,6 +600,10 @@ export default function Profile({
                 getInitialImages={getInitialImages}
                 setToInfo={setToInfo}
                 handleSetModal={handleSetModal}
+                followerCount={followerCount}
+                followingCount={followingCount}
+                setFollowingCount={setFollowingCount}
+                currentPage={currentPage}
               />
             </div>
           </SC.ScrollThumb>

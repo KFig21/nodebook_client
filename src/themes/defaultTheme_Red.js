@@ -43,7 +43,7 @@ const defaultThemeGreen = {
     notificationSeenButtonText: "#000000",
     notificationDeleteButtonText: "#000000",
     // text
-    primaryColorContrastText: "rgb(21,21,21)",
+    primaryColorContrastText: "rgb(247, 247, 247)",
     textWhite: "rgb(247, 247, 247)",
     fadedTextColor: "#c5c5c5",
     subTextColor: "rgb(175, 175, 175)",

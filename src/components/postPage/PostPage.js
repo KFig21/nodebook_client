@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../loader/Loader";
 import PostPagePost from "../post/PostPagePost";
-import axios from "axios";
 import SC from "../../themes/styledComponents";
+import { fetchPostComments, fetchUserById } from "../../helpers/apiCalls";
 
 export default function PostPage({
   post,
@@ -25,12 +25,9 @@ export default function PostPage({
   const getInitialComments = async () => {
     const fetchComments = async () => {
       setSkip(0);
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/comments/0`
-        // `http://localhost:3000/api/posts/${post._id}/comments/0`
-      );
+      const res = await fetchPostComments(post._id, 0);
       setComments(
-        res.data.sort((p1, p2) => {
+        res.sort((p1, p2) => {
           return new Date(p1.createdAt) - new Date(p2.createdAt);
         })
       );
@@ -44,20 +41,14 @@ export default function PostPage({
   };
 
   const fetchUser = async () => {
-    const res = await axios.get(
-      `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${post.userId}`
-      // `http://localhost:3000/api/users?userId=${post.userId}`
-    );
-    setUser(res.data);
+    const res = await fetchUserById(post.userId);
+    setUser(res);
     getInitialComments();
   };
 
   const getScrollComments = async () => {
-    const res = await axios.get(
-      `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/comments/${skip}`
-      // `http://localhost:3000/api/posts/${post._id}/comments/${skip}`
-    );
-    setComments([...comments, ...res.data]);
+    const newComments = await fetchPostComments(post._id, skip);
+    setComments([...comments, ...newComments]);
     setLoading(false);
   };
 

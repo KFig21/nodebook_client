@@ -20,12 +20,12 @@ import SC from "../../themes/styledComponents";
 export default function CenterFeed({
   profileUser,
   feed,
+  followedByUser,
   fetchNotifications,
   loading,
   posts,
   images,
   friends,
-  handleFollowingStatus,
   sidebarOpen,
   loadNewUser,
   getInitialPosts,
@@ -33,6 +33,10 @@ export default function CenterFeed({
   getInitialImages,
   setToInfo,
   handleSetModal,
+  followerCount,
+  followingCount,
+  setFollowingCount,
+  currentPage,
 }) {
   const { user: currentUser } = useContext(AuthContext);
 
@@ -54,10 +58,15 @@ export default function CenterFeed({
         <SC.ProfileHeader className="profile-header">
           <SC.ProfileHeader className="profile-header-wrapper">
             <div className="profile-info">
-              <h4 className="profile-info-username">{profileUser.username}</h4>
-              <span className="profile-info-name">
+              <div className="profile-info-username">
+                {profileUser.username}
+              </div>
+              <div className="profile-info-name">
                 {profileUser.firstname} {profileUser.lastname}
-              </span>
+              </div>
+              {/* {followedByUser ? (
+                <div className="profile-header-follows-you"> follows you</div>
+              ) : null} */}
             </div>
           </SC.ProfileHeader>
         </SC.ProfileHeader>
@@ -132,7 +141,7 @@ export default function CenterFeed({
               }
             >
               <SC.ProfileNavButtonCount className="count">
-                {profileUser.followers ? profileUser.followers.length : "0"}
+                {followerCount}
               </SC.ProfileNavButtonCount>
               <SC.ProfileNavButtonText className="button-name">
                 followers
@@ -152,7 +161,7 @@ export default function CenterFeed({
               }
             >
               <SC.ProfileNavButtonCount className="count">
-                {profileUser.followings ? profileUser.followings.length : "0"}
+                {followingCount}
               </SC.ProfileNavButtonCount>
               <SC.ProfileNavButtonText className="button-name">
                 following
@@ -298,7 +307,9 @@ export default function CenterFeed({
                       <Follower
                         friend={friend}
                         loadNewUser={loadNewUser}
-                        handleFollowingStatus={handleFollowingStatus}
+                        followingCount={followingCount}
+                        setFollowingCount={setFollowingCount}
+                        currentPage={currentPage}
                       />
                     ))}
                   </div>
@@ -318,7 +329,9 @@ export default function CenterFeed({
                       <Follower
                         friend={friend}
                         loadNewUser={loadNewUser}
-                        handleFollowingStatus={handleFollowingStatus}
+                        followingCount={followingCount}
+                        setFollowingCount={setFollowingCount}
+                        currentPage={currentPage}
                       />
                     ))}
                   </div>

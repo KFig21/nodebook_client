@@ -84,9 +84,9 @@ export default function MobileNavFooter({
                 {notificationsCount > 0 && (
                   <div className="footer-notification-badge-container">
                     <SC.NotificationBadge className="footer-notification-badge">
-                      <span className="footer-badge-count">
+                      <SC.NotificationBadgeCount className="footer-badge-count">
                         {notificationsCount > 99 ? "+" : notificationsCount}
-                      </span>
+                      </SC.NotificationBadgeCount>
                     </SC.NotificationBadge>
                   </div>
                 )}

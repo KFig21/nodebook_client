@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import SC from "../../../themes/styledComponents";
 import { findTheme } from "../../../helpers/helperFunctions";
-import axios from "axios";
 import "./SidebarModal.scss";
 import { RadioButtonChecked, RadioButtonUnchecked } from "@material-ui/icons";
 import defaultThemeGreen from "../../../themes/defaultTheme_Green";
@@ -10,6 +9,7 @@ import defaultThemeAqua from "../../../themes/defaultTheme_Aqua";
 import defaultThemeYellow from "../../../themes/defaultTheme_Yellow";
 import defaultThemeRed from "../../../themes/defaultTheme_Red";
 import purpleTheme from "../../../themes/purpleTheme";
+import { updateUserTheme } from "../../../helpers/apiCalls";
 
 export default function Theme({
   setLogoutModal,
@@ -43,11 +43,7 @@ export default function Theme({
       theme: selectedTheme,
     };
     try {
-      await axios.put(
-        `https://radiant-oasis-77477.herokuapp.com/api/users/${user._id}/theme/`,
-        // `http://localhost:3000/api/users/${user._id}/theme/`,
-        data
-      );
+      await updateUserTheme(data, user._id);
       dispatch({ type: "THEME", payload: selectedTheme });
     } catch (err) {
       console.log(err);

@@ -1,10 +1,14 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
+import SC from "../../themes/styledComponents";
+import {
+  fetchUserByUsername,
+  sharePost,
+  sharePostWithImage,
+} from "../../helpers/apiCalls";
 import { PermMedia, Cancel } from "@material-ui/icons";
 import noAvi from "../../assets/noAvatar.png";
 import "./Share.scss";
-import SC from "../../themes/styledComponents";
 
 export default function Share() {
   const { user: currentUser } = useContext(AuthContext);
@@ -17,11 +21,8 @@ export default function Share() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${currentUser.username}`
-        // `http://localhost:3000/api/users?username=${currentUser.username}`
-      );
-      setUser(res.data);
+      const res = await fetchUserByUsername(currentUser.username);
+      setUser(res);
     };
 
     fetchUser();
@@ -41,11 +42,7 @@ export default function Share() {
       postWithImg.append("body", body.current.value);
 
       try {
-        await axios.post(
-          "https://radiant-oasis-77477.herokuapp.com/api/posts/image",
-          // `http://localhost:3000/api/posts/image`,
-          postWithImg
-        );
+        await sharePostWithImage(postWithImg);
         window.location.reload();
       } catch (err) {
         setError(true);
@@ -53,11 +50,7 @@ export default function Share() {
     } else {
       // no file, send
       try {
-        await axios.post(
-          "https://radiant-oasis-77477.herokuapp.com/api/posts",
-          // "http://localhost:3000/api/posts",
-          newPost
-        );
+        await sharePost(newPost);
         window.location.reload();
       } catch (err) {
         setError(true);

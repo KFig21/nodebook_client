@@ -59,9 +59,9 @@
 
       .profile-info {
         display: flex;
-        flex-wrap: wrap;
         align-items: baseline;
         justify-content: flex-start;
+        flex-wrap: wrap;
 
         @include mobile {
           justify-content: flex-end;
@@ -85,7 +85,19 @@
           font-size: 30px;
           @include mobile {
             font-size: 18px;
+            line-height: 20px;
+            height: 18px;
           }
+        }
+
+        .profile-header-follows-you {
+          margin-left: 12px;
+          font-size: 11px;
+          font-weight: 500;
+          padding: 3px 6px;
+          border-radius: 0px 7px 7px 7px;
+          background-color: $postBackgroundColor;
+          color: $sidebarColor;
         }
       }
     }
@@ -277,7 +289,7 @@
         max-width: 90%;
         height: 100%;
         background-color: transparent;
-        background-image: $glassGradient;
+        // background-image: $glassGradient;
         border: solid 2px;
         margin: auto;
         padding: 20px 30px;

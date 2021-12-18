@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 import noAvi from "../../assets/noAvatar.png";
 import { Comment, Favorite } from "@material-ui/icons";
 import "./Image.scss";
 import Loader from "../loader/Loader";
 import SC from "../../themes/styledComponents";
+import { fetchImageData, fetchPostById } from "../../helpers/apiCalls";
 
 export default function Image({ image, fetchNotifications, handleSetModal }) {
   const [imageData, setImageData] = useState({});
@@ -13,11 +13,8 @@ export default function Image({ image, fetchNotifications, handleSetModal }) {
 
   const getImageData = async () => {
     setTimeout(async function () {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/images/${image._id}`
-        // `http://localhost:3000/api/images/${image._id}`
-      );
-      setImageData(res.data);
+      const res = await fetchImageData(image._id);
+      setImageData(res);
     }, 500);
   };
 
@@ -27,11 +24,8 @@ export default function Image({ image, fetchNotifications, handleSetModal }) {
 
   const handleSendImageInfo = async (postId) => {
     const fetchPost = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${postId}`
-        // `http://localhost:3000/api/images/${image._id}`
-      );
-      sendPost(res.data);
+      const res = await fetchPostById(postId);
+      sendPost(res);
     };
     const sendPost = async (post) => {
       handleSetModal(post);

@@ -2,8 +2,11 @@ import React, { useRef, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import "./UpdateUser.scss";
-import axios from "axios";
-import { logoutCall } from "../../apiCalls";
+import {
+  fetchUserByUsername,
+  logoutCall,
+  updateUser,
+} from "../../helpers/apiCalls";
 import SC from "../../themes/styledComponents";
 
 export default function UpdateUser() {
@@ -25,10 +28,8 @@ export default function UpdateUser() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/users?username=${currentUser.username}`
-        );
-        setUser(res.data);
+        const res = await fetchUserByUsername(currentUser.username);
+        setUser(res);
       } catch (err) {
         console.log(err);
       }
@@ -51,21 +52,15 @@ export default function UpdateUser() {
       userId: user._id,
     };
     try {
-      await axios.put(
-        `https://radiant-oasis-77477.herokuapp.com/api/users/${user._id}`,
-        updatedUser
-      );
+      await updateUser(user._id, updatedUser);
       setError(false);
       setErrorMsg("");
       if (currentUser.username === username.current.value) {
         // if the username did not change, navigate to the timeline
         navigate("/", { replace: true });
       } else {
-        // if the username did change, navigate to the login page
-        alert(`Your new username is ${username.current.value}`);
-        localStorage.clear();
-        logoutCall(dispatch);
-        navigate("/login", { replace: true });
+        dispatch({ type: "USERNAME", payload: username.current.value });
+        navigate("/", { replace: true });
       }
     } catch (err) {
       console.log(err.response.data.msg);
@@ -190,12 +185,6 @@ export default function UpdateUser() {
               // {...register("confirm-password", { required: true })}
             ></SC.UpdateProfileInput>
           </div>
-          <SC.VerticallyBorderedContainer className="message-before-update-button">
-            <span>
-              <SC.InfoIcon className="info-icon">ⓘ</SC.InfoIcon> If you are
-              changing your username you will be logged out after updating
-            </span>
-          </SC.VerticallyBorderedContainer>
 
           {error && (
             <div className="error-msg">

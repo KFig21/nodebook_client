@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import CommentLikesFeed from "../../components/likesFeed/CommentLikesFeed";
 import Nav from "../../components/nav/Nav";
 import { useParams } from "react-router";
-import axios from "axios";
 import "../follows/Follows.scss";
+import { fetchUserById, fetchCommentById } from "../../helpers/apiCalls";
 
 export default function CommentLikes({
   currentPage,
@@ -17,16 +17,10 @@ export default function CommentLikes({
   const [user, setUser] = useState({});
 
   const getCommentInfo = async () => {
-    const fetchComment = await axios.get(
-      `https://radiant-oasis-77477.herokuapp.com/api/comments/${commentId}`
-      // `http://localhost:3000/api/comments/${commentId}`
-    );
-    setComment(fetchComment.data);
-    const fetchUser = await axios.get(
-      `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${fetchComment.data.userId}`
-      // `http://localhost:3000/api/users?userId=${fetchComment.data.userId}`
-    );
-    setUser(fetchUser.data);
+    const fetchComment = await fetchCommentById(commentId);
+    setComment(fetchComment);
+    const fetchUser = await fetchUserById(fetchComment.userId);
+    setUser(fetchUser);
   };
 
   useEffect(() => {

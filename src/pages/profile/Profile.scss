@@ -95,6 +95,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: default;
 
           @include mobile {
             top: 50px;

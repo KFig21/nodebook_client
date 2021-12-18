@@ -1,12 +1,16 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
-import Nav from "../../components/nav/Nav";
-import noAvi from "../../assets/noAvatar.png";
-import { PermMedia, Cancel } from "@material-ui/icons";
-import "./Share.scss";
 import SC from "../../themes/styledComponents";
+import {
+  fetchUserByUsername,
+  sharePost,
+  sharePostWithImage,
+} from "../../helpers/apiCalls";
+import Nav from "../../components/nav/Nav";
+import { PermMedia, Cancel } from "@material-ui/icons";
+import noAvi from "../../assets/noAvatar.png";
+import "./Share.scss";
 
 export default function Share({
   currentPage,
@@ -27,11 +31,8 @@ export default function Share({
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?username=${currentUser.username}`
-        // `http://localhost:3000/api/users?username=${currentUser.username}`
-      );
-      setUser(res.data);
+      const res = await fetchUserByUsername(currentUser.username);
+      setUser(res);
     };
 
     fetchUser();
@@ -56,11 +57,7 @@ export default function Share({
       postWithImg.append("body", body.current.value);
 
       try {
-        await axios.post(
-          "https://radiant-oasis-77477.herokuapp.com/api/posts/image",
-          // `http://localhost:3000/api/posts/image`,
-          postWithImg
-        );
+        await sharePostWithImage(postWithImg);
         navigate("/", { replace: true });
         window.location.reload();
       } catch (err) {
@@ -69,11 +66,7 @@ export default function Share({
     } else {
       // no file, send
       try {
-        await axios.post(
-          "https://radiant-oasis-77477.herokuapp.com/api/posts",
-          // "http://localhost:3000/api/posts",
-          newPost
-        );
+        await sharePost(newPost);
         navigate("/", { replace: true });
         window.location.reload();
       } catch (err) {

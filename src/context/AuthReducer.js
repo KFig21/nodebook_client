@@ -33,6 +33,14 @@ const AuthReducer = (state, action) => {
           theme: action.payload,
         },
       };
+    case "USERNAME":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          username: action.payload,
+        },
+      };
     case "FOLLOW":
       return {
         ...state,

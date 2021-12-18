@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Timeline.scss";
-import axios from "axios";
 // component imports
 import Loader from "../../components/loader/Loader";
 import Share from "../share/Share";
@@ -10,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 import ImageModal from "../Modals/ImageModals/ImageModal";
 import SC from "../../themes/styledComponents";
 import { Language } from "@material-ui/icons";
+import { fetchTimeline } from "../../helpers/apiCalls";
 
 export default function Timeline({
   fetchNotifications,
@@ -31,11 +31,8 @@ export default function Timeline({
   let username = user.username;
 
   const fetchPosts = async () => {
-    const res = await axios.get(
-      `https://radiant-oasis-77477.herokuapp.com/api/posts/timeline/${user._id}/${skip}`
-      // `http://localhost:3000/api/posts/timeline/${user._id}/${skip}`
-    );
-    setPosts([...posts, ...res.data]);
+    const res = await fetchTimeline(user._id, skip);
+    setPosts([...posts, ...res]);
     setTimeout(async function () {
       setLoading(false);
     }, 500);

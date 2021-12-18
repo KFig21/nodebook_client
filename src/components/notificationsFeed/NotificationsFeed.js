@@ -1,10 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import "./NotificationsFeed.scss";
 import Loader from "../../components/loader/Loader";
 import Notification from "./notification/Notification";
 import SC from "../../themes/styledComponents";
+import {
+  deleteNotification,
+  fetchNotificationsFeed,
+  updateNotificationStatus,
+} from "../../helpers/apiCalls";
 
 export default function NotificationsFeed({
   fetchNotifications,
@@ -25,11 +29,8 @@ export default function NotificationsFeed({
 
   const getNotifications = async () => {
     setTimeout(async function () {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/notifications/${user._id}`
-        // `http://localhost:3000/api/notifications/${user._id}`
-      );
-      let seenFilter = res.data.filter((noti) => {
+      const res = await fetchNotificationsFeed(user._id);
+      let seenFilter = res.filter((noti) => {
         return noti.seen === true;
       });
       setSeenNotifications(
@@ -37,7 +38,7 @@ export default function NotificationsFeed({
           return new Date(p2.createdAt) - new Date(p1.createdAt);
         })
       );
-      let newFilter = res.data.filter((noti) => {
+      let newFilter = res.filter((noti) => {
         return noti.seen === false;
       });
       setNewNotifications(
@@ -66,10 +67,7 @@ export default function NotificationsFeed({
       const updateNotifications = async () => {
         await Promise.all(
           updateNotis.map(async (notificationToUpdate) => {
-            await axios.put(
-              `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notificationToUpdate._id}`
-              // `http://localhost:3000/api/notifications/${notificationToUpdate._id}`
-            );
+            await updateNotificationStatus(notificationToUpdate._id);
           })
         );
       };
@@ -95,10 +93,7 @@ export default function NotificationsFeed({
 
       const deleteNotifcations = async () => {
         for (let notificationToDelete of deleteNotis) {
-          await axios.delete(
-            `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notificationToDelete._id}`
-            // `http://localhost:3000/api/notifications/${notificationToDelete._id}`
-          );
+          await deleteNotification(notificationToDelete._id);
         }
       };
 

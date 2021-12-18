@@ -15,6 +15,11 @@ import {
 import "./Notification.scss";
 import noAvi from "../../../assets/noAvatar.png";
 import SC from "../../../themes/styledComponents";
+import {
+  fetchUserById,
+  updateNotificationStatus,
+  deleteNotification,
+} from "../../../helpers/apiCalls";
 
 export default function Notification({
   notification,
@@ -29,10 +34,8 @@ export default function Notification({
   // get user
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${notification.sender}`
-      );
-      setUser(res.data);
+      const res = await fetchUserById(notification.sender);
+      setUser(res);
     };
     fetchUser();
 
@@ -68,10 +71,7 @@ export default function Notification({
   const handleMarkAsRead = async () => {
     const getReadStatus = async () => {
       try {
-        axios.put(
-          `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notification._id}`
-          // `http://localhost:3000/api/notifications/${notification._id}`
-        );
+        updateNotificationStatus(notification._id);
       } catch (err) {}
     };
     await getReadStatus();
@@ -79,15 +79,12 @@ export default function Notification({
   };
 
   const handleDelete = async () => {
-    const deleteNotification = async () => {
+    const handleDeleteNotification = async () => {
       try {
-        axios.delete(
-          `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notification._id}`
-          // `http://localhost:3000/api/notifications/${notification._id}`
-        );
+        await deleteNotification(notification._id);
       } catch (err) {}
     };
-    await deleteNotification();
+    await handleDeleteNotification();
     getNotifications();
   };
 
