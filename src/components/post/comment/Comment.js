@@ -204,18 +204,18 @@ export default function Comment({
                 </SC.MoreVert>
                 {showOptions && !showDeleteComment && !showEdit && (
                   <div className="comment-options-div">
-                    <button
+                    <SC.OptionsButtonDeleteColors
                       className="comment-options-delete"
                       onClick={() => setShowDeleteComment(!showDeleteComment)}
                     >
                       delete
-                    </button>
-                    <button
+                    </SC.OptionsButtonDeleteColors>
+                    <SC.OptionsButtonEditColors
                       className="comment-options-edit"
                       onClick={() => setShowEdit(!showEdit)}
                     >
                       edit
-                    </button>
+                    </SC.OptionsButtonEditColors>
                   </div>
                 )}
               </div>
@@ -233,7 +233,7 @@ export default function Comment({
           {showEdit && (
             <div>
               <form onSubmit={handleEditComment}>
-                <textarea
+                <SC.EditCommentTextarea
                   className="edit-input"
                   type="text"
                   maxLength={500}

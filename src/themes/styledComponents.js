@@ -49,7 +49,7 @@ const SC = {
     border-color: ${(props) => props.theme.colors.sidebarColor} !important;
   `,
   NotificationBadgeCount: styled.span`
-    color: ${(props) => props.theme.colors.primaryColorContrastText} !important;
+    color: ${(props) => props.theme.colors.notificationCountColor} !important;
     font-size: 10px !important;
   `,
   ShareButton: styled.div`
@@ -177,6 +177,8 @@ const SC = {
   ProfileInfoContainer: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
     border-color: ${(props) => props.theme.colors.primaryColorFaded} !important;
+    background-image: ${(props) =>
+      props.theme.colors.containerBackgroundGradient} !important;
   `,
   ProfileImagesContainer: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
@@ -363,9 +365,36 @@ const SC = {
       props.theme.colors.editedBackgroundColor} !important;
     color: ${(props) => props.theme.colors.primaryColorFaded} !important;
   `,
+  OptionsButtonDeleteColors: styled.button`
+    background-color: ${(props) =>
+      props.theme.colors.editedBackgroundColor} !important;
+    &:hover {
+      background-color: ${(props) =>
+        props.theme.colors.deleteButtonHoverColor} !important;
+    }
+  `,
+  OptionsButtonEditColors: styled.button`
+    background-color: ${(props) =>
+      props.theme.colors.editedBackgroundColor} !important;
+    &:hover {
+      background-color: ${(props) =>
+        props.theme.colors.editButtonBackgroundColor} !important;
+    }
+  `,
   CommentTextarea: styled.textarea`
     background-color: ${(props) =>
       props.theme.colors.backgroundColor} !important;
+    ::placeholder,
+    ::-webkit-input-placeholder {
+      color: ${(props) => props.theme.colors.placeholderTextColor} !important;
+    }
+    :-ms-input-placeholder {
+      color: ${(props) => props.theme.colors.placeholderTextColor} !important;
+    }
+  `,
+  EditCommentTextarea: styled.textarea`
+    background-color: ${(props) =>
+      props.theme.colors.editTextAreaBackgroundColor} !important;
     ::placeholder,
     ::-webkit-input-placeholder {
       color: ${(props) => props.theme.colors.placeholderTextColor} !important;
@@ -508,7 +537,8 @@ const SC = {
     background-color: ${(props) => props.theme.colors.navbarColor} !important;
   `,
   NotificationContainer: styled.div`
-    background-color: transparent !important;
+    background-color: ${(props) =>
+      props.theme.colors.notificationContainerColor} !important;
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.notificationHoverColor} !important;

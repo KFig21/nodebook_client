@@ -36,6 +36,18 @@
       margin-bottom: unset;
     }
 
+    &.avatar {
+      border-radius: 50%;
+      overflow: hidden;
+      max-height: 50vh;
+      max-width: 50vh;
+
+      @include mobile {
+        max-height: 80vw;
+        max-width: 80vw;
+      }
+    }
+
     .modal-img {
       object-fit: contain;
       height: 100%;

@@ -263,7 +263,7 @@ export default function Post({
                 <div className="post-edit-wrapper">
                   <div className="post-edit-form-container">
                     <form onSubmit={handleEditPost}>
-                      <SC.CommentTextarea
+                      <SC.EditCommentTextarea
                         className="edit-input"
                         type="text"
                         maxLength={500}
@@ -326,18 +326,18 @@ export default function Post({
                 </SC.MoreVert>
                 {showOptions && !showDeletePost && !showEdit && (
                   <div className="post-options-div">
-                    <button
+                    <SC.OptionsButtonDeleteColors
                       className="post-options-delete"
                       onClick={() => setShowDeletePost(!showDeletePost)}
                     >
                       delete post
-                    </button>
-                    <button
+                    </SC.OptionsButtonDeleteColors>
+                    <SC.OptionsButtonEditColors
                       className="post-options-edit"
                       onClick={() => setShowEdit(!showEdit)}
                     >
                       edit post
-                    </button>
+                    </SC.OptionsButtonEditColors>
                   </div>
                 )}
               </div>

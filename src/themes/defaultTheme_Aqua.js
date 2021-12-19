@@ -21,6 +21,7 @@ const defaultThemeGreen = {
     commentButtonBackgroundColor: "rgba(180, 180, 180, 0.09)",
     formInputFocusColor: "rgba(100, 100, 100, 0.5)",
     formInputColor: "rgba(100, 100, 100, 0.28)",
+    editTextAreaBackgroundColor: "#0f0f0f",
     // post-editing
     deleteButtonTextColor: "rgb(255, 23, 70)",
     deleteButtonHoverColor: "rgba(255, 79, 114, 0.2)",
@@ -31,7 +32,8 @@ const defaultThemeGreen = {
     followContainerBackgroundColorHover: "rgba(100, 100, 100, 0.5)",
     primaryColorGlow: "rgba(35, 194, 215, 0.45)",
     // notification
-    notificationHoverColor: "rgba(151, 151, 151, 0.07)",
+    notificationContainerColor: "rgb(38,38,43)",
+    notificationHoverColor: "rgb(46, 46, 51)",
     notificationSeenButtonFaded: "transparent",
     notificationSeenButtonFadedText: "#474747",
     notificationSeenButtonFadedBorder: "#474747",
@@ -45,6 +47,7 @@ const defaultThemeGreen = {
     // text
     primaryColorContrastText: "rgb(21,21,21)",
     textWhite: "rgb(247, 247, 247)",
+    notificationCountColor: "rgb(23, 24, 26)",
     fadedTextColor: "#c5c5c5",
     subTextColor: "rgb(175, 175, 175)",
     placeholderTextColor: "rgba(196, 196, 196, 0.3)",
@@ -59,7 +62,11 @@ const defaultThemeGreen = {
     // scroll
     scrollThumbColor: "hsla(0, 0%, 45%, 0.7)",
     scollTrackColor: "transparent",
+    containerBackgroundGradient:
+      "linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.07) 20%, rgba(255, 255, 255, 0.11) 50%, rgba(255, 255, 255, 0.07) 80%, rgba(255, 255, 255, 0.04) 100%)",
     // not in this theme
+    backgroundGradient:
+      "linear-gradient(135deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 100%)",
     postGlow: "rgba(0, 0, 0, 0.0)",
     shareGlow: "rgba(0, 0, 0, 0.0)",
   },

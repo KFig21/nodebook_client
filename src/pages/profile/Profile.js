@@ -22,6 +22,7 @@ import Nav from "../../components/nav/Nav";
 import Loader from "../../components/loader/Loader";
 import ImageModal from "../../components/Modals/ImageModals/ImageModal";
 import CoverImageModal from "../../components/Modals/ImageModals/CoverImageModal";
+import AvatarImageModal from "../../components/Modals/ImageModals/AvatarImageModal";
 // images
 import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
@@ -65,6 +66,7 @@ export default function Profile({
   const [image, setImage] = useState({});
   const [showImageModal, setShowImageModal] = useState(false);
   const [showCoverImageModal, setShowCoverImageModal] = useState(false);
+  const [showAvatarImageModal, setShowAvatarImageModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [avatarModal, setAvatarModal] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
@@ -349,6 +351,7 @@ export default function Profile({
     setAvatarModal(false);
     setCoverModal(false);
     setShowCoverImageModal(false);
+    setShowAvatarImageModal(false);
   };
 
   return (
@@ -403,6 +406,14 @@ export default function Profile({
             cover={profileUser.cover}
             showModal={showCoverImageModal}
             setShowModal={setShowCoverImageModal}
+          />
+        )}
+        {/* AVATAR IMAGE MODAL */}
+        {showAvatarImageModal && (
+          <AvatarImageModal
+            avatar={profileUser.avatar}
+            showModal={showAvatarImageModal}
+            setShowModal={setShowAvatarImageModal}
           />
         )}
         {/* AVATAR CHANGE MODAL */}
@@ -628,33 +639,19 @@ export default function Profile({
                     alt=""
                   />
                 </div>
-                {username === currentUser.username ? (
-                  <SC.AvatarContainer className="profile-img-container">
-                    <img
-                      className="profile-avatar"
-                      src={
-                        profileUser.avatar
-                          ? "https://nodebook-images.s3.amazonaws.com/" +
-                            profileUser.avatar
-                          : noAvi
-                      }
-                      alt=""
-                    />
-                  </SC.AvatarContainer>
-                ) : (
-                  <SC.AvatarContainer className="profile-img-container">
-                    <img
-                      className="profile-avatar"
-                      src={
-                        profileUser.avatar
-                          ? "https://nodebook-images.s3.amazonaws.com/" +
-                            profileUser.avatar
-                          : noAvi
-                      }
-                      alt=""
-                    />
-                  </SC.AvatarContainer>
-                )}
+                <SC.AvatarContainer className="profile-img-container">
+                  <img
+                    onClick={() => setShowAvatarImageModal(true)}
+                    className="profile-avatar"
+                    src={
+                      profileUser.avatar
+                        ? "https://nodebook-images.s3.amazonaws.com/" +
+                          profileUser.avatar
+                        : noAvi
+                    }
+                    alt=""
+                  />
+                </SC.AvatarContainer>
               </div>
             </div>
             <div className="profile-right-bottom">
