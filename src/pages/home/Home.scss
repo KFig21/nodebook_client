@@ -10,7 +10,7 @@
     flex-direction: column;
     position: relative;
     min-width: 1020px;
-    background-image: $glassGradient;
+    // background-image: $glassGradient;
 
     @include smallDesktop {
       min-width: unset;

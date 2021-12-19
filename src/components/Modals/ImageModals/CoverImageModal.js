@@ -1,5 +1,6 @@
 import React from "react";
 import "./ImageModal.scss";
+import SC from "../../../themes/styledComponents";
 
 export default function CoverImageModal({ cover, setShowModal, showModal }) {
   return (
@@ -13,10 +14,10 @@ export default function CoverImageModal({ cover, setShowModal, showModal }) {
         />
       </div>
 
-      <div
+      <SC.ModalWrapper
         className="modal-background"
         onClick={() => setShowModal(!showModal)}
-      ></div>
+      ></SC.ModalWrapper>
     </div>
   );
 }

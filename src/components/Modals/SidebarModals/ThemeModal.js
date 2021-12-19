@@ -8,7 +8,7 @@ import defaultThemeGreen from "../../../themes/defaultTheme_Green";
 import defaultThemeAqua from "../../../themes/defaultTheme_Aqua";
 import defaultThemeYellow from "../../../themes/defaultTheme_Yellow";
 import defaultThemeRed from "../../../themes/defaultTheme_Red";
-import purpleTheme from "../../../themes/purpleTheme";
+import outrunTheme from "../../../themes/outrunTheme";
 import { updateUserTheme } from "../../../helpers/apiCalls";
 
 export default function Theme({
@@ -143,22 +143,22 @@ export default function Theme({
           </div>
           <div
             className="sidebar-modal-option"
-            onClick={() => handleThemeOptionClick("purple")}
-            style={{ backgroundColor: purpleTheme.colors.backgroundColor }}
+            onClick={() => handleThemeOptionClick("outrun")}
+            style={{ backgroundColor: outrunTheme.colors.backgroundColor }}
           >
             {" "}
-            {selectedTheme === "purple" ? (
+            {selectedTheme === "outrun" ? (
               <RadioButtonChecked
                 className="theme-radio-icon"
-                style={{ fill: purpleTheme.colors.primaryColor }}
+                style={{ fill: outrunTheme.colors.primaryColor }}
               />
             ) : (
               <RadioButtonUnchecked
                 className="theme-radio-icon"
-                style={{ fill: purpleTheme.colors.primaryColor }}
+                style={{ fill: outrunTheme.colors.primaryColor }}
               />
             )}
-            <span className="theme-name">Purple</span>
+            <span className="theme-name">Outrun</span>
             <div className="sidebar-modal-option-background"></div>
           </div>
         </div>
@@ -171,7 +171,10 @@ export default function Theme({
           </SC.ModalCancelButton>
         </SC.ProfileModalMessageContainer>
       </SC.ProfileModalMessageContainer>
-      <div className="modal-background" onClick={handleThemeModal}></div>
+      <SC.ModalWrapper
+        className="modal-background"
+        onClick={handleThemeModal}
+      ></SC.ModalWrapper>
     </div>
   );
 }

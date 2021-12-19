@@ -337,7 +337,10 @@ export default function Profile({
                 </SC.ProfileModalButton>
               </SC.ProfileModalMessageContainer>
             </div>
-            <div className="modal-background" onClick={closeAllModals}></div>
+            <SC.ModalWrapper
+              className="modal-background"
+              onClick={closeAllModals}
+            ></SC.ModalWrapper>
           </div>
         )}
         {/* IMAGE MODAL */}
@@ -419,12 +422,12 @@ export default function Profile({
                 </SC.ProfileModalMessageContainer>
               </SC.ProfileModalMessageContainer>
               {sending ? (
-                <div className="modal-background"></div>
+                <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
               ) : (
-                <div
+                <SC.ModalWrapper
                   className="modal-background"
                   onClick={closeAllModals}
-                ></div>
+                ></SC.ModalWrapper>
               )}
             </div>
           ) : (
@@ -432,7 +435,7 @@ export default function Profile({
               <SC.ProfileModalMessageContainer className="profile-modal-container">
                 <Loader />
               </SC.ProfileModalMessageContainer>
-              <div className="modal-background"></div>
+              <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
             </div>
           ))}
         {/* COVER CHANGE MODAL */}
@@ -497,12 +500,12 @@ export default function Profile({
                 </SC.ProfileModalMessageContainer>
               </SC.ProfileModalMessageContainer>
               {sending ? (
-                <div className="modal-background"></div>
+                <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
               ) : (
-                <div
+                <SC.ModalWrapper
                   className="modal-background"
                   onClick={closeAllModals}
-                ></div>
+                ></SC.ModalWrapper>
               )}
             </div>
           ) : (
@@ -510,7 +513,7 @@ export default function Profile({
               <SC.ProfileModalMessageContainer className="profile-modal-container">
                 <Loader />
               </SC.ProfileModalMessageContainer>
-              <div className="modal-background"></div>
+              <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
             </div>
           ))}
 

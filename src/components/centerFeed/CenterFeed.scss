@@ -414,6 +414,7 @@
             align-items: center;
             justify-content: flex-start;
             width: 100%;
+            margin-left: 8px;
 
             &.theme-container {
               font-weight: 500;
@@ -437,10 +438,15 @@
               background-color: #23c5d9;
               color: black;
             }
-            // DEFAULT Red THEME
+            // DEFAULT RED THEME
             &.defaultred {
               background-color: crimson;
               color: black;
+            }
+            // OUTRUN THEME
+            &.outrun {
+              background-color: rgb(42, 32, 85);
+              color: rgb(21, 189, 255);
             }
           }
 

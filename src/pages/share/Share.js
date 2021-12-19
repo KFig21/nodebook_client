@@ -15,7 +15,6 @@ import "./Share.scss";
 export default function Share({
   currentPage,
   setCurrentPage,
-  fetchNotifications,
   sidebarOpen,
   setSidebarOpen,
   handleSidebar,

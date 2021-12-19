@@ -42,7 +42,10 @@ export default function LogoutModal({
           </SC.ProfileModalButton>
         </div>
       </SC.ProfileModalMessageContainer>
-      <div className="modal-background" onClick={handleLogoutModal}></div>
+      <SC.ModalWrapper
+        className="modal-background"
+        onClick={handleLogoutModal}
+      ></SC.ModalWrapper>
     </div>
   );
 }

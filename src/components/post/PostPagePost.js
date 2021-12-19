@@ -155,7 +155,7 @@ export default function Post({
   };
 
   return (
-    <div className="post">
+    <SC.PostContainer className="post">
       {showDeletePost && (
         <div className="delete-post-container">
           <span className="delete-post-message">
@@ -408,6 +408,6 @@ export default function Post({
           )}
         </div>
       </div>
-    </div>
+    </SC.PostContainer>
   );
 }

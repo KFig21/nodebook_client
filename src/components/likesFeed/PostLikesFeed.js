@@ -121,9 +121,9 @@ export default function PostLikesFeed({
                     </div>
                   )}
                   {post.edited && (
-                    <span className="likesFeed-post-edit">
+                    <SC.PostEdit className="likesFeed-post-edit">
                       edit: {format(post.editedtimestamp)}
-                    </span>
+                    </SC.PostEdit>
                   )}
                 </div>
               </div>

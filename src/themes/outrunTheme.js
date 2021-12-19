@@ -1,23 +1,23 @@
-const purpleTheme = {
+const outrunTheme = {
   colors: {
     // core
-    primaryColor: "rgba(254, 49, 171, 1)",
+    primaryColor: "rgba(0, 147, 255, 1)",
     likeColor: "rgba(254, 49, 171, 1)",
-    primaryColorFaded: "rgba(254, 49, 171, .7)",
+    primaryColorFaded: "rgba(0, 147, 255, .7)",
     likeColorFaded: "rgba(254, 49, 171, .7)",
-    navbarColor: "rgb(75,35,110)",
-    backgroundColor: "rgb(66, 36, 114)",
-    sidebarColor: "rgb(55,20,85)",
+    navbarColor: "#131230",
+    backgroundColor: "#1b2150",
+    sidebarColor: "#090c26",
     sidebarColorMobile: "rgba(55, 20, 85, 0.93)",
-    shareContainerColor: "rgb(55,20,85)",
+    shareContainerColor: "rgba(0, 0, 0, .25)",
     fadedButtonColor: "#7d3cff75",
     borderColor: "rgb(100, 100, 100)",
     darkBorder: "rgb(15, 15, 15)",
     ShareIconColor: "rgb(247, 247, 247)",
     // post
-    postBackgroundColor: "#695199",
-    postContainerBackgroundColor: "#543a7d",
-    editedBackgroundColor: "rgb(55,20,85)",
+    postBackgroundColor: "#191f4d",
+    postContainerBackgroundColor: "rgba(0, 0, 0, .25)",
+    editedBackgroundColor: "#090c26",
     formInputColor: "rgba(178, 39, 245, 0.25)",
     formInputFocusColor: "rgba(178, 39, 245, 0.5)",
     commentButtonBackgroundColor: "#381f61",
@@ -50,16 +50,21 @@ const purpleTheme = {
     placeholderTextColor: "#695199",
     // profile
     profileNavIconColor: "#c5c5c5",
-    profileNavIconColorActive: "rgba(0, 147, 255, 1)",
+    profileNavIconColorActive: "rgba(254, 49, 171, 1)",
     // modal
-    modalWrapperBackgroundColor: "rgba(141, 141, 141, 0.26)",
+    modalWrapperBackgroundColor: "rgba(54, 0, 115, 0.26)",
     darkModalWrapperBackgroundColor: "rgba(33, 36, 37, 0.65)",
     viewPostButtonTextColor: "rgba(255, 255, 255, 0.548)",
     viewPostButtonBackgroundColor: "rgba(146, 146, 146, 0.3)",
     // scroll
     scrollThumbColor: "hsla(0, 0%, 45%, 0.7)",
     scollTrackColor: "transparent",
+    // theme specific
+    backgroundGradient:
+      "linear-gradient(135deg, rgba(68,41,110,1) 0%, rgba(27,33,80,1) 20%, rgba(9,12,38,1) 51%, rgba(27,33,80,1) 80%, rgba(68,41,110,1) 100%)",
+    postGlow: "rgba(0, 147, 255, 0.4)",
+    shareGlow: "rgba(255, 26, 140, .4)",
   },
 };
 
-export default purpleTheme;
+export default outrunTheme;

@@ -59,6 +59,9 @@ const defaultThemeGreen = {
     // scroll
     scrollThumbColor: "hsla(0, 0%, 45%, 0.7)",
     scollTrackColor: "transparent",
+    // not in this theme
+    postGlow: "rgba(0, 0, 0, 0.0)",
+    shareGlow: "rgba(0, 0, 0, 0.0)",
   },
 };
 

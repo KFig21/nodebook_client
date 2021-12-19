@@ -3,7 +3,11 @@ import styled from "styled-components";
 const SC = {
   // ---------- APP.JS ----------
   ContentContainer: styled.div`
-    background-color: ${(props) => props.theme.colors.sidebarColor} !important;
+    background-color: ${(props) =>
+      props.theme.colors.backgroundColor} !important;
+    };
+    background-image:${(props) =>
+      props.theme.colors.backgroundGradient} !important;
     };
   `,
   ScrollThumb: styled.div`
@@ -15,6 +19,11 @@ const SC = {
           props.theme.colors.primaryColorFaded} !important;
       }
     }
+  `,
+  ModalWrapper: styled.div`
+  background-color: ${(props) =>
+    props.theme.colors.modalWrapperBackgroundColor} !important;
+  };
   `,
 
   // ---------- SIDEBAR, FOOTER, NAV ----------
@@ -53,6 +62,12 @@ const SC = {
       color: ${(props) => props.theme.colors.textWhite} !important;
       border-left: solid 4px ${(props) => props.theme.colors.primaryColor} !important;
       background-color: transparent !important;
+    }
+    @media (max-height: 420px) {
+      @media (min-width: 600px) and (max-width: 820px) {
+        background-color: ${(props) =>
+          props.theme.colors.primaryColor} !important;
+      }
     }
   `,
   SidebarLogoTop: styled.div`
@@ -301,6 +316,11 @@ const SC = {
     background-color: ${(props) =>
       props.theme.colors.postBackgroundColor} !important;
   `,
+  PostContainer: styled.div`
+    background-color: ${(props) =>
+      props.theme.colors.postContainerBackgroundColor} !important;
+    box-shadow: 0px 0px 10px 4px ${(props) => props.theme.colors.postGlow} !important;
+  `,
   LikeIconContainer: styled.div`
     color: ${(props) => props.theme.colors.likeColor} !important;
     height: 24px;
@@ -532,6 +552,7 @@ const SC = {
   ShareContainer: styled.div`
     background-color: ${(props) =>
       props.theme.colors.shareContainerColor} !important;
+    box-shadow: 0px 0px 10px 4px ${(props) => props.theme.colors.shareGlow} !important;
     ::webkit-resizer {
       border-right: 2px solid ${(props) => props.theme.colors.primaryColorFaded} !important;
       border-bottom: 2px solid
@@ -575,6 +596,9 @@ const SC = {
   `,
   // webkit resizer not working
   ShareTextArea: styled.textarea`
+    background-color: ${(props) =>
+      props.theme.colors.backgroundColor} !important;
+
     color: ${(props) => props.theme.colors.textWhite} !important;
     ::webkit-resizer {
       border-right: 2px solid ${(props) => props.theme.colors.primaryColorFaded} !important;

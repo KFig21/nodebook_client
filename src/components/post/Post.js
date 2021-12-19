@@ -186,7 +186,7 @@ export default function Post({
   };
 
   return (
-    <div className="post">
+    <SC.PostContainer className="post">
       {showDeletePost && (
         <div className="delete-post-container">
           <SC.DeletePostMessage className="delete-post-message">
@@ -263,7 +263,7 @@ export default function Post({
                 <div className="post-edit-wrapper">
                   <div className="post-edit-form-container">
                     <form onSubmit={handleEditPost}>
-                      <textarea
+                      <SC.CommentTextarea
                         className="edit-input"
                         type="text"
                         maxLength={500}
@@ -463,6 +463,6 @@ export default function Post({
           )}
         </div>
       </div>
-    </div>
+    </SC.PostContainer>
   );
 }
