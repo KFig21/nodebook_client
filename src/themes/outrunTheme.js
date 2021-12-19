@@ -11,7 +11,7 @@ const outrunTheme = {
     sidebarColorMobile: "rgba(9, 12, 38, 0.93)",
     shareContainerColor: "rgba(0, 0, 0, .25)",
     fadedButtonColor: "#7d3cff75",
-    borderColor: "rgb(100, 100, 100)",
+    borderColor: "rgba(120, 49, 222, .5)",
     darkBorder: "rgb(15, 15, 15)",
     ShareIconColor: "rgb(247, 247, 247)",
     // post
@@ -29,7 +29,7 @@ const outrunTheme = {
     // follow container
     followContainerBackgroundColor: "rgba(189, 73, 245, 0.19)",
     followContainerBackgroundColorHover: "rgba(178, 39, 245, 0.28)",
-    primaryColorGlow: "rgba(255, 26, 140, .4)",
+    primaryColorGlow: "rgba(255, 26, 140, .34)",
     // notification
     notificationSeenButtonFaded: "transparent",
     notificationSeenButtonFadedText: "rgba(0, 147, 255, .5)",

@@ -77,7 +77,7 @@ export default function PostLikesFeed({
       ) : (
         <div className="likers-feed">
           <div className="likesFeed-post-container">
-            <SC.PostUpper className="likesFeed-post-upper">
+            <SC.PostUpperLikesPage className="likesFeed-post-upper">
               <div className="likesFeed-post-top">
                 <Link to={`/profile/${user.username}`}>
                   <img
@@ -127,7 +127,7 @@ export default function PostLikesFeed({
                   )}
                 </div>
               </div>
-            </SC.PostUpper>
+            </SC.PostUpperLikesPage>
           </div>
           <div className="likesFeed-wrapper">
             {likers.length > 0 ? (

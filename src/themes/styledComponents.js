@@ -321,6 +321,11 @@ const SC = {
     background-color: ${(props) =>
       props.theme.colors.postBackgroundColor} !important;
   `,
+  PostUpperLikesPage: styled.div`
+    background-color: ${(props) =>
+      props.theme.colors.postBackgroundColor} !important;
+    box-shadow: 0px 0px 10px 4px ${(props) => props.theme.colors.postGlow} !important;
+  `,
   PostContainer: styled.div`
     background-color: ${(props) =>
       props.theme.colors.postContainerBackgroundColor} !important;
