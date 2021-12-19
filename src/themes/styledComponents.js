@@ -307,6 +307,9 @@ const SC = {
       color: ${(props) => props.theme.colors.primaryColor} !important;
     }
   `,
+  AvatarImageModal: styled.div`
+    box-shadow: 0px 0px 10px 4px ${(props) => props.theme.colors.shareGlow} !important;
+  `,
 
   // ---------- UPDATE PROFILE ----------
   UpdateProfileContainer: styled.div`

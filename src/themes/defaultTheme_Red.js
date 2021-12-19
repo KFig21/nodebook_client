@@ -32,8 +32,8 @@ const defaultThemeGreen = {
     followContainerBackgroundColorHover: "rgba(100, 100, 100, 0.5)",
     primaryColorGlow: "rgba(220, 20, 60, 0.45)",
     // notification
-    notificationContainerColor: "rgb(38,38,43)",
-    notificationHoverColor: "rgb(46, 46, 51)",
+    notificationContainerColor: "rgb(24,25,26)",
+    notificationHoverColor: "rgb(34,34,36)",
     notificationSeenButtonFaded: "transparent",
     notificationSeenButtonFadedText: "#474747",
     notificationSeenButtonFadedBorder: "#474747",
