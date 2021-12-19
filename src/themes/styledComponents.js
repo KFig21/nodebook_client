@@ -237,6 +237,10 @@ const SC = {
   ProfileModalMessageContainer: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
   `,
+  ProfileModalContainer: styled.div`
+    background-color: ${(props) => props.theme.colors.sidebarColor} !important;
+    box-shadow: 0px 0px 10px 4px ${(props) => props.theme.colors.postGlow} !important;
+  `,
   ProfileModalButton: styled.div`
     background-color: ${(props) =>
       props.theme.colors.backgroundColor} !important;

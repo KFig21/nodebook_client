@@ -360,7 +360,7 @@ export default function Profile({
         {/* EDIT IMAGE SELECTION MODAL */}
         {editModal && (
           <div className="profile-modal-wrapper">
-            <div className="profile-modal-container">
+            <SC.ProfileModalContainer className="profile-modal-container">
               <SC.ProfileModalMessageContainer className="edit-modal-message">
                 Which image do you want to change
               </SC.ProfileModalMessageContainer>
@@ -384,7 +384,7 @@ export default function Profile({
                   Cover
                 </SC.ProfileModalButton>
               </SC.ProfileModalMessageContainer>
-            </div>
+            </SC.ProfileModalContainer>
             <SC.ModalWrapper
               className="modal-background"
               onClick={closeAllModals}
@@ -420,7 +420,7 @@ export default function Profile({
         {avatarModal &&
           (!sending ? (
             <div className="profile-modal-wrapper">
-              <SC.ProfileModalMessageContainer className="profile-modal-container">
+              <SC.ProfileModalContainer className="profile-modal-container">
                 {file && (
                   <div className="cropper-container">
                     <div className="avatar-modal-img-container">
@@ -489,7 +489,7 @@ export default function Profile({
                     </SC.ProfileImageSaveButton>
                   </form>
                 </SC.ProfileModalMessageContainer>
-              </SC.ProfileModalMessageContainer>
+              </SC.ProfileModalContainer>
               {sending ? (
                 <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
               ) : (
@@ -501,9 +501,9 @@ export default function Profile({
             </div>
           ) : (
             <div className="profile-modal-wrapper">
-              <SC.ProfileModalMessageContainer className="profile-modal-container">
+              <SC.ProfileModalContainer className="profile-modal-container">
                 <Loader />
-              </SC.ProfileModalMessageContainer>
+              </SC.ProfileModalContainer>
               <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
             </div>
           ))}
@@ -511,7 +511,7 @@ export default function Profile({
         {coverModal &&
           (!sending ? (
             <div className="profile-modal-wrapper">
-              <SC.ProfileModalMessageContainer className="profile-modal-container">
+              <SC.ProfileModalContainer className="profile-modal-container">
                 {file && (
                   <div className="cropper-container">
                     <div className="cover-modal-img-container">
@@ -580,7 +580,7 @@ export default function Profile({
                     </SC.ProfileImageSaveButton>
                   </form>
                 </SC.ProfileModalMessageContainer>
-              </SC.ProfileModalMessageContainer>
+              </SC.ProfileModalContainer>
               {sending ? (
                 <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
               ) : (
@@ -592,9 +592,9 @@ export default function Profile({
             </div>
           ) : (
             <div className="profile-modal-wrapper">
-              <SC.ProfileModalMessageContainer className="profile-modal-container">
+              <SC.ProfileModalContainer className="profile-modal-container">
                 <Loader />
-              </SC.ProfileModalMessageContainer>
+              </SC.ProfileModalContainer>
               <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
             </div>
           ))}
