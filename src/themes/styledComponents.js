@@ -392,8 +392,7 @@ const SC = {
     }
     @media (min-height: 421px) {
       @media (max-width: 768px) {
-        background-color: ${(props) =>
-          props.theme.colors.commentButtonBackgroundColor} !important;
+        background-color: transparent !important;
       }
     }
     @media (max-height: 500px) {
@@ -498,8 +497,7 @@ const SC = {
     background-color: ${(props) => props.theme.colors.navbarColor} !important;
   `,
   NotificationContainer: styled.div`
-    background-color: ${(props) =>
-      props.theme.colors.backgroundColor} !important;
+    background-color: transparent !important;
     &:hover {
       background-color: ${(props) =>
         props.theme.colors.notificationHoverColor} !important;
