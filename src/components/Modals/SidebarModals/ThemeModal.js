@@ -54,7 +54,7 @@ export default function Theme({
 
   return (
     <div className="sidebar-modal-wrapper">
-      <SC.ProfileModalMessageContainer className="sidebar-modal-container">
+      <SC.ProfileModalContainer className="sidebar-modal-container">
         <SC.ProfileModalMessageContainer className="sidebar-modal-message">
           Pick a theme
         </SC.ProfileModalMessageContainer>
@@ -197,7 +197,7 @@ export default function Theme({
             cancel
           </SC.ModalCancelButton>
         </SC.ProfileModalMessageContainer>
-      </SC.ProfileModalMessageContainer>
+      </SC.ProfileModalContainer>
       <SC.ModalWrapper
         className="modal-background"
         onClick={handleThemeModal}

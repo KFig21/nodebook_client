@@ -23,7 +23,7 @@ export default function LogoutModal({
 
   return (
     <div className="sidebar-modal-wrapper">
-      <SC.ProfileModalMessageContainer className="sidebar-modal-container">
+      <SC.ProfileModalContainer className="sidebar-modal-container">
         <SC.ProfileModalMessageContainer className="sidebar-modal-message">
           Are you sure you want to logout?
         </SC.ProfileModalMessageContainer>
@@ -41,7 +41,7 @@ export default function LogoutModal({
             cancel
           </SC.ProfileModalButton>
         </div>
-      </SC.ProfileModalMessageContainer>
+      </SC.ProfileModalContainer>
       <SC.ModalWrapper
         className="modal-background"
         onClick={handleLogoutModal}
