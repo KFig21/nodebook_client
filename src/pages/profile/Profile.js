@@ -3,7 +3,10 @@ import { useParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import SC from "../../themes/styledComponents";
+import Cropper from "react-easy-crop";
+import { Slider } from "@material-ui/core";
 import "./Profile.scss";
+import "./ProfileImages.scss";
 import {
   fetchUserByUsername,
   fetchInitialPosts,
@@ -24,6 +27,11 @@ import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
 import avatarCropper from "../../assets/avatarCropper.png";
 import coverCropper from "../../assets/coverCropper.png";
+import { ThemeContext } from "styled-components";
+import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import getCroppedImg from "../../helpers/cropImage";
+import { dataURLtoFile } from "../../helpers/dataURLtoFile";
 // icons
 import {
   PermMedia,
@@ -54,7 +62,6 @@ export default function Profile({
   const [posts, setPosts] = useState([]);
   const [images, setImages] = useState([]);
   const [friends, setFriends] = useState([]);
-  const [sending, setSending] = useState(false);
   const [image, setImage] = useState({});
   const [showImageModal, setShowImageModal] = useState(false);
   const [showCoverImageModal, setShowCoverImageModal] = useState(false);
@@ -63,8 +70,6 @@ export default function Profile({
   const [coverModal, setCoverModal] = useState(false);
   const [followerCount, setFollowersCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
-  const [file, setFile] = useState(null);
-  const isInvalid = file === "" || file === null;
 
   useEffect(() => {
     // check if the current user follows the profile user
@@ -236,9 +241,11 @@ export default function Profile({
     e.preventDefault();
     setSending(true);
     if (file) {
+      const canvas = await getCroppedImg(file, croppedArea);
+      const convertedUrlToFile = dataURLtoFile(canvas, "cropped-image.jpeg");
       const data = new FormData();
 
-      data.append("file", file);
+      data.append("file", convertedUrlToFile);
       data.append("userId", currentUser._id);
 
       try {
@@ -257,9 +264,11 @@ export default function Profile({
     setSending(true);
 
     if (file) {
+      const canvas = await getCroppedImg(file, croppedArea);
+      const convertedUrlToFile = dataURLtoFile(canvas, "cropped-image.jpeg");
       const data = new FormData();
 
-      data.append("file", file);
+      data.append("file", convertedUrlToFile);
       data.append("userId", currentUser._id);
 
       try {
@@ -270,6 +279,42 @@ export default function Profile({
         );
         window.location.reload();
       } catch (err) {}
+    }
+  };
+
+  // image cropper
+  const [sending, setSending] = useState(false);
+  const [file, setFile] = useState(null);
+  const isInvalid = file === "" || file === null;
+  const themeContext = useContext(ThemeContext);
+  const sliderTheme = createTheme({
+    overrides: {
+      MuiSlider: {
+        thumb: {
+          color: `${themeContext.colors.primaryColor}`,
+        },
+        track: {
+          color: `${themeContext.colors.primaryColorFaded}`,
+        },
+        rail: {
+          color: `${themeContext.colors.borderColor}`,
+        },
+      },
+    },
+  });
+  const [croppedArea, setCroppedArea] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
+    setCroppedArea(croppedAreaPixels);
+  };
+  const onSelectFile = (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.addEventListener("load", () => {
+        setFile(reader.result);
+      });
     }
   };
 
@@ -366,21 +411,33 @@ export default function Profile({
             <div className="profile-modal-wrapper">
               <SC.ProfileModalMessageContainer className="profile-modal-container">
                 {file && (
-                  <div className="avatar-modal-img-container">
-                    <img
-                      className="avatar-modal-cropper"
-                      src={avatarCropper}
-                      alt=""
-                    />
-                    <img
-                      className="avatar-modal-img"
-                      src={URL.createObjectURL(file)}
-                      alt=""
-                    />
-                    <Cancel
-                      className="avatar-modal-cancel-img"
-                      onClick={() => setFile("")}
-                    />
+                  <div className="cropper-container">
+                    <div className="avatar-modal-img-container">
+                      <Cancel
+                        className="avatar-modal-cancel-img"
+                        onClick={() => setFile("")}
+                      />
+                      <Cropper
+                        image={file}
+                        crop={crop}
+                        zoom={zoom}
+                        aspect={1}
+                        onCropChange={setCrop}
+                        onZoomChange={setZoom}
+                        onCropComplete={onCropComplete}
+                      />
+                    </div>
+                    <div className="slider-container">
+                      <ThemeProvider theme={sliderTheme}>
+                        <Slider
+                          min={1}
+                          max={3}
+                          step={0.1}
+                          value={zoom}
+                          onChange={(e, zoom) => setZoom(zoom)}
+                        />
+                      </ThemeProvider>
+                    </div>
                   </div>
                 )}
                 <SC.ProfileModalMessageContainer className="avatar-modal-bottom-container">
@@ -403,7 +460,8 @@ export default function Profile({
                           id="file"
                           name="file"
                           accept=".png,.jpeg,.jpg"
-                          onChange={(e) => setFile(e.target.files[0])}
+                          // onChange={(e) => setFile(e.target.files[0])}
+                          onChange={onSelectFile}
                         />
                       </label>
                     </div>
@@ -444,21 +502,33 @@ export default function Profile({
             <div className="profile-modal-wrapper">
               <SC.ProfileModalMessageContainer className="profile-modal-container">
                 {file && (
-                  <div className="cover-modal-img-container">
-                    <img
-                      className="cover-modal-cropper"
-                      src={coverCropper}
-                      alt=""
-                    />
-                    <img
-                      className="cover-modal-img"
-                      src={URL.createObjectURL(file)}
-                      alt=""
-                    />
-                    <Cancel
-                      className="cover-modal-cancel-img"
-                      onClick={() => setFile("")}
-                    />
+                  <div className="cropper-container">
+                    <div className="cover-modal-img-container">
+                      <Cancel
+                        className="cover-modal-cancel-img"
+                        onClick={() => setFile("")}
+                      />
+                      <Cropper
+                        image={file}
+                        crop={crop}
+                        zoom={zoom}
+                        aspect={4}
+                        onCropChange={setCrop}
+                        onZoomChange={setZoom}
+                        onCropComplete={onCropComplete}
+                      />
+                    </div>
+                    <div className="slider-container">
+                      <ThemeProvider theme={sliderTheme}>
+                        <Slider
+                          min={1}
+                          max={3}
+                          step={0.1}
+                          value={zoom}
+                          onChange={(e, zoom) => setZoom(zoom)}
+                        />
+                      </ThemeProvider>
+                    </div>
                   </div>
                 )}
                 <SC.ProfileModalMessageContainer className="avatar-modal-bottom-container">
@@ -481,7 +551,8 @@ export default function Profile({
                           id="file"
                           name="file"
                           accept=".png,.jpeg,.jpg"
-                          onChange={(e) => setFile(e.target.files[0])}
+                          // onChange={(e) => setFile(e.target.files[0])}
+                          onChange={onSelectFile}
                         />
                       </label>
                     </div>
