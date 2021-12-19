@@ -5,7 +5,7 @@ const defaultThemeGreen = {
     likeColor: "#4bb44b",
     primaryColorFaded: "rgba(75, 180, 75, 0.7)",
     likeColorFaded: "rgba(75, 180, 75, 0.7)",
-    backgroundColor: "#0f0f0f",
+    backgroundColor: "#ebe9e6",
     navbarColor: "rgb(32, 32, 36)",
     sidebarColor: "rgb(23, 24, 26)",
     sidebarColorMobile: "rgba(23, 24, 26, 0.93)",
@@ -15,7 +15,7 @@ const defaultThemeGreen = {
     fadedButtonColor: "rgb(71, 71, 71)",
     ShareIconColor: "rgb(247, 247, 247)",
     // post
-    postBackgroundColor: "rgb(48, 48, 51)",
+    postBackgroundColor: "#bbbdbf",
     postContainerBackgroundColor: "rgb(34, 34, 37)",
     editedBackgroundColor: "rgb(21, 21, 21)",
     commentButtonBackgroundColor: "rgba(180, 180, 180, 0.09)",
@@ -43,6 +43,7 @@ const defaultThemeGreen = {
     notificationSeenButtonText: "#000000",
     notificationDeleteButtonText: "#000000",
     // text
+    postTextColor: "#202021",
     primaryColorContrastText: "rgb(247, 247, 247)",
     textWhite: "rgb(247, 247, 247)",
     fadedTextColor: "#c5c5c5",

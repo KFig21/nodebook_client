@@ -8,6 +8,7 @@ import defaultThemeGreen from "../../../themes/defaultTheme_Green";
 import defaultThemeAqua from "../../../themes/defaultTheme_Aqua";
 import defaultThemeYellow from "../../../themes/defaultTheme_Yellow";
 import defaultThemeRed from "../../../themes/defaultTheme_Red";
+import lightThemeGreen from "../../../themes/lightTheme_Green";
 import outrunTheme from "../../../themes/outrunTheme";
 import { updateUserTheme } from "../../../helpers/apiCalls";
 
@@ -57,6 +58,7 @@ export default function Theme({
         <SC.ProfileModalMessageContainer className="sidebar-modal-message">
           Pick a theme
         </SC.ProfileModalMessageContainer>
+        {/* DEFAULT GREEN */}
         <div className="theme-modal-selection-container">
           <div
             className="sidebar-modal-option"
@@ -79,6 +81,7 @@ export default function Theme({
             <span className="theme-name">Default green</span>
             <div className="sidebar-modal-option-background"></div>
           </div>
+          {/* DEFAULT YELLOW */}
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("default yellow")}
@@ -101,6 +104,7 @@ export default function Theme({
             <span className="theme-name">Default yellow</span>
             <div className="sidebar-modal-option-background"></div>
           </div>
+          {/* DEFAULT AQUA */}
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("default aqua")}
@@ -121,6 +125,7 @@ export default function Theme({
             <span className="theme-name">Default aqua</span>
             <div className="sidebar-modal-option-background"></div>
           </div>
+          {/* DEFAULT RED */}
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("default red")}
@@ -141,6 +146,28 @@ export default function Theme({
             <span className="theme-name">Default red</span>
             <div className="sidebar-modal-option-background"></div>
           </div>
+          {/* LIGHT GREEN */}
+          {/* <div
+            className="sidebar-modal-option"
+            onClick={() => handleThemeOptionClick("light green")}
+            style={{ backgroundColor: lightThemeGreen.colors.backgroundColor }}
+          >
+            {" "}
+            {selectedTheme === "light green" ? (
+              <RadioButtonChecked
+                className="theme-radio-icon"
+                style={{ fill: lightThemeGreen.colors.primaryColor }}
+              />
+            ) : (
+              <RadioButtonUnchecked
+                className="theme-radio-icon"
+                style={{ fill: lightThemeGreen.colors.primaryColor }}
+              />
+            )}
+            <span className="theme-name">Light green</span>
+            <div className="sidebar-modal-option-background"></div>
+          </div> */}
+          {/* OUTRUN */}
           <div
             className="sidebar-modal-option"
             onClick={() => handleThemeOptionClick("outrun")}

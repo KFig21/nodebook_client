@@ -25,6 +25,11 @@ const SC = {
     props.theme.colors.modalWrapperBackgroundColor} !important;
   };
   `,
+  ModalWrapperDark: styled.div`
+  background-color: ${(props) =>
+    props.theme.colors.darkModalWrapperBackgroundColor} !important;
+  };
+  `,
 
   // ---------- SIDEBAR, FOOTER, NAV ----------
   Sidebar: styled.div`
@@ -320,6 +325,7 @@ const SC = {
   PostUpper: styled.div`
     background-color: ${(props) =>
       props.theme.colors.postBackgroundColor} !important;
+    color: ${(props) => props.theme.colors.postTextColor} !important;
   `,
   PostUpperLikesPage: styled.div`
     background-color: ${(props) =>

@@ -53,9 +53,9 @@ const defaultThemeGreen = {
     profileNavIconColorActive: "#23c5d9",
     // modal
     modalWrapperBackgroundColor: "rgba(141, 141, 141, 0.26)",
-    darkModalWrapperBackgroundColor: "rgba(33, 36, 37, 0.65)",
+    darkModalWrapperBackgroundColor: "rgba(0, 0, 0, 0.5)",
     viewPostButtonTextColor: "rgba(255, 255, 255, 0.548)",
-    viewPostButtonBackgroundColor: "rgba(146, 146, 146, 0.3)",
+    viewPostButtonBackgroundColor: "rgba(146, 146, 146, 0.4)",
     // scroll
     scrollThumbColor: "hsla(0, 0%, 45%, 0.7)",
     scollTrackColor: "transparent",

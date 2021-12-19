@@ -67,6 +67,7 @@
         cursor: pointer;
         transition: all 0.2s ease;
         z-index: 10;
+        backdrop-filter: blur(5px);
 
         // background-color: rgba(146, 146, 146, 0.3);
         // color: rgba(255, 255, 255, 0.548);

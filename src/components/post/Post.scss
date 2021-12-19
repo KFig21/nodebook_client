@@ -5,7 +5,7 @@
   color: $textWhite;
   background-color: $postContainerBackgroundColor;
   margin: 0px 0px 20px 0px;
-  border-radius: 1px 25px 25px 25px;
+  border-radius: 0px 25px 25px 25px;
   position: relative;
 }
 
@@ -13,7 +13,7 @@
   .post-upper {
     padding: 10px;
     background-color: $postBackgroundColor;
-    border-radius: 3px 25px 25px 25px;
+    border-radius: 0px 25px 25px 25px;
 
     @include mobile {
       padding: 10px 10px 7px 10px;

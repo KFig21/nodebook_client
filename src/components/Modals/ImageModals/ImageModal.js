@@ -29,10 +29,10 @@ export default function ImageModal({
         />
       </div>
 
-      <SC.ModalWrapper
+      <SC.ModalWrapperDark
         className="modal-background"
         onClick={() => setShowModal(!showModal)}
-      ></SC.ModalWrapper>
+      ></SC.ModalWrapperDark>
     </div>
   );
 }

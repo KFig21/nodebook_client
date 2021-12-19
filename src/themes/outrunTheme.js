@@ -53,7 +53,7 @@ const outrunTheme = {
     profileNavIconColorActive: "rgba(254, 49, 171, 1)",
     // modal
     modalWrapperBackgroundColor: "rgba(54, 0, 115, 0.26)",
-    darkModalWrapperBackgroundColor: "rgba(33, 36, 37, 0.65)",
+    darkModalWrapperBackgroundColor: "rgba(54, 0, 115, 0.26)",
     viewPostButtonTextColor: "rgba(255, 255, 255, 0.548)",
     viewPostButtonBackgroundColor: "rgba(146, 146, 146, 0.3)",
     // scroll

@@ -14,10 +14,10 @@ export default function CoverImageModal({ cover, setShowModal, showModal }) {
         />
       </div>
 
-      <SC.ModalWrapper
+      <SC.ModalWrapperDark
         className="modal-background"
         onClick={() => setShowModal(!showModal)}
-      ></SC.ModalWrapper>
+      ></SC.ModalWrapperDark>
     </div>
   );
 }
