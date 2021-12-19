@@ -8,15 +8,15 @@ const outrunTheme = {
     navbarColor: "#131230",
     backgroundColor: "#1b2150",
     sidebarColor: "#090c26",
-    sidebarColorMobile: "rgba(55, 20, 85, 0.93)",
+    sidebarColorMobile: "rgba(9, 12, 38, 0.93)",
     shareContainerColor: "rgba(0, 0, 0, .25)",
     fadedButtonColor: "#7d3cff75",
     borderColor: "rgb(100, 100, 100)",
     darkBorder: "rgb(15, 15, 15)",
     ShareIconColor: "rgb(247, 247, 247)",
     // post
-    postBackgroundColor: "#191f4d",
-    postContainerBackgroundColor: "rgba(0, 0, 0, .25)",
+    postBackgroundColor: "rgba(61, 74, 173, .2)",
+    postContainerBackgroundColor: "rgba(0, 0, 0, .2)",
     editedBackgroundColor: "#090c26",
     formInputColor: "rgba(178, 39, 245, 0.25)",
     formInputFocusColor: "rgba(178, 39, 245, 0.5)",
@@ -27,8 +27,8 @@ const outrunTheme = {
     editButtonTextColor: "orange",
     editButtonBackgroundColor: "rgba(255, 166, 0, 0.2)",
     // follow container
-    followContainerBackgroundColor: "rgba(178, 39, 245, 0.25)",
-    followContainerBackgroundColorHover: "rgba(178, 39, 245, 0.5)",
+    followContainerBackgroundColor: "rgba(189, 73, 245, 0.15)",
+    followContainerBackgroundColorHover: "rgba(178, 39, 245, 0.25)",
     primaryColorGlow: "rgba(255, 26, 140, .4)",
     // notification
     notificationSeenButtonFaded: "#386e38",
@@ -61,7 +61,7 @@ const outrunTheme = {
     scollTrackColor: "transparent",
     // theme specific
     backgroundGradient:
-      "linear-gradient(135deg, rgba(68,41,110,1) 0%, rgba(27,33,80,1) 20%, rgba(9,12,38,1) 51%, rgba(27,33,80,1) 80%, rgba(68,41,110,1) 100%)",
+      "linear-gradient(135deg, rgba(68,41,110,1) 0%, rgba(27,33,80,1) 30%, rgba(9,12,38,1) 51%, rgba(27,33,80,1) 70%, rgba(68,41,110,1) 100%)",
     postGlow: "rgba(0, 147, 255, 0.4)",
     shareGlow: "rgba(255, 26, 140, .4)",
   },

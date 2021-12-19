@@ -72,6 +72,11 @@ const SC = {
   `,
   SidebarLogoTop: styled.div`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
+    @media (min-height: 421px) {
+      @media (max-width: 768px) {
+        background-color: transparent !important;
+      }
+    }
   `,
   SidebarLink: styled.div`
     &:hover {
@@ -643,6 +648,12 @@ const SC = {
   `,
   LogoSvg: styled.svg`
     background-color: ${(props) => props.theme.colors.sidebarColor} !important;
+    @media (min-height: 421px) {
+      @media (max-width: 768px) {
+        background-color: ${(props) =>
+          props.theme.colors.sidebarColorMobile} !important;
+      }
+    }
   `,
   LogoG: styled.g`
     fill: ${(props) => props.theme.colors.primaryColor} !important;
