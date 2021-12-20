@@ -35,7 +35,12 @@
           font-weight: 500;
 
           @include mobile {
+            white-space: nowrap;
+            overflow: hidden;
             font-size: 18px;
+            max-width: calc(100vw - 255px);
+            // max-width: 130px;
+            text-overflow: ellipsis;
           }
 
           @include mobileKeyboard {
@@ -50,7 +55,11 @@
           color: $subTextColor;
 
           @include mobile {
+            white-space: nowrap;
+            overflow: hidden;
             font-size: 15px;
+            max-width: calc(100vw - 255px);
+            text-overflow: ellipsis;
           }
 
           @include mobileKeyboard {
@@ -62,7 +71,7 @@
         border-radius: 100px;
         height: 45px;
         width: 45px;
-        margin-right: 15px;
+        margin-right: 10px;
         object-fit: cover;
       }
     }
@@ -93,7 +102,7 @@
       // background-color: $primaryColorFaded;
       color: $textWhite;
       border-radius: 5px;
-      margin: 0px 15px;
+      margin: 0px 15px 0px 8px;
       display: flex;
       align-items: center;
       justify-content: center;
