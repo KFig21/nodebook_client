@@ -12,7 +12,7 @@ const outrunTheme = {
     shareContainerColor: "rgba(0, 0, 0, .25)",
     fadedButtonColor: "#7d3cff75",
     borderColor: "rgba(120, 49, 222, .5)",
-    darkBorder: "rgb(15, 15, 15)",
+    darkBorder: "#090c26",
     ShareIconColor: "rgb(247, 247, 247)",
     // post
     postBackgroundColor: "rgba(61, 74, 173, .2)",

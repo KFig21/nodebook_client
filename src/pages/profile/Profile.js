@@ -1,10 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 import SC from "../../themes/styledComponents";
-import Cropper from "react-easy-crop";
-import { Slider } from "@material-ui/core";
 import "./Profile.scss";
 import "./ProfileImages.scss";
 import {
@@ -23,24 +20,13 @@ import Loader from "../../components/loader/Loader";
 import ImageModal from "../../components/Modals/ImageModals/ImageModal";
 import CoverImageModal from "../../components/Modals/ImageModals/CoverImageModal";
 import AvatarImageModal from "../../components/Modals/ImageModals/AvatarImageModal";
+import AvatarChangeModal from "./Modals/AvatarChangeModal";
+import CoverChangeModal from "./Modals/CoverChangeModal";
 // images
 import cover from "../../assets/cover.png";
 import noAvi from "../../assets/noAvatar.png";
-import avatarCropper from "../../assets/avatarCropper.png";
-import coverCropper from "../../assets/coverCropper.png";
-import { ThemeContext } from "styled-components";
-import { createTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-import getCroppedImg from "../../helpers/cropImage";
-import { dataURLtoFile } from "../../helpers/dataURLtoFile";
 // icons
-import {
-  PermMedia,
-  Cancel,
-  AccountCircle,
-  Edit,
-  Image as ImageIcon,
-} from "@material-ui/icons";
+import { AccountCircle, Edit, Image as ImageIcon } from "@material-ui/icons";
 
 export default function Profile({
   currentPage,
@@ -72,6 +58,10 @@ export default function Profile({
   const [coverModal, setCoverModal] = useState(false);
   const [followerCount, setFollowersCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
+  // image cropper
+  const [sending, setSending] = useState(false);
+  const [file, setFile] = useState(null);
+  const isInvalid = file === "" || file === null;
 
   useEffect(() => {
     // check if the current user follows the profile user
@@ -239,87 +229,6 @@ export default function Profile({
     }
   }, [skip]);
 
-  const handleAvatarUpdate = async (e) => {
-    e.preventDefault();
-    setSending(true);
-    if (file) {
-      const canvas = await getCroppedImg(file, croppedArea);
-      const convertedUrlToFile = dataURLtoFile(canvas, "cropped-image.jpeg");
-      const data = new FormData();
-
-      data.append("file", convertedUrlToFile);
-      data.append("userId", currentUser._id);
-
-      try {
-        await axios.put(
-          "https://radiant-oasis-77477.herokuapp.com/api/users/avatar",
-          // `http://localhost:3000/api/users/avatar/`,
-          data
-        );
-        window.location.reload();
-      } catch (err) {}
-    }
-  };
-
-  const handleCoverUpdate = async (e) => {
-    e.preventDefault();
-    setSending(true);
-
-    if (file) {
-      const canvas = await getCroppedImg(file, croppedArea);
-      const convertedUrlToFile = dataURLtoFile(canvas, "cropped-image.jpeg");
-      const data = new FormData();
-
-      data.append("file", convertedUrlToFile);
-      data.append("userId", currentUser._id);
-
-      try {
-        await axios.put(
-          "https://radiant-oasis-77477.herokuapp.com/api/users/cover",
-          // `http://localhost:3000/api/users/cover/`,
-          data
-        );
-        window.location.reload();
-      } catch (err) {}
-    }
-  };
-
-  // image cropper
-  const [sending, setSending] = useState(false);
-  const [file, setFile] = useState(null);
-  const isInvalid = file === "" || file === null;
-  const themeContext = useContext(ThemeContext);
-  const sliderTheme = createTheme({
-    overrides: {
-      MuiSlider: {
-        thumb: {
-          color: `${themeContext.colors.primaryColor}`,
-        },
-        track: {
-          color: `${themeContext.colors.primaryColorFaded}`,
-        },
-        rail: {
-          color: `${themeContext.colors.borderColor}`,
-        },
-      },
-    },
-  });
-  const [croppedArea, setCroppedArea] = useState(null);
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
-    setCroppedArea(croppedAreaPixels);
-  };
-  const onSelectFile = (event) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.addEventListener("load", () => {
-        setFile(reader.result);
-      });
-    }
-  };
-
   // image modal
   const handleSetModal = (post) => {
     setImage(post);
@@ -420,76 +329,13 @@ export default function Profile({
         {avatarModal &&
           (!sending ? (
             <div className="profile-modal-wrapper">
-              <SC.ProfileModalContainer className="profile-modal-container">
-                {file && (
-                  <div className="cropper-container">
-                    <div className="avatar-modal-img-container">
-                      <Cancel
-                        className="avatar-modal-cancel-img"
-                        onClick={() => setFile("")}
-                      />
-                      <Cropper
-                        image={file}
-                        crop={crop}
-                        zoom={zoom}
-                        aspect={1}
-                        onCropChange={setCrop}
-                        onZoomChange={setZoom}
-                        onCropComplete={onCropComplete}
-                      />
-                    </div>
-                    <div className="slider-container">
-                      <ThemeProvider theme={sliderTheme}>
-                        <Slider
-                          min={1}
-                          max={3}
-                          step={0.1}
-                          value={zoom}
-                          onChange={(e, zoom) => setZoom(zoom)}
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </div>
-                )}
-                <SC.ProfileModalMessageContainer className="avatar-modal-bottom-container">
-                  <form
-                    className="avatar-modal-bottom"
-                    onSubmit={handleAvatarUpdate}
-                    encType="multipart/form-data"
-                  >
-                    <div className="avatar-modal-options">
-                      <label htmlFor="file" className="avatar-modal-option">
-                        <SC.ProfileModalFileIcon>
-                          <PermMedia className="file-icon" />
-                        </SC.ProfileModalFileIcon>
-                        <span className="avatar-modal-option-text">
-                          Select a new avatar
-                        </span>
-                        <input
-                          style={{ display: "none" }}
-                          type="file"
-                          id="file"
-                          name="file"
-                          accept=".png,.jpeg,.jpg"
-                          // onChange={(e) => setFile(e.target.files[0])}
-                          onChange={onSelectFile}
-                        />
-                      </label>
-                    </div>
-                    <SC.ProfileImageSaveButton
-                      type="submit"
-                      className={
-                        isInvalid
-                          ? "save-button invalid-save-button"
-                          : "save-button"
-                      }
-                      disabled={isInvalid}
-                    >
-                      save
-                    </SC.ProfileImageSaveButton>
-                  </form>
-                </SC.ProfileModalMessageContainer>
-              </SC.ProfileModalContainer>
+              <AvatarChangeModal
+                file={file}
+                setFile={setFile}
+                isInvalid={isInvalid}
+                setSending={setSending}
+                currentUser={currentUser}
+              />
               {sending ? (
                 <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
               ) : (
@@ -511,76 +357,13 @@ export default function Profile({
         {coverModal &&
           (!sending ? (
             <div className="profile-modal-wrapper">
-              <SC.ProfileModalContainer className="profile-modal-container">
-                {file && (
-                  <div className="cropper-container">
-                    <div className="cover-modal-img-container">
-                      <Cancel
-                        className="cover-modal-cancel-img"
-                        onClick={() => setFile("")}
-                      />
-                      <Cropper
-                        image={file}
-                        crop={crop}
-                        zoom={zoom}
-                        aspect={4}
-                        onCropChange={setCrop}
-                        onZoomChange={setZoom}
-                        onCropComplete={onCropComplete}
-                      />
-                    </div>
-                    <div className="slider-container">
-                      <ThemeProvider theme={sliderTheme}>
-                        <Slider
-                          min={1}
-                          max={3}
-                          step={0.1}
-                          value={zoom}
-                          onChange={(e, zoom) => setZoom(zoom)}
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </div>
-                )}
-                <SC.ProfileModalMessageContainer className="avatar-modal-bottom-container">
-                  <form
-                    className="avatar-modal-bottom"
-                    onSubmit={handleCoverUpdate}
-                    encType="multipart/form-data"
-                  >
-                    <div className="avatar-modal-options">
-                      <label htmlFor="file" className="avatar-modal-option">
-                        <SC.ProfileModalFileIcon>
-                          <PermMedia className="file-icon" />
-                        </SC.ProfileModalFileIcon>
-                        <span className="avatar-modal-option-text">
-                          Select a new cover
-                        </span>
-                        <input
-                          style={{ display: "none" }}
-                          type="file"
-                          id="file"
-                          name="file"
-                          accept=".png,.jpeg,.jpg"
-                          // onChange={(e) => setFile(e.target.files[0])}
-                          onChange={onSelectFile}
-                        />
-                      </label>
-                    </div>
-                    <SC.ProfileImageSaveButton
-                      type="submit"
-                      className={
-                        isInvalid
-                          ? "save-button invalid-save-button"
-                          : "save-button"
-                      }
-                      disabled={isInvalid}
-                    >
-                      save
-                    </SC.ProfileImageSaveButton>
-                  </form>
-                </SC.ProfileModalMessageContainer>
-              </SC.ProfileModalContainer>
+              <CoverChangeModal
+                file={file}
+                setFile={setFile}
+                isInvalid={isInvalid}
+                setSending={setSending}
+                currentUser={currentUser}
+              />
               {sending ? (
                 <SC.ModalWrapper className="modal-background"></SC.ModalWrapper>
               ) : (
