@@ -51,6 +51,24 @@ export const updateFollowStatus = async (user, otherUser, follow) => {
 // ---------- POST ----------
 // ---------- POST ----------
 
+// share post
+export const sharePost = async (post) => {
+  await axios.post(
+    "https://radiant-oasis-77477.herokuapp.com/api/posts",
+    // "http://localhost:3000/api/posts",
+    post
+  );
+};
+
+// share post with image
+export const sharePostWithImage = async (postWithImg) => {
+  await axios.post(
+    "https://radiant-oasis-77477.herokuapp.com/api/posts/image",
+    // `http://localhost:3000/api/posts/image`,
+    postWithImg
+  );
+};
+
 // get post by id
 export const fetchPostById = async (post) => {
   const res = await axios.get(
@@ -234,27 +252,6 @@ export const fetchCommentLikers = async (comment, skip, user) => {
     // `http://localhost:3000/api/comments/${comment}/likers/${skip}/${user}`
   );
   return res.data;
-};
-
-// ---------- SHARE ----------
-// ---------- SHARE ----------
-
-// share post
-export const sharePost = async (post) => {
-  await axios.post(
-    "https://radiant-oasis-77477.herokuapp.com/api/posts",
-    // "http://localhost:3000/api/posts",
-    post
-  );
-};
-
-// share post with image
-export const sharePostWithImage = async (postWithImg) => {
-  await axios.post(
-    "https://radiant-oasis-77477.herokuapp.com/api/posts/image",
-    // `http://localhost:3000/api/posts/image`,
-    postWithImg
-  );
 };
 
 // ---------- NOTIFICATIONS ----------

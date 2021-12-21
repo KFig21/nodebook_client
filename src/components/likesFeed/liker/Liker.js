@@ -74,7 +74,6 @@ export default function Liker({ liker, sidebarOpen }) {
         liker.followingStatus === true &&
         liker.followerStatus === true
       ) {
-        console.log(liker);
         setFollowStatus("mutual following");
         setFollowed(true);
       } else if (

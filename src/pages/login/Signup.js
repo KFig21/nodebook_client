@@ -1,13 +1,10 @@
 import { React, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { useForm } from "react-hook-form";
 import axios from "axios";
 import wordmark from "../../assets/wordmark.png";
 import "./Login.scss";
 
-export default function Signup({ setUserAuth }) {
-  // const { register, handleSubmit } = useForm();
-  // const [loginErr, setLoginErr] = useState(false);
+export default function Signup() {
   let navigate = useNavigate();
 
   const firstname = useRef();
@@ -28,10 +25,12 @@ export default function Signup({ setUserAuth }) {
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
+        confirmPassword: confirmPassword.current.value,
       };
       try {
         await axios.post(
           "https://radiant-oasis-77477.herokuapp.com/api/auth/register",
+          // "http://localhost:3000/api/auth/register",
           user
         );
         navigate("/login", { replace: true });
@@ -41,38 +40,9 @@ export default function Signup({ setUserAuth }) {
     }
   };
 
-  // const onSubmit = async (data) => {
-  //   const formData = JSON.stringify(data);
-  //   try {
-  //     const req = await fetch(
-  //       "https://radiant-oasis-77477.herokuapp.com/api/sign-up",
-  //       {
-  //         method: "POST",
-  //         body: formData,
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     const myJson = await req.json();
-  //     if (req.status !== 200) {
-  //       setLoginErr(true);
-  //       return;
-  //     }
-  //     localStorage.setItem("token", myJson.token);
-  //     localStorage.setItem("userAuth", true);
-  //     setUserAuth(true);
-  //     navigate("/", { replace: true });
-  //   } catch (err) {
-  //     setLoginErr(true);
-  //   }
-  // };
-
   return (
     <div className="login-container">
       <div className="login-left">
-        {/* <span className="login-left-title">nodebook</span> */}
         <div className="glow"></div>
         <img className="wordmark" src={wordmark} alt="" />
       </div>
@@ -86,7 +56,6 @@ export default function Signup({ setUserAuth }) {
                 type="text"
                 placeholder="First name"
                 ref={firstname}
-                // {...register("firstname", { required: true })}
               ></input>
             </div>
             {/* last name */}
@@ -96,7 +65,6 @@ export default function Signup({ setUserAuth }) {
                 type="text"
                 placeholder="Last name"
                 ref={lastname}
-                // {...register("lastname", { required: true })}
               ></input>
             </div>
             {/* username */}
@@ -106,7 +74,6 @@ export default function Signup({ setUserAuth }) {
                 type="text"
                 placeholder="Username"
                 ref={username}
-                // {...register("username", { required: true })}
               ></input>
             </div>
             {/* email */}
@@ -116,7 +83,6 @@ export default function Signup({ setUserAuth }) {
                 type="email"
                 placeholder="Email address"
                 ref={email}
-                // {...register("email", { required: true })}
               ></input>
             </div>
             {/* password */}
@@ -126,7 +92,6 @@ export default function Signup({ setUserAuth }) {
                 placeholder="Password"
                 type="password"
                 ref={password}
-                // {...register("password", { required: true })}
               ></input>
             </div>
             {/* confirm password */}
@@ -136,16 +101,10 @@ export default function Signup({ setUserAuth }) {
                 placeholder="Confirm password"
                 type="password"
                 ref={confirmPassword}
-                // {...register("confirm-password", { required: true })}
               ></input>
             </div>
 
-            <button
-              type="submit"
-              // onClick={((e) => e.preventDefault(), handleSubmit(onSubmit))}
-            >
-              Sign up
-            </button>
+            <button type="submit">Sign up</button>
           </form>
         </div>
         <div className="login-sub-container">
@@ -153,7 +112,6 @@ export default function Signup({ setUserAuth }) {
             Already have an account?
             <Link to="/login"> Login</Link>
           </p>
-          {/* {loginErr && <span className="error-span">Error, try again</span>} */}
         </div>
       </div>
     </div>

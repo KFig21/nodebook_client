@@ -79,16 +79,20 @@
           padding: 3px 0px;
           text-align: left;
           font-size: 18px;
+          flex-wrap: wrap;
 
           @include mobile {
             padding: 1px 0px;
+            word-break: break-all;
           }
 
           @include mobileKeyboard {
             padding: 1px 0px;
+            word-break: break-all;
           }
           @include mobileHorizontal {
             padding: 1px 0px;
+            word-break: break-all;
           }
         }
 

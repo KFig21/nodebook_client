@@ -63,7 +63,6 @@ export default function UpdateUser() {
         navigate("/", { replace: true });
       }
     } catch (err) {
-      console.log(err.response.data.msg);
       setError(true);
       setErrorMsg(err.response.data.msg);
     }
