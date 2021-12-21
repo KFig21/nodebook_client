@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/nodebook_client/static/css/main.7946c50a.chunk.css",
+    "main.css": "/nodebook_client/static/css/main.813c69f3.chunk.css",
     "main.js": "/nodebook_client/static/js/main.d2a9ef61.chunk.js",
     "main.js.map": "/nodebook_client/static/js/main.d2a9ef61.chunk.js.map",
     "runtime-main.js": "/nodebook_client/static/js/runtime-main.bdc9ef66.js",
@@ -8,7 +8,7 @@
     "static/js/2.316243cc.chunk.js": "/nodebook_client/static/js/2.316243cc.chunk.js",
     "static/js/2.316243cc.chunk.js.map": "/nodebook_client/static/js/2.316243cc.chunk.js.map",
     "index.html": "/nodebook_client/index.html",
-    "static/css/main.7946c50a.chunk.css.map": "/nodebook_client/static/css/main.7946c50a.chunk.css.map",
+    "static/css/main.813c69f3.chunk.css.map": "/nodebook_client/static/css/main.813c69f3.chunk.css.map",
     "static/js/2.316243cc.chunk.js.LICENSE.txt": "/nodebook_client/static/js/2.316243cc.chunk.js.LICENSE.txt",
     "static/media/cover.cfc827b9.png": "/nodebook_client/static/media/cover.cfc827b9.png",
     "static/media/wordmark.eff11fb7.png": "/nodebook_client/static/media/wordmark.eff11fb7.png"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.bdc9ef66.js",
     "static/js/2.316243cc.chunk.js",
-    "static/css/main.7946c50a.chunk.css",
+    "static/css/main.813c69f3.chunk.css",
     "static/js/main.d2a9ef61.chunk.js"
   ]
 }
