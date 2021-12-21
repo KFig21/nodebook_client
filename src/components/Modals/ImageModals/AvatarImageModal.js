@@ -1,6 +1,7 @@
 import React from "react";
 import "./ImageModal.scss";
 import SC from "../../../themes/styledComponents";
+import noAvi from "../../../assets/noAvatar.png";
 
 export default function AvatarImageModal({ avatar, setShowModal, showModal }) {
   return (
@@ -8,7 +9,11 @@ export default function AvatarImageModal({ avatar, setShowModal, showModal }) {
       <SC.AvatarImageModal className="modal-container static avatar">
         <img
           className="modal-img static"
-          src={"https://nodebook-images.s3.amazonaws.com/" + avatar}
+          src={
+            avatar
+              ? "https://nodebook-images.s3.amazonaws.com/" + avatar
+              : noAvi
+          }
           alt=""
           onClick={() => setShowModal(!showModal)}
         />

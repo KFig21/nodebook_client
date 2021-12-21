@@ -182,13 +182,15 @@ export default function CenterFeed({
             {feed === "info" && (
               <div className="feed-wrapper">
                 <SC.ProfileInfoContainer className="profileInfo-container">
-                  {currentUser._id === profileUser._id && (
-                    <Link to={`/${currentUser._id}/update`}>
-                      <SC.ProfileEditButtonIcon title="update user info">
-                        <Edit className="edit-icon" />
-                      </SC.ProfileEditButtonIcon>
-                    </Link>
-                  )}
+                  {currentUser._id === profileUser._id &&
+                    currentUser._id !==
+                      process.env.REACT_APP_TEST_ACCOUNT_ID && (
+                      <Link to={`/${currentUser._id}/update`}>
+                        <SC.ProfileEditButtonIcon title="update user info">
+                          <Edit className="edit-icon" />
+                        </SC.ProfileEditButtonIcon>
+                      </Link>
+                    )}
                   <div className="profile-info-div">
                     <div className="profile-info-strong">Name:</div>{" "}
                     <div className="profile-info-content">

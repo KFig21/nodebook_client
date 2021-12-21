@@ -401,15 +401,17 @@ export default function Profile({
             <div className="profile-right-top">
               <div className="profile-cover">
                 <div className="cover-img-container">
-                  {username === currentUser.username && (
-                    <SC.ProfileCoverEditButtonIcon
-                      className="edit-icon-container"
-                      title="update cover image"
-                      onClick={openEditModal}
-                    >
-                      <Edit className="edit-icon" />
-                    </SC.ProfileCoverEditButtonIcon>
-                  )}
+                  {username === currentUser.username &&
+                    currentUser._id !==
+                      process.env.REACT_APP_TEST_ACCOUNT_ID && (
+                      <SC.ProfileCoverEditButtonIcon
+                        className="edit-icon-container"
+                        title="update cover image"
+                        onClick={openEditModal}
+                      >
+                        <Edit className="edit-icon" />
+                      </SC.ProfileCoverEditButtonIcon>
+                    )}
                   <img
                     onClick={() => setShowCoverImageModal(true)}
                     className="profile-cover-img"
