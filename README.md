@@ -6,7 +6,7 @@
 
 
 <h3>Summary</h3>
-<p>This was the final project for The Odin Project's NodeJS curriculum. The goal of the project is to build/re-create a functional social media platform with a backend. This application is closely modeled after Facebook & Twitter.</p>
+<p>This was the final project for <a href="https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs/lessons/odin-book" target="_blank" rel="noopener noreferrer">The Odin Project's</a> NodeJS curriculum. The goal of the project is to build/re-create a functional social media platform with a backend. This application is closely modeled after Facebook & Twitter.</p>
 
  <h3>Technologies:</h3>
   <ul>
