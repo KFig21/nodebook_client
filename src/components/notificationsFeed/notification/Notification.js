@@ -153,6 +153,7 @@ export default function Notification({
                   : `/post/${notification.postId}`
               }
               className="notification-link"
+              onClick={handleMarkAsRead}
             >
               <div className="notification-wrapper">
                 <div className="notification-top">

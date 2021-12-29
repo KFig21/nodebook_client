@@ -103,7 +103,7 @@ export default function Post({
     try {
       await submitComment(post._id, newComment);
     } catch (err) {}
-    window.location.reload();
+    navigate(`/post/${post._id}`, { replace: true });
     fetchNotifications();
   };
 
@@ -166,7 +166,7 @@ export default function Post({
               className="delete-button"
               onClick={() => handleDeletePost()}
             >
-              DELETE
+              Delete
             </button>
             <button
               className="cancel-button"

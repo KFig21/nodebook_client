@@ -598,6 +598,21 @@ const SC = {
       }
     }
   `,
+  NotificationModalButtonDelete: styled.div`
+    background-color: ${(props) =>
+      props.theme.colors.backgroundColor} !important;
+    &:hover {
+      background-color: crimson !important;
+    }
+  `,
+  NotificationModalButtonCancel: styled.div`
+    background-color: ${(props) =>
+      props.theme.colors.backgroundColor} !important;
+    &:hover {
+      background-color: ${(props) =>
+        props.theme.colors.formInputFocusColor} !important;
+    }
+  `,
 
   // ---------- SHARE ----------
   ShareContainer: styled.div`

@@ -271,7 +271,7 @@ export default function Comment({
                   className="delete-button"
                   onClick={() => handleDeleteComment()}
                 >
-                  DELETE
+                  Delete
                 </button>
                 <button
                   className="cancel-button"

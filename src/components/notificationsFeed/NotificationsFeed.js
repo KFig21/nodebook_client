@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./NotificationsFeed.scss";
 import Loader from "../../components/loader/Loader";
 import Notification from "./notification/Notification";
+import DeleteNotificationsModal from "../Modals/NotificationModal/DeleteNotificationsModal";
 import SC from "../../themes/styledComponents";
 import {
   deleteNotification,
@@ -18,6 +19,7 @@ export default function NotificationsFeed({
 }) {
   const [loading, setLoading] = useState(true);
   const [waitingOnLoad, setWaitingOnLoad] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [seenNotifications, setSeenNotifications] = useState([]);
   const [newNotifications, setNewNotifications] = useState([]);
   const { user } = useContext(AuthContext);
@@ -101,9 +103,17 @@ export default function NotificationsFeed({
         getNotifications();
       };
 
-      deleteNotifcations().then(() => refreshNotifications());
+      deleteNotifcations()
+        .then(() => refreshNotifications())
+        .then(() => setShowDeleteModal(false));
     };
     deleteBatch();
+  };
+
+  const [deleteType, setDeleteType] = useState("");
+  const handleDeleteModal = (type) => {
+    setDeleteType(type);
+    setShowDeleteModal(true);
   };
 
   const NewNotificationsFeed = () => {
@@ -129,7 +139,7 @@ export default function NotificationsFeed({
                 </SC.SeenButton>
                 <SC.DeleteButton
                   className="notification-delete-button desktop-button"
-                  onClick={() => handleDeleteBatch("new")}
+                  onClick={() => handleDeleteModal("new")}
                 >
                   Delete all new
                 </SC.DeleteButton>
@@ -141,7 +151,7 @@ export default function NotificationsFeed({
                 </SC.SeenButton>
                 <SC.DeleteButton
                   className="notification-delete-button mobile-button"
-                  onClick={() => handleDeleteBatch("new")}
+                  onClick={() => handleDeleteModal("new")}
                 >
                   Delete all
                 </SC.DeleteButton>
@@ -194,7 +204,7 @@ export default function NotificationsFeed({
                 </SC.SeenButton>
                 <SC.DeleteButton
                   className="notification-delete-button desktop-button"
-                  onClick={() => handleDeleteBatch("seen")}
+                  onClick={() => handleDeleteModal("seen")}
                 >
                   Delete all seen
                 </SC.DeleteButton>
@@ -206,7 +216,7 @@ export default function NotificationsFeed({
                 </SC.SeenButton>
                 <SC.DeleteButton
                   className="notification-delete-button mobile-button"
-                  onClick={() => handleDeleteBatch("seen")}
+                  onClick={() => handleDeleteModal("seen")}
                 >
                   Delete all
                 </SC.DeleteButton>
@@ -242,6 +252,13 @@ export default function NotificationsFeed({
       onClick={() => setSidebarOpen(false)}
     >
       <>
+        {showDeleteModal && (
+          <DeleteNotificationsModal
+            handleDeleteBatch={handleDeleteBatch}
+            setShowDeleteModal={setShowDeleteModal}
+            deleteType={deleteType}
+          />
+        )}
         {loading ? (
           <Loader type={"full-screen"} />
         ) : (
