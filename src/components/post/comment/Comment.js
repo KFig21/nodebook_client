@@ -109,7 +109,7 @@ export default function Comment({
   const handleEditComment = async (e) => {
     e.preventDefault();
     const updatedComment = {
-      userId: currentUser._id,
+      userId: comment.userId,
       body: editBody.current.value,
       edited: true,
       editedtimestamp: Date.now(),

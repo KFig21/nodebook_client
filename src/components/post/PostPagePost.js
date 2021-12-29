@@ -111,7 +111,7 @@ export default function Post({
   const handleEditPost = async (e) => {
     e.preventDefault();
     const updatedPost = {
-      userId: currentUser._id,
+      userId: post.userId,
       body: editBody.current.value,
       edited: true,
       editedtimestamp: Date.now(),

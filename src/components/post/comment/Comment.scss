@@ -233,6 +233,17 @@
         padding-bottom: 5px;
         margin-bottom: 5px;
 
+        .delete-comment-button-container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include mobile {
+            justify-content: space-around;
+          }
+        }
+
         span {
           font-size: 18px;
           margin: 6px 0px 8px 0px;
@@ -248,6 +259,10 @@
           margin: 5px 30px;
           border-radius: 5px;
           background-color: black;
+
+          @include mobile {
+            margin: 5px auto;
+          }
         }
 
         .delete-button {
