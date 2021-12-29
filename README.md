@@ -37,11 +37,11 @@
 
 <h4>Desktop</h4>
 
-<!-- ![](demo.gif) -->
+![](demo.gif)
 
 <h4>Mobile</h4>
 
-<!-- <img src="demoMobile.gif" width="250"/> -->
+<img src="demoMobile.gif" width="250"/>
 
 ---
 
