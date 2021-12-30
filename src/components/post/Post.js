@@ -135,6 +135,7 @@ export default function Post({
       await submitComment(post._id, newComment);
     } catch (err) {}
     navigate(`/post/${post._id}`, { replace: true });
+    window.location.reload();
     fetchNotifications();
   };
 

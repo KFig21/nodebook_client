@@ -2,19 +2,20 @@
 
 .followfeed {
   flex: 9;
-  min-height: calc(100vh - $navbarHeight);
-  height: calc(100vh - $navbarHeight);
+  min-height: 100vh;
+  height: 100vh;
   overflow-y: scroll;
   overflow: overlay;
 
   @include mobile {
-    min-height: calc(100vh - $navbarHeight - $footerHeight);
-    height: calc(100vh - $navbarHeight - $footerHeight);
+    min-height: calc(100vh - $footerHeight);
+    height: calc(100vh - $footerHeight);
   }
 }
 
 .followfeed-wrapper {
   padding: 10px 20px 30px 20px;
+  padding-top: calc($navbarHeight + 10px);
   display: flex;
   flex-direction: column;
   align-items: center;

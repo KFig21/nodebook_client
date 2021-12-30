@@ -4,21 +4,22 @@
   flex: 9;
   overflow-y: scroll;
   overflow: overlay;
-  height: calc(100vh - $navbarHeight);
+  height: 100vh;
 
   @include mobile {
-    min-height: calc(100vh - $navbarHeight - $footerHeight);
-    height: calc(100vh - $navbarHeight - $footerHeight);
+    min-height: calc(100vh - $footerHeight);
+    height: calc(100vh - $footerHeight);
   }
 
   @include mobileKeyboard {
-    min-height: calc(100vh - $navbarHeight - $footerHeight);
-    height: calc(100vh - $navbarHeight - $footerHeight);
+    min-height: calc(100vh - $footerHeight);
+    height: calc(100vh - $footerHeight);
   }
 }
 
 .timeline-wrapper {
   padding: 20px;
+  padding-top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,15 +44,15 @@
   }
 
   @include mobile {
-    padding: 20px 20px 0px 20px;
+    padding: 90px 20px 0px 20px;
   }
 
   @include mobileKeyboard {
-    padding: 20px 20px 0px 20px;
+    padding: 90px 20px 0px 20px;
   }
 
   @include mobileHorizontal {
-    padding: 20px 20px 0px 20px;
+    padding: 90px 20px 0px 20px;
     max-width: 500px;
   }
 }

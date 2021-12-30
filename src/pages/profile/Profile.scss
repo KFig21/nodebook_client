@@ -6,9 +6,10 @@
 }
 
 .profile-right {
-  height: calc(100vh - $navbarHeight);
+  height: 100vh;
 
   .profile-right-content {
+    padding-top: $navbarHeight;
     overflow-y: scroll;
     overflow: overlay;
     height: 100%;
@@ -18,24 +19,24 @@
       max-width: 100%;
       min-width: 100%;
       width: 100%;
-      min-height: calc(100vh - $navbarHeight - $footerHeight);
-      height: calc(100vh - $navbarHeight - $footerHeight);
+      min-height: calc(100vh - $footerHeight);
+      height: calc(100vh - $footerHeight);
     }
 
     @include mobileKeyboard {
       max-width: 100%;
       min-width: 100%;
       width: 100%;
-      min-height: calc(100vh - $navbarHeight - $footerHeight);
-      height: calc(100vh - $navbarHeight - $footerHeight);
+      min-height: calc(100vh - $footerHeight);
+      height: calc(100vh - $footerHeight);
     }
 
     @include mobileHorizontal {
       max-width: 100%;
       min-width: 100%;
       width: 100%;
-      min-height: calc(100vh - $navbarHeight);
-      height: calc(100vh - $navbarHeight);
+      min-height: 100vh;
+      height: 100vh;
     }
 
     .profile-right-top {

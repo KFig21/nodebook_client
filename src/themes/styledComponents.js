@@ -19,6 +19,9 @@ const SC = {
           props.theme.colors.primaryColorFaded} !important;
       }
     }
+    ::-webkit-scrollbar-track {
+      margin-top: 60px;
+    }
   `,
   ModalWrapper: styled.div`
   background-color: ${(props) =>
@@ -122,7 +125,8 @@ const SC = {
     }
   `,
   Navbar: styled.div`
-    background-color: ${(props) => props.theme.colors.navbarColor} !important;
+    background-color: ${(props) =>
+      props.theme.colors.navbarColorBlur} !important;
   `,
   Hamburger: styled.div`
     color: ${(props) => props.theme.colors.textWhite} !important;

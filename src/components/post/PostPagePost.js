@@ -102,8 +102,11 @@ export default function Post({
     // send comment post request
     try {
       await submitComment(post._id, newComment);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
     navigate(`/post/${post._id}`, { replace: true });
+    window.location.reload();
     fetchNotifications();
   };
 

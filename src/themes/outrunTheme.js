@@ -5,6 +5,7 @@ const outrunTheme = {
     likeColor: "rgba(254, 49, 171, 1)",
     primaryColorFaded: "rgba(0, 147, 255, .7)",
     likeColorFaded: "rgba(254, 49, 171, .7)",
+    navbarColorBlur: "rgba(19, 18, 48, .8);",
     navbarColor: "#131230",
     backgroundColor: "#1b2150",
     sidebarColor: "#090c26",

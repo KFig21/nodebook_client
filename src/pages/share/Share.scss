@@ -1,7 +1,8 @@
 @import "../../global.scss";
 
 .share-page {
-  height: calc(100vh - $navbarHeight);
+  min-height: 100vh;
+  height: 100vh;
   display: flex;
   overflow-y: scroll;
   overflow: overlay;
@@ -13,20 +14,21 @@
     max-width: 100%;
     min-width: 100%;
     width: 100%;
-    min-height: calc(100vh - $navbarHeight - $footerHeight);
-    height: calc(100vh - $navbarHeight - $footerHeight);
+    min-height: calc(100vh - $footerHeight);
+    height: calc(100vh - $footerHeight);
   }
 
   @include mobileKeyboard {
     max-width: 100%;
     min-width: 100%;
     width: 100%;
-    min-height: calc(100vh - $navbarHeight - $footerHeight);
-    height: calc(100vh - $navbarHeight - $footerHeight);
+    min-height: calc(100vh - $footerHeight);
+    height: calc(100vh - $footerHeight);
   }
 
   .share-container {
     padding: 20px 15px;
+    padding-top: calc($navbarHeight + 20px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,6 +40,7 @@
       min-width: 100%;
       width: 100%;
       padding: 20px 15px 0px 15px;
+      padding-top: calc($navbarHeight + 20px);
     }
 
     @include mobileKeyboard {
@@ -45,6 +48,7 @@
       min-width: 100%;
       width: 100%;
       padding: 20px 15px 0px 15px;
+      padding-top: calc($navbarHeight + 20px);
     }
 
     @include mobileHorizontal {
@@ -52,6 +56,7 @@
       min-width: 300px;
       width: 100%;
       padding: 20px 15px 0px 15px;
+      padding-top: calc($navbarHeight + 20px);
     }
 
     .share-input-desktop {
