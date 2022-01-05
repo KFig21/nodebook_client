@@ -12,8 +12,8 @@
   <ul>
   <li>MongoDB</li>
   <li>Express</li>
-  <li>NodeJS</li>
   <li>ReactJS</li>
+  <li>NodeJS</li>
   <li>SASS</li>
   <li>Styled Components</li>
   <li>Amazon S3 Bucket</li> 
