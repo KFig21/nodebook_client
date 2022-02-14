@@ -1,4 +1,4 @@
-const defaultThemeGreen = {
+const defaultThemeAqua = {
   colors: {
     // core
     primaryColor: "#23c5d9",
@@ -73,4 +73,4 @@ const defaultThemeGreen = {
   },
 };
 
-export default defaultThemeGreen;
+export default defaultThemeAqua;

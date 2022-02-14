@@ -6,8 +6,9 @@
   justify-content: center;
   overflow-y: scroll;
   overflow: overlay;
-  min-height: calc(100vh - $navbarHeight);
-  height: calc(100vh - $navbarHeight);
+  min-height: 100vh;
+  height: 100vh;
+  padding-top: 60px;
 
   @include mobile {
     min-height: calc(100vh - $navbarHeight - $footerHeight);
