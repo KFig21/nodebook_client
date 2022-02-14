@@ -10,10 +10,10 @@
 
  <h3>Technologies:</h3>
   <ul>
-  <li>MongoDB</li>
-  <li>Express</li>
-  <li>NodeJS</li>
-  <li>ReactJS</li>
+  <li><strong>M</strong>ongoDB</li>
+  <li><strong>E</strong>xpress</li>
+  <li><strong>R</strong>eactJS</li>
+  <li><strong>N</strong>odeJS</li>
   <li>SASS</li>
   <li>Styled Components</li>
   <li>Amazon S3 Bucket</li> 
