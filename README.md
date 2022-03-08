@@ -17,6 +17,7 @@
   <li>SASS</li>
   <li>Styled Components</li>
   <li>Amazon S3 Bucket</li> 
+  <li>Heroku hosting</li> 
  </ul>
 
  <h3>Features:</h3>
