@@ -202,7 +202,7 @@ export default function Sidebar({
         </div>
         <SC.PersonalInfoContainer className="sidebar-personal-info-container">
           <a
-            href="https://kfig21.github.io/portfolio_2021/"
+            href="https://kfig21.github.io/portfolio_2022/"
             target="_blank"
             rel="noopener noreferrer"
           >
