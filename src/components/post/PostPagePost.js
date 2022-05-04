@@ -8,7 +8,7 @@ import Comment from "./comment/Comment";
 import noAvi from "../../assets/noAvatar.png";
 import "./Post.scss";
 import SC from "../../themes/styledComponents";
-import { deletePost, submitComment, editPost } from "../../helpers/apiCalls";
+import { url, deletePost, submitComment, editPost } from "../../helpers/apiCalls";
 
 export default function Post({
   post,
@@ -42,8 +42,7 @@ export default function Post({
   const likeHandler = () => {
     try {
       axios.put(
-        `https://radiant-oasis-77477.herokuapp.com/api/posts/${post._id}/like`,
-        // `http://localhost:3000/api/posts/${post._id}/like`,
+        `${url}/posts/${post._id}/like`,
         { userId: currentUser._id, postId: post._id }
       );
     } catch (err) {}
@@ -54,8 +53,7 @@ export default function Post({
       // send like notification
       try {
         axios.post(
-          "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-          // "http://localhost:3000/api/notifications/",
+          `${url}/notifications/`,
           {
             sender: currentUser._id,
             recipient: user._id,
@@ -70,8 +68,7 @@ export default function Post({
       // delete like notification
       try {
         axios.delete(
-          "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-          // "http://localhost:3000/api/notifications/",
+          `${url}/notifications/`,
           {
             data: {
               sender: currentUser._id,

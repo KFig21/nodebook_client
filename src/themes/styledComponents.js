@@ -172,6 +172,28 @@ const SC = {
     }
     display: flex;
   `,
+  MobileSidebarBackground: styled.div`
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+  display: none;
+  position: fixed;
+  background-color: rgba(0,0,0,0); 
+  transition: background-color ease 0.5s;
+
+  @media (min-height: 421px) {
+    @media (max-width: 768px) {
+      display: block;
+      left: -100%;
+      z-index: 5;
+      
+      &.active{
+        background-color: rgba(0,0,0,.75);
+        left: 0px;
+      }
+    }
+  }
+`,
 
   // ---------- PROFILE ----------
   AvatarContainer: styled.div`

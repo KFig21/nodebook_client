@@ -13,8 +13,7 @@ import {
 
 export default function NotificationsFeed({
   fetchNotifications,
-  setCurrentPage,
-  sidebarOpen,
+  setCurrentPage, 
   setSidebarOpen,
 }) {
   const [loading, setLoading] = useState(true);
@@ -120,8 +119,7 @@ export default function NotificationsFeed({
     return (
       <div className="notifications-container">
         <SC.NotificationHeader
-          className="notification-type-header"
-          style={sidebarOpen ? { pointerEvents: "none" } : {}}
+          className="notification-type-header" 
         >
           <div className="notification-type-header-wrapper">
             <span className="notification-type-header-title">
@@ -160,8 +158,7 @@ export default function NotificationsFeed({
           </div>
         </SC.NotificationHeader>
         <div
-          className="notifications-holder"
-          style={sidebarOpen ? { pointerEvents: "none" } : {}}
+          className="notifications-holder" 
         >
           {newNotifications.length > 0 ? (
             newNotifications.map((notification) => (

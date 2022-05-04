@@ -8,6 +8,7 @@ import SC from "../../../themes/styledComponents";
 import axios from "axios";
 import getCroppedImg from "../../../helpers/cropImage";
 import { dataURLtoFile } from "../../../helpers/dataURLtoFile";
+import { url } from "../../../helpers/apiCalls";
 // icons
 import { PermMedia, Cancel } from "@material-ui/icons";
 
@@ -63,8 +64,7 @@ export default function CoverChangeModal({
 
       try {
         await axios.put(
-          "https://radiant-oasis-77477.herokuapp.com/api/users/cover",
-          // `http://localhost:3000/api/users/cover/`,
+          `${url}/users/cover`,
           data
         );
         window.location.reload();

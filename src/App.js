@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import "./global.scss";
 import axios from "axios";
+import { getNotifications, url } from "./helpers/apiCalls";
 // pages
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
@@ -44,13 +45,10 @@ function App() {
   const fetchNotifications = async () => {
     // set a buffer for new notifications to get set before fetching
     setTimeout(async function () {
-      const res = await axios.get(
-        `https://radiant-oasis-77477.herokuapp.com/api/users/notifications?userId=${user._id}`
-        // `http://localhost:3000/api/users/notifications?userId=${user._id}`
-      );
-      setUserData(res.data);
+      const res = await getNotifications(user._id)
+      setUserData(res);
       let count = 0;
-      for (let notification of res.data.notifications) {
+      for (let notification of res.notifications) {
         if (notification.seen === false) {
           count++;
         }

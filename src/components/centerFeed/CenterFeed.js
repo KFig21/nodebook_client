@@ -25,8 +25,7 @@ export default function CenterFeed({
   loading,
   posts,
   images,
-  friends,
-  sidebarOpen,
+  friends, 
   loadNewUser,
   getInitialPosts,
   getInitialFollows,
@@ -71,8 +70,7 @@ export default function CenterFeed({
           </SC.ProfileHeader>
         </SC.ProfileHeader>
         <SC.ProfileHeader
-          className="profile-header-buttons-container"
-          style={sidebarOpen ? { pointerEvents: "none" } : {}}
+          className="profile-header-buttons-container" 
         >
           <SC.ProfileHeader className="profile-header-buttons-wrapper">
             {/* INFO BUTTON */}

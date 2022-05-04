@@ -1,4 +1,6 @@
 import axios from "axios";
+export const url = "https://radiant-oasis-77477.herokuapp.com/api"
+// export const url = "http://localhost:3000/api"
 
 // ---------- USER ----------
 // ---------- USER ----------
@@ -6,8 +8,7 @@ import axios from "axios";
 // get a user by their username
 export const fetchUserByUsername = async (user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/users?username=${user}`
-    // `http://localhost:3000/api/users?username=${user}`
+    `${url}/users?username=${user}`
   );
   return res.data;
 };
@@ -15,8 +16,7 @@ export const fetchUserByUsername = async (user) => {
 // get a user by their id
 export const fetchUserById = async (user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/users?userId=${user}`
-    // `http://localhost:3000/api/users?userId=${user}`
+    `${url}/users?userId=${user}`
   );
   return res.data;
 };
@@ -24,8 +24,7 @@ export const fetchUserById = async (user) => {
 // update a users theme
 export const updateUserTheme = async (data, user) => {
   await axios.put(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/${user}/theme/`,
-    // `http://localhost:3000/api/users/${user}/theme/`,
+    `${url}/users/${user}/theme/`,
     data
   );
 };
@@ -33,7 +32,7 @@ export const updateUserTheme = async (data, user) => {
 // edit user info
 export const updateUser = async (user, updatedUser) => {
   await axios.put(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/${user}`,
+    `${url}/users/${user}`,
     updatedUser
   );
 };
@@ -41,7 +40,7 @@ export const updateUser = async (user, updatedUser) => {
 // unfollow a user
 export const updateFollowStatus = async (user, otherUser, follow) => {
   await axios.put(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/${otherUser}/${follow}`,
+    `${url}/users/${otherUser}/${follow}`,
     {
       userId: user,
     }
@@ -54,8 +53,7 @@ export const updateFollowStatus = async (user, otherUser, follow) => {
 // share post
 export const sharePost = async (post) => {
   await axios.post(
-    "https://radiant-oasis-77477.herokuapp.com/api/posts",
-    // "http://localhost:3000/api/posts",
+    `${url}/posts`,
     post
   );
 };
@@ -63,8 +61,7 @@ export const sharePost = async (post) => {
 // share post with image
 export const sharePostWithImage = async (postWithImg) => {
   await axios.post(
-    "https://radiant-oasis-77477.herokuapp.com/api/posts/image",
-    // `http://localhost:3000/api/posts/image`,
+    `${url}/posts/image`,
     postWithImg
   );
 };
@@ -72,8 +69,7 @@ export const sharePostWithImage = async (postWithImg) => {
 // get post by id
 export const fetchPostById = async (post) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/${post}`
-    // `http://localhost:3000/api/posts/${post}`
+    `${url}/posts/${post}`
   );
   return res.data;
 };
@@ -81,8 +77,7 @@ export const fetchPostById = async (post) => {
 // get post by id
 export const fetchTimeline = async (user, skip) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/timeline/${user}/${skip}`
-    // `http://localhost:3000/api/posts/timeline/${user}/${skip}`
+    `${url}/posts/timeline/${user}/${skip}`
   );
   return res.data;
 };
@@ -90,8 +85,7 @@ export const fetchTimeline = async (user, skip) => {
 // edit a post
 export const editPost = async (post, updatedPost) => {
   await axios.put(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/${post}`,
-    // `http://localhost:3000/api/posts/${post}/`,
+    `${url}/posts/${post}`,
     updatedPost
   );
 };
@@ -99,8 +93,7 @@ export const editPost = async (post, updatedPost) => {
 // delete a post
 export const deletePost = async (post, user) => {
   await axios.delete(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/${post}/`,
-    // `http://localhost:3000/api/posts/${post}/`,
+    `${url}/posts/${post}/`,
     {
       data: {
         userId: user,
@@ -112,8 +105,7 @@ export const deletePost = async (post, user) => {
 // get post comments
 export const fetchPostComments = async (post, skip) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/${post}/comments/${skip}`
-    // `http://localhost:3000/api/posts/${post._id}/comments/${skip}`
+    `${url}/posts/${post}/comments/${skip}`
   );
   return res.data;
 };
@@ -121,8 +113,7 @@ export const fetchPostComments = async (post, skip) => {
 // get post likers
 export const fetchPostLikers = async (post, skip, user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/${post}/likers/${skip}/${user}`
-    // `http://localhost:3000/api/posts/${post}/likers/${skip}/${user}`
+    `${url}/posts/${post}/likers/${skip}/${user}`
   );
   return res.data;
 };
@@ -133,8 +124,7 @@ export const fetchPostLikers = async (post, skip, user) => {
 // get profile users initial posts
 export const fetchInitialPosts = async (user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${user}/0`
-    // `http://localhost:3000/api/posts/profile/${userFetched}/0`
+    `${url}/posts/profile/${user}/0`
   );
   return res.data;
 };
@@ -142,8 +132,7 @@ export const fetchInitialPosts = async (user) => {
 // get profile users posts on scroll
 export const fetchScrollPosts = async (user, skip) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${user}/${skip}`
-    // `http://localhost:3000/api/posts/profile/${user}/${skip}`
+    `${url}/posts/profile/${user}/${skip}`
   );
   return res.data;
 };
@@ -151,8 +140,7 @@ export const fetchScrollPosts = async (user, skip) => {
 // get profile users initial images
 export const fetchInitialImages = async (user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${user}/images/0`
-    // `http://localhost:3000/api/posts/profile/${user}/images/0`
+    `${url}/posts/profile/${user}/images/0`
   );
   return res.data;
 };
@@ -160,8 +148,7 @@ export const fetchInitialImages = async (user) => {
 // get profile users images on scroll
 export const fetchScrollImages = async (user, skip) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/profile/${user}/images/${skip}`
-    // `http://localhost:3000/api/posts/profile/${user}/images/${skip}`
+    `${url}/posts/profile/${user}/images/${skip}`
   );
   return res.data;
 };
@@ -173,8 +160,7 @@ export const fetchInitialfollowsForProfile = async (
   currentUser
 ) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser}/${type}-profile/${currentUser}/0`
-    // `http://localhost:3000/api/users/${profileUser}/${type}-profile/${currentUser}/0`
+    `${url}/users/${profileUser}/${type}-profile/${currentUser}/0`
   );
   return res.data;
 };
@@ -187,8 +173,7 @@ export const fetchScrollfollowsForProfile = async (
   skip
 ) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/${profileUser}/${feed}-profile/${currentUser}/${skip}`
-    // `http://localhost:3000/api/users/${profileUser}/${feed}-profile/${currentUser}/${skip}`
+    `${url}/users/${profileUser}/${feed}-profile/${currentUser}/${skip}`
   );
   return res.data;
 };
@@ -196,8 +181,7 @@ export const fetchScrollfollowsForProfile = async (
 // get image data
 export const fetchImageData = async (image) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/images/${image}`
-    // `http://localhost:3000/api/images/${image}`
+    `${url}/images/${image}`
   );
   return res.data;
 };
@@ -208,8 +192,7 @@ export const fetchImageData = async (image) => {
 // submit a comment
 export const submitComment = async (post, comment) => {
   await axios.post(
-    `https://radiant-oasis-77477.herokuapp.com/api/posts/${post}/comment`,
-    // `http://localhost:3000/api/posts/${post}/comment`,
+    `${url}/posts/${post}/comment`,
     comment
   );
 };
@@ -217,8 +200,7 @@ export const submitComment = async (post, comment) => {
 // get comment by id
 export const fetchCommentById = async (comment) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment}`
-    // `http://localhost:3000/api/comments/${comment}`
+    `${url}/comments/${comment}`
   );
   return res.data;
 };
@@ -226,8 +208,7 @@ export const fetchCommentById = async (comment) => {
 // delete a comment
 export const deleteComment = async (comment, user) => {
   await axios.delete(
-    `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment}/`,
-    // `http://localhost:3000/api/comments/${comment}/`,
+    `${url}/comments/${comment}/`,
     {
       data: {
         userId: user,
@@ -239,8 +220,7 @@ export const deleteComment = async (comment, user) => {
 // edit a comment
 export const editComment = async (comment, updatedComment) => {
   await axios.put(
-    `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment}/`,
-    // `http://localhost:3000/api/comments/${comment}/`,
+    `${url}/comments/${comment}/`,
     updatedComment
   );
 };
@@ -248,8 +228,7 @@ export const editComment = async (comment, updatedComment) => {
 // get comment likers
 export const fetchCommentLikers = async (comment, skip, user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/comments/${comment}/likers/${skip}/${user}`
-    // `http://localhost:3000/api/comments/${comment}/likers/${skip}/${user}`
+    `${url}/comments/${comment}/likers/${skip}/${user}`
   );
   return res.data;
 };
@@ -257,11 +236,18 @@ export const fetchCommentLikers = async (comment, skip, user) => {
 // ---------- NOTIFICATIONS ----------
 // ---------- NOTIFICATIONS ----------
 
+// get notifications
+export const getNotifications = async (user) => {
+  const res = await axios.get(
+    `${url}/users/notifications?userId=${user}`
+  );
+  return res.data;
+};
+
 // get notifications feed
 export const fetchNotificationsFeed = async (user) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/notifications/${user}`
-    // `http://localhost:3000/api/notifications/${user}`
+    `${url}/notifications/${user}`
   );
   return res.data;
 };
@@ -269,24 +255,21 @@ export const fetchNotificationsFeed = async (user) => {
 // update a notification
 export const updateNotificationStatus = async (notification) => {
   await axios.put(
-    `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notification}`
-    // `http://localhost:3000/api/notifications/${notification}`
+    `${url}/notifications/${notification}`
   );
 };
 
 // delete a notification
 export const deleteNotification = async (notification) => {
   await axios.delete(
-    `https://radiant-oasis-77477.herokuapp.com/api/notifications/${notification}`
-    // `http://localhost:3000/api/notifications/${notificationToDelete._id}`
+    `${url}/notifications/${notification}`
   );
 };
 
 // delete follow notification (its different)
 export const deleteFollowNotification = async (user, otherUser) => {
   axios.delete(
-    "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-    // "http://localhost:3000/api/notifications/",
+    `${url}/notifications/`,
     {
       data: {
         sender: user,
@@ -302,8 +285,7 @@ export const deleteFollowNotification = async (user, otherUser) => {
 // send a follow notification
 export const sendFollowNotification = async (user, otherUser) => {
   axios.post(
-    "https://radiant-oasis-77477.herokuapp.com/api/notifications/",
-    // "http://localhost:3000/api/notifications/",
+    `${url}/notifications/`,
     {
       sender: user,
       recipient: otherUser,
@@ -321,8 +303,7 @@ export const sendFollowNotification = async (user, otherUser) => {
 // get followers/followings list
 export const fetchFollowsList = async (user, follow, skip) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/${user}/${follow}/${skip}`
-    // `http://localhost:3000/api/users/${user}/${follow}/${skip}`
+    `${url}/users/${user}/${follow}/${skip}`
   );
   return res.data;
 };
@@ -330,8 +311,7 @@ export const fetchFollowsList = async (user, follow, skip) => {
 // get explore list
 export const fetchExploreList = async (user, skip) => {
   const res = await axios.get(
-    `https://radiant-oasis-77477.herokuapp.com/api/users/explore/${user}/${skip}`
-    // `http://localhost:3000/api/users/explore/${user}/${skip}`
+    `${url}/users/explore/${user}/${skip}`
   );
   return res.data;
 };
@@ -343,7 +323,7 @@ export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });
   try {
     const res = await axios.post(
-      "https://radiant-oasis-77477.herokuapp.com/api/auth/login",
+      `${url}/auth/login`,
       userCredential
     );
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });

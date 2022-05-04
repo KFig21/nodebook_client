@@ -21,8 +21,7 @@ export default function Notifications({
       />
       <NotificationsFeed
         fetchNotifications={fetchNotifications}
-        setCurrentPage={setCurrentPage}
-        sidebarOpen={sidebarOpen}
+        setCurrentPage={setCurrentPage} 
         setSidebarOpen={setSidebarOpen}
       />
     </div>

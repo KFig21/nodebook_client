@@ -219,6 +219,10 @@ export default function Sidebar({
         </SC.PersonalInfoContainer>
         {/* </div> */}
       </SC.Sidebar>
+      <SC.MobileSidebarBackground
+      className={sidebarOpen ? "mobile-sidebar-background active" : "mobile-sidebar-background"}
+      onClick= {() => setSidebarOpen(false)}
+      ></SC.MobileSidebarBackground>
     </>
   );
 }

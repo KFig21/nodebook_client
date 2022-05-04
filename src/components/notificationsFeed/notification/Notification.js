@@ -16,6 +16,7 @@ import "./Notification.scss";
 import noAvi from "../../../assets/noAvatar.png";
 import SC from "../../../themes/styledComponents";
 import {
+  url,
   fetchUserById,
   updateNotificationStatus,
   deleteNotification,
@@ -58,8 +59,7 @@ export default function Notification({
           apiRoute = "users?userId=";
         }
         res = await axios.get(
-          `https://radiant-oasis-77477.herokuapp.com/api/${apiRoute}${contentId}`
-          // `http://localhost:3000/api/${apiRoute}${contentId}`
+          `${url}/${apiRoute}${contentId}`
         );
         setContent(res.data);
         setLoading(false);

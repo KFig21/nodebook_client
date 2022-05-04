@@ -448,8 +448,7 @@ export default function Profile({
                 loading={loading}
                 posts={posts}
                 images={images}
-                friends={friends}
-                sidebarOpen={sidebarOpen}
+                friends={friends} 
                 loadNewUser={loadNewUser}
                 getInitialPosts={getInitialPosts}
                 getInitialFollows={getInitialFollows}
