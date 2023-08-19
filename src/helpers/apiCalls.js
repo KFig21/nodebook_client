@@ -1,6 +1,6 @@
 import axios from "axios";
-// export const url = "https://radiant-oasis-77477.herokuapp.com/api"
-export const url = "http://localhost:3000/api"
+export const url = "https://radiant-oasis-77477.herokuapp.com/api"
+// export const url = "http://localhost:3000/api"
 
 // ---------- USER ----------
 // ---------- USER ----------
