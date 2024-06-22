@@ -4,6 +4,7 @@ export const url = "https://radiant-oasis-77477.herokuapp.com/api"
 
 // ---------- USER ----------
 // ---------- USER ----------
+// ---------- USER ----------
 
 // get a user by their username
 export const fetchUserByUsername = async (user) => {
