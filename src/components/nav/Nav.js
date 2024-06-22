@@ -32,8 +32,10 @@ export default function Nav({
 
   useEffect(() => {
     const checkFollowing = async () => {
-      let check = await user.followings.includes(profileUser?._id);
-      setFollowed(check);
+      if(user.followings){
+        let check = await user.followings.includes(profileUser?._id);
+        setFollowed(check);
+      }      
     };
     checkFollowing();
   });

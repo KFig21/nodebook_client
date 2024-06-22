@@ -721,6 +721,14 @@ const SC = {
   // ---------- MISC ----------
   Loader: styled.div`
     color: ${(props) => props.theme.colors.primaryColor} !important;
+
+      .message{
+        position: absolute;
+        display: flex;
+        transform: translate(0%, -50%);
+        margin-top: 140px;
+        color: ${(props) => props.theme.colors.subTextColor} !important;
+      }
   `,
   KFsvg: styled.svg`
     background-color: ${(props) =>

@@ -66,14 +66,18 @@ export default function Profile({
   useEffect(() => {
     // check if the current user follows the profile user
     const checkFollowing = async () => {
-      let check = await currentUser.followings.includes(profileUser?._id);
-      setFollowed(check);
+      if(currentUser.followings){
+        let check = await currentUser.followings.includes(profileUser?._id);
+        setFollowed(check);
+      }  
     };
     checkFollowing();
     // check if the profile user follows the current user
     const checkIfFollowedByUser = async () => {
-      let check = await currentUser.followers.includes(profileUser?._id);
-      setFollowedByUser(check);
+      if(currentUser.followers){
+        let check = await currentUser.followers.includes(profileUser?._id);
+        setFollowedByUser(check);
+      }
     };
     checkIfFollowedByUser();
     // remove unused error
